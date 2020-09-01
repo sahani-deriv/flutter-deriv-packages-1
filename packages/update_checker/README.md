@@ -1,14 +1,85 @@
 # update_checker
 
-A new Flutter package project.
+Flutter plugin to help check if there is a new update available for the app.
+The plugin uses Firebase Database to fetch data.
+Firebase Database should look like as follows
 
-## Getting Started
+```
+build:
+    android:
+        optional:
+            buildnumer: 24
+            changelog: 'RFAyUCB2ZXJ....' // Base64
+            url: 'https://alternative.app.link'
+        mandatory:
+            buildnumber: 18
+            changelog: 'RFAyUCB2ZXJ....' // Base64
+            url: 'https://alternative.app.link'
+```
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Types of Udpates
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+There can be an optional update or mandatory update.
+For optional updates, users can dismiss the alert and continue using old version.
+But for mandatory updates, we should block the usage of app unless user updates.
+
+### Fields
+
+* buildnumber - this is an integer to represent the minimum buildnumber required
+* changelog - this is base64 encoded changelog
+* url - an optional URL to redirect user to instead of App Store / Play Store
+
+### Buildnumber
+
+Current installed buildnumber for the application is obtained using `PackageInfo`
+This buildnumer is picked from `pubspec.yaml`. E.g.
+
+```
+name: otc_cashier
+description: DP2P is a peer-to-peer payments on deriv.com
+version: 1.1.3+8
+```
+
+`8` from version will be our buildnumber.
+buildnumber can also be set manually as in case of circleci builds 
+E.g. `flutter build --build-number $CIRCLE_BUILD_NUM`
+
+## How to Use
+
+```
+class UpdateCheckWidget extends UpdateCheck {
+  final Widget child;
+
+  UpdateCheckWidget({this.child}) : super(child: child);
+
+  @override
+  void showOptionalAlert(BuildContext context, UpdateInfo update) {
+    // Show optional alert
+  }
+
+  @override
+  void showMandatoryPage(BuildContext context, UpdateInfo update) {
+    // Show blocking UI
+  }
+}
+```
+
+This package provides `UpdateCheck` widget which can be extended.
+There are two methods `showOptionalAlert` and `showMandatoryPage`
+Before using the Widget, add the Bloc
+
+```
+providers: [
+    BlocProvider<UpdateCheckBloc>(
+        create: (BuildContext context) => UpdateCheckBloc(),
+    ),
+]
+```
+
+Use `UpdateCheckStart` event to start checking for Update.
+Use `UpdateCheckCancel` event to cancel the last request to check update
+
+```
+BlocProvider.of<UpdateCheckBloc>(context).add(UpdateCheckStart());
+BlocProvider.of<UpdateCheckBloc>(context).add(UpdateCheckCancel());
+```

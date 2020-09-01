@@ -10,7 +10,7 @@ class FirebaseUtils {
   Firebase Database looks like as follows
           build:
             android:
-              option:
+              optional:
                 buildnumer: 24
                 changelog: 'RFAyUCB2ZXJ....' // Base64
                 url: 'https://alternative.app.link'
