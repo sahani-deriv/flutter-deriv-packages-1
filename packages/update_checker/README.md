@@ -2,7 +2,9 @@
 
 Flutter plugin to help check if there is a new update available for the app.
 The plugin uses Firebase Database to fetch data.
-Firebase Database should look like as follows
+Firebase Database should look like as follows.
+This Firebase Database needs to be updated manually or through automation
+whenever there is a new release.
 
 ```
 build:

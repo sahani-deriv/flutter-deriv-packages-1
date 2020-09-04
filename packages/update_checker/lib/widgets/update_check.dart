@@ -5,6 +5,12 @@ import 'package:update_checker/update_event.dart';
 import 'package:update_checker/update_info.dart';
 import 'package:update_checker/update_state.dart';
 
+/// UpdateCheck helps in easily integrating logic for checking Updates.
+/// You can simply extend this class and override showOptionalAlert and
+/// showMandatoryPage methods. The extended widget can be inserted into
+/// application where ever you wish to show the alert.
+/// Use showOptionalAlert for showing Optional Alerts
+/// And showMandatoryPage for mandatory updates
 class UpdateCheck extends StatelessWidget {
   final Widget child;
 

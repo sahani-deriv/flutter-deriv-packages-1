@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:update_checker/update_info.dart';
 
+/// Abstract State class for being used in UpdateCheckBloc
 abstract class UpdateCheckState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
+/// State to represent when there is no Update Available
 class UpdateNotAvailable extends UpdateCheckState {
   @override
   String toString() {
@@ -13,6 +15,7 @@ class UpdateNotAvailable extends UpdateCheckState {
   }
 }
 
+/// State to represent when an Update is Available
 class UpdateAvailable extends UpdateCheckState {
   final UpdateInfo updateInfo;
 
@@ -27,6 +30,7 @@ class UpdateAvailable extends UpdateCheckState {
   }
 }
 
+/// State to represent when Update Check was cancelled
 class UpdateCancelled extends UpdateCheckState {
   @override
   String toString() {
@@ -34,6 +38,7 @@ class UpdateCancelled extends UpdateCheckState {
   }
 }
 
+/// State to represent when Update alert was seen by user
 class UpdateSeen extends UpdateCheckState {
   @override
   String toString() {
