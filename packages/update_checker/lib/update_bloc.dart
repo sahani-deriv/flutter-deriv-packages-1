@@ -2,11 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:update_checker/update_event.dart';
 import 'package:update_checker/update_info.dart';
 import 'package:update_checker/update_state.dart';
-import 'package:update_checker/utils/firebase_utils.dart';
+import 'package:update_checker/src/firebase_utils.dart';
 
-/// [UpdateCheckBloc] helps in retreiving Update Information from FireBase.
+/// UpdateCheckBloc helps in retrieving Update Information from Firebase.
 /// [UpdateCheckStart] event can be used to fetch the Update Information.
-/// This event is added by default when [UpdateCheckBloc] is initialised.
+/// This event is added by default when UpdateCheckBloc is initialised.
 /// Use [UpdateCheckCancel] event to cancel the request.
 /// And [UpdateCheckMarkSeen] event when update alert has been shown to user.
 class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
@@ -16,9 +16,9 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
   @override
   UpdateCheckState get initialState => UpdateNotAvailable();
 
-  /// Constructor for [UpdateCheckBloc]
-  /// An optional mock [FirebaseUtils] instance can be provided for testing
-  /// For normal use don't provide fbUtils, it will be constructed itself
+  /// Constructor for [UpdateCheckBloc].
+  /// An optional mock [FirebaseUtils] instance can be provided for testing.
+  /// For normal use don't provide fbUtils, it will be constructed itself.
   UpdateCheckBloc({FirebaseUtils fbUtils}) {
     this.firebaseUtils = fbUtils ?? FirebaseUtils();
     this.add(UpdateCheckStart());
@@ -31,7 +31,7 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
       this.add(UpdateCheckInProgress());
     } else if (event is UpdateCheckInProgress) {
       UpdateInfo info = await firebaseUtils.fetchBuildNumbers();
-      if (info != null && _updateCancelled == false) {
+      if (info != null && !_updateCancelled) {
         yield UpdateAvailable(info);
       } else {
         yield UpdateNotAvailable();

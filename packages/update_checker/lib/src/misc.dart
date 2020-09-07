@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-/// Decode string if it is Base64 else return as it is
+/// Decodes [str] if it is a Base64,
+/// otherwise returns the original value of [str].
 String decodeBase64(String str) {
   final Codec<String, String> stringToBase64 = utf8.fuse(base64);
   final RegExp _base64 = RegExp(

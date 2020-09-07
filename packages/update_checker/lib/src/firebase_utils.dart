@@ -2,13 +2,13 @@ import 'dart:io';
 import 'dart:developer' as dev;
 import 'package:firebase_database/firebase_database.dart';
 import 'package:update_checker/update_info.dart';
-import 'package:update_checker/utils/misc.dart';
+import 'package:update_checker/src/misc.dart';
 import 'package:package_info/package_info.dart';
 
-/// [FirebaseUtils] class provides [fetchBuildNumbers] method which can be used
-/// to fetch update details from FireBase
+/// FirebaseUtils class provides [fetchBuildNumbers] method which can be used
+/// to fetch update details from Firebase.
 ///
-/// Firebase Database looks like as follows
+/// Firebase Database update data looks like the following
 ///     build:
 ///       android:
 ///         optional:
@@ -20,11 +20,11 @@ import 'package:package_info/package_info.dart';
 ///            changelog: 'RFAyUCB2ZXJ....' // Base64
 ///            url: 'https://alternative.app.link'
 class FirebaseUtils {
-  /// Fetch the Update details
+  /// Fetch the Update details.
   Future<UpdateInfo> fetchBuildNumbers() async {
     try {
-      String platform = Platform.operatingSystem;
-      DatabaseReference dbRef =
+      final String platform = Platform.operatingSystem;
+      final DatabaseReference dbRef =
           FirebaseDatabase.instance.reference().child('build').child(platform);
 
       final buildRemoteInfo = (await dbRef.once()).value;

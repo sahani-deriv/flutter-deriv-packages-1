@@ -1,10 +1,7 @@
 # update_checker
 
-Flutter plugin to help check if there is a new update available for the app.
-The plugin uses Firebase Database to fetch data.
-Firebase Database should look like as follows.
-This Firebase Database needs to be updated manually or through automation
-whenever there is a new release.
+update_checker plugin checks for the availability of new updates for the app using it.
+The plugin uses Firebase Database which needs to be updated manually or through automation whenever there is a new release. Firebase Database is used to fetch data which looks like the following:
 
 ```
 build:
@@ -29,7 +26,7 @@ But for mandatory updates, we should block the usage of app unless user updates.
 
 * buildnumber - this is an integer to represent the minimum buildnumber required
 * changelog - this is base64 encoded changelog
-* url - an optional URL to redirect user to instead of App Store / Play Store
+* url - an optional URL to redirect user to, instead of App Store / Play Store
 
 ### Buildnumber
 

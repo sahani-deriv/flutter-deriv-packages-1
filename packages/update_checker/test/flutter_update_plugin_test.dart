@@ -3,7 +3,7 @@ import 'package:update_checker/update_bloc.dart';
 import 'package:update_checker/update_event.dart';
 import 'package:update_checker/update_info.dart';
 import 'package:update_checker/update_state.dart';
-import 'package:update_checker/utils/firebase_utils.dart';
+import 'package:update_checker/src/firebase_utils.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:bloc_test/bloc_test.dart';
