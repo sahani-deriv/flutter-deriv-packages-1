@@ -4,11 +4,11 @@ import 'package:update_checker/update_info.dart';
 import 'package:update_checker/update_state.dart';
 import 'package:update_checker/utils/firebase_utils.dart';
 
-/// UpdateCheckBloc helps in retreiving Update Information from FireBase.
-/// UpdateCheckStart event can be used to fetch the Update Information.
-/// This event is added by default when UpdateCheckBloc is initialised.
-/// Use UpdateCheckCancel event to cancel the request.
-/// And UpdateCheckMarkSeen event when update alert has been shown to user.
+/// [UpdateCheckBloc] helps in retreiving Update Information from FireBase.
+/// [UpdateCheckStart] event can be used to fetch the Update Information.
+/// This event is added by default when [UpdateCheckBloc] is initialised.
+/// Use [UpdateCheckCancel] event to cancel the request.
+/// And [UpdateCheckMarkSeen] event when update alert has been shown to user.
 class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
   bool _updateCancelled = false;
   FirebaseUtils firebaseUtils;
@@ -16,6 +16,9 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
   @override
   UpdateCheckState get initialState => UpdateNotAvailable();
 
+  /// Constructor for [UpdateCheckBloc]
+  /// An optional mock [FirebaseUtils] instance can be provided for testing
+  /// For normal use don't provide fbUtils, it will be constructed itself
   UpdateCheckBloc({FirebaseUtils fbUtils}) {
     this.firebaseUtils = fbUtils ?? FirebaseUtils();
     this.add(UpdateCheckStart());
@@ -28,10 +31,9 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
       this.add(UpdateCheckInProgress());
     } else if (event is UpdateCheckInProgress) {
       UpdateInfo info = await firebaseUtils.fetchBuildNumbers();
-      if (info != null && _updateCancelled == false){
+      if (info != null && _updateCancelled == false) {
         yield UpdateAvailable(info);
-      }
-      else {
+      } else {
         yield UpdateNotAvailable();
       }
     } else if (event is UpdateCheckCancel) {

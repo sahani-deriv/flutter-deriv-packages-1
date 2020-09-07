@@ -5,20 +5,22 @@ import 'package:update_checker/update_info.dart';
 import 'package:update_checker/utils/misc.dart';
 import 'package:package_info/package_info.dart';
 
+/// [FirebaseUtils] class provides [fetchBuildNumbers] method which can be used
+/// to fetch update details from FireBase
+///
+/// Firebase Database looks like as follows
+///     build:
+///       android:
+///         optional:
+///           buildnumer: 24
+///           changelog: 'RFAyUCB2ZXJ....' // Base64
+///           url: 'https://alternative.app.link'
+///         mandatory:
+///            buildnumber: 18
+///            changelog: 'RFAyUCB2ZXJ....' // Base64
+///            url: 'https://alternative.app.link'
 class FirebaseUtils {
-/*
-  Firebase Database looks like as follows
-          build:
-            android:
-              optional:
-                buildnumer: 24
-                changelog: 'RFAyUCB2ZXJ....' // Base64
-                url: 'https://alternative.app.link'
-              mandatory:
-                buildnumber: 18
-                changelog: 'RFAyUCB2ZXJ....' // Base64
-                url: 'https://alternative.app.link'
-  */
+  /// Fetch the Update details
   Future<UpdateInfo> fetchBuildNumbers() async {
     try {
       String platform = Platform.operatingSystem;

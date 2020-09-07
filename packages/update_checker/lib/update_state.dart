@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:update_checker/update_info.dart';
 
-/// Abstract State class for being used in UpdateCheckBloc
+/// Abstract State class for being used in [UpdateCheckBloc]
 abstract class UpdateCheckState extends Equatable {
   @override
   List<Object> get props => [];

@@ -66,7 +66,7 @@ class UpdateCheckWidget extends UpdateCheck {
 }
 ```
 
-This package provides `UpdateCheck` widget which can be extended.
+This package provides [UpdateCheck](./lib/widgets/update_check.dart) widget which can be extended.
 There are two methods `showOptionalAlert` and `showMandatoryPage`
 Before using the Widget, add the Bloc
 

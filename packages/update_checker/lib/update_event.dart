@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-/// Abstract Event class for being used in UpdateCheckBloc
+/// Abstract Event class for being used in [UpdateCheckBloc]
 abstract class UpdateCheckEvent extends Equatable {
   @override
   List<Object> get props => [];
