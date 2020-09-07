@@ -9,7 +9,7 @@ class UpdateInfo {
   /// [url] can be empty. When available should be used instead of App/Play Store.
   final String url;
 
-  /// [isOptional] is used to represent is Update is Optional or Mandatory.
+  /// [isOptional] is used to represent if Update is Optional or Mandatory.
   final bool isOptional;
 
   UpdateInfo({
