@@ -13,13 +13,10 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
   bool _updateCancelled = false;
   FirebaseUtils firebaseUtils;
 
-  @override
-  UpdateCheckState get initialState => UpdateNotAvailable();
-
   /// Constructor for [UpdateCheckBloc].
   /// An optional mock [FirebaseUtils] instance can be provided for testing.
   /// For normal use don't provide fbUtils, it will be constructed itself.
-  UpdateCheckBloc({FirebaseUtils fbUtils}) {
+  UpdateCheckBloc({FirebaseUtils fbUtils}) : super(UpdateNotAvailable()) {
     this.firebaseUtils = fbUtils ?? FirebaseUtils();
     this.add(UpdateCheckStart());
   }
