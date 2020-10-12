@@ -1,5 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_segment/flutter_segment.dart';
 
 import 'analytics_route_observer.dart';
@@ -8,7 +8,7 @@ const ENABLE_ANALYTICS = bool.fromEnvironment('dart.vm.product');
 
 class Analytics {
   static final Analytics instance = Analytics._internal();
-  static const ignoredRoutes = [];
+  List ignoredRoutes = [];
 
   Analytics._internal();
 
@@ -62,7 +62,7 @@ class Analytics {
       );
   }
 
-  void logLoginEvent(int userId) async {
+  Future logLoginEvent(int userId) async {
     _loggedIn = true;
 
     _setFirebaseUserId(userId.toString());
@@ -80,53 +80,22 @@ class Analytics {
     _loggedIn = false;
   }
 
-  void logCreateAdEvent({String id}) async => await fbAnalytics?.logEvent(
-        name: 'ad_created',
-        parameters: <String, dynamic>{'ad_id': id},
-      );
-
-  void logDeleteAdEvent({String adId}) async => await fbAnalytics?.logEvent(
-        name: 'ad_deleted',
-        parameters: <String, dynamic>{'ad_id': adId},
-      );
-
-  void logBuyerConfirmOrderEvent({String orderId}) async =>
-      await fbAnalytics?.logEvent(
-        name: 'buyer_order_confirmed',
-        parameters: <String, dynamic>{'order_id': orderId},
-      );
-
-  void logBuyerCancelOrderEvent({String orderId}) async =>
-      await fbAnalytics?.logEvent(
-        name: 'buyer_order_cancelled',
-        parameters: <String, dynamic>{'order_id': orderId},
-      );
-
-  void logAdvertiserConfirmOrderEvent({
-    String orderId,
-    String status,
-    String type,
-  }) async =>
-      await fbAnalytics?.logEvent(
-        name: 'advertiser_order_confirmed',
-        parameters: <String, dynamic>{
-          'order_id': orderId,
-          'status': status,
-          'type': type
-        },
-      );
-
-  void logAdvertiserListingStatus({bool isListed}) async =>
-      await fbAnalytics?.logEvent(
-        name: 'advertiser_listing_status',
-        parameters: <String, dynamic>{'is_listed': isListed},
-      );
-
   void _setSegmentDeviceToken(String deviceToken) async =>
       await Segment.setContext({
         'device': {'token': deviceToken},
       });
 
-  void _setFirebaseUserId(String userId) async =>
+  Future _setFirebaseUserId(String userId) async =>
       await fbAnalytics?.setUserId(userId);
+
+  Future logToFirebase(
+      {@required String name, Map<String, dynamic> params}) async =>
+      await fbAnalytics?.logEvent(
+        name: name,
+        parameters: params,
+      );
+
+  void setIgnoredRoutes(List routes) {
+    ignoredRoutes = routes;
+  }
 }
