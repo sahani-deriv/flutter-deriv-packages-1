@@ -35,7 +35,6 @@ class UpdateCheck extends StatelessWidget {
             } else {
               showMandatoryPage(context, info);
             }
-            bloc.add(UpdateCheckMarkSeen());
           });
         }
         return child;
