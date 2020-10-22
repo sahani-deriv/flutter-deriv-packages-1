@@ -49,7 +49,7 @@ class Analytics {
     );
   }
 
-  /// Used to capture information when app is opend.
+  /// Used to capture information when app is opened.
   void logAppOpened() async {
     await fbAnalytics?.logAppOpen();
     if (_loggedIn) await Segment.track(eventName: 'Application Opened');
