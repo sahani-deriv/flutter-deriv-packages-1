@@ -46,7 +46,7 @@ Analytics.instance.logAppCrashed();
 ```
 Analytics.instance.setCurrentScreen(screenName: "<CURRENT_SCREEN_NAME_HERE>");
 ```
-##### 4. Setting routes/screens which need to be whitelisted for analytics.
+##### 4. Setting routes/screens which need to be ignored for analytics.
 ```
 Analytics.instance.setIgnoredRoutes([
       'IGNORED_SCREEN_NAME_1',
