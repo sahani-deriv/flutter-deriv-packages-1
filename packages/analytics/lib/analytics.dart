@@ -7,6 +7,8 @@ import 'analytics_route_observer.dart';
 /// Analytical information are collected only if [ENABLE_ANALYTICS] is true
 /// It will be true if the app is in release mode.
 const ENABLE_ANALYTICS = true;
+
+//Todo (bibin): remove this after QA testing.
 // const ENABLE_ANALYTICS = bool.fromEnvironment('dart.vm.product');
 
 /// Class that collects and send analytical information to "Firebase" and "Segment"
