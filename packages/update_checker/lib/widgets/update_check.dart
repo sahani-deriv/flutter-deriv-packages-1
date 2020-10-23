@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:update_checker/update_bloc.dart';
 import 'package:update_checker/update_info.dart';
 import 'package:update_checker/update_state.dart';
+import 'package:update_checker/update_event.dart';
 
 /// UpdateCheck helps in easily integrating logic for checking Updates.
 /// You can simply extend this class and override [showOptionalAlert] and
@@ -33,6 +34,8 @@ class UpdateCheck extends StatelessWidget {
             } else {
               showMandatoryPage(context, info);
             }
+            var bloc = BlocProvider.of<UpdateCheckBloc>(context);
+            bloc.add(UpdateCheckMarkSeen());
           });
         }
         return child;
