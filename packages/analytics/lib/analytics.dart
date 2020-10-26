@@ -20,7 +20,7 @@ class Analytics {
   Analytics._internal();
 
   /// An instance of Firebase Analytics API
-  FirebaseAnalytics fbAnalytics;
+  FirebaseAnalytics firebaseAnalytics;
 
   /// An instance of custom route observer created for analytics
   AnalyticsRouteObserver observer;
@@ -32,11 +32,11 @@ class Analytics {
   /// Enables/disables "Analytics" based on [ENABLE_ANALYTICS].
   /// Sets the device-token to [Segment].
   void init({String deviceToken}) {
-    fbAnalytics = FirebaseAnalytics();
+    firebaseAnalytics = FirebaseAnalytics();
     observer = AnalyticsRouteObserver(onNewRoute: _newRouteHandler);
 
     //Enable or disable the analytics on this device.
-    fbAnalytics.setAnalyticsCollectionEnabled(ENABLE_ANALYTICS);
+    firebaseAnalytics.setAnalyticsCollectionEnabled(ENABLE_ANALYTICS);
     ENABLE_ANALYTICS ? Segment.enable() : Segment.disable();
 
     if (deviceToken != null) _setSegmentDeviceToken(deviceToken);
@@ -52,7 +52,7 @@ class Analytics {
 
   /// Used to capture information when app is opened.
   void logAppOpened() async {
-    await fbAnalytics?.logAppOpen();
+    await firebaseAnalytics?.logAppOpen();
     if (_loggedIn) await Segment.track(eventName: 'Application Opened');
   }
 
@@ -73,7 +73,7 @@ class Analytics {
   }) async {
     if (screenName == null || _ignoredRoutes.contains(screenName)) return;
 
-    await fbAnalytics?.setCurrentScreen(screenName: screenName);
+    await firebaseAnalytics?.setCurrentScreen(screenName: screenName);
 
     if (_loggedIn)
       await Segment.screen(
@@ -88,7 +88,7 @@ class Analytics {
 
     _setFirebaseUserId(userId.toString());
 
-    await fbAnalytics?.logLogin();
+    await firebaseAnalytics?.logLogin();
     // TODO: add traits if needed such as user-name, email, etc.
     await Segment.identify(
       userId: userId.toString(),
@@ -97,7 +97,7 @@ class Analytics {
 
   ///  /// Used to capture information when user log out.
   void logLogoutEvent() async {
-    await fbAnalytics?.logEvent(name: 'logout');
+    await firebaseAnalytics?.logEvent(name: 'logout');
 
     _loggedIn = false;
   }
@@ -110,12 +110,14 @@ class Analytics {
 
   /// Sets the device-token to "Firebase".
   Future _setFirebaseUserId(String userId) async =>
-      await fbAnalytics?.setUserId(userId);
+      await firebaseAnalytics?.setUserId(userId);
 
   /// Used to capture analytical information and send to "Firebase"
-  Future logToFirebase(
-          {@required String name, Map<String, dynamic> params}) async =>
-      await fbAnalytics?.logEvent(
+  Future logToFirebase({
+    @required String name,
+    Map<String, dynamic> params,
+  }) async =>
+      await firebaseAnalytics?.logEvent(
         name: name,
         parameters: params,
       );
