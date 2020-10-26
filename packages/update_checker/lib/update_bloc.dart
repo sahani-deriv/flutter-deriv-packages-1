@@ -38,6 +38,8 @@ class UpdateCheckBloc extends Bloc<UpdateCheckEvent, UpdateCheckState> {
       yield UpdateCancelled();
     } else if (event is UpdateCheckMarkSeen) {
       yield UpdateSeen();
+    } else if (event is UpdateCheckMarkDismiss) {
+      yield UpdateDismissed();
     }
   }
 }

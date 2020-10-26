@@ -45,3 +45,12 @@ class UpdateSeen extends UpdateCheckState {
     return 'UpdateCheckState(UpdateSeen)';
   }
 }
+
+/// State to represent when Update alert was dismised by user.
+class UpdateDismissed extends UpdateCheckState {
+  @override
+  String toString() {
+    return 'UpdateCheckState(UpdateDismissed)';
+  }
+}
+

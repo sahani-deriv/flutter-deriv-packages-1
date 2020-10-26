@@ -37,3 +37,12 @@ class UpdateCheckMarkSeen extends UpdateCheckEvent {
     return 'UpdateCheckEvent(UpdateCheckMarkSeen)';
   }
 }
+
+/// Mark Update alert as dismissed by user
+class UpdateCheckMarkDismiss extends UpdateCheckEvent {
+  @override
+  String toString() {
+    return 'UpdateCheckEvent(UpdateCheckMarkDismiss)';
+  }
+}
+
