@@ -25,7 +25,7 @@ class Analytics {
   /// An instance of custom route observer created for analytics
   AnalyticsRouteObserver observer;
 
-  /// true is the user is logged in to the app.
+  /// true if the user is logged in to the app.
   bool _loggedIn = false;
 
   /// Initialises the instances created.
@@ -95,14 +95,14 @@ class Analytics {
     );
   }
 
-  ///  /// Used to capture information when user log out.
+  /// Used to capture information when user log out.
   void logLogoutEvent() async {
     await firebaseAnalytics?.logEvent(name: 'logout');
 
     _loggedIn = false;
   }
 
-  ///  /// Sets the device-token to "Segment".
+  /// Sets the device-token to "Segment".
   void _setSegmentDeviceToken(String deviceToken) async =>
       await Segment.setContext({
         'device': {'token': deviceToken},

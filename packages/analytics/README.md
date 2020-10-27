@@ -6,9 +6,9 @@ This package is used for collecting and sending analytical information from the 
 ```yaml
 analytics:
        git:
-         url: git@github.com:bibinmpanicker-deriv/flutter-deriv-packages.git
+         url: git@github.com:regentmarkets/flutter-deriv-packages.git
          path: packages/analytics
-         ref: Bibin/add_analytics
+         ref: master
 ```
 ##### 2. Add Android dependency.
 https://pub.dev/packages/flutter_segment#android
