@@ -18,7 +18,10 @@ https://pub.dev/packages/flutter_segment#ios
 ***
 ##### 1. Enabling analytics.
 ```dart
-Analytics.instance.init(deviceToken: "<FIREBASE_TOKEN_HERE>");
+Analytics.instance.init(
+    deviceToken: "<FIREBASE_TOKEN_HERE>",
+    isEnabled: true, // set value to false for disable 'Analytics'
+  );
 ```
 ##### 2. To track PageRoute transitions.
 ```dart
