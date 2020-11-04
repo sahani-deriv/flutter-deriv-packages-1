@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 /// Class used as route-observer
 class AnalyticsRouteObserver extends RouteObserver<PageRoute<dynamic>> {
-  ///Constructor for [AnalyticsRouteObserver]
+  /// Constructor of "AnalyticsRouteObserver" class with [onNewRoute] callback as argument.
   AnalyticsRouteObserver({
     @required this.onNewRoute,
   });
 
-  /// Function callback from  [AnalyticsRouteObserver]
+  /// Function callback from the "AnalyticsRouteObserver" class.
   final Function onNewRoute;
 
   @override

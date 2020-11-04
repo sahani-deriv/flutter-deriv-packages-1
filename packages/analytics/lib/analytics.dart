@@ -14,23 +14,21 @@ class Analytics {
   /// List contains ignored routes/screen names
   List<String> _ignoredRoutes = <String>[];
 
-  /// An instance of Firebase Analytics API
   FirebaseAnalytics _firebaseAnalytics;
 
   /// An instance of custom route observer created for analytics
   AnalyticsRouteObserver observer;
 
-  /// true if the user is logged in to the app.
   bool _loggedIn = false;
 
-  /// Initialises the instances created.
-  /// Sets the device-token to [Segment].
-  /// bool [isEnabled] enables or disables 'Analytics'
+  /// Initialises the "Analytics".
+  /// Sets the device-token to "Segment".
+  /// bool [isEnabled] enables or disables "Analytics".
   void init({@required String deviceToken, @required bool isEnabled}) {
     _firebaseAnalytics = FirebaseAnalytics();
     observer = AnalyticsRouteObserver(onNewRoute: _newRouteHandler);
 
-    //Enable or disable the analytics on this device.
+    // Enable or disable the analytics on this device.
     _firebaseAnalytics.setAnalyticsCollectionEnabled(isEnabled);
     isEnabled ? Segment.enable() : Segment.disable();
 
@@ -39,7 +37,7 @@ class Analytics {
     }
   }
 
-  /// Captures analytical information on route changes.
+  /// Captures `screen_view` event on route changes.
   void _newRouteHandler(PageRoute route) {
     setCurrentScreen(
       screenName: route.settings.name,
@@ -47,7 +45,7 @@ class Analytics {
     );
   }
 
-  /// Used to capture information when app is opened.
+  /// Captures `app_open` event when the app is opened.
   void logAppOpened() {
     _firebaseAnalytics?.logAppOpen();
     if (_loggedIn) {
@@ -55,14 +53,14 @@ class Analytics {
     }
   }
 
-  /// Used to capture information when app goes to background.
+  /// Captures `Application Backgrounded` event when the app goes to background.
   void logAppBackgrounded() {
     if (_loggedIn) {
       Segment.track(eventName: 'Application Backgrounded');
     }
   }
 
-  /// Used to capture information when app is crashed.
+  /// Captures `Application Crashed` event when the app is crashed.
   void logAppCrashed() {
     if (_loggedIn) {
       Segment.track(eventName: 'Application Crashed');
@@ -86,17 +84,19 @@ class Analytics {
     }
   }
 
-  /// Used to capture information when user log in.
+  /// Captures `login` event upon a successful user log in.
   void logLoginEvent(int userId) {
     _loggedIn = true;
+
     _setFirebaseUserId(userId.toString());
     _firebaseAnalytics?.logLogin();
+
     Segment.identify(
       userId: userId.toString(),
     );
   }
 
-  /// Used to capture information when user log out.
+  /// Captures `logout` event when the user logs out.
   void logLogoutEvent() {
     _firebaseAnalytics?.logEvent(name: 'logout');
     _loggedIn = false;
@@ -108,11 +108,11 @@ class Analytics {
         'device': <String, dynamic>{'token': deviceToken}
       });
 
-  /// Sets the device-token to "Firebase".
+  /// Sets the user id to "Firebase".
   Future<void> _setFirebaseUserId(String userId) =>
       _firebaseAnalytics?.setUserId(userId);
 
-  /// Used to capture analytical information and send to "Firebase"
+  /// Used to log custom events to "Firebase"
   Future<void> logToFirebase({
     @required String name,
     Map<String, dynamic> params,
