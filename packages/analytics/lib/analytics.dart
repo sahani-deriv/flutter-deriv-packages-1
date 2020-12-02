@@ -19,8 +19,6 @@ class Analytics {
   /// An instance of custom route observer created for analytics
   AnalyticsRouteObserver observer;
 
-  bool _loggedIn = false;
-
   /// Initialises the "Analytics".
   /// Sets the device-token to "Segment".
   /// bool [isEnabled] enables or disables "Analytics".
@@ -38,7 +36,7 @@ class Analytics {
   }
 
   /// Captures `screen_view` event on route changes.
-  void _newRouteHandler(PageRoute route) {
+  void _newRouteHandler(PageRoute<dynamic> route) {
     setCurrentScreen(
       screenName: route.settings.name,
       properties: route.settings.arguments ?? <String, dynamic>{},
@@ -48,23 +46,18 @@ class Analytics {
   /// Captures `app_open` event when the app is opened.
   void logAppOpened() {
     _firebaseAnalytics?.logAppOpen();
-    if (_loggedIn) {
-      Segment.track(eventName: 'Application Opened');
-    }
+
+    Segment.track(eventName: 'Application Opened');
   }
 
   /// Captures `Application Backgrounded` event when the app goes to background.
   void logAppBackgrounded() {
-    if (_loggedIn) {
-      Segment.track(eventName: 'Application Backgrounded');
-    }
+    Segment.track(eventName: 'Application Backgrounded');
   }
 
   /// Captures `Application Crashed` event when the app is crashed.
   void logAppCrashed() {
-    if (_loggedIn) {
-      Segment.track(eventName: 'Application Crashed');
-    }
+    Segment.track(eventName: 'Application Crashed');
   }
 
   /// Used to capture information about current screen in use.
@@ -76,18 +69,15 @@ class Analytics {
       return;
     }
     _firebaseAnalytics?.setCurrentScreen(screenName: screenName);
-    if (_loggedIn) {
-      Segment.screen(
-        screenName: screenName,
-        properties: properties,
-      );
-    }
+
+    Segment.screen(
+      screenName: screenName,
+      properties: properties,
+    );
   }
 
   /// Captures `login` event upon a successful user log in.
   void logLoginEvent(int userId) {
-    _loggedIn = true;
-
     _setFirebaseUserId(userId.toString());
     _firebaseAnalytics?.logLogin();
 
@@ -99,7 +89,6 @@ class Analytics {
   /// Captures `logout` event when the user logs out.
   void logLogoutEvent() {
     _firebaseAnalytics?.logEvent(name: 'logout');
-    _loggedIn = false;
   }
 
   /// Sets the device-token to "Segment".
