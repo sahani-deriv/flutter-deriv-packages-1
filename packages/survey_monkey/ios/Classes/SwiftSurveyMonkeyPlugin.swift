@@ -26,7 +26,8 @@ import UIKit
                 rootViewController = UIApplication.shared.keyWindow?.rootViewController
                 
                 // Set notification observor to get survey monkey results.
-                NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "survey-monkey-status"), object: nil, queue: nil, using: getStatus)
+                NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "survey-monkey-status"),
+                                                       object: nil, queue: nil, using: getStatus)
                 
                 let navigationController:UINavigationController! = UINavigationController(rootViewController: surveyViewController)
                 
@@ -38,8 +39,7 @@ import UIKit
             let response: [String: String] = ["response": "Method is not defined!"]
             result(response.toJson)
         }
-    }    
-    
+    }
     
     func getStatus(notification: Notification) -> Void {
         rootViewController?.dismiss(animated: true, completion: nil)
@@ -60,8 +60,7 @@ import UIKit
                 
                 let response: [String: String?] = ["response": smRespondent.toJson]
                 flutterResult!(response.toJson)
-            }
-            
+            }            
             
         }
     }

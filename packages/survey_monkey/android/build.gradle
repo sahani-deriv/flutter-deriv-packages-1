@@ -2,7 +2,7 @@ group 'com.deriv.survey_monkey'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.4.20'
+    ext.kotlin_version = '1.4.0'
     ext.surveymonkey_version = '2.0.0'
     ext.gson_version = '2.8.6'
     repositories {
