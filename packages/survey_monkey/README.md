@@ -17,6 +17,13 @@ survey_monkey:
          ref: master
 ```
 
+Import `survey_monkey.dart` and `survey_monkey_response.dart` if you want to use the response data;
+
+```dart
+import 'package:survey_monkey/survey_monkey.dart';
+import 'package:survey_monkey/survey_monkey_response.dart';
+```
+
 ## Usage
 
 The plugin can be used by simply making a call to `SurveyMonkey.loadSurveyMonkey` as follows;
