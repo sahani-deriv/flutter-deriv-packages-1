@@ -38,6 +38,12 @@ The plugin can be used by simply making a call to `SurveyMonkey.loadSurveyMonkey
  final String error = response.error;
 ```
 
+## Compatibility
+
+- Android: the plugin requires a minimum API level of 21 and Kotlin 1.4.0.
+- iOS: The minimum iOS version supported is 12.
+
+
 ## Issues with SurveyMonkey SDKs
 
 - Media upload is not working.
