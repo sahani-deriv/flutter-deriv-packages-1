@@ -14,6 +14,6 @@ class SurveyMonkeyResponse {
   /// The user id who completed the survey. Empty if the status is `incomplete`
   final String respondentId;
 
-  /// The error description. Empty if not errors found.
+  /// The error description. Empty if no errors found.
   final String error;
 }

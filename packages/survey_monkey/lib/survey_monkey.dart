@@ -17,7 +17,7 @@ class SurveyMonkey {
   /// be obtained from `SurveyMonkey.com` dashboard.
   ///
   /// Upon completing and submitting the survey, this function returns a map of
-  /// the following;
+  /// the following:
   ///
   /// 1- completionStatus, the value will be `completed` if survey completed
   /// without any issues. Otherwise, the status is `incomplete`.
