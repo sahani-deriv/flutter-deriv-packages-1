@@ -55,17 +55,17 @@ class SurveyMonkey {
     return Future<SurveyMonkeyResponse>.value();
   }
 
-  static Status _getCompletionStatus(String completionStatus) {
+  static SurveyCompletionStatus _getCompletionStatus(String completionStatus) {
     if (completionStatus == _completedStatus) {
-      return Status.completed;
+      return SurveyCompletionStatus.completed;
     } else {
-      return Status.incomplete;
+      return SurveyCompletionStatus.incomplete;
     }
   }
 }
 
 /// The status of completion for the survey.
-enum Status {
+enum SurveyCompletionStatus {
   /// Survey was completed and submitted with no issues.
   completed,
 

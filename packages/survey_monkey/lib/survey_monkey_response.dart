@@ -4,14 +4,14 @@ import 'package:survey_monkey/survey_monkey.dart';
 class SurveyMonkeyResponse {
   /// Holds survey monkey response data.
   SurveyMonkeyResponse(
-      this.status,
-      this.respondentId,
-      this.error,
-      );
+    this.status,
+    this.respondentId,
+    this.error,
+  );
 
-  /// The status of completion for the survey, it can be [Status.completed] or
-  /// [Status.incomplete]
-  final Status status;
+  /// The status of completion for the survey, it can be
+  /// [SurveyCompletionStatus.completed] or [SurveyCompletionStatus.incomplete].
+  final SurveyCompletionStatus status;
 
   /// The user id who completed the survey. Empty if the status is `incomplete`
   final String respondentId;
