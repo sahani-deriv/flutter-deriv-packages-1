@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                     await SurveyMonkey.loadSurveyMonkey(
                         surveyHash: 'YOUR_HASH');
                 // Use values as follows;
-                final String status = response.status;
+                final Status status = response.status;
                 final String respondentId = response.respondentId;
                 final String error = response.error;
                 logger.log('status: $status');

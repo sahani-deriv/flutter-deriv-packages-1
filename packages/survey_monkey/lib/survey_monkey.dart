@@ -11,6 +11,7 @@ import 'survey_monkey_response.dart';
 /// returns success/failure result after the survey is submitted.
 class SurveyMonkey {
   static const MethodChannel _channel = MethodChannel('survey_monkey');
+  static const String _completedStatus = 'completed';
 
   /// Call this function to load and display a survey. In order to achieve that
   /// a [surveyHash] is required which is a unique hash for each survey and can
@@ -40,8 +41,11 @@ class SurveyMonkey {
       final String error = data['error'];
       final String respondentId = data['respondent_id'];
 
-      final SurveyMonkeyResponse surveyMonkeyResponse =
-          SurveyMonkeyResponse(completionStatus, respondentId, error);
+      final SurveyMonkeyResponse surveyMonkeyResponse = SurveyMonkeyResponse(
+        _getCompletionStatus(completionStatus),
+        respondentId,
+        error,
+      );
 
       return surveyMonkeyResponse;
     } on PlatformException catch (e) {
@@ -50,4 +54,21 @@ class SurveyMonkey {
 
     return Future<SurveyMonkeyResponse>.value();
   }
+
+  static Status _getCompletionStatus(String completionStatus) {
+    if (completionStatus == _completedStatus) {
+      return Status.completed;
+    } else {
+      return Status.incomplete;
+    }
+  }
+}
+
+/// The status of completion for the survey.
+enum Status {
+  /// Survey was completed and submitted with no issues.
+  completed,
+
+  /// An issue occurred while filling up or submitting the survey.
+  incomplete,
 }
