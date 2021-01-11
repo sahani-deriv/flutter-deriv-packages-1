@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:package_info/package_info.dart';
 
 import '../models/models.dart';
+import '../repositories/repositories.dart';
 import '../utils/utils.dart';
 
 part 'update_event.dart';
@@ -16,32 +13,40 @@ part 'update_state.dart';
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   /// UpdateBloc is responsible for fetching the update availability from the
   /// Firebase Database and emit the correct state.
-  UpdateBloc() : super(UpdateInProgressState()) {
-    add(UpdateFetchEvent());
-  }
+  UpdateBloc({
+    this.firebaseDatabaseRepository = const FirebaseDatabaseRepository(),
+    this.packageInfoRepository = const PackageInfoRepository(),
+  }) : super(UpdateInitialState());
+
+  /// Firebase database repository for fetching the update information.
+  final FirebaseDatabaseRepository firebaseDatabaseRepository;
+
+  /// Package info repository for fetching the app build number.
+  final PackageInfoRepository packageInfoRepository;
 
   @override
   Stream<UpdateState> mapEventToState(UpdateEvent event) async* {
-    if (event is UpdateFetchEvent) {
+    if (event is UpdateFetchEvent && state is! UpdateInProgressState) {
+      yield UpdateInProgressState();
       final UpdateInfo info = await _getUpdateInfo();
-      if (info == null) {
-        yield UpdateNotAvailableState();
-      } else {
+      if (info != null) {
         yield UpdateAvailableState(info);
+      } else {
+        yield UpdateNotAvailableState();
       }
     }
   }
 
   Future<UpdateInfo> _getUpdateInfo() async {
-    final int appBuildNumber = await _getAppBuildNumber();
-    if (appBuildNumber <= 0) {
-      return null;
-    } // failed to get app build number
-
-    final dynamic rawData = await _fetchData();
+    final dynamic rawData = await firebaseDatabaseRepository.fetchUpdateData();
     if (rawData == null) {
       return null;
     } // failed to fetch data from Firebase Database
+
+    final int appBuildNumber = await packageInfoRepository.getAppBuildNumber();
+    if (appBuildNumber <= 0) {
+      return null;
+    } // failed to get app build number
 
     final int optionalBuildNumber = rawData['optional']['buildnumber'];
     final int mandatoryBuildNumber = rawData['mandatory']['buildnumber'];
@@ -56,19 +61,6 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
       isOptional,
       isOptional ? optionalBuildNumber : mandatoryBuildNumber,
     );
-  }
-
-  Future<int> _getAppBuildNumber() async {
-    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return int.tryParse(packageInfo.buildNumber) ?? -1;
-  }
-
-  Future<dynamic> _fetchData() async {
-    final DatabaseReference dbRef = FirebaseDatabase.instance
-        .reference()
-        .child('build')
-        .child(Platform.operatingSystem);
-    return (await dbRef.once()).value;
   }
 
   UpdateInfo _createUpdate(

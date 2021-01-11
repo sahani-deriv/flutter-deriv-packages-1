@@ -1,66 +1,60 @@
-// import 'package:flutter/material.dart';
-// import 'package:update_checker/update_bloc.dart';
-// import 'package:update_checker/update_event.dart';
-// import 'package:update_checker/update_info.dart';
-// import 'package:update_checker/update_state.dart';
-// import 'package:update_checker/src/firebase_utils.dart';
-// import 'package:mockito/mockito.dart';
-// import 'package:test/test.dart';
-// import 'package:bloc_test/bloc_test.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter/material.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
+import 'package:update_checker/update_checker.dart';
 
-// class MockFirebaseUtils extends Mock implements FirebaseUtils {}
+class MockFirebaseDatabaseRepository extends Mock
+    implements FirebaseDatabaseRepository {}
 
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
+class MockPackageInfoRepository extends Mock implements PackageInfoRepository {}
 
-//   group('Update Bloc Test Cases', () {
-//     MockFirebaseUtils fbUtils;
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
 
-//     var updateInfo =
-//         UpdateInfo(buildNumber: 1, changelog: '', url: '', isOptional: false);
-//     var updateInfo2 =
-//         UpdateInfo(buildNumber: 2, changelog: '', url: '', isOptional: true);
+  group('Update bloc', () {
+    MockFirebaseDatabaseRepository mockFirebaseDatabaseRepository;
+    MockPackageInfoRepository mockPackageInfoRepository;
 
-//     setUp(() {
-//       fbUtils = MockFirebaseUtils();
-//     });
+    setUp(() {
+      mockFirebaseDatabaseRepository = MockFirebaseDatabaseRepository();
+      mockPackageInfoRepository = MockPackageInfoRepository();
+    });
 
-//     test('Initial State', () {
-//       var updateCheckBloc = UpdateCheckBloc(fbUtils: fbUtils);
-//       expect(updateCheckBloc.state, UpdateNotAvailable());
-//     });
+    final UpdateInfo updateInfoOptional = UpdateInfo(
+      buildNumber: 2,
+      isOptional: true,
+      changelog: '',
+      changelogs: null,
+      url: '',
+    );
 
-//     blocTest('Update not available',
-//         build: () {
-//           when(fbUtils.fetchBuildNumbers()).thenAnswer((_) {
-//             return null;
-//           });
-//           return UpdateCheckBloc(fbUtils: fbUtils);
-//         },
-//         act: (bloc) => bloc.add(UpdateCheckStart()),
-//         skip: 0,
-//         expect: [UpdateNotAvailable()]);
+    final UpdateInfo updateInfoMandatory = UpdateInfo(
+      buildNumber: 2,
+      isOptional: false,
+      changelog: '',
+      changelogs: null,
+      url: '',
+    );
 
-//     blocTest('Update available',
-//         build: () {
-//           when(fbUtils.fetchBuildNumbers()).thenAnswer((_) async {
-//             return updateInfo;
-//           });
-//           return UpdateCheckBloc(fbUtils: fbUtils);
-//         },
-//         act: (bloc) => bloc.add(UpdateCheckStart()),
-//         expect: [UpdateAvailable(updateInfo)]);
-
-//     blocTest(
-//       'Update available ',
-//       build: () {
-//         when(fbUtils.fetchBuildNumbers()).thenAnswer((_) async {
-//           return updateInfo2;
-//         });
-//         return UpdateCheckBloc(fbUtils: fbUtils);
-//       },
-//       act: (bloc) => bloc.add(UpdateCheckStart()),
-//       expect: [UpdateAvailable(updateInfo2)],
-//     );
-//   });
-// }
+    blocTest(
+      'should emit UpdateInitialState as initial state',
+      build: () {
+        when(mockFirebaseDatabaseRepository.fetchUpdateData())
+            .thenAnswer((_) async => null);
+        when(mockPackageInfoRepository.getAppBuildNumber())
+            .thenAnswer((_) async => 1);
+        return UpdateBloc(
+          firebaseDatabaseRepository: mockFirebaseDatabaseRepository,
+          packageInfoRepository: mockPackageInfoRepository,
+        );
+      },
+      act: (UpdateBloc bloc) => bloc.add(UpdateFetchEvent()),
+      expect: [
+        // UpdateInitialState(),
+        UpdateInProgressState(),
+        UpdateNotAvailableState(),
+      ],
+    );
+  });
+}
