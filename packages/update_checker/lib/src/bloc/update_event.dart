@@ -4,7 +4,7 @@ part of 'update_bloc.dart';
 abstract class UpdateEvent {}
 
 /// Start fetching update information from the server.
-class UpdateFetch extends UpdateEvent {
+class UpdateFetchEvent extends UpdateEvent {
   @override
-  String toString() => 'UpdateEvent(UpdateFetch)';
+  String toString() => 'UpdateEvent(UpdateFetchEvent)';
 }

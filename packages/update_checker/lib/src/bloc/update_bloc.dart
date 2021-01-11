@@ -16,15 +16,19 @@ part 'update_state.dart';
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   /// UpdateBloc is responsible for fetching the update availability from the
   /// Firebase Database and emit the correct state.
-  UpdateBloc() : super(UpdateInProgress()) {
-    add(UpdateFetch());
+  UpdateBloc() : super(UpdateInProgressState()) {
+    add(UpdateFetchEvent());
   }
 
   @override
   Stream<UpdateState> mapEventToState(UpdateEvent event) async* {
-    if (event is UpdateFetch) {
+    if (event is UpdateFetchEvent) {
       final UpdateInfo info = await _getUpdateInfo();
-      yield info == null ? UpdateNotAvailable() : UpdateAvailable(info);
+      if (info == null) {
+        yield UpdateNotAvailableState();
+      } else {
+        yield UpdateAvailableState(info);
+      }
     }
   }
 
@@ -71,12 +75,17 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     dynamic rawUpdateInfo,
     bool isOptional,
     int buildNumber,
-  ) =>
-      UpdateInfo(
-        buildNumber: buildNumber,
-        url: rawUpdateInfo['url'] ?? null,
-        changelog: decodeBase64(rawUpdateInfo['changelog'] ?? ''),
-        changelogs: rawUpdateInfo['changelogs'] ?? null,
-        isOptional: isOptional,
-      );
+  ) {
+    final String url = rawUpdateInfo['url'] ? rawUpdateInfo['url'] : null;
+    final Map<String, String> changelogs =
+        rawUpdateInfo['changelogs'] ? rawUpdateInfo['changelogs'] : null;
+
+    return UpdateInfo(
+      buildNumber: buildNumber,
+      url: url,
+      changelog: decodeBase64(rawUpdateInfo['changelog'] ?? ''),
+      changelogs: changelogs,
+      isOptional: isOptional,
+    );
+  }
 }

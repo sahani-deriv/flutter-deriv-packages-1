@@ -7,9 +7,9 @@ abstract class UpdateState extends Equatable {
 }
 
 /// State to represent when an update is available.
-class UpdateAvailable extends UpdateState {
+class UpdateAvailableState extends UpdateState {
   /// State to represent when an update is available.
-  UpdateAvailable(
+  UpdateAvailableState(
     this.updateInfo,
   );
 
@@ -20,17 +20,17 @@ class UpdateAvailable extends UpdateState {
   List<UpdateInfo> get props => <UpdateInfo>[updateInfo];
 
   @override
-  String toString() => 'UpdateAvailable: $updateInfo';
+  String toString() => 'UpdateAvailableState: $updateInfo';
 }
 
 /// State to represent when there is no update available.
-class UpdateNotAvailable extends UpdateState {
+class UpdateNotAvailableState extends UpdateState {
   @override
-  String toString() => 'UpdateNotAvailable';
+  String toString() => 'UpdateNotAvailableState';
 }
 
 /// State to represent when the update check is still in progress.
-class UpdateInProgress extends UpdateState {
+class UpdateInProgressState extends UpdateState {
   @override
-  String toString() => 'UpdateInProgress';
+  String toString() => 'UpdateInProgressState';
 }

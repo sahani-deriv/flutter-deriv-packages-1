@@ -47,9 +47,9 @@ class _UpdateCheckerState extends State<UpdateChecker> {
     _updateBlocSubscription =
         _updateBloc.startWith(_updateBloc.state).listen((UpdateState state) {
       widget.onStateChange?.call(state);
-      if (state is UpdateNotAvailable) {
+      if (state is UpdateNotAvailableState) {
         widget.onNotAvailable?.call();
-      } else if (state is UpdateAvailable) {
+      } else if (state is UpdateAvailableState) {
         widget.onAvailable?.call(state.updateInfo);
       }
     });
