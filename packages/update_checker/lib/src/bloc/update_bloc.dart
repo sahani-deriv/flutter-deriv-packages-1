@@ -51,7 +51,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     final int optionalBuildNumber = rawData['optional']['buildnumber'];
     final int mandatoryBuildNumber = rawData['mandatory']['buildnumber'];
     final bool isMandatory = appBuildNumber < mandatoryBuildNumber;
-    final bool isOptional = appBuildNumber < optionalBuildNumber;
+    final bool isOptional = appBuildNumber < optionalBuildNumber &&
+        appBuildNumber >= mandatoryBuildNumber;
     if (!isMandatory && !isOptional) {
       return null;
     } // no update available

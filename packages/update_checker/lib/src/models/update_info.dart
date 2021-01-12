@@ -1,7 +1,9 @@
+import 'package:equatable/equatable.dart';
+
 /// Represents information regarding Update.
-class UpdateInfo {
+class UpdateInfo extends Equatable {
   /// Represents information regarding Update.
-  UpdateInfo({
+  const UpdateInfo({
     this.isOptional,
     this.buildNumber,
     this.changelog,
@@ -29,6 +31,9 @@ class UpdateInfo {
 
   /// [url] is alternative url for updating the app, can be empty.
   final String url;
+
+  @override
+  List<dynamic> get props => <dynamic>[isOptional, buildNumber, url];
 
   @override
   String toString() => 'UpdateInfo('

@@ -75,7 +75,7 @@ void main() {
 
       generateBlocTest(
         'should emit UpdateNotAvailableState when'
-        'the running app build number is equal to update build number',
+        'running app build number is equal to update build number',
         mock.rawData,
         mock.optionalBuildNumber,
         [
@@ -86,7 +86,7 @@ void main() {
 
       generateBlocTest(
         'should emit UpdateNotAvailableState when'
-        'the running app build number is higher than update build number',
+        'running app build number is higher than update build number',
         mock.rawData,
         mock.optionalBuildNumber + 1,
         [
@@ -95,16 +95,39 @@ void main() {
         ],
       );
 
-      // generateBlocTest(
-      //   'should emit UpdateAvailableState when'
-      //   'the running app build number is lower than update build number',
-      //   mock.rawData,
-      //   mock.optionalBuildNumber - 1,
-      //   [
-      //     UpdateInProgressState(),
-      //     UpdateAvailableState(mock.updateInfoOptional),
-      //   ],
-      // );
+      generateBlocTest(
+        'should emit UpdateAvailableState when'
+        'running app build number is lower than update build number',
+        mock.rawData,
+        mock.optionalBuildNumber - 1,
+        [
+          UpdateInProgressState(),
+          UpdateAvailableState(mock.updateInfoOptional),
+        ],
+      );
+
+      generateBlocTest(
+        'should emit UpdateAvailableState(isOptional: true) when'
+        'running app build number is lower than update optional build number'
+        'and higher than update mandatory build number',
+        mock.rawData,
+        mock.optionalBuildNumber - 1,
+        [
+          UpdateInProgressState(),
+          UpdateAvailableState(mock.updateInfoOptional),
+        ],
+      );
+
+      generateBlocTest(
+        'should emit UpdateAvailableState(isOptional: false) when'
+        'running app build number is lower than update mandatory build number',
+        mock.rawData,
+        mock.mandatoryBuildNumber - 1,
+        [
+          UpdateInProgressState(),
+          UpdateAvailableState(mock.updateInfoMandatory),
+        ],
+      );
     },
   );
 }
