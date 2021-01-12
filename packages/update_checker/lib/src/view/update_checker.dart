@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../update_checker.dart';
 
 /// UpdateChecker
-class UpdateChecker extends StatefulWidget {
+class UpdateChecker extends StatelessWidget {
   /// UpdateChecker
   const UpdateChecker({
     this.child,
@@ -29,38 +26,21 @@ class UpdateChecker extends StatefulWidget {
   final Function(UpdateState) onStateChange;
 
   @override
-  _UpdateCheckerState createState() => _UpdateCheckerState();
-}
+  Widget build(BuildContext context) {
+    BlocProvider.of<UpdateBloc>(context).add(UpdateFetchEvent());
 
-class _UpdateCheckerState extends State<UpdateChecker> {
-  UpdateBloc _updateBloc;
-  StreamSubscription<UpdateState> _updateBlocSubscription;
-
-  @override
-  void initState() {
-    super.initState();
-    _setListener();
+    return BlocListener<UpdateBloc, UpdateState>(
+      listener: (_, UpdateState state) => _setListener(state),
+      child: child ?? const SizedBox.shrink(),
+    );
   }
 
-  void _setListener() {
-    _updateBloc = context.read<UpdateBloc>();
-    _updateBlocSubscription =
-        _updateBloc.startWith(_updateBloc.state).listen((UpdateState state) {
-      widget.onStateChange?.call(state);
-      if (state is UpdateNotAvailableState) {
-        widget.onNotAvailable?.call();
-      } else if (state is UpdateAvailableState) {
-        widget.onAvailable?.call(state.updateInfo);
-      }
-    });
-  }
-
-  @override
-  Widget build(_) => widget.child ?? const SizedBox.shrink();
-
-  @override
-  void dispose() {
-    _updateBlocSubscription?.cancel();
-    super.dispose();
+  void _setListener(UpdateState state) {
+    onStateChange?.call(state);
+    if (state is UpdateNotAvailableState) {
+      onNotAvailable?.call();
+    } else if (state is UpdateAvailableState) {
+      onAvailable?.call(state.updateInfo);
+    }
   }
 }
