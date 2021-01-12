@@ -68,9 +68,11 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     int buildNumber,
   ) {
-    final String url = rawUpdateInfo['url'] ? rawUpdateInfo['url'] : null;
-    final Map<String, String> changelogs =
-        rawUpdateInfo['changelogs'] ? rawUpdateInfo['changelogs'] : null;
+    final String url =
+        rawUpdateInfo['url'] == null ? null : rawUpdateInfo['url'];
+    final Map<String, String> changelogs = rawUpdateInfo['changelogs'] == null
+        ? null
+        : rawUpdateInfo['changelogs'];
 
     return UpdateInfo(
       buildNumber: buildNumber,

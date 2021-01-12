@@ -1,8 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:update_checker/update_checker.dart';
+
+import 'mock_data.dart' as mock;
 
 class MockFirebaseDatabaseRepository extends Mock
     implements FirebaseDatabaseRepository {}
@@ -10,51 +11,100 @@ class MockFirebaseDatabaseRepository extends Mock
 class MockPackageInfoRepository extends Mock implements PackageInfoRepository {}
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  group(
+    'Update bloc',
+    () {
+      MockFirebaseDatabaseRepository mockFirebaseDatabaseRepository;
+      MockPackageInfoRepository mockPackageInfoRepository;
 
-  group('Update bloc', () {
-    MockFirebaseDatabaseRepository mockFirebaseDatabaseRepository;
-    MockPackageInfoRepository mockPackageInfoRepository;
+      setUp(() {
+        mockFirebaseDatabaseRepository = MockFirebaseDatabaseRepository();
+        mockPackageInfoRepository = MockPackageInfoRepository();
+      });
 
-    setUp(() {
-      mockFirebaseDatabaseRepository = MockFirebaseDatabaseRepository();
-      mockPackageInfoRepository = MockPackageInfoRepository();
-    });
-
-    final UpdateInfo updateInfoOptional = UpdateInfo(
-      buildNumber: 2,
-      isOptional: true,
-      changelog: '',
-      changelogs: null,
-      url: '',
-    );
-
-    final UpdateInfo updateInfoMandatory = UpdateInfo(
-      buildNumber: 2,
-      isOptional: false,
-      changelog: '',
-      changelogs: null,
-      url: '',
-    );
-
-    blocTest(
-      'should emit UpdateInitialState as initial state',
-      build: () {
-        when(mockFirebaseDatabaseRepository.fetchUpdateData())
-            .thenAnswer((_) async => null);
-        when(mockPackageInfoRepository.getAppBuildNumber())
-            .thenAnswer((_) async => 1);
-        return UpdateBloc(
-          firebaseDatabaseRepository: mockFirebaseDatabaseRepository,
-          packageInfoRepository: mockPackageInfoRepository,
+      generateBlocTest(
+        String description,
+        Map<String, dynamic> rawData,
+        int buildNumber,
+        Iterable<dynamic> expect,
+      ) {
+        return blocTest(
+          description,
+          build: () {
+            when(mockFirebaseDatabaseRepository.fetchUpdateData()).thenAnswer(
+              (_) async => rawData,
+            );
+            when(mockPackageInfoRepository.getAppBuildNumber())
+                .thenAnswer((_) async => buildNumber);
+            return UpdateBloc(
+              firebaseDatabaseRepository: mockFirebaseDatabaseRepository,
+              packageInfoRepository: mockPackageInfoRepository,
+            );
+          },
+          act: (UpdateBloc bloc) => bloc.add(UpdateFetchEvent()),
+          expect: expect,
         );
-      },
-      act: (UpdateBloc bloc) => bloc.add(UpdateFetchEvent()),
-      expect: [
-        // UpdateInitialState(),
-        UpdateInProgressState(),
-        UpdateNotAvailableState(),
-      ],
-    );
-  });
+      }
+
+      test(
+        'should emit UpdateInitialState as initial state',
+        () => expect(UpdateBloc().state, UpdateInitialState()),
+      );
+
+      generateBlocTest(
+        'should emit UpdateNotAvailableState when'
+        'there is an error with fetching the update information',
+        null,
+        1,
+        [
+          UpdateInProgressState(),
+          UpdateNotAvailableState(),
+        ],
+      );
+
+      generateBlocTest(
+        'should emit UpdateNotAvailableState when'
+        'there is an error with getting the running app build number',
+        mock.rawData,
+        -1,
+        [
+          UpdateInProgressState(),
+          UpdateNotAvailableState(),
+        ],
+      );
+
+      generateBlocTest(
+        'should emit UpdateNotAvailableState when'
+        'the running app build number is equal to update build number',
+        mock.rawData,
+        mock.optionalBuildNumber,
+        [
+          UpdateInProgressState(),
+          UpdateNotAvailableState(),
+        ],
+      );
+
+      generateBlocTest(
+        'should emit UpdateNotAvailableState when'
+        'the running app build number is higher than update build number',
+        mock.rawData,
+        mock.optionalBuildNumber + 1,
+        [
+          UpdateInProgressState(),
+          UpdateNotAvailableState(),
+        ],
+      );
+
+      // generateBlocTest(
+      //   'should emit UpdateAvailableState when'
+      //   'the running app build number is lower than update build number',
+      //   mock.rawData,
+      //   mock.optionalBuildNumber - 1,
+      //   [
+      //     UpdateInProgressState(),
+      //     UpdateAvailableState(mock.updateInfoOptional),
+      //   ],
+      // );
+    },
+  );
 }
