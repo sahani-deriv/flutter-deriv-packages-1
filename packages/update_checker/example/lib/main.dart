@@ -7,6 +7,8 @@ void main() => runApp(MyApp());
 /// MyApp
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      MaterialApp(title: 'Example', home: ExamplePage());
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Example',
+        home: ExamplePage(),
+      );
 }
