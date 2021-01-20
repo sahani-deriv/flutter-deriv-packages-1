@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_survicate (0.0.1):
+    - Flutter
+    - Survicate (= 1.4.3)
+  - Survicate (1.4.3)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_survicate (from `.symlinks/plugins/flutter_survicate/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Survicate
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_survicate:
+    :path: ".symlinks/plugins/flutter_survicate/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_survicate: 12fbea417f6e948d238432bef78234ed5ae09b0c
+  Survicate: 04532a609cba1961879416d0268390196efe2979
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
