@@ -76,7 +76,7 @@ class FlutterSurvicate {
       return false;
     }
 
-    if (!_isListenerAlreadyRegistered()) {
+    if (!_isSurveyListenerRegistered()) {
       await _channel.invokeMethod<bool>(_registerSurveyListenersKey);
     }
 
@@ -85,7 +85,7 @@ class FlutterSurvicate {
     onSurveyClosedListener = callbackSurveyClosedListener;
     onSurveyCompletedListener = callbackSurveyCompletedListener;
 
-    return _isListenerAlreadyRegistered();
+    return _isSurveyListenerRegistered();
   }
 
   /// Method call handler.
@@ -108,7 +108,7 @@ class FlutterSurvicate {
 
   bool _handleSurveyDisplayed(MethodCall call) {
     if (onSurveyDisplayedListener == null ||
-        call?.arguments == null ||
+        call.arguments == null ||
         !call.arguments.containsKey(_surveyIdKey)) {
       return false;
     }
@@ -118,7 +118,7 @@ class FlutterSurvicate {
 
   bool _handleQuestionAnswered(MethodCall call) {
     if (onQuestionAnsweredListener == null ||
-        call?.arguments == null ||
+        call.arguments == null ||
         !call.arguments.containsKey(_surveyIdKey) ||
         !call.arguments.containsKey(_questionIdKey) ||
         !call.arguments.containsKey(_answerKey)) {
@@ -134,7 +134,7 @@ class FlutterSurvicate {
 
   bool _handleSurveyClosed(MethodCall call) {
     if (onSurveyClosedListener == null ||
-        call?.arguments == null ||
+        call.arguments == null ||
         !call.arguments.containsKey(_surveyIdKey)) {
       return false;
     }
@@ -144,7 +144,7 @@ class FlutterSurvicate {
 
   bool _handleSurveyCompleted(MethodCall call) {
     if (onSurveyCompletedListener == null ||
-        call?.arguments == null ||
+        call.arguments == null ||
         !call.arguments.containsKey(_surveyIdKey)) {
       return false;
     }
@@ -155,10 +155,7 @@ class FlutterSurvicate {
   /// Unregisters Survey activity listeners
   ///
   Future<bool> unregisterSurveyListeners() async {
-    if (onSurveyDisplayedListener == null &&
-        onQuestionAnsweredListener == null &&
-        onSurveyClosedListener == null &&
-        onSurveyCompletedListener == null) {
+    if (!_isSurveyListenerRegistered()) {
       return false;
     }
 
@@ -235,7 +232,7 @@ class FlutterSurvicate {
   /// If you need to test surveys on your device, this method might be helpful.
   Future<bool> reset() async => _channel.invokeMethod(_resetKey);
 
-  bool _isListenerAlreadyRegistered() =>
+  bool _isSurveyListenerRegistered() =>
       onSurveyDisplayedListener != null ||
       onQuestionAnsweredListener != null ||
       onSurveyClosedListener != null ||
