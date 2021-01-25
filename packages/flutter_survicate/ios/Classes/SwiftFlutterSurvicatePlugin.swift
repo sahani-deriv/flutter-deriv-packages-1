@@ -3,10 +3,12 @@ import UIKit
 
 import Survicate
 
-public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDelegate {
-    
+public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin {
+    private var survicateDelegate: FlutterSurvicateDelegate?
+
     class FlutterChannel: NSObject {
         static let shared: FlutterChannel = FlutterChannel()
+
         var channel: FlutterMethodChannel?
 
         private override init() {}
@@ -16,9 +18,10 @@ public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDele
         let channel = FlutterMethodChannel(name: "flutter_survicate", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterSurvicatePlugin()
 
+        instance.survicateDelegate = FlutterSurvicateDelegate(channel)
         registrar.addMethodCallDelegate(instance, channel: channel)
-        
         FlutterChannel.shared.channel = channel
+
         Survicate.shared.initialize()
     }
     
@@ -58,23 +61,31 @@ public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDele
 
             result(true)
         } else if (call.method == "registerSurveyListeners") {
-            Survicate.shared.delegate = self
+            Survicate.shared.delegate = survicateDelegate
 
             result(true)
         } else if (call.method == "unregisterSurveyListeners") {
             Survicate.shared.delegate = nil
 
             result(true)
-        }else {
+        } else {
             result(FlutterMethodNotImplemented)
         }
+    }
+}
+
+class FlutterSurvicateDelegate : SurvicateDelegate {
+    let channel: FlutterMethodChannel?
+    
+    init(_ channel: FlutterMethodChannel) {
+        self.channel = channel
     }
     
     public func surveyDisplayed(surveyId: String) {
         let arguments = ["surveyId": surveyId]
 
         DispatchQueue.main.async {
-            FlutterChannel.shared.channel?.invokeMethod("onSurveyDisplayed", arguments: arguments)
+            self.channel?.invokeMethod("onSurveyDisplayed", arguments: arguments)
         }
     }
 
@@ -83,7 +94,7 @@ public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDele
         let arguments = ["surveyId": surveyId, "questionId": questionId, "answer": answerMap] as [String : Any]
 
         DispatchQueue.main.async {
-            FlutterChannel.shared.channel?.invokeMethod("onQuestionAnswered", arguments: arguments)
+            self.channel?.invokeMethod("onQuestionAnswered", arguments: arguments)
         }
     }
 
@@ -91,7 +102,7 @@ public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDele
         let arguments = ["surveyId": surveyId]
 
         DispatchQueue.main.async {
-            FlutterChannel.shared.channel?.invokeMethod("onSurveyCompleted", arguments: arguments)
+            self.channel?.invokeMethod("onSurveyCompleted", arguments: arguments)
         }
     }
 
@@ -99,7 +110,7 @@ public class SwiftFlutterSurvicatePlugin: NSObject, FlutterPlugin, SurvicateDele
         let arguments = ["surveyId": surveyId]
         
         DispatchQueue.main.async {
-            FlutterChannel.shared.channel?.invokeMethod("onSurveyClosed", arguments: arguments)
+            self.channel?.invokeMethod("onSurveyClosed", arguments: arguments)
         }
     }
 }
