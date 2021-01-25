@@ -6,3 +6,4 @@ Flutter components used in our mobile apps
 * [analytics](./packages/analytics) - Used to collect and send analytical information to 'Firebase' and 'Segment'.
 * [survey_monkey](./packages/survey_monkey) - Used to display a survey provided by surveyMonkey and returns completion results.
 * [deriv_theme](./packages/deriv_theme) - A package that contains the theme used by Deriv products.
+* [deriv_rudderstack](./packages/deriv_rudderstack) - A plugin that add RudderStack SDK support to Flutter.
