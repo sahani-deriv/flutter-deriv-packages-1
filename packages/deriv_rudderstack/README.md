@@ -3,8 +3,9 @@
 DerivRudderstack plugin is used to add RudderStack Android and iOS SDK support to Flutter. Through the plugin, various users' analaytical events could be logged.
 
 ### Supported methods
+
 | Method | Android | iOS |
-|---|---|---|---|
+|---|---|---|
 | `identify` | X | X |
 | `track` | X | X |
 | `screen` | X | X |
