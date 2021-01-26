@@ -23,8 +23,8 @@ class UpdateInfo extends Equatable {
   /// [changelogs] contains changelog information for different languages.
   /// ```
   /// {
-  ///    'en': '- Feature 1\n- Feature 2',
-  ///    'es': '- característica 1\n- característica 2',
+  ///    "en": "- Feature 1\n- Feature 2",
+  ///    "es": "- característica 1\n- característica 2",
   /// }
   /// ```
   final Map<String, dynamic> changelogs;
