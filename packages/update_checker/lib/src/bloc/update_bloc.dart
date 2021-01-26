@@ -39,23 +39,28 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
 
   Future<UpdateInfo> _getUpdateInfo() async {
     final dynamic rawData = await firebaseDatabaseRepository.fetchUpdateData();
+
+    // checks if failed to fetch data from Firebase Database and return
     if (rawData == null) {
       return null;
-    } // failed to fetch data from Firebase Database
+    }
 
+    // checks if failed to get app build number and return
     final int appBuildNumber = await packageInfoRepository.getAppBuildNumber();
     if (appBuildNumber <= 0) {
       return null;
-    } // failed to get app build number
+    }
 
     final int optionalBuildNumber = rawData['optional']['buildnumber'];
     final int mandatoryBuildNumber = rawData['mandatory']['buildnumber'];
     final bool isMandatory = appBuildNumber < mandatoryBuildNumber;
     final bool isOptional = appBuildNumber < optionalBuildNumber &&
         appBuildNumber >= mandatoryBuildNumber;
+
+    // checks if no update available and return
     if (!isMandatory && !isOptional) {
       return null;
-    } // no update available
+    }
 
     return _createUpdate(
       rawData[isOptional ? 'optional' : 'mandatory'],
@@ -69,11 +74,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     int buildNumber,
   ) {
-    final String url =
-        rawUpdateInfo['url'] == null ? null : rawUpdateInfo['url'];
-    final Map<String, String> changelogs = rawUpdateInfo['changelogs'] == null
-        ? null
-        : rawUpdateInfo['changelogs'];
+    final String url = rawUpdateInfo['url'];
+    final Map<String, String> changelogs = rawUpdateInfo['changelogs'];
 
     return UpdateInfo(
       buildNumber: buildNumber,
