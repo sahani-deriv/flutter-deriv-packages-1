@@ -77,14 +77,14 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     int buildNumber,
   ) {
     final String url = rawUpdateInfo['url'];
-    final Map<String, String> changelogs =
-        jsonDecode(rawUpdateInfo['changelogs']);
+    // final Map<String, String> changelogs =
+    //     jsonDecode(rawUpdateInfo['changelogs']);
 
     return UpdateInfo(
       buildNumber: buildNumber,
       url: url,
       changelog: decodeBase64(rawUpdateInfo['changelog'] ?? ''),
-      changelogs: changelogs,
+      // changelogs: changelogs,
       isOptional: isOptional,
     );
   }
