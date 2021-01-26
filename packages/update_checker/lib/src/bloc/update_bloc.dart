@@ -77,6 +77,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     final String url = rawUpdateInfo['url'];
     final Map<String, String> changelogs = rawUpdateInfo['changelogs'];
 
+    print(rawUpdateInfo);
+
     return UpdateInfo(
       buildNumber: buildNumber,
       url: url,
