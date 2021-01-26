@@ -76,8 +76,9 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     int buildNumber,
   ) {
-    final Map<String, String> changelogs =
-        jsonDecode(rawUpdateInfo['changelogs']);
+    final Map<String, String> changelogs = jsonDecode(
+      rawUpdateInfo['changelogs'].toString().replaceAll(r'\n', r'\\n'),
+    );
 
     return UpdateInfo(
       buildNumber: buildNumber,
