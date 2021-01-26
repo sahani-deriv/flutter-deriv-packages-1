@@ -31,24 +31,27 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text('Rudderstack example app'),
           ),
-          body: Column(
-            children: <Widget>[
-              _enableController(),
-              const Divider(),
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                padding: const EdgeInsets.all(16),
-                children: _eventsList(),
-              )
-            ],
+          body: Builder(
+            builder:(BuildContext context) => Column(
+              children: <Widget>[
+                _enableController(context),
+                const Divider(),
+               GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    padding: const EdgeInsets.all(16),
+                    children: _eventsList(context),
+                  ),
+
+              ],
+            ),
           ),
         ),
       );
 
-  List<Widget> _eventsList() => <Widget>[
+  List<Widget> _eventsList(BuildContext context) => <Widget>[
         InkWell(
           child: Container(
             padding: const EdgeInsets.all(8),
@@ -59,97 +62,125 @@ class _MyAppState extends State<MyApp> {
             )),
             color: Colors.teal[100],
           ),
-          onTap: () {
-            DerivRudderstack()
+          onTap: () async {
+            await DerivRudderstack()
                 .setContext(token: 'xxx-xxxx-xxxx-xxxxx-xxxx-test');
-            DerivRudderstack().identify(userId: '998');
+            final bool result =
+                await DerivRudderstack().identify(userId: '998');
+            _showSnackBar(context, result);
           },
         ),
         InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Center(
-                child: Text(
-              'Track',
-              style: TextStyle(fontSize: 18),
-            )),
-            color: Colors.blue[100],
-          ),
-          onTap: () => DerivRudderstack().track(
-              eventName: 'Application Opened',
-              properties: <String, dynamic>{
-                'entry1': 'test1',
-                'entry2': 'test2'
-              }),
-        ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Center(
+                  child: Text(
+                'Track',
+                style: TextStyle(fontSize: 18),
+              )),
+              color: Colors.blue[100],
+            ),
+            onTap: () async {
+              final bool result = await DerivRudderstack().track(
+                  eventName: 'Application Opened',
+                  properties: <String, dynamic>{
+                    'entry1': 'test1',
+                    'entry2': 'test2'
+                  });
+
+              _showSnackBar(context, result);
+            }),
         InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Center(
-                child: Text(
-              'Screen',
-              style: TextStyle(fontSize: 18),
-            )),
-            color: Colors.orange[100],
-          ),
-          onTap: () => DerivRudderstack().screen(
-              screenName: 'main',
-              properties: <String, dynamic>{
-                'entry1': 'test1',
-                'entry2': 'test2'
-              }),
-        ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Center(
+                  child: Text(
+                'Screen',
+                style: TextStyle(fontSize: 18),
+              )),
+              color: Colors.orange[100],
+            ),
+            onTap: () async {
+              final bool result = await DerivRudderstack().screen(
+                  screenName: 'main',
+                  properties: <String, dynamic>{
+                    'entry1': 'test1',
+                    'entry2': 'test2'
+                  });
+
+              _showSnackBar(context, result);
+            }),
         InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Center(
-                child: Text(
-              'group',
-              style: TextStyle(fontSize: 18),
-            )),
-            color: Colors.indigo[100],
-          ),
-          onTap: () => DerivRudderstack().group(
-              groupId: 'Group-id-test',
-              traits: <String, dynamic>{'entry1': 'test1', 'entry2': 'test2'}),
-        ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Center(
+                  child: Text(
+                'group',
+                style: TextStyle(fontSize: 18),
+              )),
+              color: Colors.indigo[100],
+            ),
+            onTap: () async {
+              final bool result = await DerivRudderstack().group(
+                  groupId: 'Group-id-test',
+                  traits: <String, dynamic>{
+                    'entry1': 'test1',
+                    'entry2': 'test2'
+                  });
+              _showSnackBar(context, result);
+            }),
         InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Center(
-                child: Text(
-              'alias',
-              style: TextStyle(fontSize: 18),
-            )),
-            color: Colors.purple[100],
-          ),
-          onTap: () => DerivRudderstack().alias(alias: 'Alias-test'),
-        ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Center(
+                  child: Text(
+                'alias',
+                style: TextStyle(fontSize: 18),
+              )),
+              color: Colors.purple[100],
+            ),
+            onTap: () async {
+              final bool result =
+                  await DerivRudderstack().alias(alias: 'Alias-test');
+              _showSnackBar(context, result);
+            }),
         InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Center(
-                child: Text(
-              'reset',
-              style: TextStyle(fontSize: 18),
-            )),
-            color: Colors.deepOrange[100],
-          ),
-          onTap: () => DerivRudderstack().reset(),
-        ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: const Center(
+                  child: Text(
+                'reset',
+                style: TextStyle(fontSize: 18),
+              )),
+              color: Colors.deepOrange[100],
+            ),
+            onTap: () async {
+              final bool result = await DerivRudderstack().reset();
+              _showSnackBar(context, result);
+            }),
       ];
 
-  Widget _enableController() => SwitchListTile(
+  Widget _enableController(BuildContext context) => SwitchListTile(
         title: const Text('Enable RudderStack'),
         value: _enabled,
-        onChanged: (bool newValue) {
+        onChanged: (bool newValue) async {
           setState(() => _enabled = newValue);
 
+          bool result;
           if (_enabled) {
-            DerivRudderstack().enable();
+            result = await DerivRudderstack().enable();
           } else {
-            DerivRudderstack().disable();
+            result = await DerivRudderstack().disable();
           }
+
+          _showSnackBar(context, result);
         },
       );
+
+  void _showSnackBar(BuildContext context, bool success) {
+    final SnackBar snackBar =
+        SnackBar(content: Text(success ? 'Success' : 'Failure'));
+
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 }
