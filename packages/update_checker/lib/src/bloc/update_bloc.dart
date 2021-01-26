@@ -76,13 +76,9 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     int buildNumber,
   ) {
-    // r'{"en":"- Feature 1\n- Feature 2","es":"- característica 1\n- característica 2"}',
-
-    final String jamshid = rawUpdateInfo['changelogs'].toString();
-    print('jamshid $jamshid');
-
+    final String rawChangelogs = rawUpdateInfo['changelogs'].toString();
     final Map<String, dynamic> changelogs = json.decode(
-      jamshid.toString().substring(1, jamshid.length - 1),
+      rawChangelogs.toString().substring(1, rawChangelogs.length - 1),
     );
 
     return UpdateInfo(
