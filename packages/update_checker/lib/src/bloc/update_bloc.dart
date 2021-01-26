@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -75,9 +77,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     int buildNumber,
   ) {
     final String url = rawUpdateInfo['url'];
-    final Map<String, String> changelogs = rawUpdateInfo['changelogs'];
-
-    print(rawUpdateInfo);
+    final Map<String, String> changelogs =
+        jsonDecode(rawUpdateInfo['changelogs']);
 
     return UpdateInfo(
       buildNumber: buildNumber,
