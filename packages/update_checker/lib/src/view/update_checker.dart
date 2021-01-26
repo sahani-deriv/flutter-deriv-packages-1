@@ -13,13 +13,13 @@ class UpdateChecker extends StatelessWidget {
     this.onStateChange,
   });
 
-  /// The [child] that UpdateChecker widget will wrap it.
+  /// The [child] that UpdateChecker widget will wrap.
   final Widget child;
 
   /// [onAvailable] will be called when there is an update available.
   final Function(UpdateInfo) onAvailable;
 
-  /// [onNotAvailable] will be called when there no update available.
+  /// [onNotAvailable] will be called when there is no update available.
   final Function onNotAvailable;
 
   /// [onStateChange] will be called when there is a change in the state.

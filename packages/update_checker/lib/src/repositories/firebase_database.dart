@@ -7,7 +7,7 @@ class FirebaseDatabaseRepository {
   /// FirebaseDatabaseRepository
   const FirebaseDatabaseRepository();
 
-  /// Will fetch the update information from the database.
+  /// Fetches the update information from the database.
   Future<dynamic> fetchUpdateData() async {
     final DatabaseReference dbRef = FirebaseDatabase.instance
         .reference()

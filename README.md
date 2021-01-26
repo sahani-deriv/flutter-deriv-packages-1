@@ -1,5 +1,5 @@
 # flutter-deriv-packages
-This repository contains private packages that are used by the company flutter applications.
+This repository contains private packages & plugins that are used by the company's products built in Flutter.
 
 ## Packages
 

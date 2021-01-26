@@ -1,6 +1,6 @@
 # update_checker
 
-A helper package that will check and retrieve update information from the server for the given package.
+A helper package that checks and retrieves version update information from the server for the given package.
 
 ---
 

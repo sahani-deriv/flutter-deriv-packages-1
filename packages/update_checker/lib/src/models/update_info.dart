@@ -11,7 +11,7 @@ class UpdateInfo extends Equatable {
     this.url,
   });
 
-  /// [isOptional] determinate if the update is optional or not.
+  /// [isOptional] determines if the update is optional or not.
   final bool isOptional;
 
   /// [buildNumber] represents the minimum build required.

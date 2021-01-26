@@ -5,7 +5,7 @@ class PackageInfoRepository {
   /// PackageInfoRepository
   const PackageInfoRepository();
 
-  /// Will return the running app build number.
+  /// Returns the running app's build number.
   Future<int> getAppBuildNumber() async {
     try {
       final PackageInfo packageInfo = await PackageInfo.fromPlatform();
