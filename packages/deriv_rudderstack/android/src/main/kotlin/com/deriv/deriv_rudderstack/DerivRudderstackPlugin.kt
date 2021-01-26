@@ -43,10 +43,10 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
     private fun configureAndBuildRSClient() {
 
         // Gets the values specified by the user at AndroidManifest.xml
-        val ai: ApplicationInfo = context.packageManager
+        val applicationInfo: ApplicationInfo = context.packageManager
                 .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
 
-        val bundle = ai.metaData
+        val bundle = applicationInfo.metaData
 
         val writeKey = bundle.getString(WRITE_KEY)
         writeKey?.apply {
@@ -260,7 +260,7 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
             val pushToken: String? = call.argument("pushToken")
             rudderClient.putDeviceToken(pushToken)
 
-            result.success(true);
+            result.success(true)
 
         } catch (e: Exception) {
             result.error(TAG, e.localizedMessage, null)
