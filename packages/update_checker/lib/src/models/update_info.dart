@@ -27,7 +27,7 @@ class UpdateInfo extends Equatable {
   ///    'es': '- característica 1\n- característica 2',
   /// }
   /// ```
-  final Map<String, String> changelogs;
+  final Map<String, dynamic> changelogs;
 
   /// [url] is alternative url for updating the app, can be empty.
   final String url;
