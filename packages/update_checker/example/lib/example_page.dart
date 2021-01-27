@@ -1,7 +1,8 @@
-import 'package:example/update_bloc_page.dart';
-import 'package:example/update_checker_page.dart';
 import 'package:flutter/material.dart';
 import 'package:update_checker/update_checker.dart';
+
+import './update_bloc_page.dart';
+import './update_checker_page.dart';
 
 /// ExamplePage
 class ExamplePage extends StatefulWidget {
