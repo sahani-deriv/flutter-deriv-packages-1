@@ -16,7 +16,7 @@ class TextStyles {
       fontFamily: appFontFamily,
       fontSize: 24,
       height: 1.5,
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.normal);
 
   static TextStyle title = const TextStyle(
       fontFamily: appFontFamily,
@@ -71,12 +71,6 @@ class TextStyles {
       fontSize: 14,
       height: 1,
       fontWeight: FontWeight.w500);
-
-  static TextStyle headlineNormal = const TextStyle(
-      fontFamily: appFontFamily,
-      fontSize: 24,
-      height: 1.5,
-      fontWeight: FontWeight.normal);
 
   static TextStyle overline = const TextStyle(
       fontFamily: appFontFamily,
