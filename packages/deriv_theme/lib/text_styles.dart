@@ -16,7 +16,7 @@ class TextStyles {
       fontFamily: appFontFamily,
       fontSize: 24,
       height: 1.5,
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.normal);
 
   static TextStyle title = const TextStyle(
       fontFamily: appFontFamily,
@@ -39,7 +39,7 @@ class TextStyles {
   static TextStyle body2 = const TextStyle(
       fontFamily: appFontFamily,
       fontSize: 14,
-      height: 1.3,
+      height: 1.4,
       fontWeight: FontWeight.w500);
 
   static TextStyle body1Bold = const TextStyle(
@@ -51,13 +51,13 @@ class TextStyles {
   static TextStyle body1 = const TextStyle(
       fontFamily: appFontFamily,
       fontSize: 14,
-      height: 1.3,
+      height: 1.4,
       fontWeight: FontWeight.normal);
 
   static TextStyle caption = const TextStyle(
       fontFamily: appFontFamily,
       fontSize: 12,
-      height: 1.3,
+      height: 1.5,
       fontWeight: FontWeight.normal);
 
   static TextStyle captionBold = const TextStyle(
@@ -72,12 +72,6 @@ class TextStyles {
       height: 1,
       fontWeight: FontWeight.w500);
 
-  static TextStyle headlineNormal = const TextStyle(
-      fontFamily: appFontFamily,
-      fontSize: 24,
-      height: 1.5,
-      fontWeight: FontWeight.normal);
-
   static TextStyle overline = const TextStyle(
       fontFamily: appFontFamily,
       fontSize: 10,
@@ -89,10 +83,4 @@ class TextStyles {
       fontSize: 10,
       height: 1.4,
       fontWeight: FontWeight.bold);
-
-  static TextStyle overlineBold = const TextStyle(
-      fontFamily: appFontFamily,
-      fontSize: 10,
-      height: 1.4,
-      fontWeight: FontWeight.w700);
 }
