@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:update_checker/update_checker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// UpdateCheckerProvider
+/// UpdateCheckerProvider is a higher-order widget to help providing the
+/// UpdateBloc without dealing with bloc itself.
 class UpdateCheckerProvider extends StatelessWidget {
-  /// UpdateCheckerProvider
+  /// Provides the UpdateBloc for it's child widget.
   const UpdateCheckerProvider(
     this.child,
   );

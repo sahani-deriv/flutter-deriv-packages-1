@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
 
-/// FirebaseDatabaseRepository
+/// Firebase Database repository will help to fetch the update information from
+/// the firebase database.
 class FirebaseDatabaseRepository {
-  /// FirebaseDatabaseRepository
+  /// Initializes the Firebase Database repository
   const FirebaseDatabaseRepository();
 
   /// Fetches the update information from the database.

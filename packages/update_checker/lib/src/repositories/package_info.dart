@@ -1,8 +1,8 @@
 import 'package:package_info/package_info.dart';
 
-/// PackageInfoRepository
+/// PackageInfo repository will help to fetch the running app's build number.
 class PackageInfoRepository {
-  /// PackageInfoRepository
+  /// Initializes the PackageInfo repository
   const PackageInfoRepository();
 
   /// Returns the running app's build number.

@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../update_checker.dart';
 
-/// UpdateChecker
+/// UpdateChecker is a higher-order widget that helps with handling the
+/// UpdateBloc states without dealing with bloc itself.
 class UpdateChecker extends StatelessWidget {
-  /// UpdateChecker
+  /// Checks for update availability as soon as renders and will call the proper
+  /// callback based on the UpdateState.
   const UpdateChecker({
     this.child,
     this.onAvailable,

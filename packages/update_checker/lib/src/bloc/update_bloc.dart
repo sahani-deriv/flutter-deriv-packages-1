@@ -13,8 +13,9 @@ part 'update_state.dart';
 /// UpdateBloc is responsible for fetching the update availability from the
 /// Firebase Database and emit the correct state.
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
-  /// UpdateBloc is responsible for fetching the update availability from the
-  /// Firebase Database and emit the correct state.
+  /// UpdateBloc needs `FirebaseDatabaseRepository` in order to fetch the update
+  /// availability from the Firebase Database and `PackageInfoRepository` to
+  /// check the app version with the update to determine the update availability
   UpdateBloc({
     this.firebaseDatabaseRepository = const FirebaseDatabaseRepository(),
     this.packageInfoRepository = const PackageInfoRepository(),

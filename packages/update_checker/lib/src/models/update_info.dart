@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 
 /// Represents information regarding Update.
 class UpdateInfo extends Equatable {
-  /// Represents information regarding Update.
+  /// Update info contains information about the update such as the optionality
+  /// and changes for the update.
   const UpdateInfo({
     this.isOptional,
     this.buildNumber,
