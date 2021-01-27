@@ -9,16 +9,34 @@ class UpdateBlocPage extends StatefulWidget {
 }
 
 class _UpdateBlocPageState extends State<UpdateBlocPage> {
+  final UpdateBloc updateBloc = UpdateBloc();
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('UpdateBloc'),
         ),
         body: BlocProvider<UpdateBloc>(
-          create: (_) => UpdateBloc()..add(UpdateFetchEvent()),
+          create: (_) => updateBloc,
           child: BlocBuilder<UpdateBloc, UpdateState>(
             builder: (_, UpdateState state) => Center(
-              child: Text('${state.runtimeType}'),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text('${state.runtimeType}'),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Fetch'),
+                      onPressed: state is UpdateInProgressState
+                          ? null
+                          : () => updateBloc.add(UpdateFetchEvent()),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
