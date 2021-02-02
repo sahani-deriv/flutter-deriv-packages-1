@@ -25,7 +25,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// Call `track` to record the users' activity. It requires the [eventName]
@@ -43,7 +43,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// You can use the `screen` call to record whenever the user sees a screen
@@ -63,7 +63,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// The `group` call associates a user to a specific organization. It requires
@@ -82,7 +82,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// The `alias` call associates the user with a new identification. It requires
@@ -99,7 +99,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// Use the `reset` call to clear the persisted traits for the identify call.
@@ -113,7 +113,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// Call `disable` to disable sending rudder stack events.
@@ -124,7 +124,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// Call `enable` too enable sending rudder stack events.
@@ -135,7 +135,7 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 
   /// Call `setContext` to support sending push notification to the destinations
@@ -152,6 +152,6 @@ class DerivRudderstack {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
 
-    return Future<bool>.value(false);
+    return false;
   }
 }
