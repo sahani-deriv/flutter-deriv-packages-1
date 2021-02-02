@@ -77,10 +77,12 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     int buildNumber,
   ) {
-    final String rawChangelogs = rawUpdateInfo['changelogs'].toString();
-    final Map<String, dynamic> changelogs = json.decode(
-      rawChangelogs.toString().substring(1, rawChangelogs.length - 1),
-    );
+    final String rawChangelogs = rawUpdateInfo['changelogs']?.toString();
+    final Map<String, dynamic> changelogs = rawChangelogs != null
+        ? json.decode(
+            rawChangelogs.toString().substring(1, rawChangelogs.length - 1),
+          )
+        : null;
 
     return UpdateInfo(
       buildNumber: buildNumber,

@@ -52,7 +52,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateNotAvailableState when'
+        'should emit UpdateNotAvailableState when '
         'there is an error with fetching the update information',
         null,
         1,
@@ -63,7 +63,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateNotAvailableState when'
+        'should emit UpdateNotAvailableState when '
         'there is an error with getting the running app build number',
         mock.rawData,
         -1,
@@ -74,7 +74,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateNotAvailableState when'
+        'should emit UpdateNotAvailableState when '
         'running app build number is equal to update build number',
         mock.rawData,
         mock.optionalBuildNumber,
@@ -85,7 +85,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateNotAvailableState when'
+        'should emit UpdateNotAvailableState when '
         'running app build number is higher than update build number',
         mock.rawData,
         mock.optionalBuildNumber + 1,
@@ -96,7 +96,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateAvailableState when'
+        'should emit UpdateAvailableState when '
         'running app build number is lower than update build number',
         mock.rawData,
         mock.optionalBuildNumber - 1,
@@ -107,7 +107,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateAvailableState(isOptional: true) when'
+        'should emit UpdateAvailableState(isOptional: true) when '
         'running app build number is lower than update optional build number'
         'and higher than update mandatory build number',
         mock.rawData,
@@ -119,7 +119,7 @@ void main() {
       );
 
       generateBlocTest(
-        'should emit UpdateAvailableState(isOptional: false) when'
+        'should emit UpdateAvailableState(isOptional: false) when '
         'running app build number is lower than update mandatory build number',
         mock.rawData,
         mock.mandatoryBuildNumber - 1,
