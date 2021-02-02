@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:deriv_rudderstack/deriv_rudderstack.dart';
 
 void main() {
@@ -32,19 +30,18 @@ class _MyAppState extends State<MyApp> {
             title: const Text('Rudderstack example app'),
           ),
           body: Builder(
-            builder:(BuildContext context) => Column(
+            builder: (BuildContext context) => Column(
               children: <Widget>[
                 _enableController(context),
                 const Divider(),
-               GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    padding: const EdgeInsets.all(16),
-                    children: _eventsList(context),
-                  ),
-
+                GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  padding: const EdgeInsets.all(16),
+                  children: _eventsList(context),
+                ),
               ],
             ),
           ),

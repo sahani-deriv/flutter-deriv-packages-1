@@ -14,7 +14,8 @@ class DerivRudderstack {
   Future<bool> identify(
       {@required String userId, Map<String, dynamic> traits}) async {
     try {
-      final bool response = await _channel.invokeMethod<dynamic>('identify', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('identify', <String, dynamic>{
         'userId': userId,
         'traits': traits ?? <String, dynamic>{},
       });
@@ -32,7 +33,8 @@ class DerivRudderstack {
   Future<bool> track(
       {@required String eventName, Map<String, dynamic> properties}) async {
     try {
-      final bool response = await _channel.invokeMethod<dynamic>('track', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('track', <String, dynamic>{
         'eventName': eventName,
         'properties': properties ?? <String, dynamic>{},
       });
@@ -50,7 +52,8 @@ class DerivRudderstack {
   Future<bool> screen(
       {@required String screenName, Map<String, dynamic> properties}) async {
     try {
-      final bool response = await _channel.invokeMethod<dynamic>('screen', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('screen', <String, dynamic>{
         'screenName': screenName,
         'properties': properties ?? <String, dynamic>{},
       });
@@ -68,12 +71,13 @@ class DerivRudderstack {
   Future<bool> group(
       {@required String groupId, Map<String, dynamic> traits}) async {
     try {
-     final bool response =  await _channel.invokeMethod<dynamic>('group', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('group', <String, dynamic>{
         'groupId': groupId,
         'traits': traits ?? <String, dynamic>{},
       });
 
-     return response;
+      return response;
     } on PlatformException catch (e) {
       logger.log('${(DerivRudderstack).toString()}: ${e.message}');
     }
@@ -85,7 +89,8 @@ class DerivRudderstack {
   /// [alias] value.
   Future<bool> alias({@required String alias}) async {
     try {
-      final bool response = await _channel.invokeMethod<dynamic>('alias', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('alias', <String, dynamic>{
         'alias': alias,
       });
 
@@ -137,7 +142,8 @@ class DerivRudderstack {
   /// that support Push Notification. It requires [token] value.
   Future<bool> setContext({@required String token}) async {
     try {
-      final bool response = await _channel.invokeMethod<dynamic>('setContext', <String, dynamic>{
+      final bool response =
+          await _channel.invokeMethod<dynamic>('setContext', <String, dynamic>{
         'pushToken': token,
       });
 
