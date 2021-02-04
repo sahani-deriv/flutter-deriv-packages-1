@@ -9,7 +9,7 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
      */
     private var enabled = true
     
-    let DISABLED = "DISABLED"
+    let TURNED_OFF = "TURNED_OFF"
     
     // Method names
     let IDENTIFY = "identify"
@@ -95,8 +95,8 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
         case DISABLE:
             self.disable(call, result)
             
-        case DISABLED:
-            print("Method was disabled")
+        case TURNED_OFF:
+            print("Rudderstack analytics was turned off")
             
         default:
             result(false)
@@ -115,7 +115,7 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
         if (enabled) {
             return method
         } else {
-            return DISABLED
+            return TURNED_OFF
         }
     }
     

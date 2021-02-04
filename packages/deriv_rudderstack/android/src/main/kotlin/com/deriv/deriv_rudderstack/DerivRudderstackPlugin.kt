@@ -24,7 +24,7 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
         const val RECORD_SCREEN_VIEWS = "$PACKAGE.RECORD_SCREEN_VIEWS"
         const val DEBUG = "$PACKAGE.DEBUG"
 
-        const val DISABLED = "DISABLED"
+        const val TURNED_OFF = "TURNED_OFF"
 
         // Method names
         const val IDENTIFY = "identify"
@@ -111,8 +111,8 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
             DISABLE -> {
                 disable(result)
             }
-            DISABLED -> {
-                Log.i(TAG, "Method was disabled")
+            TURNED_OFF -> {
+                Log.i(TAG, "Rudderstack analytics was turned off")
             }
             else -> {
                 result.notImplemented()
@@ -125,7 +125,7 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
         else checkEnabled(method)
     }
 
-    private fun checkEnabled(method: String): String = if (enabled) method else DISABLED
+    private fun checkEnabled(method: String): String = if (enabled) method else TURNED_OFF
 
     // To track the users across the application installation.
     private fun identify(call: MethodCall, result: Result) {
