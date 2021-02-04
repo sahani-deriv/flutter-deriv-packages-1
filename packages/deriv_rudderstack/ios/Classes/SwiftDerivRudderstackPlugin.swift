@@ -104,14 +104,14 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
     }
     
     private func checkMethod(method: String) -> String {
-        if (method == ENABLE || method == DISABLE){
+        if (method == ENABLE || method == DISABLE) {
             return method
-        } else{
+        } else {
             return checkEnabled(method: method)
         }
     }
     
-    private func checkEnabled(method: String)-> String{
+    private func checkEnabled(method: String) -> String {
         if (enabled) {
             return method
         } else {
