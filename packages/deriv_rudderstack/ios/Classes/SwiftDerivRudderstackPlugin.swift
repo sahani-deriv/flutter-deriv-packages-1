@@ -9,6 +9,19 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
      */
     private var enabled = true
     
+    let DISABLED = "DISABLED"
+    
+    // Method names
+    let IDENTIFY = "identify"
+    let TRACK = "track"
+    let SCREEN = "screen"
+    let GROUP = "group"
+    let ALIAS = "alias"
+    let RESET = "reset"
+    let SET_CONTEXT = "setContext"
+    let ENABLE = "enable"
+    let DISABLE = "disable"
+    
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "deriv_rudderstack", binaryMessenger: registrar.messenger())
         let instance = SwiftDerivRudderstackPlugin()
@@ -54,43 +67,55 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        switch call.method {
-        case "identify":
-            if (enabled) {
-                self.identify(call, result)
-            }
-        case "track":
-            if (enabled) {
-                self.track(call, result)
-            }
-        case "screen":
-            if (enabled) {
-                self.screen(call, result)
-            }
-        case "group":
-            if (enabled) {
-                self.group(call, result)
-            }
-        case "alias":
-            if (enabled) {
-                self.alias(call, result)
-            }
-        case "reset":
-            if (enabled) {
-                self.reset(result)
-            }
-        case "setContext":
-            if (enabled) {
-                self.setContext(call, result)
-            }
-        case "enable":
+        switch checkMethod(method: call.method) {
+        case IDENTIFY:
+            self.identify(call, result)
+            
+        case TRACK:
+            self.track(call, result)
+            
+        case SCREEN:
+            self.screen(call, result)
+            
+        case GROUP:
+            self.group(call, result)
+            
+        case ALIAS:
+            self.alias(call, result)
+            
+        case RESET:
+            self.reset(result)
+            
+        case SET_CONTEXT:
+            self.setContext(call, result)
+            
+        case ENABLE:
             self.enable(call, result)
             
-        case "disable":
+        case DISABLE:
             self.disable(call, result)
+            
+        case DISABLED:
+            print("Method was disabled")
             
         default:
             result(false)
+        }
+    }
+    
+    private func checkMethod(method: String) -> String {
+        if (method == ENABLE || method == DISABLE){
+            return method
+        } else{
+            return checkEnabled(method: method)
+        }
+    }
+    
+    private func checkEnabled(method: String)-> String{
+        if (enabled) {
+            return method
+        } else {
+            return DISABLED
         }
     }
     

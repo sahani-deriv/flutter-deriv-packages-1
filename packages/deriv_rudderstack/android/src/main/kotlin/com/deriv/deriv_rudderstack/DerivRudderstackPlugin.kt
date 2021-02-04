@@ -23,6 +23,19 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
         const val TRACK_APPLICATION_LIFECYCLE_EVENTS = "$PACKAGE.TRACK_APPLICATION_LIFECYCLE_EVENTS"
         const val RECORD_SCREEN_VIEWS = "$PACKAGE.RECORD_SCREEN_VIEWS"
         const val DEBUG = "$PACKAGE.DEBUG"
+
+        const val DISABLED = "DISABLED"
+
+        // Method names
+        const val IDENTIFY = "identify"
+        const val TRACK = "track"
+        const val SCREEN = "screen"
+        const val GROUP = "group"
+        const val ALIAS = "alias"
+        const val RESET = "reset"
+        const val SET_CONTEXT = "setContext"
+        const val ENABLE = "enable"
+        const val DISABLE = "disable"
     }
 
     private lateinit var channel: MethodChannel
@@ -70,39 +83,49 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-        when (call.method) {
-            "identify" -> {
-                if (enabled) identify(call, result)
+        when (checkMethod(call.method)) {
+            IDENTIFY -> {
+                identify(call, result)
             }
-            "track" -> {
-                if (enabled) track(call, result)
+            TRACK -> {
+                track(call, result)
             }
-            "screen" -> {
-                if (enabled) screen(call, result)
+            SCREEN -> {
+                screen(call, result)
             }
-            "group" -> {
-                if (enabled) group(call, result)
+            GROUP -> {
+                group(call, result)
             }
-            "alias" -> {
-                if (enabled) alias(call, result)
+            ALIAS -> {
+                alias(call, result)
             }
-            "reset" -> {
-                if (enabled) reset(result)
+            RESET -> {
+                reset(result)
             }
-            "setContext" -> {
-                if (enabled) setContext(call, result)
+            SET_CONTEXT -> {
+                setContext(call, result)
             }
-            "enable" -> {
+            ENABLE -> {
                 enable(result)
             }
-            "disable" -> {
+            DISABLE -> {
                 disable(result)
+            }
+            DISABLED -> {
+                Log.i(TAG, "Method was disabled")
             }
             else -> {
                 result.notImplemented()
             }
         }
     }
+
+    private fun checkMethod(method: String): String {
+        return if (method == ENABLE || method == DISABLE) method
+        else checkEnabled(method)
+    }
+
+    private fun checkEnabled(method: String): String = if (enabled) method else DISABLED
 
     // To track the users across the application installation.
     private fun identify(call: MethodCall, result: Result) {
