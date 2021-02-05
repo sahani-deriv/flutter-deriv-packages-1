@@ -33,7 +33,6 @@ coverage/
 gradlew.bat
 local.properties
 gradlew
-build.gradle
 .gradle/
 gradle/
 
