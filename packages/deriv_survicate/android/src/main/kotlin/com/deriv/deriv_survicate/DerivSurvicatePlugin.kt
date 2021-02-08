@@ -24,6 +24,10 @@ import io.flutter.plugin.common.MethodChannel.Result
 /** DerivSurvicatePlugin */
 class DerivSurvicatePlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
+    companion object {
+        const val TAG = "DERIV_SERVICATE_PLUGIN"
+    }
+
     private lateinit var channel: MethodChannel
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -83,7 +87,7 @@ class DerivSurvicatePlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                             try {
                                 channel.invokeMethod("onSurveyDisplayed", arguments)
                             } catch (exception: Exception) {
-                                Log.e("onSurveyDisplayed", exception?.message)
+                                result.error(TAG, exception.localizedMessage, null)
                             }
                         })
                     }
@@ -106,7 +110,7 @@ class DerivSurvicatePlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                             try {
                                 channel.invokeMethod("onQuestionAnswered", arguments)
                             } catch (exception: Exception) {
-                                Log.e("onQuestionAnswered", exception?.message)
+                                result.error(TAG, exception.localizedMessage, null)
                             }
                         })
                     }
@@ -120,7 +124,7 @@ class DerivSurvicatePlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                             try {
                                 channel.invokeMethod("onSurveyClosed", arguments)
                             } catch (exception: Exception) {
-                                Log.e("onSurveyClosed", exception?.message)
+                                result.error(TAG, exception.localizedMessage, null)
                             }
                         })
                     }
@@ -134,7 +138,7 @@ class DerivSurvicatePlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                             try {
                                 channel.invokeMethod("onSurveyCompleted", arguments)
                             } catch (exception: Exception) {
-                                Log.e("onSurveyCompleted", exception?.message)
+                                result.error(TAG, exception.localizedMessage, null)
                             }
                         })
                     }
