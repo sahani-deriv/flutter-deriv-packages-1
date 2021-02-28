@@ -1,4 +1,4 @@
-import 'package:deriv_technical_analysis/src/indicators/calculations/arron/aroon_down_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/aroon/aroon_down_indicator.dart';
 
 import '../../../../deriv_technical_analysis.dart';
 import 'aroon_up_indicator.dart';
@@ -13,8 +13,9 @@ class AroonOscillatorIndicator<T extends IndicatorResult>
             LowValueIndicator<T>(indicatorDataInput),
             period: period),
         _downChannel = AroonUpIndicator<T>.fromIndicator(
-            HighValueIndicator<T>(indicatorDataInput),
-            period: period),
+          HighValueIndicator<T>(indicatorDataInput),
+          period: period,
+        ),
         super(indicatorDataInput);
 
   /// Aroon up channel indicator.
@@ -24,9 +25,8 @@ class AroonOscillatorIndicator<T extends IndicatorResult>
   final Indicator<T> _downChannel;
 
   @override
-  T calculate(int index) {
-    final double upper = _upChannel.getValue(index).quote;
-    final double lower = _downChannel.getValue(index).quote;
-    return createResult(index: index, quote: upper - lower);
-  }
+  T calculate(int index) => createResult(
+      index: index,
+      quote: _upChannel.getValue(index).quote -
+          _downChannel.getValue(index).quote);
 }
