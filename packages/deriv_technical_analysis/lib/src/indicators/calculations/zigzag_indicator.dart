@@ -9,9 +9,7 @@ class ZigZagIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ZigZagIndicator(this.inputs, double distance)
       : _distancePercent = distance / 100,
         _firstSwingIndex = _calculateFirstSwing(inputs.entries),
-        super(inputs) {
-    calculateValues();
-  }
+        super(inputs);
 
   /// Calculating values that changes enough
   final IndicatorDataInput inputs;
