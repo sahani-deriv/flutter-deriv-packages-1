@@ -7,17 +7,16 @@ import 'sma_indicator.dart';
 ///Awesome Oscillator Indicator
 class AwesomeOscillatorIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-
   /// Initializes
-  AwesomeOscillatorIndicator(this.indicator)
-      : _smaIndicatorOne = SMAIndicator<T>(indicator, 34),
-        _smaIndicatorTwo = SMAIndicator<T>(indicator, 5),
+  AwesomeOscillatorIndicator(Indicator<T> indicator,
+      {int smaPeriodOne = 5, int smaPeriodTwo = 34})
+      : _smaIndicatorOne = SMAIndicator<T>(indicator, smaPeriodOne),
+        _smaIndicatorTwo = SMAIndicator<T>(indicator, smaPeriodTwo),
         super.fromIndicator(indicator);
 
-  /// Indicator to calculate AwesomeOscillatorIndicator
-  final Indicator<T> indicator;
   ///34-period simple moving average
   final SMAIndicator<T> _smaIndicatorOne;
+
   ///5-period simple moving average
   final SMAIndicator<T> _smaIndicatorTwo;
 
@@ -27,7 +26,7 @@ class AwesomeOscillatorIndicator<T extends IndicatorResult>
     final IndicatorResult _smaValueTwo = _smaIndicatorTwo.getValue(index);
 
     ///AO = SMA(MEDIAN PRICE, 5)-SMA(MEDIAN PRICE, 34)
-    final double _quote = _smaValueTwo.quote - _smaValueOne.quote;
+    final double _quote = _smaValueOne.quote - _smaValueTwo.quote;
 
     return createResult(index: index, quote: _quote);
   }
