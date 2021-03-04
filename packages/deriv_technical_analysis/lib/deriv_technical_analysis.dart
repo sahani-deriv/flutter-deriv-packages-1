@@ -9,6 +9,7 @@ export 'src/indicators/calculations/bollinger/bollinger_band_width_indicator.dar
 export 'src/indicators/calculations/bollinger/bollinger_bands_lower_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.dart';
 export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.dart';
+export 'src/indicators/calculations/dpo_indicator.dart';
 export 'src/indicators/calculations/ema_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 export 'src/indicators/calculations/helper_indicators/dx_indicator.dart';
@@ -34,6 +35,7 @@ export 'src/indicators/calculations/macd/macd_histogram_indicator.dart';
 export 'src/indicators/calculations/macd/macd_indicator.dart';
 export 'src/indicators/calculations/macd/signal_macd_indicator.dart';
 export 'src/indicators/calculations/mma_indicator.dart';
+export 'src/indicators/calculations/rsi_indicator.dart';
 export 'src/indicators/calculations/sma_indicator.dart';
 export 'src/indicators/calculations/statistics/standard_deviation_indicator.dart';
 export 'src/indicators/calculations/statistics/variance_indicator.dart';
