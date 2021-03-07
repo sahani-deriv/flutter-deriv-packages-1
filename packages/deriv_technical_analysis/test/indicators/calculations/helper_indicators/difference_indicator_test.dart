@@ -1,6 +1,6 @@
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/difference_indicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/high_value_inidicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/high_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/low_value_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
