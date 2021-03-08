@@ -79,6 +79,18 @@ void main() {
     });
 
     test(
+        "Ichimoku Lagging Span calculates the previous [period] of the given candle's closing value for the selected candle.",
+        () {
+      final IchimokuLaggingSpanIndicator<MockResult> laggingSpanIndicator =
+          IchimokuLaggingSpanIndicator<MockResult>(MockInput(ticks));
+
+      expect(laggingSpanIndicator.getValue(3).quote, 79.529);
+      expect(laggingSpanIndicator.getValue(4).quote, 79.532);
+      expect(laggingSpanIndicator.getValue(5).quote, 79.525);
+      expect(laggingSpanIndicator.getValue(6).quote, 79.514);
+    });
+
+    test(
         "Ichimoku Conversion Line calculates the previous [period]s(9 by default) average of the given candle's highest high and lowest low.",
         () {
       expect(conversionLineIndicator.getValue(26).quote, 79.5525);
