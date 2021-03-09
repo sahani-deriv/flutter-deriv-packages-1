@@ -14,20 +14,25 @@ class ParabolicSarIndicator<T extends IndicatorResult>
   /// Initializes
   ParabolicSarIndicator(
     IndicatorDataInput input, {
-    double aF = 0.02,
-    double maxA = 0.2,
-    double increment = 0.02,
+    this.accelerationStart = 0.02,
+    this.maxAcceleration = 0.2,
+    this.accelerationIncrement = 0.02,
   })  : _highPriceIndicator = HighValueIndicator<T>(input),
         _lowPriceIndicator = LowValueIndicator<T>(input),
-        _maxAcceleration = maxA,
-        accelerationFactor = aF,
-        _accelerationIncrement = increment,
-        _accelerationStart = aF,
+        accelerationFactor = accelerationStart,
         super(input);
 
-  final double _maxAcceleration;
-  final double _accelerationIncrement;
-  final double _accelerationStart;
+  /// Maximum Acceleration Factor
+  final double maxAcceleration;
+
+  /// Acceleration factor steps.
+  ///
+  /// [accelerationFactor] increases by this amount each time a new extreme point
+  /// is reached, with a maximum of [maxAcceleration].
+  final double accelerationIncrement;
+
+  /// The start value for Acceleration Factor.
+  final double accelerationStart;
 
   /// Acceleration factor
   @protected
@@ -87,7 +92,7 @@ class ParabolicSarIndicator<T extends IndicatorResult>
         // switch to down trend and reset values
         currentTrend = false;
         startTrendIndex = index;
-        accelerationFactor = _accelerationStart;
+        accelerationFactor = accelerationStart;
         // put point on max
         currentExtremePoint = entries[index].low;
         minMaxExtremePoint = currentExtremePoint;
@@ -110,7 +115,7 @@ class ParabolicSarIndicator<T extends IndicatorResult>
         // check if switch to up trend
         // sar starts at the lowest extreme point of previous down trend
         sar = minMaxExtremePoint;
-        accelerationFactor = _accelerationStart;
+        accelerationFactor = accelerationStart;
         startTrendIndex = index;
         currentExtremePoint = entries[index].high;
         minMaxExtremePoint = currentExtremePoint;
@@ -131,10 +136,10 @@ class ParabolicSarIndicator<T extends IndicatorResult>
 
   ///  Increments the acceleration factor.
   void incrementAcceleration() {
-    if (accelerationFactor >= _maxAcceleration) {
-      accelerationFactor = _maxAcceleration;
+    if (accelerationFactor >= maxAcceleration) {
+      accelerationFactor = maxAcceleration;
     } else {
-      accelerationFactor = accelerationFactor + _accelerationIncrement;
+      accelerationFactor = accelerationFactor + accelerationIncrement;
     }
   }
 
