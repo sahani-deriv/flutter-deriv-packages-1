@@ -2,7 +2,6 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:deriv_technical_analysis/src/indicators/calculations/awesome_oscillator_indicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 
 import '../mock_models.dart';
 
@@ -31,6 +30,20 @@ void main() {
       expect(_aoIndicator.getValue(2).quote, 0.0);
       expect(_aoIndicator.getValue(3).quote, 0.0);
       expect(_aoIndicator.getValue(4).quote, 0.0);
+    });
+
+    test('Calculating using custom Period for SMA', () {
+      final AwesomeOscillatorIndicator<MockResult> _aoIndicator =
+          AwesomeOscillatorIndicator<MockResult>(
+              HL2Indicator<MockResult>(MockInput(ticks)),
+              smaPeriodOne: 2,
+              smaPeriodTwo: 3);
+
+      expect(_aoIndicator.getValue(0).quote, 0.0);
+      expect(_aoIndicator.getValue(1).quote, 0.0);
+      expect(_aoIndicator.getValue(2).quote, 0.16666666666666607);
+      expect(_aoIndicator.getValue(3).quote, 1);
+      expect(_aoIndicator.getValue(4).quote, -3);
     });
   });
 }
