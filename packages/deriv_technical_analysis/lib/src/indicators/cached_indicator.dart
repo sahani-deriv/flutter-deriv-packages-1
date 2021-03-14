@@ -6,10 +6,10 @@ import 'indicator.dart';
 /// Calculates and keeps the result of indicator calculation values in [results].
 /// And decides when to calculate indicator's value for an index.
 // TODO(Ramin): Later if we require a level of caching can be added here. Right now it calculates indicator for the entire list.
-abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
+abstract class CachedIndicator<T extends IndicatorResult?> extends Indicator<T?> {
   /// Initializes
   CachedIndicator(IndicatorDataInput input)
-      : results = List<T>.generate(input.entries.length, (_) => null),
+      : results = List<T?>.generate(input.entries!.length, (_) => null),
         lastResultIndex = 0,
         super(input);
 
@@ -23,7 +23,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   //  results for their entire list at once in a more optimal way.
   /// Calculates indicator's result for all [entries] and caches them.
   void calculateValues() {
-    for (int i = 0; i < entries.length; i++) {
+    for (int i = 0; i < entries!.length; i++) {
       getValue(i);
     }
   }
@@ -38,10 +38,10 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   }
 
   /// List of cached result.
-  final List<T> results;
+  final List<T?> results;
 
   @override
-  T getValue(int index) {
+  T? getValue(int index) {
     _growResultsForIndex(index);
 
     if (results[index] == null) {
@@ -62,7 +62,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     final int oldResultsCount = results.length;
 
     if (index > oldResultsCount - 1) {
-      results.addAll(List<T>(index - oldResultsCount + 1));
+      results.addAll(List<T?>.filled(index - oldResultsCount + 1, null, growable: false));
     }
 
     return results.length - oldResultsCount;
@@ -82,7 +82,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Recalculates indicator's value for the give [index] and caches it.
   ///
   /// Returns the result as a [T].
-  T refreshValueFor(int index) {
+  T? refreshValueFor(int index) {
     invalidate(index);
     return getValue(index);
   }

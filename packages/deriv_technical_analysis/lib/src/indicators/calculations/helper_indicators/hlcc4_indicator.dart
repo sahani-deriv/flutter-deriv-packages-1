@@ -10,10 +10,10 @@ class HLCC4Indicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) {
-    final IndicatorOHLC entry = entries[index];
+    final IndicatorOHLC entry = entries![index];
     return createResult(
       index: index,
-      quote: (entry.high + entry.low + 2 * entry.close) / 4,
+      quote: (entry.high! + entry.low! + 2 * entry.close!) / 4,
     );
   }
 }

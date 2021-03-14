@@ -4,8 +4,8 @@ import '../../cached_indicator.dart';
 import '../../indicator.dart';
 
 /// Bollinger bands lower indicator
-class BollingerBandsLowerIndicator<T extends IndicatorResult>
-    extends CachedIndicator<T> {
+class BollingerBandsLowerIndicator<T extends IndicatorResult?>
+    extends CachedIndicator<T?> {
   /// Initializes.
   ///
   /// [k]         Defaults value to 2.
@@ -27,9 +27,9 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
   final double k;
 
   @override
-  T calculate(int index) => createResult(
+  T? calculate(int index) => createResult(
         index: index,
         quote:
-            bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
+            bbm.getValue(index)!.quote! - (indicator.getValue(index)!.quote! * k),
       );
 }

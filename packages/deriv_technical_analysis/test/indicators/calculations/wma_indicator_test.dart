@@ -7,7 +7,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Weighted Moving Average', () {
-    List<MockTick> ticks;
+    List<MockTick>? ticks;
 
     setUpAll(() {
       ticks = const <MockTick>[
@@ -24,12 +24,12 @@ void main() {
       final WMAIndicator<MockResult> wmaIndicator = WMAIndicator<MockResult>(
           CloseValueIndicator<MockResult>(MockInput(ticks)), 3);
 
-      expect(wmaIndicator.getValue(0).quote, 1);
-      expect(roundDouble(wmaIndicator.getValue(1).quote, 4), 1.6667);
-      expect(roundDouble(wmaIndicator.getValue(2).quote, 4), 2.3333);
-      expect(roundDouble(wmaIndicator.getValue(3).quote, 4), 3.3333);
-      expect(roundDouble(wmaIndicator.getValue(4).quote, 4), 4.3333);
-      expect(roundDouble(wmaIndicator.getValue(5).quote, 4), 5.3333);
+      expect(wmaIndicator.getValue(0)!.quote, 1);
+      expect(roundDouble(wmaIndicator.getValue(1)!.quote!, 4), 1.6667);
+      expect(roundDouble(wmaIndicator.getValue(2)!.quote!, 4), 2.3333);
+      expect(roundDouble(wmaIndicator.getValue(3)!.quote!, 4), 3.3333);
+      expect(roundDouble(wmaIndicator.getValue(4)!.quote!, 4), 4.3333);
+      expect(roundDouble(wmaIndicator.getValue(5)!.quote!, 4), 5.3333);
     });
   });
 }

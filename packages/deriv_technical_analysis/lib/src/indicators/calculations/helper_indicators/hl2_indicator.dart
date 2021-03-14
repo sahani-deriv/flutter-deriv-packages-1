@@ -10,7 +10,7 @@ class HL2Indicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) {
-    final IndicatorOHLC entry = entries[index];
-    return createResult(index: index, quote: (entry.high + entry.low) / 2);
+    final IndicatorOHLC entry = entries![index];
+    return createResult(index: index, quote: (entry.high! + entry.low!) / 2);
   }
 }

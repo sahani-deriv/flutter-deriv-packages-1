@@ -9,9 +9,9 @@ void main() {
   List<MockTick> ticks;
   CloseValueIndicator<MockResult> closeValueIndicator;
 
-  MACDIndicator<MockResult> macdIndicator;
+  late MACDIndicator<MockResult> macdIndicator;
 
-  SignalMACDIndicator<MockResult> signalMACDIndicator;
+  SignalMACDIndicator<MockResult>? signalMACDIndicator;
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -69,17 +69,17 @@ void main() {
     test(
         ' Moving Average Convergance Divergence Indicator shoud calculate the correct result from the given closed value indicator ticks.',
         () {
-      expect(roundDouble(macdIndicator.getValue(36).quote, 4), -0.0012);
-      expect(roundDouble(macdIndicator.getValue(37).quote, 4), -0.0011);
-      expect(roundDouble(macdIndicator.getValue(38).quote, 4), -0.0011);
+      expect(roundDouble(macdIndicator.getValue(36)!.quote!, 4), -0.0012);
+      expect(roundDouble(macdIndicator.getValue(37)!.quote!, 4), -0.0011);
+      expect(roundDouble(macdIndicator.getValue(38)!.quote!, 4), -0.0011);
     });
 
     test(
         'Signal Moving Average Convergance Divergence Indicator shoud calculate the correct result from the given closed value indicator ticks.',
         () {
-      expect(roundDouble(signalMACDIndicator.getValue(36).quote, 4), -0.0016);
-      expect(roundDouble(signalMACDIndicator.getValue(37).quote, 4), -0.0015);
-      expect(roundDouble(signalMACDIndicator.getValue(38).quote, 4), -0.0014);
+      expect(roundDouble(signalMACDIndicator!.getValue(36)!.quote!, 4), -0.0016);
+      expect(roundDouble(signalMACDIndicator!.getValue(37)!.quote!, 4), -0.0015);
+      expect(roundDouble(signalMACDIndicator!.getValue(38)!.quote!, 4), -0.0014);
     });
 
     test(
@@ -89,9 +89,9 @@ void main() {
           MACDHistogramIndicator<MockResult>.fromIndicator(
               macdIndicator, signalMACDIndicator);
 
-      expect(roundDouble(macdHistogramIndicator.getValue(36).quote, 4), 0.0004);
-      expect(roundDouble(macdHistogramIndicator.getValue(37).quote, 4), 0.0004);
-      expect(roundDouble(macdHistogramIndicator.getValue(38).quote, 4), 0.0003);
+      expect(roundDouble(macdHistogramIndicator.getValue(36)!.quote!, 4), 0.0004);
+      expect(roundDouble(macdHistogramIndicator.getValue(37)!.quote!, 4), 0.0004);
+      expect(roundDouble(macdHistogramIndicator.getValue(38)!.quote!, 4), 0.0003);
     });
   });
 }

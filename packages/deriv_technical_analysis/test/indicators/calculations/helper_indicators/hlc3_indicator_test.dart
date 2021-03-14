@@ -6,7 +6,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Testing HLC/3 indicators', () {
-    List<MockOHLC> ticks;
+    List<MockOHLC>? ticks;
 
     setUpAll(() {
       ticks = const <MockOHLC>[
@@ -23,9 +23,9 @@ void main() {
       final HLC3Indicator<MockResult> indicator =
           HLC3Indicator<MockResult>(MockInput(ticks));
 
-      expect(roundDouble(indicator.getValue(0).quote, 4), 64.8733);
-      expect(roundDouble(indicator.getValue(1).quote, 4), 74.4633);
-      expect(roundDouble(indicator.getValue(2).quote, 4), 74.3500);
+      expect(roundDouble(indicator.getValue(0).quote!, 4), 64.8733);
+      expect(roundDouble(indicator.getValue(1).quote!, 4), 74.4633);
+      expect(roundDouble(indicator.getValue(2).quote!, 4), 74.3500);
     });
   });
 }

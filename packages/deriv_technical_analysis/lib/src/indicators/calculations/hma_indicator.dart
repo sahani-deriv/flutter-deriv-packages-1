@@ -9,12 +9,12 @@ import 'helper_indicators/multiplier_indicator.dart';
 import 'wma_indicator.dart';
 
 /// Hull Moving Average indicator
-class HMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class HMAIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   /// Initializes
   HMAIndicator(Indicator<T> indicator, this.period)
-      : _sqrtWma = WMAIndicator<T>(
-          DifferenceIndicator<T>(
-            MultiplierIndicator<T>(WMAIndicator<T>(indicator, period ~/ 2), 2),
+      : _sqrtWma = WMAIndicator<T?>(
+          DifferenceIndicator<T?>(
+            MultiplierIndicator<T?>(WMAIndicator<T>(indicator, period ~/ 2), 2),
             WMAIndicator<T>(indicator, period),
           ),
           sqrt(period).toInt(),
@@ -24,8 +24,8 @@ class HMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Moving average bar count
   final int period;
 
-  final WMAIndicator<T> _sqrtWma;
+  final WMAIndicator<T?> _sqrtWma;
 
   @override
-  T calculate(int index) => _sqrtWma.getValue(index);
+  T? calculate(int index) => _sqrtWma.getValue(index);
 }

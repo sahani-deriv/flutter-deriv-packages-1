@@ -4,8 +4,8 @@ import '../../cached_indicator.dart';
 import '../../indicator.dart';
 
 /// Bollinger bands upper indicator
-class BollingerBandsUpperIndicator<T extends IndicatorResult>
-    extends CachedIndicator<T> {
+class BollingerBandsUpperIndicator<T extends IndicatorResult?>
+    extends CachedIndicator<T?> {
   /// Initializes.
   ///
   ///  [bbm]       the middle band Indicator. Typically an SMAIndicator is
@@ -26,9 +26,9 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
   final double k;
 
   @override
-  T calculate(int index) => createResult(
+  T? calculate(int index) => createResult(
         index: index,
         quote:
-            bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
+            bbm.getValue(index)!.quote! + (deviation.getValue(index)!.quote! * k),
       );
 }

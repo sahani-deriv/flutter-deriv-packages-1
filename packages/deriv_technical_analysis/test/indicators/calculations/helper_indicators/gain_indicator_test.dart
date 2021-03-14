@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock_models.dart';
 
 void main() {
-  List<MockTick> ticks;
+  List<MockTick>? ticks;
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -31,10 +31,10 @@ void main() {
       final GainIndicator<MockResult> gainIndicator =
           GainIndicator<MockResult>.fromIndicator(closeValueIndicator);
 
-      expect(gainIndicator.getValue(0).quote, 0);
-      expect(roundDouble(gainIndicator.getValue(1).quote, 3), 0.003);
-      expect(roundDouble(gainIndicator.getValue(2).quote, 3), 0.003);
-      expect(gainIndicator.getValue(3).quote, 0);
+      expect(gainIndicator.getValue(0)!.quote, 0);
+      expect(roundDouble(gainIndicator.getValue(1)!.quote!, 3), 0.003);
+      expect(roundDouble(gainIndicator.getValue(2)!.quote!, 3), 0.003);
+      expect(gainIndicator.getValue(3)!.quote, 0);
     });
   });
 }

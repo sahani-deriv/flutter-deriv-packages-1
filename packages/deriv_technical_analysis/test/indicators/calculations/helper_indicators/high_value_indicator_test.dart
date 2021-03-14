@@ -5,7 +5,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Testing high value indicators', () {
-    List<MockOHLC> ticks;
+    List<MockOHLC>? ticks;
 
     setUpAll(() {
       ticks = const <MockOHLC>[

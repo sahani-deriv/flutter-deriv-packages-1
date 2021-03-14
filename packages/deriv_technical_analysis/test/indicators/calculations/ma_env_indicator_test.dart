@@ -12,7 +12,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Moving Average Envelope', () {
-    List<MockTick> ticks;
+    List<MockTick>? ticks;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 1, quote: 1),
@@ -36,24 +36,24 @@ void main() {
         () {
       final Indicator<MockResult> closePrice =
           CloseValueIndicator<MockResult>(MockInput(ticks));
-      final CachedIndicator<MockResult> smaIndicator =
+      final CachedIndicator<MockResult?> smaIndicator =
           SMAIndicator<MockResult>(closePrice, 10);
 
-      final MAEnvUpperIndicator<MockResult> maEnvUpperIndicator =
-          MAEnvUpperIndicator<MockResult>(
+      final MAEnvUpperIndicator<MockResult?> maEnvUpperIndicator =
+          MAEnvUpperIndicator<MockResult?>(
         smaIndicator,
         ShiftType.point,
         5,
       );
 
-      expect(maEnvUpperIndicator.getValue(0).quote, 6);
-      expect(maEnvUpperIndicator.getValue(1).quote, 6.5);
-      expect(roundDouble(maEnvUpperIndicator.getValue(2).quote, 3), 7);
-      expect(roundDouble(maEnvUpperIndicator.getValue(3).quote, 3), 7.5);
-      expect(roundDouble(maEnvUpperIndicator.getValue(4).quote, 4), 7.6);
-      expect(roundDouble(maEnvUpperIndicator.getValue(5).quote, 4), 7.8333);
-      expect(roundDouble(maEnvUpperIndicator.getValue(6).quote, 3), 8.143);
-      expect(roundDouble(maEnvUpperIndicator.getValue(7).quote, 4), 8.25);
+      expect(maEnvUpperIndicator.getValue(0)!.quote, 6);
+      expect(maEnvUpperIndicator.getValue(1)!.quote, 6.5);
+      expect(roundDouble(maEnvUpperIndicator.getValue(2)!.quote!, 3), 7);
+      expect(roundDouble(maEnvUpperIndicator.getValue(3)!.quote!, 3), 7.5);
+      expect(roundDouble(maEnvUpperIndicator.getValue(4)!.quote!, 4), 7.6);
+      expect(roundDouble(maEnvUpperIndicator.getValue(5)!.quote!, 4), 7.8333);
+      expect(roundDouble(maEnvUpperIndicator.getValue(6)!.quote!, 3), 8.143);
+      expect(roundDouble(maEnvUpperIndicator.getValue(7)!.quote!, 4), 8.25);
     });
 
     test(
@@ -61,21 +61,21 @@ void main() {
         () {
       final Indicator<MockResult> closePrice =
           CloseValueIndicator<MockResult>(MockInput(ticks));
-      final CachedIndicator<MockResult> smaIndicator =
+      final CachedIndicator<MockResult?> smaIndicator =
           SMAIndicator<MockResult>(closePrice, 10);
 
-      final MAEnvLowerIndicator<MockResult> maEnvLowerIndicator =
-          MAEnvLowerIndicator<MockResult>(
+      final MAEnvLowerIndicator<MockResult?> maEnvLowerIndicator =
+          MAEnvLowerIndicator<MockResult?>(
         smaIndicator,
         ShiftType.point,
         5,
       );
 
-      expect(maEnvLowerIndicator.getValue(0).quote, -4);
-      expect(maEnvLowerIndicator.getValue(1).quote, -3.5);
-      expect(maEnvLowerIndicator.getValue(2).quote, -3);
-      expect(maEnvLowerIndicator.getValue(3).quote, -2.5);
-      expect(maEnvLowerIndicator.getValue(4).quote, -2.4);
+      expect(maEnvLowerIndicator.getValue(0)!.quote, -4);
+      expect(maEnvLowerIndicator.getValue(1)!.quote, -3.5);
+      expect(maEnvLowerIndicator.getValue(2)!.quote, -3);
+      expect(maEnvLowerIndicator.getValue(3)!.quote, -2.5);
+      expect(maEnvLowerIndicator.getValue(4)!.quote, -2.4);
     });
   });
 }

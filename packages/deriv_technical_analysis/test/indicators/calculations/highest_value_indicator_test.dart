@@ -6,7 +6,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Highest value indicator test', () {
-    List<MockTick> ticks;
+    List<MockTick>? ticks;
 
     setUpAll(() {
       ticks = const <MockTick>[
@@ -32,9 +32,9 @@ void main() {
         10,
       );
 
-      expect(indicator.getValue(9).quote, 64.75);
-      expect(indicator.getValue(10).quote, 66.37);
-      expect(indicator.getValue(11).quote, 68.51);
+      expect(indicator.getValue(9)!.quote, 64.75);
+      expect(indicator.getValue(10)!.quote, 66.37);
+      expect(indicator.getValue(11)!.quote, 68.51);
     });
   });
 }

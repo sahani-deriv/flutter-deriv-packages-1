@@ -7,7 +7,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Zero-lag Exponential Moving Average', () {
-    List<MockTick> ticks;
+    List<MockTick>? ticks;
 
     setUpAll(() {
       ticks = const <MockTick>[
@@ -32,9 +32,9 @@ void main() {
         10,
       );
 
-      expect(roundDouble(indicator.getValue(9).quote, 3), 11.909);
-      expect(roundDouble(indicator.getValue(10).quote, 4), 8.8347);
-      expect(roundDouble(indicator.getValue(11).quote, 4), 5.7739);
+      expect(roundDouble(indicator.getValue(9)!.quote!, 3), 11.909);
+      expect(roundDouble(indicator.getValue(10)!.quote!, 4), 8.8347);
+      expect(roundDouble(indicator.getValue(11)!.quote!, 4), 5.7739);
     });
   });
 }

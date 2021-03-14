@@ -7,29 +7,29 @@ import '../cached_indicator.dart';
 import '../indicator.dart';
 
 /// Relative strength index indicator.
-class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   /// Initializes an [RSIIndicator] from the given [indicator] and [period].
   RSIIndicator.fromIndicator(Indicator<T> indicator, int period)
       : _averageGainIndicator =
-            MMAIndicator<T>(GainIndicator<T>.fromIndicator(indicator), period),
+            MMAIndicator<T?>(GainIndicator<T>.fromIndicator(indicator), period),
         _averageLossIndicator =
-            MMAIndicator<T>(LossIndicator<T>.fromIndicator(indicator), period),
+            MMAIndicator<T?>(LossIndicator<T>.fromIndicator(indicator), period),
         super.fromIndicator(indicator);
 
-  final MMAIndicator<T> _averageGainIndicator;
-  final MMAIndicator<T> _averageLossIndicator;
+  final MMAIndicator<T?> _averageGainIndicator;
+  final MMAIndicator<T?> _averageLossIndicator;
 
   @override
-  T calculate(int index) {
-    final T averageGain = _averageGainIndicator.getValue(index);
-    final T averageLoss = _averageLossIndicator.getValue(index);
+  T? calculate(int index) {
+    final T? averageGain = _averageGainIndicator.getValue(index);
+    final T averageLoss = _averageLossIndicator.getValue(index)!;
     if (averageLoss.quote == 0) {
-      return averageGain.quote == 0
+      return averageGain!.quote == 0
           ? createResult(index: index, quote: 0)
           : createResult(index: index, quote: 100);
     }
 
-    final double relativeStrength = averageGain.quote / averageLoss.quote;
+    final double relativeStrength = averageGain!.quote! / averageLoss.quote!;
 
     return createResult(
       index: index,

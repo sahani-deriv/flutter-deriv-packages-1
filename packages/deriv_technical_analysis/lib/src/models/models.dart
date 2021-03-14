@@ -1,20 +1,20 @@
 /// An element of Indicator result
 abstract class IndicatorResult {
   /// Quote
-  double get quote;
+  double? get quote;
 }
 
 /// OHLC interface
 abstract class IndicatorOHLC {
   /// Open value (first value in OHLC period)
-  double get open;
+  double? get open;
 
   /// High value (highest value in OHLC period)
-  double get high;
+  double? get high;
 
   /// Low value (lowest value in OHLC period)
-  double get low;
+  double? get low;
 
   /// Close value (last value in OHLC period)
-  double get close;
+  double? get close;
 }

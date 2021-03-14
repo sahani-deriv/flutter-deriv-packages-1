@@ -5,8 +5,8 @@ import '../../indicator.dart';
 import 'ma_env_shift_typs.dart';
 
 /// Moving Average Envelope upper indicator
-class MAEnvUpperIndicator<T extends IndicatorResult>
-    extends CachedIndicator<T> {
+class MAEnvUpperIndicator<T extends IndicatorResult?>
+    extends CachedIndicator<T?> {
   /// Initializes.
   ///
   ///  [maEnvMiddleIndicator]       the middle band Indicator. Typically an SMAIndicator is
@@ -26,13 +26,13 @@ class MAEnvUpperIndicator<T extends IndicatorResult>
   final ShiftType shiftType;
 
   @override
-  T calculate(int index) => createResult(
+  T? calculate(int index) => createResult(
         index: index,
-        quote: _getShiftedValue(maEnvMiddleIndicator.getValue(index).quote),
+        quote: _getShiftedValue(maEnvMiddleIndicator.getValue(index)!.quote),
       );
 
   /// Calculate shifted value based on shiftType
-  double _getShiftedValue(double value) => shiftType == ShiftType.percent
-      ? value * (1 + (shift / 100))
-      : value + shift;
+  double _getShiftedValue(double? value) => shiftType == ShiftType.percent
+      ? value! * (1 + (shift / 100))
+      : value! + shift;
 }

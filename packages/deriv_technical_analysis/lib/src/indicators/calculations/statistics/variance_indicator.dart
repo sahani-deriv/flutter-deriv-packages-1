@@ -7,7 +7,7 @@ import '../../indicator.dart';
 import '../sma_indicator.dart';
 
 /// Variance indicator.
-class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   /// Initializes
   ///
   /// [indicator] the indicator
@@ -25,14 +25,14 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final SMAIndicator<T> _sma;
 
   @override
-  T calculate(int index) {
+  T? calculate(int index) {
     final int startIndex = math.max(0, index - period + 1);
     final int numberOfObservations = index - startIndex + 1;
     double variance = 0;
-    final double average = _sma.getValue(index).quote;
+    final double? average = _sma.getValue(index)!.quote;
 
     for (int i = startIndex; i <= index; i++) {
-      final double pow = math.pow(indicator.getValue(i).quote - average, 2);
+      final double pow = math.pow(indicator.getValue(i).quote! - average!, 2) as double;
       variance = variance + pow;
     }
 

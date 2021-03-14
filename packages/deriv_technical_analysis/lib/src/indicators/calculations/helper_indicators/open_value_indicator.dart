@@ -11,6 +11,6 @@ class OpenValueIndicator<T extends IndicatorResult> extends Indicator<T> {
   @override
   T getValue(int index) => createResult(
         index: index,
-        quote: entries[index].open,
+        quote: entries![index].open,
       );
 }

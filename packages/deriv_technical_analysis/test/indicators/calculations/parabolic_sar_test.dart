@@ -33,31 +33,31 @@ void main() {
     final ParabolicSarIndicator<MockResult> sar =
         ParabolicSarIndicator<MockResult>(MockInput(candles));
 
-    expect(sar.getValue(0).quote, isNaN);
-    expect(roundDouble(sar.getValue(1).quote, 12), 74.640000000000);
+    expect(sar.getValue(0)!.quote, isNaN);
+    expect(roundDouble(sar.getValue(1)!.quote!, 12), 74.640000000000);
     // start with up trend
-    expect(roundDouble(sar.getValue(2).quote, 12), 74.640000000000);
+    expect(roundDouble(sar.getValue(2)!.quote!, 12), 74.640000000000);
     // switch to downtrend
-    expect(roundDouble(sar.getValue(3).quote, 12), 76.269900000000);
+    expect(roundDouble(sar.getValue(3)!.quote!, 12), 76.269900000000);
     // hold trend...
-    expect(roundDouble(sar.getValue(4).quote, 12), 76.234502000000);
-    expect(roundDouble(sar.getValue(5).quote, 12), 76.200611960000);
-    expect(roundDouble(sar.getValue(6).quote, 12), 76.112987481600);
-    expect(roundDouble(sar.getValue(7).quote, 12), 75.958968232704);
-    expect(roundDouble(sar.getValue(8).quote, 12), 75.699850774088);
+    expect(roundDouble(sar.getValue(4)!.quote!, 12), 76.234502000000);
+    expect(roundDouble(sar.getValue(5)!.quote!, 12), 76.200611960000);
+    expect(roundDouble(sar.getValue(6)!.quote!, 12), 76.112987481600);
+    expect(roundDouble(sar.getValue(7)!.quote!, 12), 75.958968232704);
+    expect(roundDouble(sar.getValue(8)!.quote!, 12), 75.699850774088);
     // switch to up trend
-    expect(roundDouble(sar.getValue(9).quote, 12), 75.461462712161);
+    expect(roundDouble(sar.getValue(9)!.quote!, 12), 75.461462712161);
     // hold trend
-    expect(roundDouble(sar.getValue(10).quote, 12), 72.720000000000);
-    expect(roundDouble(sar.getValue(11).quote, 12), 72.802200000000);
-    expect(roundDouble(sar.getValue(12).quote, 12), 72.964112000000);
-    expect(roundDouble(sar.getValue(13).quote, 12), 73.203865280000);
-    expect(roundDouble(sar.getValue(14).quote, 12), 73.513156057600);
-    expect(roundDouble(sar.getValue(15).quote, 12), 73.797703572992);
-    expect(roundDouble(sar.getValue(16).quote, 12), 74.059487287153);
-    expect(roundDouble(sar.getValue(17).quote, 12), 74.300328304180);
-    expect(roundDouble(sar.getValue(18).quote, 12), 74.521902039846);
-    expect(roundDouble(sar.getValue(19).quote, 12), 74.725749876658);
-    expect(roundDouble(sar.getValue(20).quote, 12), 74.913289886526);
+    expect(roundDouble(sar.getValue(10)!.quote!, 12), 72.720000000000);
+    expect(roundDouble(sar.getValue(11)!.quote!, 12), 72.802200000000);
+    expect(roundDouble(sar.getValue(12)!.quote!, 12), 72.964112000000);
+    expect(roundDouble(sar.getValue(13)!.quote!, 12), 73.203865280000);
+    expect(roundDouble(sar.getValue(14)!.quote!, 12), 73.513156057600);
+    expect(roundDouble(sar.getValue(15)!.quote!, 12), 73.797703572992);
+    expect(roundDouble(sar.getValue(16)!.quote!, 12), 74.059487287153);
+    expect(roundDouble(sar.getValue(17)!.quote!, 12), 74.300328304180);
+    expect(roundDouble(sar.getValue(18)!.quote!, 12), 74.521902039846);
+    expect(roundDouble(sar.getValue(19)!.quote!, 12), 74.725749876658);
+    expect(roundDouble(sar.getValue(20)!.quote!, 12), 74.913289886526);
   });
 }

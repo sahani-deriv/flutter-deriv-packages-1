@@ -5,7 +5,7 @@ import '../indicator.dart';
 import 'sma_indicator.dart';
 
 /// Zero-lag Exponential Moving Average indicator
-class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   /// Initializes
   ///
   /// [indicator] An indicator
@@ -26,7 +26,7 @@ class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int _lag;
 
   @override
-  T calculate(int index) {
+  T? calculate(int index) {
     if (index + 1 < period) {
       // Starting point of the ZLEMA
       return SMAIndicator<T>(indicator, period).getValue(index);
@@ -36,13 +36,13 @@ class ZLEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       return indicator.getValue(0);
     }
 
-    final double prevZlema = getValue(index - 1).quote;
+    final double prevZlema = getValue(index - 1)!.quote!;
 
     return createResult(
       index: index,
       quote: (_k *
-              ((2 * (indicator.getValue(index).quote)) -
-                  (indicator.getValue(index - _lag).quote))) +
+              ((2 * indicator.getValue(index).quote!) -
+                  indicator.getValue(index - _lag).quote!)) +
           ((1 - _k) * prevZlema),
     );
   }

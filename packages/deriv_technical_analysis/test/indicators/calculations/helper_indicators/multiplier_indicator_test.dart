@@ -7,7 +7,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Testing multiplier indicators', () {
-    List<MockOHLC> ticks;
+    List<MockOHLC>? ticks;
 
     setUpAll(() {
       ticks = const <MockOHLC>[
@@ -26,9 +26,9 @@ void main() {
       final MultiplierIndicator<MockResult> indicator =
           MultiplierIndicator<MockResult>(lowValueIndicator, 0.2);
 
-      expect(roundDouble(indicator.getValue(0).quote, 4), 12.6);
-      expect(roundDouble(indicator.getValue(1).quote, 4), 14.624);
-      expect(roundDouble(indicator.getValue(2).quote, 4), 14.666);
+      expect(roundDouble(indicator.getValue(0).quote!, 4), 12.6);
+      expect(roundDouble(indicator.getValue(1).quote!, 4), 14.624);
+      expect(roundDouble(indicator.getValue(2).quote!, 4), 14.666);
     });
   });
 }
