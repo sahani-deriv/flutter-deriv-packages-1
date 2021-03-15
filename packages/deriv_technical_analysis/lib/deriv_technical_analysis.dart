@@ -7,8 +7,8 @@ export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.da
 export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.dart';
 export 'src/indicators/calculations/dpo_indicator.dart';
 export 'src/indicators/calculations/ema_indicator.dart';
-export 'src/indicators/calculations/helper_indicators/bearish_inidicator.dart';
-export 'src/indicators/calculations/helper_indicators/bullish_inidicator.dart';
+export 'src/indicators/calculations/bearish_inidicator.dart';
+export 'src/indicators/calculations/bullish_inidicator.dart';
 export 'src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 export 'src/indicators/calculations/helper_indicators/gain_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/high_value_inidicator.dart';
