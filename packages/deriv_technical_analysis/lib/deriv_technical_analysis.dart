@@ -44,6 +44,7 @@ export 'src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/wma_indicator.dart';
 export 'src/indicators/calculations/zelma_indicator.dart';
+export 'src/indicators/calculations/zigzag_indicator.dart';
 export 'src/indicators/indicator.dart';
 export 'src/models/data_input.dart' show IndicatorDataInput;
 export 'src/models/models.dart' show IndicatorOHLC, IndicatorResult;
