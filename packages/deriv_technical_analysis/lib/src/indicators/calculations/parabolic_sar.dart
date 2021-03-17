@@ -38,7 +38,7 @@ class ParabolicSarIndicator<T extends IndicatorResult>
   @protected
   double accelerationFactor;
 
-  /// `true` if uptrend, `false` otherwise
+  /// `true` if uptrend, `false` if downtrend.
   @protected
   bool isUptrend;
 
