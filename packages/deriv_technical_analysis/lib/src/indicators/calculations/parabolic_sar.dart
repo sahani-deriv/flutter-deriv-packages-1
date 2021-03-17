@@ -38,9 +38,9 @@ class ParabolicSarIndicator<T extends IndicatorResult>
   @protected
   double accelerationFactor;
 
-  /// true if uptrend, false otherwise
+  /// `true` if uptrend, `false` otherwise
   @protected
-  bool currentTrend;
+  bool isUptrend;
 
   /// index of start bar of the current trend
   @protected
@@ -68,10 +68,10 @@ class ParabolicSarIndicator<T extends IndicatorResult>
     }
 
     final double priorSar = getValue(index - 1).quote;
-    if (currentTrend) {
+    if (isUptrend) {
       sar = priorSar + (accelerationFactor * (currentExtremePoint - priorSar));
-      currentTrend = _lowPriceIndicator.getValue(index).quote > sar;
-      if (!currentTrend) {
+      isUptrend = _lowPriceIndicator.getValue(index).quote > sar;
+      if (!isUptrend) {
         sar = _switchDowntrend(index);
       } else {
         _updateExtremePointOnUptrend(index);
@@ -82,8 +82,8 @@ class ParabolicSarIndicator<T extends IndicatorResult>
       }
     } else {
       sar = priorSar - (accelerationFactor * (priorSar - currentExtremePoint));
-      currentTrend = _highPriceIndicator.getValue(index).quote >= sar;
-      if (currentTrend) {
+      isUptrend = _highPriceIndicator.getValue(index).quote >= sar;
+      if (isUptrend) {
         sar = _switchUptrend(index);
       } else {
         _updateExtremePointOnDownTrend(index);
@@ -129,8 +129,8 @@ class ParabolicSarIndicator<T extends IndicatorResult>
   T _createResultForSecondIndex(int index) {
     double sar;
     // start trend detection
-    currentTrend = entries.first.close < (entries[index].close);
-    if (!currentTrend) {
+    isUptrend = entries.first.close < (entries[index].close);
+    if (!isUptrend) {
       // down trend
       // put sar on max price of candlestick
       sar = _highPriceIndicator.getValue(index).quote;
@@ -156,7 +156,7 @@ class ParabolicSarIndicator<T extends IndicatorResult>
   void copyValuesFrom(covariant ParabolicSarIndicator<T> other) {
     super.copyValuesFrom(other);
 
-    currentTrend = other.currentTrend;
+    isUptrend = other.isUptrend;
     accelerationFactor = other.accelerationFactor;
     startTrendIndex = other.startTrendIndex;
     currentExtremePoint = other.currentExtremePoint;
