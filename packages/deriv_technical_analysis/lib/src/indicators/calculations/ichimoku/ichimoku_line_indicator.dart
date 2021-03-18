@@ -13,6 +13,9 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
             HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
         super(input);
 
+  final LowestValueIndicator<T> _lowestValueIndicator;
+  final HighestValueIndicator<T> _highestValueIndicator;
+
   @override
   T calculate(int index) {
     final double lineQuote = (_highestValueIndicator.getValue(index).quote +
@@ -20,8 +23,4 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
         2;
     return createResult(index: index, quote: lineQuote);
   }
-
-  final LowestValueIndicator<T> _lowestValueIndicator;
-
-  final HighestValueIndicator<T> _highestValueIndicator;
 }
