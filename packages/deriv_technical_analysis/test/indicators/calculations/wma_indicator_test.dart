@@ -7,7 +7,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Weighted Moving Average', () {
-    List<MockTick>? ticks;
+    List<MockTick> ticks=[];
 
     setUpAll(() {
       ticks = const <MockTick>[

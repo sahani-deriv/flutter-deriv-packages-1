@@ -5,7 +5,7 @@ import 'package:deriv_technical_analysis/src/indicators/calculations/macd/signal
 ///Histogram of Moving Average Convergance Divergence Indicator.
 ///Difference of MACD & SignalMACD Indicator.
 class MACDHistogramIndicator<T extends IndicatorResult>
-    extends CachedIndicator<T?> {
+    extends CachedIndicator<T> {
   ///Initializes a Histogram of Moving Average Convergance Divergence Indicator.
   MACDHistogramIndicator.fromIndicator(
     MACDIndicator<T> macdIndicator,
@@ -18,9 +18,9 @@ class MACDHistogramIndicator<T extends IndicatorResult>
   final SignalMACDIndicator<T>? _signalMACDIndicator;
 
   @override
-  T? calculate(int index) => createResult(
+  T calculate(int index) => createResult(
         index: index,
-        quote: _macdIndicator.getValue(index)!.quote! -
-            _signalMACDIndicator!.getValue(index)!.quote!,
+        quote: _macdIndicator.getValue(index).quote -
+            _signalMACDIndicator!.getValue(index).quote,
       );
 }

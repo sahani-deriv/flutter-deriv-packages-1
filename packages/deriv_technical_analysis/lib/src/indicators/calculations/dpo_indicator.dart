@@ -5,7 +5,7 @@ import '../cached_indicator.dart';
 import '../indicator.dart';
 
 /// Detrended Price Oscillator Indicator
-class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   DPOIndicator(this.indicator, {int period = 14})
       : _sma = SMAIndicator<T>(indicator, period),
@@ -22,8 +22,8 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   final int _timeShift;
 
   @override
-  T? calculate(int index) => createResult(
+  T calculate(int index) => createResult(
       index: index,
-      quote: indicator.getValue(index).quote! -
-          _sma.getValue(index - _timeShift)!.quote!);
+      quote: indicator.getValue(index).quote -
+          _sma.getValue(index - _timeShift).quote);
 }

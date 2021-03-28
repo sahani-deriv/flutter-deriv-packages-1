@@ -7,7 +7,7 @@ import '../../cached_indicator.dart';
 import '../../indicator.dart';
 
 /// Aroon Down indicator.
-class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes a gain indicator from the given [minValueIndicator].
   /// minValueIndicator the indicator for the min price
   /// (default is LowValueIndicator)
@@ -22,13 +22,13 @@ class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T?> 
   final Indicator<T> minValueIndicator;
 
   /// Indicator to calculate Aroon Down on.
-  final Indicator<T?> _lowestValueIndicator;
+  final Indicator<T> _lowestValueIndicator;
 
   /// The period
   final int _period;
 
   @override
-  T? calculate(int index) {
+  T calculate(int index) {
     // Getting the number of bars since the lowest close price
     final int endIndex = max(0, index - _period);
     int nbBars = 0;

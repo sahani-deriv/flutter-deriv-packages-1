@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mock_models.dart';
 
 void main() {
-  List<MockTick>? ticks;
+  List<MockTick> ticks=[];
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -31,10 +31,10 @@ void main() {
       final MMAIndicator<MockResult> mmaIndicator =
           MMAIndicator<MockResult>(closeValueIndicator, 2);
 
-      expect(mmaIndicator.getValue(0)!.quote, 79.526);
-      expect(mmaIndicator.getValue(1)!.quote, 79.5275);
-      expect(mmaIndicator.getValue(2)!.quote, 79.52975);
-      expect(mmaIndicator.getValue(3)!.quote, 79.527375);
+      expect(mmaIndicator.getValue(0).quote, 79.526);
+      expect(mmaIndicator.getValue(1).quote, 79.5275);
+      expect(mmaIndicator.getValue(2).quote, 79.52975);
+      expect(mmaIndicator.getValue(3).quote, 79.527375);
     });
   });
 }

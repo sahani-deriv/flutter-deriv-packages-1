@@ -8,7 +8,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Aroon Indicator', () {
-    List<MockOHLC>? candles;
+    List<MockOHLC> candles=[];
 
     setUpAll(() {
       candles = const <MockOHLC>[
@@ -42,21 +42,21 @@ void main() {
           AroonDownIndicator<MockResult>.fromIndicator(lowValueIndicator,
               period: 5);
 
-      expect(aroonDownIndicator.getValue(19)!.quote, 80);
-      expect(aroonDownIndicator.getValue(18)!.quote, 100);
-      expect(aroonDownIndicator.getValue(17)!.quote, 100);
-      expect(aroonDownIndicator.getValue(16)!.quote, 0);
-      expect(aroonDownIndicator.getValue(15)!.quote, 0);
-      expect(aroonDownIndicator.getValue(14)!.quote, 0);
-      expect(aroonDownIndicator.getValue(13)!.quote, 20);
-      expect(aroonDownIndicator.getValue(12)!.quote, 40);
-      expect(aroonDownIndicator.getValue(11)!.quote, 0);
-      expect(aroonDownIndicator.getValue(10)!.quote, 0);
-      expect(aroonDownIndicator.getValue(9)!.quote, 20);
-      expect(aroonDownIndicator.getValue(8)!.quote, 40);
-      expect(aroonDownIndicator.getValue(7)!.quote, 60);
-      expect(aroonDownIndicator.getValue(6)!.quote, 80);
-      expect(aroonDownIndicator.getValue(5)!.quote, 100);
+      expect(aroonDownIndicator.getValue(19).quote, 80);
+      expect(aroonDownIndicator.getValue(18).quote, 100);
+      expect(aroonDownIndicator.getValue(17).quote, 100);
+      expect(aroonDownIndicator.getValue(16).quote, 0);
+      expect(aroonDownIndicator.getValue(15).quote, 0);
+      expect(aroonDownIndicator.getValue(14).quote, 0);
+      expect(aroonDownIndicator.getValue(13).quote, 20);
+      expect(aroonDownIndicator.getValue(12).quote, 40);
+      expect(aroonDownIndicator.getValue(11).quote, 0);
+      expect(aroonDownIndicator.getValue(10).quote, 0);
+      expect(aroonDownIndicator.getValue(9).quote, 20);
+      expect(aroonDownIndicator.getValue(8).quote, 40);
+      expect(aroonDownIndicator.getValue(7).quote, 60);
+      expect(aroonDownIndicator.getValue(6).quote, 80);
+      expect(aroonDownIndicator.getValue(5).quote, 100);
     });
 
     test('Aroon Up Indicator calculates the correct result', () {
@@ -67,21 +67,21 @@ void main() {
           AroonUpIndicator<MockResult>.fromIndicator(highValueIndicator,
               period: 5);
 
-      expect(aroonUpIndicator.getValue(19)!.quote, 0);
-      expect(aroonUpIndicator.getValue(18)!.quote, 20);
-      expect(aroonUpIndicator.getValue(17)!.quote, 40);
-      expect(aroonUpIndicator.getValue(16)!.quote, 60);
-      expect(aroonUpIndicator.getValue(15)!.quote, 80);
-      expect(aroonUpIndicator.getValue(14)!.quote, 100);
-      expect(aroonUpIndicator.getValue(13)!.quote, 100);
-      expect(aroonUpIndicator.getValue(12)!.quote, 100);
-      expect(aroonUpIndicator.getValue(11)!.quote, 100);
-      expect(aroonUpIndicator.getValue(10)!.quote, 60);
-      expect(aroonUpIndicator.getValue(9)!.quote, 80);
-      expect(aroonUpIndicator.getValue(8)!.quote, 100);
-      expect(aroonUpIndicator.getValue(7)!.quote, 100);
-      expect(aroonUpIndicator.getValue(6)!.quote, 100);
-      expect(aroonUpIndicator.getValue(5)!.quote, 0);
+      expect(aroonUpIndicator.getValue(19).quote, 0);
+      expect(aroonUpIndicator.getValue(18).quote, 20);
+      expect(aroonUpIndicator.getValue(17).quote, 40);
+      expect(aroonUpIndicator.getValue(16).quote, 60);
+      expect(aroonUpIndicator.getValue(15).quote, 80);
+      expect(aroonUpIndicator.getValue(14).quote, 100);
+      expect(aroonUpIndicator.getValue(13).quote, 100);
+      expect(aroonUpIndicator.getValue(12).quote, 100);
+      expect(aroonUpIndicator.getValue(11).quote, 100);
+      expect(aroonUpIndicator.getValue(10).quote, 60);
+      expect(aroonUpIndicator.getValue(9).quote, 80);
+      expect(aroonUpIndicator.getValue(8).quote, 100);
+      expect(aroonUpIndicator.getValue(7).quote, 100);
+      expect(aroonUpIndicator.getValue(6).quote, 100);
+      expect(aroonUpIndicator.getValue(5).quote, 0);
     });
 
     test('Aroon Oscillator Indicator calculates the correct result', () {
@@ -89,10 +89,10 @@ void main() {
           AroonOscillatorIndicator<MockResult>.fromIndicator(MockInput(candles),
               period: 5);
 
-      expect(aroonOscillatorIndicator.getValue(19)!.quote, 80);
-      expect(aroonOscillatorIndicator.getValue(18)!.quote, 80);
-      expect(aroonOscillatorIndicator.getValue(17)!.quote, 60);
-      expect(aroonOscillatorIndicator.getValue(16)!.quote, -60);
+      expect(aroonOscillatorIndicator.getValue(19).quote, 80);
+      expect(aroonOscillatorIndicator.getValue(18).quote, 80);
+      expect(aroonOscillatorIndicator.getValue(17).quote, 60);
+      expect(aroonOscillatorIndicator.getValue(16).quote, -60);
     });
   });
 }

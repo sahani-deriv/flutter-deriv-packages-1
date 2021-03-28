@@ -3,7 +3,7 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import '../../indicator.dart';
 
 /// Difference values between two indicators
-class DifferenceIndicator<T extends IndicatorResult?> extends Indicator<T> {
+class DifferenceIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
   ///
   /// (first minus second)
@@ -18,6 +18,6 @@ class DifferenceIndicator<T extends IndicatorResult?> extends Indicator<T> {
   @override
   T getValue(int index) => createResult(
         index: index,
-        quote: first.getValue(index)!.quote! - second.getValue(index)!.quote!,
+        quote: first.getValue(index).quote - second.getValue(index).quote,
       );
 }

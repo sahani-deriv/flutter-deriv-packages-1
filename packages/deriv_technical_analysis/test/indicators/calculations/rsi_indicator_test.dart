@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mock_models.dart';
 
 void main() {
-  List<MockTick>? ticks;
+  List<MockTick> ticks=[];
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -43,11 +43,11 @@ void main() {
       final RSIIndicator<MockResult> rsiIndicator =
           RSIIndicator<MockResult>.fromIndicator(closeValueIndicator, 14);
 
-      expect(rsiIndicator.getValue(0)!.quote, 0);
-      expect(roundDouble(rsiIndicator.getValue(14)!.quote!, 2), 52.88);
-      expect(roundDouble(rsiIndicator.getValue(15)!.quote!, 2), 65.42);
-      expect(roundDouble(rsiIndicator.getValue(16)!.quote!, 2), 65.96);
-      expect(roundDouble(rsiIndicator.getValue(17)!.quote!, 2), 71.28);
+      expect(rsiIndicator.getValue(0).quote, 0);
+      expect(roundDouble(rsiIndicator.getValue(14).quote, 2), 52.88);
+      expect(roundDouble(rsiIndicator.getValue(15).quote, 2), 65.42);
+      expect(roundDouble(rsiIndicator.getValue(16).quote, 2), 65.96);
+      expect(roundDouble(rsiIndicator.getValue(17).quote, 2), 71.28);
     });
   });
 }

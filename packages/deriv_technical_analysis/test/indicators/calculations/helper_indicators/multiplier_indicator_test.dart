@@ -7,7 +7,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Testing multiplier indicators', () {
-    List<MockOHLC>? ticks;
+    List<MockOHLC> ticks=[];
 
     setUpAll(() {
       ticks = const <MockOHLC>[

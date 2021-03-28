@@ -7,7 +7,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('StandardDeviationIndicator', () {
-    List<MockOHLC>? ticks;
+    List<MockOHLC> ticks=[];
 
     setUpAll(() {
       ticks = const <MockOHLC>[

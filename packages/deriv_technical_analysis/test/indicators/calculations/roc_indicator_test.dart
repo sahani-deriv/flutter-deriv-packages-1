@@ -29,10 +29,10 @@ void main() {
       final ROCIndicator<MockResult> rocIndicator =
           ROCIndicator<MockResult>.fromIndicator(closeValueIndicator, 2);
 
-      expect(rocIndicator.getValue(0)!.quote, 0);
-      expect(rocIndicator.getValue(3)!.quote, 100);
-      expect(roundDouble(rocIndicator.getValue(10)!.quote!, 2), 33.33);
-      expect(rocIndicator.getValue(12)!.quote, -50);
+      expect(rocIndicator.getValue(0).quote, 0);
+      expect(rocIndicator.getValue(3).quote, 100);
+      expect(roundDouble(rocIndicator.getValue(10).quote, 2), 33.33);
+      expect(rocIndicator.getValue(12).quote, -50);
     });
     test('ROCIndicator with TA4j data  should calculates the correct results',
         () {
@@ -64,10 +64,10 @@ void main() {
       final ROCIndicator<MockResult> rocIndicator =
           ROCIndicator<MockResult>.fromIndicator(closeValueIndicator, 12);
 
-      expect(roundDouble(rocIndicator.getValue(0)!.quote!, 4), 0);
-      expect(roundDouble(rocIndicator.getValue(1)!.quote!, 4), 1.105);
-      expect(roundDouble(rocIndicator.getValue(2)!.quote!, 4), -0.3319);
-      expect(roundDouble(rocIndicator.getValue(3)!.quote!, 4), 0.9648);
+      expect(roundDouble(rocIndicator.getValue(0).quote, 4), 0);
+      expect(roundDouble(rocIndicator.getValue(1).quote, 4), 1.105);
+      expect(roundDouble(rocIndicator.getValue(2).quote, 4), -0.3319);
+      expect(roundDouble(rocIndicator.getValue(3).quote, 4), 0.9648);
     });
   });
 }

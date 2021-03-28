@@ -11,6 +11,6 @@ class HighValueIndicator<T extends IndicatorResult> extends Indicator<T> {
   @override
   T getValue(int index) => createResult(
         index: index,
-        quote: entries![index].high,
+        quote: entries[index].high ?? double.nan,
       );
 }

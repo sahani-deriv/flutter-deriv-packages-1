@@ -7,7 +7,7 @@ import '../../indicator.dart';
 import 'variance_indicator.dart';
 
 /// Standard deviation indicator.
-class StandardDeviationIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class StandardDeviationIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   ///
   /// [indicator] the indicator to calculates SD on.
@@ -19,8 +19,8 @@ class StandardDeviationIndicator<T extends IndicatorResult> extends CachedIndica
   final VarianceIndicator<T> _variance;
 
   @override
-  T? calculate(int index) => createResult(
+  T calculate(int index) => createResult(
         index: index,
-        quote: sqrt(_variance.getValue(index)!.quote!),
+        quote: sqrt(_variance.getValue(index).quote),
       );
 }

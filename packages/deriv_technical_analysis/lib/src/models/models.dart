@@ -1,7 +1,7 @@
 /// An element of Indicator result
 abstract class IndicatorResult {
   /// Quote
-  double? get quote;
+  double get quote;
 }
 
 /// OHLC interface

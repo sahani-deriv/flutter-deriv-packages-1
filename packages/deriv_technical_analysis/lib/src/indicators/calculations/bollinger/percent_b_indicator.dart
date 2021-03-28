@@ -8,7 +8,7 @@ import 'bollinger_bands_lower_indicator.dart';
 import 'bollinger_bands_upper_indicator.dart';
 
 /// %B Indicator.
-class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   ///
   /// [indicator] An indicator (usually close price)
@@ -28,26 +28,26 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   PercentBIndicator._(
     this.indicator,
     StandardDeviationIndicator<T> sd,
-    Indicator<T?> bbm,
+    Indicator<T> bbm,
     double k,
-  )   : bbu = BollingerBandsUpperIndicator<T?>(bbm, sd, k: k),
-        bbl = BollingerBandsLowerIndicator<T?>(bbm, sd, k: k),
+  )   : bbu = BollingerBandsUpperIndicator<T>(bbm, sd, k: k),
+        bbl = BollingerBandsLowerIndicator<T>(bbm, sd, k: k),
         super.fromIndicator(indicator);
 
   /// Indicator
   final Indicator<T> indicator;
 
   /// The upper indicator of the BollingerBand
-  final BollingerBandsUpperIndicator<T?> bbu;
+  final BollingerBandsUpperIndicator<T> bbu;
 
   /// The lower indicator of the BollingerBand
-  final BollingerBandsLowerIndicator<T?> bbl;
+  final BollingerBandsLowerIndicator<T> bbl;
 
   @override
-  T? calculate(int index) {
-    final double value = indicator.getValue(index).quote!;
-    final double upValue = bbu.getValue(index)!.quote!;
-    final double lowValue = bbl.getValue(index)!.quote!;
+  T calculate(int index) {
+    final double value = indicator.getValue(index).quote;
+    final double upValue = bbu.getValue(index).quote;
+    final double lowValue = bbl.getValue(index).quote;
 
     return createResult(
       index: index,

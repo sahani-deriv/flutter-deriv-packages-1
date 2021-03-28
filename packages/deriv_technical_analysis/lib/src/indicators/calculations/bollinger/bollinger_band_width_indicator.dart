@@ -6,7 +6,7 @@ import 'bollinger_bands_lower_indicator.dart';
 import 'bollinger_bands_upper_indicator.dart';
 
 /// Bollinger Band Width indicator.
-class BollingerBandWidthIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class BollingerBandWidthIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes.
   ///
   /// [bbu] the upper band Indicator.
@@ -32,10 +32,10 @@ class BollingerBandWidthIndicator<T extends IndicatorResult> extends CachedIndic
   final double hundred;
 
   @override
-  T? calculate(int index) => createResult(
+  T calculate(int index) => createResult(
         index: index,
-        quote: ((bbu.getValue(index)!.quote! - bbl.getValue(index)!.quote!) /
-                bbm.getValue(index).quote!) *
+        quote: ((bbu.getValue(index).quote - bbl.getValue(index).quote) /
+                bbm.getValue(index).quote) *
             hundred,
       );
 }

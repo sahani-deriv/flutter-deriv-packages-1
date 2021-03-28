@@ -3,7 +3,7 @@ import 'dart:math';
 import '../../../../deriv_technical_analysis.dart';
 
 /// Aroon Up Indicator
-class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes a gain indicator from the given [maxValueIndicator].
   /// maxValueIndicator the indicator for the max price
   /// (default is HighValueIndicator)
@@ -18,13 +18,13 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   final Indicator<T> maxValueIndicator;
 
   /// Indicator to calculate highest value.
-  final Indicator<T?> _highestValueIndicator;
+  final Indicator<T> _highestValueIndicator;
 
   /// The period
   final int _period;
 
   @override
-  T? calculate(int index) {
+  T calculate(int index) {
     // Getting the number of bars since the highest close price
     final int endIndex = max(0, index - _period);
     int nbBars = 0;

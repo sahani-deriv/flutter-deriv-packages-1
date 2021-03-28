@@ -6,7 +6,7 @@ import '../cached_indicator.dart';
 import '../indicator.dart';
 
 ///  Price Rate Of Change Indicator indicator.
-class ROCIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
+class ROCIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes an [ROCIndicator] from the given [indicator] and [period].
   ROCIndicator.fromIndicator(this.indicator, this.period)
       : super.fromIndicator(indicator);
@@ -18,10 +18,10 @@ class ROCIndicator<T extends IndicatorResult> extends CachedIndicator<T?> {
   final int period;
 
   @override
-  T? calculate(int index) {
+  T calculate(int index) {
     final int nIndex = max(index - period, 0);
-    final double nPeriodsAgoValue = indicator.getValue(nIndex).quote!;
-    final double currentValue = indicator.getValue(index).quote!;
+    final double nPeriodsAgoValue = indicator.getValue(nIndex).quote;
+    final double currentValue = indicator.getValue(index).quote;
 
     return createResult(
       index: index,

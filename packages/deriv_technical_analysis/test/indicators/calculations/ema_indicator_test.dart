@@ -7,7 +7,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Exponential Moving Average', () {
-    List<MockTick>? ticks;
+    List<MockTick> ticks=[];
 
     setUpAll(() {
       ticks = const <MockTick>[
@@ -32,9 +32,9 @@ void main() {
         10,
       );
 
-      expect(roundDouble(indicator.getValue(9)!.quote!, 4), 63.6948);
-      expect(roundDouble(indicator.getValue(10)!.quote!, 4), 63.2649);
-      expect(roundDouble(indicator.getValue(11)!.quote!, 4), 62.9458);
+      expect(roundDouble(indicator.getValue(9).quote, 4), 63.6948);
+      expect(roundDouble(indicator.getValue(10).quote, 4), 63.2649);
+      expect(roundDouble(indicator.getValue(11).quote, 4), 62.9458);
     });
   });
 }

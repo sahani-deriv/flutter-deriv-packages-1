@@ -7,10 +7,10 @@ class MockInput implements IndicatorDataInput {
   MockInput(this.entries);
 
   @override
-  final List<IndicatorOHLC>? entries;
+  final List<IndicatorOHLC> entries;
 
   @override
-  IndicatorResult createResult(int? index, double? value) => MockResult(value);
+  IndicatorResult createResult(int? index, double value) => MockResult(value);
 }
 
 /// A result model class
@@ -20,19 +20,22 @@ class MockResult implements IndicatorResult {
 
   /// Quote
   @override
-  final double? quote;
+  final double quote;
 }
 
 /// A Tick input element.
 class MockTick implements IndicatorOHLC {
   /// Initializer
-  const MockTick({this.epoch, this.quote});
+  const MockTick({
+    required this.quote,
+    this.epoch,
+  });
 
   /// Epoch
   final int? epoch;
 
   /// Quote
-  final double? quote;
+  final double quote;
 
   @override
   double? get close => quote;
@@ -51,7 +54,7 @@ class MockTick implements IndicatorOHLC {
 class MockOHLC extends MockTick {
   /// Initializes
   const MockOHLC(int? epoch, this.open, this.close, this.high, this.low)
-      : super(epoch: epoch, quote: close);
+      : super(epoch: epoch, quote: close?? double.nan);
 
   /// Initializes with name parameters.
   const MockOHLC.withNames({
