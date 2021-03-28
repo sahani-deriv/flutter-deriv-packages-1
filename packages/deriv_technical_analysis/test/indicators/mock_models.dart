@@ -38,42 +38,42 @@ class MockTick implements IndicatorOHLC {
   final double quote;
 
   @override
-  double? get close => quote;
+  double get close => quote;
 
   @override
-  double? get high => quote;
+  double get high => quote;
 
   @override
-  double? get low => quote;
+  double get low => quote;
 
   @override
-  double? get open => quote;
+  double get open => quote;
 }
 
 /// An OHLC model class
 class MockOHLC extends MockTick {
   /// Initializes
-  const MockOHLC(int? epoch, this.open, this.close, this.high, this.low)
-      : super(epoch: epoch, quote: close?? double.nan);
+  const MockOHLC(int epoch, this.open, this.close, this.high, this.low)
+      : super(epoch: epoch, quote: close);
 
   /// Initializes with name parameters.
   const MockOHLC.withNames({
-    int? epoch,
-    double? open,
-    double? close,
-    double? high,
-    double? low,
+    required int epoch,
+    required double open,
+    required double close,
+    required double high,
+    required double low,
   }) : this(epoch, open, close, high, low);
 
   @override
-  final double? close;
+  final double close;
 
   @override
-  final double? high;
+  final double high;
 
   @override
-  final double? low;
+  final double low;
 
   @override
-  final double? open;
+  final double open;
 }

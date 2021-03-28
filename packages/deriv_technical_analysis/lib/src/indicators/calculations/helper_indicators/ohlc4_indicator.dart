@@ -10,7 +10,7 @@ class OHLC4Indicator<T extends IndicatorResult> extends Indicator<T> {
     final IndicatorOHLC entry = entries[index];
     return createResult(
       index: index,
-      quote: (entry.open! + entry.high! + entry.low! + entry.close!) / 4,
+      quote: (entry.open + entry.high + entry.low + entry.close) / 4,
     );
   }
 }

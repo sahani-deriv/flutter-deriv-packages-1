@@ -13,7 +13,7 @@ class HLC3Indicator<T extends IndicatorResult> extends Indicator<T> {
     final IndicatorOHLC entry = entries[index];
     return createResult(
       index: index,
-      quote: (entry.high! + entry.low! + entry.close!) / 3,
+      quote: (entry.high + entry.low + entry.close) / 3,
     );
   }
 }

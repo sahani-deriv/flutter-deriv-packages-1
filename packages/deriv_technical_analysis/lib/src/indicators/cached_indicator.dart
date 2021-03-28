@@ -62,14 +62,15 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     final int oldResultsCount = results.length;
 
     if (index > oldResultsCount - 1) {
-      results.addAll(List<T?>.filled(index - oldResultsCount + 1, null, growable: false));
+      results.addAll(
+          List<T?>.filled(index - oldResultsCount + 1, null, growable: false));
     }
 
     return results.length - oldResultsCount;
   }
 
   /// Calculates the value of this indicator for the given [index] without caching it.
-  /// 
+  ///
   /// Returns the result as a [T].
   T calculate(int index);
 

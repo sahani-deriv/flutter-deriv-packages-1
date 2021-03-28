@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock_models.dart';
 
 void main() {
-  List<MockTick> ticks=[];
+  late List<MockTick> ticks;
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -31,10 +31,10 @@ void main() {
       final LossIndicator<MockResult> lossIndicator =
           LossIndicator<MockResult>.fromIndicator(closeValueIndicator);
 
-      expect(lossIndicator.getValue(0)!.quote, 0);
-      expect(lossIndicator.getValue(1)!.quote, 0);
-      expect(lossIndicator.getValue(2)!.quote, 0);
-      expect(roundDouble(lossIndicator.getValue(3)!.quote!, 3), 0.007);
+      expect(lossIndicator.getValue(0).quote, 0);
+      expect(lossIndicator.getValue(1).quote, 0);
+      expect(lossIndicator.getValue(2).quote, 0);
+      expect(roundDouble(lossIndicator.getValue(3).quote, 3), 0.007);
     });
   });
 }

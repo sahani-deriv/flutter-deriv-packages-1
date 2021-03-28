@@ -32,7 +32,7 @@ class MAEnvUpperIndicator<T extends IndicatorResult>
       );
 
   /// Calculate shifted value based on shiftType
-  double _getShiftedValue(double? value) => shiftType == ShiftType.percent
-      ? value! * (1 + (shift / 100))
-      : value! + shift;
+  double _getShiftedValue(double value) => shiftType == ShiftType.percent
+      ? value * (1 + (shift / 100))
+      : value + shift;
 }

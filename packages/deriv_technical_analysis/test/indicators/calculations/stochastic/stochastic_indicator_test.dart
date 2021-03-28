@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock_models.dart';
 
 void main() {
-  List<MockTick> ticks=[];
+  late List<MockTick> ticks;
 
   setUpAll(() {
     ticks = const <MockTick>[
@@ -49,14 +49,14 @@ void main() {
       final FastStochasticIndicator<MockResult> fastStochasticIndicator =
           FastStochasticIndicator<MockResult>(MockInput(ticks));
 
-      expect(roundDouble(fastStochasticIndicator.getValue(21)!.quote!, 2), 69.98);
-      expect(roundDouble(fastStochasticIndicator.getValue(22)!.quote!, 2), 73.09);
-      expect(roundDouble(fastStochasticIndicator.getValue(23)!.quote!, 2), 73.45);
-      expect(roundDouble(fastStochasticIndicator.getValue(24)!.quote!, 2), 61.2);
-      expect(roundDouble(fastStochasticIndicator.getValue(25)!.quote!, 2), 60.92);
-      expect(roundDouble(fastStochasticIndicator.getValue(26)!.quote!, 2), 40.58);
-      expect(roundDouble(fastStochasticIndicator.getValue(27)!.quote!, 2), 40.58);
-      expect(roundDouble(fastStochasticIndicator.getValue(28)!.quote!, 2), 66.91);
+      expect(roundDouble(fastStochasticIndicator.getValue(21).quote, 2), 69.98);
+      expect(roundDouble(fastStochasticIndicator.getValue(22).quote, 2), 73.09);
+      expect(roundDouble(fastStochasticIndicator.getValue(23).quote, 2), 73.45);
+      expect(roundDouble(fastStochasticIndicator.getValue(24).quote, 2), 61.2);
+      expect(roundDouble(fastStochasticIndicator.getValue(25).quote, 2), 60.92);
+      expect(roundDouble(fastStochasticIndicator.getValue(26).quote, 2), 40.58);
+      expect(roundDouble(fastStochasticIndicator.getValue(27).quote, 2), 40.58);
+      expect(roundDouble(fastStochasticIndicator.getValue(28).quote, 2), 66.91);
     });
 
     test(
@@ -67,11 +67,11 @@ void main() {
         MockInput(ticks),
       );
 
-      expect(roundDouble(slowStochasticIndicator.getValue(24)!.quote!, 2), 69.25);
-      expect(roundDouble(slowStochasticIndicator.getValue(25)!.quote!, 2), 65.19);
-      expect(roundDouble(slowStochasticIndicator.getValue(26)!.quote!, 2), 54.23);
-      expect(roundDouble(slowStochasticIndicator.getValue(27)!.quote!, 2), 47.36);
-      expect(roundDouble(slowStochasticIndicator.getValue(28)!.quote!, 2), 49.36);
+      expect(roundDouble(slowStochasticIndicator.getValue(24).quote, 2), 69.25);
+      expect(roundDouble(slowStochasticIndicator.getValue(25).quote, 2), 65.19);
+      expect(roundDouble(slowStochasticIndicator.getValue(26).quote, 2), 54.23);
+      expect(roundDouble(slowStochasticIndicator.getValue(27).quote, 2), 47.36);
+      expect(roundDouble(slowStochasticIndicator.getValue(28).quote, 2), 49.36);
     });
   });
 }

@@ -7,7 +7,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('StandardDeviationIndicator', () {
-    List<MockOHLC> ticks=[];
+    late List<MockOHLC> ticks;
 
     setUpAll(() {
       ticks = const <MockOHLC>[
@@ -31,10 +31,10 @@ void main() {
           StandardDeviationIndicator<MockResult>(
               CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
 
-      expect(roundDouble(indicator.getValue(1)!.quote!, 4), 5.25);
-      expect(roundDouble(indicator.getValue(2)!.quote!, 4), 4.6925);
-      expect(roundDouble(indicator.getValue(3)!.quote!, 4), 4.1141);
-      expect(roundDouble(indicator.getValue(4)!.quote!, 4), 3.8185);
+      expect(roundDouble(indicator.getValue(1).quote, 4), 5.25);
+      expect(roundDouble(indicator.getValue(2).quote, 4), 4.6925);
+      expect(roundDouble(indicator.getValue(3).quote, 4), 4.1141);
+      expect(roundDouble(indicator.getValue(4).quote, 4), 3.8185);
     });
   });
 }

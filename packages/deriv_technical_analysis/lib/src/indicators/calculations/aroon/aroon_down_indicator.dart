@@ -34,7 +34,7 @@ class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     int nbBars = 0;
     for (int i = index; i > endIndex; i--) {
       if (minValueIndicator.getValue(i).quote ==
-          (_lowestValueIndicator.getValue(index)!.quote)) {
+          (_lowestValueIndicator.getValue(index).quote)) {
         break;
       }
       nbBars++;

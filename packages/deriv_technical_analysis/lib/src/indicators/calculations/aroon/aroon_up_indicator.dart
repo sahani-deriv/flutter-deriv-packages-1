@@ -30,7 +30,7 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     int nbBars = 0;
     for (int i = index; i > endIndex; i--) {
       if (maxValueIndicator.getValue(i).quote ==
-          (_highestValueIndicator.getValue(index)!.quote)) {
+          (_highestValueIndicator.getValue(index).quote)) {
         break;
       }
       nbBars++;

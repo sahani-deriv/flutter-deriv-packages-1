@@ -9,5 +9,5 @@ abstract class IndicatorDataInput {
   ///
   /// User of this package has the option to implement this interface and [IndicatorResult]
   /// in its own way and get a list of results in any [IndicatorResult] implementation needed.
-  IndicatorResult createResult(int? index, double value);
+  IndicatorResult createResult(int index, double value);
 }
