@@ -1,6 +1,10 @@
 library deriv_technical_analysis;
 
 export 'src/indicators/cached_indicator.dart';
+export 'src/indicators/calculations/adx/adx_indicator.dart';
+export 'src/indicators/calculations/adx/negative_di_indicator.dart';
+export 'src/indicators/calculations/adx/positive_di_indicator.dart';
+export 'src/indicators/calculations/atr_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_band_width_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_bands_lower_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.dart';
@@ -8,6 +12,7 @@ export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.d
 export 'src/indicators/calculations/dpo_indicator.dart';
 export 'src/indicators/calculations/ema_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
+export 'src/indicators/calculations/helper_indicators/dx_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/gain_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/high_value_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/hl2_indicator.dart';
@@ -15,8 +20,11 @@ export 'src/indicators/calculations/helper_indicators/hlc3_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/hlcc4_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/loss_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/low_value_indicator.dart';
+export 'src/indicators/calculations/helper_indicators/negative_dm_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/ohlc4_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/open_value_indicator.dart';
+export 'src/indicators/calculations/helper_indicators/positive_dm_indicator.dart';
+export 'src/indicators/calculations/helper_indicators/tr_indicator.dart';
 export 'src/indicators/calculations/highest_value_indicator.dart';
 export 'src/indicators/calculations/hma_indicator.dart';
 export 'src/indicators/calculations/ichimoku/ichimoku_base_line_indicator.dart';
@@ -42,6 +50,7 @@ export 'src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/wma_indicator.dart';
 export 'src/indicators/calculations/zelma_indicator.dart';
+export 'src/indicators/calculations/zigzag_indicator.dart';
 export 'src/indicators/indicator.dart';
 export 'src/models/data_input.dart' show IndicatorDataInput;
 export 'src/models/models.dart' show IndicatorOHLC, IndicatorResult;
