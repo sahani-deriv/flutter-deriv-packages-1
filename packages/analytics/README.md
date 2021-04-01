@@ -10,48 +10,91 @@ analytics:
          path: packages/analytics
          ref: <master/dev>
 ```
-##### 2. Add Android dependency.
-https://pub.dev/packages/flutter_segment#android
-##### 3. Add IOS dependency.
-https://pub.dev/packages/flutter_segment#ios
+Setup the Android and iOS sources as described at rudderstack.com and generate the write keys for Android and iOS sources.
+
+Set the WRITE_KEY in addition to enabling the plugin to track app lifecycle, screens, and whether to enable debug mode or not in Android and iOS as follows:
+
+### Android
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.deriv.deriv_rudderstack_example">
+    <application>
+        <activity>
+            [...]
+        </activity>
+        <meta-data
+            android:name="com.deriv.rudderstack.WRITE_KEY"
+            android:value="ADD-YOUR-KEY" />
+        <meta-data
+            android:name="com.deriv.rudderstack.TRACK_APPLICATION_LIFECYCLE_EVENTS"
+            android:value="false" />
+        <meta-data
+            android:name="com.deriv.rudderstack.RECORD_SCREEN_VIEWS"
+            android:value="false" />
+        <meta-data android:name="com.deriv.rudderstack.DEBUG" android:value="false" />
+
+
+    </application>
+</manifest>
+```
+
+### iOS
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	[...]
+    <key>com.deriv.rudderstack.WRITE_KEY</key>
+    <string>ADD-YOUR-KEY</string>
+	<key>com.deriv.rudderstack.TRACK_APPLICATION_LIFECYCLE_EVENTS</key>
+    <false/>
+    <key>com.deriv.rudderstack.RECORD_SCREEN_VIEWS</key>
+    <false/>
+    <key>com.deriv.rudderstack.DEBUG</key>
+    <false/>
+	[...]
+</dict>
+</plist>
+```
+
 ## How to use
 ***
 ##### 1. Enabling analytics.
 ```dart
-Analytics.instance.init(
-    deviceToken: "<FIREBASE_TOKEN_HERE>",
+Analytics().init(
     isEnabled: true, // set value to false for disable 'Analytics'
   );
 ```
 ##### 2. To track PageRoute transitions.
 ```dart
 MaterialApp(
-    navigatorObservers: Analytics.instance.observer == null
+    navigatorObservers: Analytics().observer == null
         ? []
-        : [Analytics.instance.observer],
+        : [Analytics().observer],
   );
 ```
-##### 3. Logging to 'Segment' in different scenarios.
+##### 3. Logging to 'RudderStack' in different scenarios.
 ###### when app is  opened.
 ```dart
-Analytics.instance.logAppOpened();
+Analytics().logAppOpened();
 ```
 ###### when app is in background.
 ```dart
-Analytics.instance.logAppBackgrounded();
+Analytics().logAppBackgrounded();
 ```
 ###### when app is crashed.
 ```dart
-Analytics.instance.logAppCrashed();
+Analytics().logAppCrashed();
 ```
 
 ##### 4. Sending information about current screen.
 ```dart
-Analytics.instance.setCurrentScreen(screenName: "<CURRENT_SCREEN_NAME_HERE>");
+Analytics().setCurrentScreen(screenName: "<CURRENT_SCREEN_NAME_HERE>");
 ```
 ##### 4. Setting routes/screens which need to be ignored for analytics.
 ```dart
-Analytics.instance.setIgnoredRoutes([
+Analytics().setIgnoredRoutes([
       'IGNORED_SCREEN_NAME_1',
       'IGNORED_SCREEN_NAME_2',
       '.....................',
@@ -60,15 +103,15 @@ Analytics.instance.setIgnoredRoutes([
 ```
 ##### 4. Sending information during user login.
 ```dart
-Analytics.instance.logLoginEvent("<USER_ID_HERE");
+Analytics().logLoginEvent(userId: "<USER_ID_HERE", deviceToken: "<FIREBASE_TOKEN_HERE>",);
 ```
 ##### 7. Sending information during user logout.
 ```dart
-Analytics.instance.logLogoutEvent();
+Analytics().logLogoutEvent();
 ```
 ##### 8. Sending information about important events to "Firebase".
 ```dart
-Analytics.instance.logToFirebase(
+Analytics().logToFirebase(
       name: "<EVENT_NAME_HERE>",
       params: <String, dynamic>{'PARAM_1': 'VALUE_1',
                                 'PARAM_1': 'VALUE_1',
