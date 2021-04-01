@@ -1,6 +1,6 @@
 # analytics
 ***
-This package is used for collecting and sending analytical information from the app to "Firebase" and "Segment".
+This package is used for collecting and sending analytical information from the app to "Firebase" and "RudderStack".
 ## Installation
 ##### 1. Add to pubspec.yaml
 ```yaml
@@ -8,7 +8,7 @@ analytics:
        git:
          url: git@github.com:regentmarkets/flutter-deriv-packages.git
          path: packages/analytics
-         ref: master
+         ref: <master/dev>
 ```
 ##### 2. Add Android dependency.
 https://pub.dev/packages/flutter_segment#android

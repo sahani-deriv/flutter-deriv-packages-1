@@ -11,7 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_segment: ^3.0.0
+  deriv_rudderstack:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_rudderstack
+      ref: dev
   firebase_analytics: ^6.1.0
 
 dev_dependencies:
