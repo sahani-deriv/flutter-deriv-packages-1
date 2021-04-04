@@ -83,7 +83,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Recalculates indicator's value for the give [index] and caches it.
   ///
   /// Returns the result as a [T].
-  T? refreshValueFor(int index) {
+  T refreshValueFor(int index) {
     invalidate(index);
     return getValue(index);
   }
