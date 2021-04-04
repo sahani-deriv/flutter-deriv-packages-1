@@ -22,10 +22,11 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   // TODO(NA): Can be overridden on those indicators that can calculate
   //  results for their entire list at once in a more optimal way.
   /// Calculates indicator's result for all [entries] and caches them.
-  void calculateValues() {
+  List<T?> calculateValues() {
     for (int i = 0; i < entries.length; i++) {
       getValue(i);
     }
+    return results;
   }
 
   /// Copies the result of [other] as its own.
