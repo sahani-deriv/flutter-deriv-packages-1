@@ -1,9 +1,5 @@
-// **********
-// ** NOTE ** Not completed yet. In progress...
-// **********
-
 import 'package:deriv_technical_analysis/src/models/data_input.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../models/models.dart';
 import '../cached_indicator.dart';
