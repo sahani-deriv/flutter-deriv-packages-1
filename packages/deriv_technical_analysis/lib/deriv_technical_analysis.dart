@@ -1,5 +1,6 @@
 library deriv_technical_analysis;
 
+export 'src/helpers/functions.dart';
 export 'src/indicators/cached_indicator.dart';
 export 'src/indicators/calculations/adx/adx_indicator.dart';
 export 'src/indicators/calculations/adx/negative_di_indicator.dart';
@@ -31,11 +32,12 @@ export 'src/indicators/calculations/lowest_value_indicator.dart';
 export 'src/indicators/calculations/ma_env/ma_env_lower_indicator.dart';
 export 'src/indicators/calculations/ma_env/ma_env_shift_typs.dart';
 export 'src/indicators/calculations/ma_env/ma_env_upper_indicator.dart';
-export 'src/indicators/calculations/roc_indicator.dart';
 export 'src/indicators/calculations/macd/macd_histogram_indicator.dart';
 export 'src/indicators/calculations/macd/macd_indicator.dart';
 export 'src/indicators/calculations/macd/signal_macd_indicator.dart';
 export 'src/indicators/calculations/mma_indicator.dart';
+export 'src/indicators/calculations/parabolic_sar.dart';
+export 'src/indicators/calculations/roc_indicator.dart';
 export 'src/indicators/calculations/rsi_indicator.dart';
 export 'src/indicators/calculations/sma_indicator.dart';
 export 'src/indicators/calculations/statistics/standard_deviation_indicator.dart';
