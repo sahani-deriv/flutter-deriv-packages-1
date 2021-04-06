@@ -112,6 +112,7 @@ class DerivRudderstackPlugin : FlutterPlugin, MethodCallHandler {
                 disable(result)
             }
             TURNED_OFF -> {
+                result.success(false)
                 Log.i(TAG, "Rudderstack analytics was turned off")
             }
             else -> {
