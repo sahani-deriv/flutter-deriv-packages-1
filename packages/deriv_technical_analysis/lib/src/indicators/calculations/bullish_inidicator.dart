@@ -11,17 +11,19 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    print(index);
-    if (index < 2 || index > entries.length - 3) {
+
+
+    if (index < 4 || index > entries.length - 1) {
       return createResult(index: index, quote: double.nan);
     }
-    if (entries[index].low < entries[index - 1].low &&
-        entries[index].low < entries[index - 2].low &&
-        entries[index].low < entries[index + 1].low &&
-        entries[index].low < entries[index + 2].low) {
-      return createResult(index: index, quote: entries[index].low);
+    final int i=index-2;
+    if (entries[i].low < entries[i - 1].low &&
+        entries[i].low < entries[i - 2].low &&
+        entries[i].low < entries[i + 1].low &&
+        entries[i].low < entries[i + 2].low) {
+      return createResult(index: i, quote: entries[index].low);
     } else {
-      return createResult(index: index, quote: double.nan);
+      return createResult(index: i, quote: double.nan);
     }
   }
 }
