@@ -43,7 +43,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   @override
   T getValue(int index) {
-    _growResultsForIndex(index);
+    growResultsForIndex(index);
 
     if (results[index] == null) {
       results[index] = calculate(index);
@@ -59,7 +59,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Grows the results list with null elements to cover the given [index].
   ///
   /// Returns number of elements that have been added to the results list.
-  int _growResultsForIndex(int index) {
+  int growResultsForIndex(int index) {
     final int oldResultsCount = results.length;
 
     if (index > oldResultsCount - 1) {
@@ -76,7 +76,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   /// Invalidates a calculated indicator value for [index]
   void invalidate(int index) {
-    _growResultsForIndex(index);
+    growResultsForIndex(index);
     results[index] = null;
   }
 

@@ -1,5 +1,4 @@
 import 'package:deriv_technical_analysis/src/indicators/cached_indicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/indicator.dart';
 import 'package:deriv_technical_analysis/src/models/data_input.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
@@ -10,10 +9,10 @@ class BearishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    if (index < 4 ) {
+    if (index < 4) {
       return createResult(index: index, quote: double.nan);
     }
-    int i=index-2;
+    int i = index - 2;
     if (entries[i].high > entries[i - 1].high &&
         entries[i].high > entries[i - 2].high &&
         entries[i].high > entries[i + 1].high &&
@@ -22,5 +21,20 @@ class BearishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     } else {
       return createResult(index: i, quote: double.nan);
     }
+  }
+
+  @override
+  T getValue(int index) {
+    growResultsForIndex(index);
+
+    if (results[index] == null) {
+      results[index] = calculate(index + 2);
+    }
+
+    if (index > lastResultIndex) {
+      lastResultIndex = index;
+    }
+
+    return results[index];
   }
 }
