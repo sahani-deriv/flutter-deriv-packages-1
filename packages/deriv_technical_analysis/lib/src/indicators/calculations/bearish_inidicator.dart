@@ -25,16 +25,21 @@ class BearishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T getValue(int index) {
-    growResultsForIndex(index);
+    if (index < entries.length - 1) {
+      growResultsForIndex(index);
 
-    if (results[index] == null) {
-      results[index] = calculate(index + 2);
+      if (results[index] == null) {
+        results[index] = calculate(index + 2);
+      }
+
+      if (index > lastResultIndex) {
+        lastResultIndex = index;
+      }
+
+      return results[index];
     }
-
-    if (index > lastResultIndex) {
-      lastResultIndex = index;
+    else{
+      return results.last;
     }
-
-    return results[index];
   }
 }

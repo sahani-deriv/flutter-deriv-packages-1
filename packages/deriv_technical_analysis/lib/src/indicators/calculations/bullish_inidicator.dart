@@ -9,9 +9,10 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    if (index < 4 || index > entries.length - 1) {
+    if (index < 4) {
       return createResult(index: index, quote: double.nan);
     }
+    //In every index, we calculed
     final int i = index - 2;
     if (entries[i].low < entries[i - 1].low &&
         entries[i].low < entries[i - 2].low &&
@@ -25,13 +26,21 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T getValue(int index) {
-    growResultsForIndex(index);
-    if (results[index] == null) {
-      results[index] = calculate(index + 2);
+    if (index < entries.length - 1) {
+      growResultsForIndex(index);
+
+      if (results[index] == null) {
+        results[index] = calculate(index + 2);
+      }
+
+      if (index > lastResultIndex) {
+        lastResultIndex = index;
+      }
+
+      return results[index];
     }
-    if (index > lastResultIndex) {
-      lastResultIndex = index;
+    else{
+      return results.last;
     }
-    return results[index];
   }
 }
