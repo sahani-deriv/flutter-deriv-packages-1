@@ -46,7 +46,7 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   List<T> calculateValues() {
-    for (int i = 4; i < entries.length-3; i++) {
+    for (int i = 0; i < entries.length-3; i++) {
       getValue(i);
     }
     return results;
