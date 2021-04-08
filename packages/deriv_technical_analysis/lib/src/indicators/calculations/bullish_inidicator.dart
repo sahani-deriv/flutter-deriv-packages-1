@@ -21,7 +21,7 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         entries[i].low < entries[i - 2].low &&
         entries[i].low < entries[i + 1].low &&
         entries[i].low < entries[i + 2].low) {
-      return createResult(index: i, quote: entries[index].low);
+      return createResult(index: i, quote: entries[i].low);
     } else {
       return createResult(index: i, quote: double.nan);
     }

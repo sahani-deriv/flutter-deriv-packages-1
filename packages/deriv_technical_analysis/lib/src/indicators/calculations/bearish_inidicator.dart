@@ -10,16 +10,17 @@ class BearishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    if (index < 2 || index > entries.length - 3) {
+    if (index < 4 ) {
       return createResult(index: index, quote: double.nan);
     }
-    if (entries[index].high > entries[index - 1].high &&
-        entries[index].high > entries[index - 2].high &&
-        entries[index].high > entries[index + 1].high &&
-        entries[index].high > entries[index + 2].high) {
-      return createResult(index: index, quote: entries[index].high);
+    int i=index-2;
+    if (entries[i].high > entries[i - 1].high &&
+        entries[i].high > entries[i - 2].high &&
+        entries[i].high > entries[i + 1].high &&
+        entries[i].high > entries[i + 2].high) {
+      return createResult(index: i, quote: entries[i].high);
     } else {
-      return createResult(index: index, quote: double.nan);
+      return createResult(index: i, quote: double.nan);
     }
   }
 }
