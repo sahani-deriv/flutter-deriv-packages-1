@@ -11,6 +11,7 @@ class BullishIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    print(index);
     if (index < 2 || index > entries.length - 3) {
       return createResult(index: index, quote: double.nan);
     }
