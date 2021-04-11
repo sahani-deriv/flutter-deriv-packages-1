@@ -3,11 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_models.dart';
 
-
-
 void main() {
   group('Bearish indicator test', () {
-     List<MockOHLC> candles;
+    List<MockOHLC> candles;
 
     setUpAll(() {
       candles = const <MockOHLC>[
