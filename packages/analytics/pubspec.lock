@@ -47,11 +47,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/deriv_rudderstack"
-      ref: dev
-      resolved-ref: "4cbdd364b3d4715c3cc560b8d72451f526c5a274"
+      ref: "537ab2c4acc2421c29469c16ce278ae467682e48"
+      resolved-ref: "537ab2c4acc2421c29469c16ce278ae467682e48"
       url: "git@github.com:regentmarkets/flutter-deriv-packages.git"
     source: git
-    version: "1.0.0"
+    version: "1.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -65,28 +65,28 @@ packages:
       name: firebase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.3"
+    version: "9.0.1"
   firebase_analytics:
     dependency: "direct main"
     description:
       name: firebase_analytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.1"
+    version: "8.0.0-dev.2"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "2.0.0-dev.0"
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0+1"
+    version: "0.3.0-dev.0"
   firebase_core:
     dependency: transitive
     description:
@@ -129,14 +129,14 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2"
+    version: "0.13.1"
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
+    version: "4.0.0"
   js:
     dependency: transitive
     description:
@@ -171,7 +171,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.2"
+    version: "1.11.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -242,4 +242,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
+  flutter: ">=1.12.13+hotfix.5"
