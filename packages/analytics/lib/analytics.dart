@@ -41,7 +41,7 @@ class Analytics {
   /// Captures `screen_view` event on route changes.
   void _newRouteHandler(PageRoute<dynamic> route) {
     setCurrentScreen(
-      screenName: route.settings.name,
+      screenName: route.settings.name ?? '',
       // ignore: avoid_as
       properties: route.settings.arguments as Map<String, dynamic>? ??
           <String, dynamic>{},
@@ -67,10 +67,10 @@ class Analytics {
 
   /// Used to capture information about current screen in use.
   void setCurrentScreen({
-    required String? screenName,
+    required String screenName,
     Map<String, dynamic> properties = const <String, dynamic>{},
   }) {
-    if (screenName == null || ignoredRoutes.contains(screenName)) {
+    if (ignoredRoutes.contains(screenName)) {
       return;
     }
     _firebaseAnalytics.setCurrentScreen(screenName: screenName);
@@ -102,7 +102,7 @@ class Analytics {
       DerivRudderstack().setContext(token: deviceToken);
 
   /// Sets the user id to "Firebase".
-  Future<void>? _setFirebaseUserId(String userId) =>
+  Future<void> _setFirebaseUserId(String userId) =>
       _firebaseAnalytics.setUserId(userId);
 
   /// Logs push token.
@@ -114,7 +114,7 @@ class Analytics {
   Future<void> reset() async => DerivRudderstack().reset();
 
   /// Used to log custom events to "Firebase"
-  Future<void>? logToFirebase({
+  Future<void> logToFirebase({
     required String name,
     Map<String, dynamic>? params,
   }) =>
