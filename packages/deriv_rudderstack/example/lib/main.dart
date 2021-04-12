@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _enabled;
+  late bool _enabled;
 
   @override
   void initState() {
