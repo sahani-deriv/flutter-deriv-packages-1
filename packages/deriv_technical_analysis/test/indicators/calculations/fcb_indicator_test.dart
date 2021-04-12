@@ -45,9 +45,10 @@ void main() {
           FractalChaosBandHighIndicator<MockResult>(MockInput(candles));
       expect(fractalChaosBandHighIndicator.getValue(7).quote, 215.17);
       expect(fractalChaosBandHighIndicator.getValue(8).quote, 215.17);
+      expect(fractalChaosBandHighIndicator.getValue(10).quote, 215.17);
       expect(fractalChaosBandHighIndicator.getValue(11).quote, 214.84);
-      expect(fractalChaosBandHighIndicator.getValue(26).quote, 217.02);
       expect(fractalChaosBandHighIndicator.getValue(12).quote, 214.84);
+      expect(fractalChaosBandHighIndicator.getValue(26).quote, 217.02);
     });
 
     test('FractalChaosBandLowIndicator should calculates the correct results',
