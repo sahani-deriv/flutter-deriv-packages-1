@@ -10,14 +10,14 @@ class FractalChaosBandLowIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) {
-    if (index < 4) {
+    if (index < 3) {
       return createResult(index: index, quote: double.nan);
     }
-    if (entries[index - 3].low < entries[index - 2].low &&
-        entries[index - 3].low < entries[index - 1].low &&
-        entries[index - 3].low < entries[index - 4].low &&
-        entries[index - 3].low < entries[index - 5].low) {
-      return createResult(index: index, quote: entries[index - 3].low);
+    if (entries[index - 2].low < entries[index - 1].low &&
+        entries[index - 2].low < entries[index].low &&
+        entries[index - 2].low < entries[index - 3].low &&
+        entries[index - 2].low < entries[index - 4].low) {
+      return createResult(index: index, quote: entries[index - 2].low);
     } else {
       return createResult(index: index, quote: getValue(index - 1).quote);
     }
