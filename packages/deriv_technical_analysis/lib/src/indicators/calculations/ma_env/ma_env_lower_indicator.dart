@@ -2,7 +2,7 @@ import 'package:deriv_technical_analysis/src/models/models.dart';
 
 import '../../cached_indicator.dart';
 import '../../indicator.dart';
-import 'ma_env_shift_typs.dart';
+import 'ma_env_shift_types.dart';
 
 /// Moving Average Envelope lower indicator
 class MAEnvLowerIndicator<T extends IndicatorResult>

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/models.dart';
 import '../cached_indicator.dart';
-import 'helper_indicators/high_value_inidicator.dart';
+import 'helper_indicators/high_value_indicator.dart';
 import 'helper_indicators/low_value_indicator.dart';
 import 'highest_value_indicator.dart';
 import 'lowest_value_indicator.dart';
