@@ -36,4 +36,27 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       quote: 100 - (100 / (1 + relativeStrength)),
     );
   }
+
+  @override
+  void copyValuesFrom(covariant CachedIndicator<T> other) {
+    super.copyValuesFrom(other);
+    final RSIIndicator<T> old = other;
+    _averageGainIndicator.copyValuesFrom(old._averageGainIndicator);
+    _averageLossIndicator.copyValuesFrom(old._averageLossIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _averageLossIndicator.invalidate(index);
+    _averageGainIndicator.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _averageGainIndicator.getValue(index);
+    _averageLossIndicator.getValue(index);
+    return getValue(index);
+  }
 }
