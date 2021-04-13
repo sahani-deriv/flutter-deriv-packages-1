@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'analytics_route_observer.dart';
 
-/// Class that collects and send analytical information to "Firebase" and
-/// "RudderStack".
+/// Class that collects and send analytical information to `Firebase` and
+/// `RudderStack`.
 class Analytics {
   /// Initialises
   factory Analytics() => _instance;
@@ -15,16 +15,16 @@ class Analytics {
   /// A public instance of the class [Analytics].
   static final Analytics _instance = Analytics._internal();
 
-  /// List contains ignored routes/screen names
+  /// Contains ignored routes/screen names.
   List<String> ignoredRoutes = <String>[];
 
   late FirebaseAnalytics _firebaseAnalytics;
 
-  /// An instance of custom route observer created for analytics
+  /// An instance of custom route observer created for analytics.
   late AnalyticsRouteObserver observer;
 
-  /// Initialises the "Analytics".
-  /// Sets the device-token to "RudderStack".
+  /// Initialises the `Analytics`.
+  /// Sets the device-token to `RudderStack`.
   /// bool [isEnabled] enables or disables "Analytics".
   Future<void> init({required bool isEnabled}) async {
     _firebaseAnalytics = FirebaseAnalytics();
@@ -65,7 +65,7 @@ class Analytics {
     DerivRudderstack().track(eventName: 'Application Crashed');
   }
 
-  /// Used to capture information about current screen in use.
+  /// Captures information about current screen in use.
   void setCurrentScreen({
     required String screenName,
     Map<String, dynamic> properties = const <String, dynamic>{},
@@ -97,11 +97,11 @@ class Analytics {
     _firebaseAnalytics.logEvent(name: 'logout');
   }
 
-  /// Sets the device-token to "RudderStack".
+  /// Sets the device-token to `RudderStack`.
   Future<void> _setRudderStackDeviceToken(String deviceToken) =>
       DerivRudderstack().setContext(token: deviceToken);
 
-  /// Sets the user id to "Firebase".
+  /// Sets the user id to `Firebase`.
   Future<void> _setFirebaseUserId(String userId) =>
       _firebaseAnalytics.setUserId(userId);
 
@@ -110,10 +110,10 @@ class Analytics {
     await _setRudderStackDeviceToken(deviceToken);
   }
 
-  /// Should be called at logout to clear up current rudder stack data.
+  /// Should be called at logout to clear up current `RudderStack` data.
   Future<void> reset() async => DerivRudderstack().reset();
 
-  /// Used to log custom events to "Firebase"
+  /// Logs custom events to `Firebase`.
   Future<void> logToFirebase({
     required String name,
     Map<String, dynamic>? params,
