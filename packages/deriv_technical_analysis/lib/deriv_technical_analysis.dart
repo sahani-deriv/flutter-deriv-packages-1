@@ -12,8 +12,8 @@ export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.da
 export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.dart';
 export 'src/indicators/calculations/dpo_indicator.dart';
 export 'src/indicators/calculations/ema_indicator.dart';
-export 'src/indicators/calculations/fcb_high_indicator.dart';
-export 'src/indicators/calculations/fcb_low_indicator.dart';
+export 'src/indicators/calculations/fcb/fcb_high_indicator.dart';
+export 'src/indicators/calculations/fcb/fcb_low_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 export 'src/indicators/calculations/helper_indicators/dx_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/gain_indicator.dart';

@@ -1,5 +1,5 @@
-import 'package:deriv_technical_analysis/src/indicators/calculations/fcb_high_indicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/fcb_low_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/fcb/fcb_high_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/fcb/fcb_low_indicator.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import '../mock_models.dart';
@@ -40,9 +40,9 @@ void main() {
 
     test('FractalChaosBandHighIndicator should calculates the correct results',
         () {
-      final FractalChaosBandHighIndicator<MockResult>
+      final FCBHighIndicator<MockResult>
           fractalChaosBandHighIndicator =
-          FractalChaosBandHighIndicator<MockResult>(MockInput(candles));
+          FCBHighIndicator<MockResult>(MockInput(candles));
       expect(fractalChaosBandHighIndicator.getValue(7).quote, 215.17);
       expect(fractalChaosBandHighIndicator.getValue(8).quote, 215.17);
       expect(fractalChaosBandHighIndicator.getValue(10).quote, 215.17);
@@ -53,9 +53,9 @@ void main() {
 
     test('FractalChaosBandLowIndicator should calculates the correct results',
         () {
-      final FractalChaosBandLowIndicator<MockResult>
+      final FCBLowIndicator<MockResult>
           fractalChaosBandLowIndicator =
-          FractalChaosBandLowIndicator<MockResult>(MockInput(candles));
+          FCBLowIndicator<MockResult>(MockInput(candles));
       expect(fractalChaosBandLowIndicator.getValue(10).quote, 212.53);
       expect(fractalChaosBandLowIndicator.getValue(17).quote, 212.83);
       expect(fractalChaosBandLowIndicator.getValue(25).quote, 213.82);

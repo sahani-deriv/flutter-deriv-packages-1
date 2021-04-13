@@ -3,10 +3,10 @@ import 'package:deriv_technical_analysis/src/models/data_input.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
 /// FractalChaosBand High Indicator
-class FractalChaosBandHighIndicator<T extends IndicatorResult>
+class FCBHighIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
-  FractalChaosBandHighIndicator(IndicatorDataInput input) : super(input);
+  FCBHighIndicator(IndicatorDataInput input) : super(input);
 
   @override
   T calculate(int index) {
