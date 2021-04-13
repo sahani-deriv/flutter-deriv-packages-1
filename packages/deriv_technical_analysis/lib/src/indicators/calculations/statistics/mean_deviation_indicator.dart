@@ -10,30 +10,30 @@ import '../sma_indicator.dart';
 class MeanDeviationIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes a [MeanDeviationIndicator].
-  MeanDeviationIndicator(this.indicator, this.barCount)
-      : _sma = SMAIndicator<T>(indicator, barCount),
+  MeanDeviationIndicator(this.indicator, this.period)
+      : _smaIndicator = SMAIndicator<T>(indicator, period),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate Mean Deviation on.
   final Indicator<T> indicator;
 
   /// Period.
-  final int barCount;
+  final int period;
 
-  final SMAIndicator<T> _sma;
+  final SMAIndicator<T> _smaIndicator;
 
   @override
   T calculate(int index) {
     double absoluteDeviations = 0;
 
-    final double average = _sma.getValue(index).quote;
-    final int startIndex = max(0, index - barCount + 1);
-    final int nbValues = index - startIndex + 1;
+    final double average = _smaIndicator.getValue(index).quote;
+    final int startIndex = max(0, index - period + 1);
+    final int numOfValues = index - startIndex + 1;
 
     for (int i = startIndex; i <= index; i++) {
       absoluteDeviations =
           absoluteDeviations + ((indicator.getValue(i).quote - average).abs());
     }
-    return createResult(index: index, quote: absoluteDeviations / nbValues);
+    return createResult(index: index, quote: absoluteDeviations / numOfValues);
   }
 }
