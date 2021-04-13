@@ -30,4 +30,26 @@ class AwesomeOscillatorIndicator<T extends IndicatorResult>
 
     return createResult(index: index, quote: _quote);
   }
+
+  @override
+  void copyValuesFrom(covariant AwesomeOscillatorIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _smaIndicatorOne.copyValuesFrom(other._smaIndicatorOne);
+    _smaIndicatorTwo.copyValuesFrom(other._smaIndicatorTwo);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _smaIndicatorOne.invalidate(index);
+    _smaIndicatorTwo.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _smaIndicatorOne.getValue(index);
+    _smaIndicatorTwo.getValue(index);
+    return getValue(index);
+  }
 }

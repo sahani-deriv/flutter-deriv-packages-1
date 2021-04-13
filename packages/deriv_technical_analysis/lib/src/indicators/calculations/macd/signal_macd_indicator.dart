@@ -16,4 +16,23 @@ class SignalMACDIndicator<T extends IndicatorResult>
 
   @override
   T calculate(int index) => _signalMACDIndicator.getValue(index);
+
+  @override
+  void copyValuesFrom(covariant SignalMACDIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _signalMACDIndicator.copyValuesFrom(other._signalMACDIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _signalMACDIndicator.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _signalMACDIndicator.getValue(index);
+    return getValue(index);
+  }
 }

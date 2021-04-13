@@ -23,4 +23,26 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         quote: _shortTermEma.getValue(index).quote -
             _longTermEma.getValue(index).quote,
       );
+
+  @override
+  void copyValuesFrom(covariant MACDIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _shortTermEma.copyValuesFrom(other._shortTermEma);
+    _longTermEma.copyValuesFrom(other._longTermEma);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _shortTermEma.invalidate(index);
+    _longTermEma.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _shortTermEma.getValue(index);
+    _longTermEma.getValue(index);
+    return getValue(index);
+  }
 }

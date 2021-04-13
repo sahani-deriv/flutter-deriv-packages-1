@@ -30,4 +30,26 @@ class IchimokuSpanAIndicator<T extends IndicatorResult>
 
   /// The [IchimokuBaseLineIndicator] to calculate the spanA from.
   final IchimokuBaseLineIndicator<T> baseLineIndicator;
+
+  @override
+  void copyValuesFrom(covariant IchimokuSpanAIndicator<T> other) {
+    super.copyValuesFrom(other);
+    conversionLineIndicator.copyValuesFrom(other.conversionLineIndicator);
+    baseLineIndicator.copyValuesFrom(other.baseLineIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    conversionLineIndicator.invalidate(index);
+    baseLineIndicator.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    conversionLineIndicator.getValue(index);
+    baseLineIndicator.getValue(index);
+    return getValue(index);
+  }
 }

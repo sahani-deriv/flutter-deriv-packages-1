@@ -26,4 +26,23 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       index: index,
       quote: indicator.getValue(index).quote -
           _sma.getValue(index - _timeShift).quote);
+
+  @override
+  void copyValuesFrom(covariant DPOIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _sma.copyValuesFrom(other._sma);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _sma.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _sma.getValue(index);
+    return getValue(index);
+  }
 }

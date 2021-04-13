@@ -54,4 +54,26 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       quote: (value - lowValue) / (upValue - lowValue),
     );
   }
+
+  @override
+  void copyValuesFrom(covariant PercentBIndicator<T> other) {
+    super.copyValuesFrom(other);
+    bbu.copyValuesFrom(other.bbu);
+    bbl.copyValuesFrom(other.bbl);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    bbu.invalidate(index);
+    bbl.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    bbl.getValue(index);
+    bbu.getValue(index);
+    return getValue(index);
+  }
 }

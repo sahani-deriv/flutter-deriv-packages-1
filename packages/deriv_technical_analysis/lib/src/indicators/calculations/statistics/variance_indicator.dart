@@ -40,4 +40,23 @@ class VarianceIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
     return createResult(index: index, quote: variance);
   }
+
+  @override
+  void copyValuesFrom(covariant VarianceIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _sma.copyValuesFrom(other._sma);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _sma.invalidate(index);
+  }
+
+  @override
+  T refreshValueFor(int index) {
+    invalidate(index);
+    _sma.getValue(index);
+    return getValue(index);
+  }
 }

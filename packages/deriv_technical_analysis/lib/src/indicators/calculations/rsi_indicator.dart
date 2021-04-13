@@ -38,11 +38,10 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   }
 
   @override
-  void copyValuesFrom(covariant CachedIndicator<T> other) {
+  void copyValuesFrom(covariant RSIIndicator<T> other) {
     super.copyValuesFrom(other);
-    final RSIIndicator<T> old = other;
-    _averageGainIndicator.copyValuesFrom(old._averageGainIndicator);
-    _averageLossIndicator.copyValuesFrom(old._averageLossIndicator);
+    _averageGainIndicator.copyValuesFrom(other._averageGainIndicator);
+    _averageLossIndicator.copyValuesFrom(other._averageLossIndicator);
   }
 
   @override
