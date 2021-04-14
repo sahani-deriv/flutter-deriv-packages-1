@@ -10,7 +10,6 @@ import '../mock_models.dart';
 void main() {
   group('Gator Oscillator', () {
     List<MockTick> ticks;
-    List<MockTick> xx;
     setUpAll(() {
       ticks = const <MockTick>[
         MockOHLC(1, 79.537, 79.532, 213.35, 211.52),

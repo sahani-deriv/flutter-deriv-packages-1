@@ -5,7 +5,7 @@ import 'package:deriv_technical_analysis/src/indicators/calculations/mma_indicat
 import 'package:deriv_technical_analysis/src/indicators/indicator.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
-///Gator Oscillator Indicator Bottom bar
+/// Gator Oscillator Indicator Bottom bar
 class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
@@ -22,16 +22,16 @@ class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
             teethIndicator ?? MMAIndicator<T>(indicator, teethPeriod),
         super.fromIndicator(indicator);
 
-  ///Offset of lips
+  /// Offset of lips
   final int lipsOffset;
 
-  ///Offset of teeth
+  /// Offset of teeth
   final int teethOffset;
 
-  ///Lips (middle smoothed moving average) indicator
+  /// Lips (middle smoothed moving average) indicator
   final MMAIndicator<T> _lipsIndicator;
 
-  ///Teeth (upper smoothed moving average) indicator
+  /// Teeth (upper smoothed moving average) indicator
   final MMAIndicator<T> _teethIndicator;
 
   @override
@@ -47,9 +47,9 @@ class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
     final IndicatorResult teethIndicator =
         _teethIndicator.getValue(index - teethOffset);
 
-    ///GatorBottomBar = – (Absolute value of (Teeth – Lips))
-    final double _quote = -(teethIndicator.quote - lipsIndicator.quote).abs();
+    /// GatorBottomBar = – (Absolute value of (Teeth – Lips))
+    final double quote = -(teethIndicator.quote - lipsIndicator.quote).abs();
 
-    return createResult(index: index, quote: _quote);
+    return createResult(index: index, quote: quote);
   }
 }
