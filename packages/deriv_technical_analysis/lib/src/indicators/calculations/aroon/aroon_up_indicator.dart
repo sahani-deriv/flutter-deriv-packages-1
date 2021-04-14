@@ -53,8 +53,7 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _highestValueIndicator.getValue(index);
-    return getValue(index);
   }
 }

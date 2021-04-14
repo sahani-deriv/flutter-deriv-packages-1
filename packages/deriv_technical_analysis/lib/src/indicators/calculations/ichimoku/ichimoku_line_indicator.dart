@@ -40,9 +40,8 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _highestValueIndicator.getValue(index);
     _lowestValueIndicator.getValue(index);
-    return getValue(index);
   }
 }

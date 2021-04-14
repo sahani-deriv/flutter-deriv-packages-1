@@ -53,9 +53,8 @@ class RSIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _averageGainIndicator.getValue(index);
     _averageLossIndicator.getValue(index);
-    return getValue(index);
   }
 }

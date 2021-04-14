@@ -41,8 +41,7 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _sma.getValue(index);
-    return getValue(index);
   }
 }

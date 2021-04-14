@@ -71,9 +71,8 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     bbl.getValue(index);
     bbu.getValue(index);
-    return getValue(index);
   }
 }

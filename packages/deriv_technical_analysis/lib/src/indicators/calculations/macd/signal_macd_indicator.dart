@@ -31,8 +31,7 @@ class SignalMACDIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _signalMACDIndicator.getValue(index);
-    return getValue(index);
   }
 }

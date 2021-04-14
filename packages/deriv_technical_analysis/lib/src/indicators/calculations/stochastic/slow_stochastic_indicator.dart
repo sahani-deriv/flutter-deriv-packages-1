@@ -23,7 +23,8 @@ class SlowStochasticIndicator<T extends IndicatorResult>
   @override
   void copyValuesFrom(covariant SlowStochasticIndicator<T> other) {
     super.copyValuesFrom(other);
-    _stochasticOscillatorDIndicator.copyValuesFrom(other._stochasticOscillatorDIndicator);
+    _stochasticOscillatorDIndicator
+        .copyValuesFrom(other._stochasticOscillatorDIndicator);
   }
 
   @override
@@ -34,8 +35,7 @@ class SlowStochasticIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _stochasticOscillatorDIndicator.getValue(index);
-    return getValue(index);
   }
 }

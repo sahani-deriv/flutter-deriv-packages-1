@@ -57,8 +57,7 @@ class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _lowestValueIndicator.getValue(index);
-    return getValue(index);
   }
 }

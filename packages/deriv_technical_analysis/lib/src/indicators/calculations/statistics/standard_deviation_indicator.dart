@@ -39,8 +39,7 @@ class StandardDeviationIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _variance.getValue(index);
-    return getValue(index);
   }
 }

@@ -47,9 +47,8 @@ class IchimokuSpanAIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     conversionLineIndicator.getValue(index);
     baseLineIndicator.getValue(index);
-    return getValue(index);
   }
 }

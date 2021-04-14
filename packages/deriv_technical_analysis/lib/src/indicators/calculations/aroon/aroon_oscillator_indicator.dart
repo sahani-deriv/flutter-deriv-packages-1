@@ -46,9 +46,8 @@ class AroonOscillatorIndicator<T extends IndicatorResult>
 
   @override
   T refreshValueFor(int index) {
-    invalidate(index);
+    super.refreshValueFor(index);
     _downChannel.getValue(index);
     _upChannel.getValue(index);
-    return getValue(index);
   }
 }
