@@ -96,6 +96,7 @@ public class SwiftDerivRudderstackPlugin: NSObject, FlutterPlugin {
             self.disable(call, result)
             
         case TURNED_OFF:
+            result(false)
             print("Rudderstack analytics was turned off")
             
         default:
