@@ -42,12 +42,10 @@ class GatorOscillatorIndicatorBottomBar<T extends IndicatorResult>
       return createResult(index: index, quote: double.nan);
     }
 
-    final IndicatorResult lipsIndicator =
-        _lipsIndicator.getValue(index - lipsOffset);
-    final IndicatorResult teethIndicator =
-        _teethIndicator.getValue(index - teethOffset);
+    final T lipsIndicator = _lipsIndicator.getValue(index - lipsOffset);
+    final T teethIndicator = _teethIndicator.getValue(index - teethOffset);
 
-    /// GatorBottomBar = – (Absolute value of (Teeth – Lips))
+    // GatorBottomBar = – (Absolute value of (Teeth – Lips))
     final double quote = -(teethIndicator.quote - lipsIndicator.quote).abs();
 
     return createResult(index: index, quote: quote);
