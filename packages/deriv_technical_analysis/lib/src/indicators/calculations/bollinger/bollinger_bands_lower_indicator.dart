@@ -18,10 +18,10 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
       : super.fromIndicator(bbm);
 
   /// Indicator
-  final Indicator<T> indicator;
+  Indicator<T> indicator;
 
   /// The middle indicator of the BollingerBand
-  final Indicator<T> bbm;
+  Indicator<T> bbm;
 
   /// Default is 2.
   final double k;
@@ -32,4 +32,11 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
         quote:
             bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
       );
+
+  @override
+  void copyValuesFrom(covariant BollingerBandsLowerIndicator<T> other) {
+    super.copyValuesFrom(other);
+    bbm = other.bbm;
+    indicator = other.indicator;
+  }
 }

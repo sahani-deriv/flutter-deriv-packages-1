@@ -29,13 +29,7 @@ class SlowStochasticIndicator<T extends IndicatorResult>
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _stochasticOscillatorDIndicator.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _stochasticOscillatorDIndicator.getValue(index);
+    super.invalidate(index);
   }
 }

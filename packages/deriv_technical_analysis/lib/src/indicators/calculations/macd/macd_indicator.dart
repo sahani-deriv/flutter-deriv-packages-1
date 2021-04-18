@@ -33,15 +33,8 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _shortTermEma.invalidate(index);
     _longTermEma.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _shortTermEma.getValue(index);
-    _longTermEma.getValue(index);
+    super.invalidate(index);
   }
 }

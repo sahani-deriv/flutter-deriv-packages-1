@@ -43,15 +43,8 @@ class FastStochasticIndicator<T extends IndicatorResult>
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _highestValueIndicator.invalidate(index);
     _lowestValueIndicator.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _highestValueIndicator.getValue(index);
-    _lowestValueIndicator.getValue(index);
+    super.invalidate(index);
   }
 }

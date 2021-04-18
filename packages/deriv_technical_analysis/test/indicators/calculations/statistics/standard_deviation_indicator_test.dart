@@ -1,5 +1,6 @@
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/open_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/statistics/standard_deviation_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,16 +11,16 @@ void main() {
     List<MockOHLC> ticks;
 
     setUpAll(() {
-      ticks = const <MockOHLC>[
-        MockOHLC.withNames(
+      ticks = <MockOHLC>[
+        const MockOHLC.withNames(
             epoch: 1, open: 64.75, close: 64.12, high: 67.5, low: 63),
-        MockOHLC.withNames(
+        const MockOHLC.withNames(
             epoch: 2, open: 73.5, close: 74.62, high: 75.65, low: 73.12),
-        MockOHLC.withNames(
+        const MockOHLC.withNames(
             epoch: 3, open: 74.2, close: 73.42, high: 76.3, low: 73.33),
-        MockOHLC.withNames(
+        const MockOHLC.withNames(
             epoch: 4, open: 70.12, close: 72.2, high: 73.5, low: 70.12),
-        MockOHLC.withNames(
+        const MockOHLC.withNames(
             epoch: 5, open: 73.21, close: 73.64, high: 76.3, low: 72.31),
       ];
     });
@@ -35,6 +36,30 @@ void main() {
       expect(roundDouble(indicator.getValue(2).quote, 4), 4.6925);
       expect(roundDouble(indicator.getValue(3).quote, 4), 4.1141);
       expect(roundDouble(indicator.getValue(4).quote, 4), 3.8185);
+    });
+
+    test(
+        'StandardDeviationIndicator copyValuesFrom and refreshValueFor should work fine',
+        () {
+      final StandardDeviationIndicator<MockResult> indicator =
+          StandardDeviationIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
+
+      final StandardDeviationIndicator<MockResult> indicatorWithNewData =
+          StandardDeviationIndicator<MockResult>(
+              OpenValueIndicator<MockResult>(MockInput(ticks)), 5);
+
+      expect(roundDouble(indicator.getValue(4).quote, 4), 3.8185);
+      expect(roundDouble(indicatorWithNewData.getValue(4).quote, 4), 3.4954);
+
+      indicatorWithNewData.copyValuesFrom(indicator);
+      expect(roundDouble(indicatorWithNewData.getValue(4).quote, 4), 3.8185);
+
+      ticks.add(const MockOHLC.withNames(
+          epoch: 6, open: 73.21, close: 72.64, high: 76.3, low: 72.31));
+
+      indicatorWithNewData.refreshValueFor(5);
+      expect(roundDouble(indicatorWithNewData.getValue(5).quote, 4), 1.4112);
     });
   });
 }

@@ -17,10 +17,10 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
       : super.fromIndicator(deviation);
 
   /// Deviation indicator
-  final Indicator<T> deviation;
+  Indicator<T> deviation;
 
   /// The middle indicator of the BollingerBand
-  final Indicator<T> bbm;
+  Indicator<T> bbm;
 
   /// Default is 2.
   final double k;
@@ -31,4 +31,11 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
         quote:
             bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
       );
+
+  @override
+  void copyValuesFrom(covariant BollingerBandsUpperIndicator<T> other) {
+    super.copyValuesFrom(other);
+    bbm = other.bbm;
+    deviation = other.deviation;
+  }
 }

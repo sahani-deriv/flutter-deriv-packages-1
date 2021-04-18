@@ -25,13 +25,7 @@ class ATRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _averageTrueRangeIndicator.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _averageTrueRangeIndicator.getValue(index);
+    super.invalidate(index);
   }
 }

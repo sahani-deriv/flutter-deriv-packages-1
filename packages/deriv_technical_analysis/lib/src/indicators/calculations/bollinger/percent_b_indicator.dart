@@ -28,20 +28,22 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   PercentBIndicator._(
     this.indicator,
     StandardDeviationIndicator<T> sd,
-    Indicator<T> bbm,
+    this.bbm,
     double k,
   )   : bbu = BollingerBandsUpperIndicator<T>(bbm, sd, k: k),
         bbl = BollingerBandsLowerIndicator<T>(bbm, sd, k: k),
         super.fromIndicator(indicator);
 
   /// Indicator
-  final Indicator<T> indicator;
+  Indicator<T> indicator;
 
   /// The upper indicator of the BollingerBand
   final BollingerBandsUpperIndicator<T> bbu;
 
   /// The lower indicator of the BollingerBand
   final BollingerBandsLowerIndicator<T> bbl;
+
+  final SMAIndicator<T> bbm;
 
   @override
   T calculate(int index) {
@@ -60,19 +62,15 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     super.copyValuesFrom(other);
     bbu.copyValuesFrom(other.bbu);
     bbl.copyValuesFrom(other.bbl);
+    bbm.copyValuesFrom(other.bbm);
+    indicator = other.indicator;
   }
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     bbu.invalidate(index);
     bbl.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    bbl.getValue(index);
-    bbu.getValue(index);
+    bbm.invalidate(index);
+    super.invalidate(index);
   }
 }

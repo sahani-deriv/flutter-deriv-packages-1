@@ -41,19 +41,13 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   void copyValuesFrom(covariant AroonUpIndicator<T> other) {
-    super.copyValuesFrom(other);
     _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
+    super.copyValuesFrom(other);
   }
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _highestValueIndicator.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _highestValueIndicator.getValue(index);
+    super.invalidate(index);
   }
 }

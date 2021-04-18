@@ -11,6 +11,31 @@ import '../../mock_models.dart';
 
 void main() {
   group('BollingerBands Indicator', () {
+    List<MockTick> ticks;
+    setUpAll(() {
+      ticks = <MockTick>[
+        const MockTick(epoch: 1, quote: 10),
+        const MockTick(epoch: 2, quote: 12),
+        const MockTick(epoch: 3, quote: 15),
+        const MockTick(epoch: 4, quote: 14),
+        const MockTick(epoch: 5, quote: 17),
+        const MockTick(epoch: 6, quote: 20),
+        const MockTick(epoch: 7, quote: 21),
+        const MockTick(epoch: 8, quote: 20),
+        const MockTick(epoch: 9, quote: 20),
+        const MockTick(epoch: 10, quote: 19),
+        const MockTick(epoch: 11, quote: 20),
+        const MockTick(epoch: 12, quote: 17),
+        const MockTick(epoch: 13, quote: 12),
+        const MockTick(epoch: 14, quote: 12),
+        const MockTick(epoch: 15, quote: 9),
+        const MockTick(epoch: 16, quote: 8),
+        const MockTick(epoch: 17, quote: 9),
+        const MockTick(epoch: 18, quote: 10),
+        const MockTick(epoch: 19, quote: 9),
+        const MockTick(epoch: 20, quote: 10),
+      ];
+    });
     test('BollingerBandsUpperIndicator calculates the correct result', () {
       const List<MockTick> ticks = <MockTick>[
         MockTick(epoch: 1, quote: 1),
@@ -72,29 +97,6 @@ void main() {
     });
 
     test('Bollinger Percent B calculates the correct result', () {
-      const List<MockTick> ticks = <MockTick>[
-        MockTick(epoch: 1, quote: 10),
-        MockTick(epoch: 2, quote: 12),
-        MockTick(epoch: 3, quote: 15),
-        MockTick(epoch: 4, quote: 14),
-        MockTick(epoch: 5, quote: 17),
-        MockTick(epoch: 6, quote: 20),
-        MockTick(epoch: 7, quote: 21),
-        MockTick(epoch: 8, quote: 20),
-        MockTick(epoch: 9, quote: 20),
-        MockTick(epoch: 10, quote: 19),
-        MockTick(epoch: 11, quote: 20),
-        MockTick(epoch: 12, quote: 17),
-        MockTick(epoch: 13, quote: 12),
-        MockTick(epoch: 14, quote: 12),
-        MockTick(epoch: 15, quote: 9),
-        MockTick(epoch: 16, quote: 8),
-        MockTick(epoch: 17, quote: 9),
-        MockTick(epoch: 18, quote: 10),
-        MockTick(epoch: 19, quote: 9),
-        MockTick(epoch: 20, quote: 10),
-      ];
-
       final Indicator<MockResult> closePrice =
           CloseValueIndicator<MockResult>(MockInput(ticks));
 
@@ -121,6 +123,49 @@ void main() {
       expect(roundDouble(pcb.getValue(17).quote, 4), 0.5737);
       expect(pcb.getValue(18).quote, 0.5);
       expect(roundDouble(pcb.getValue(19).quote, 4), 0.7673);
+    });
+
+    test(
+        'Bollinger Percent B copyValuesFrom and refreshValueFor should works fine',
+        () {
+      const List<MockTick> _ticks = <MockTick>[
+        MockTick(epoch: 1, quote: 1),
+        MockTick(epoch: 2, quote: 2),
+        MockTick(epoch: 3, quote: 3),
+        MockTick(epoch: 4, quote: 4),
+        MockTick(epoch: 5, quote: 3),
+        MockTick(epoch: 6, quote: 4),
+        MockTick(epoch: 7, quote: 5),
+        MockTick(epoch: 8, quote: 4),
+        MockTick(epoch: 9, quote: 3),
+        MockTick(epoch: 10, quote: 3),
+        MockTick(epoch: 11, quote: 4),
+        MockTick(epoch: 12, quote: 3),
+        MockTick(epoch: 13, quote: 2),
+      ];
+
+      final CloseValueIndicator<MockResult> closeValueIndicator =
+          CloseValueIndicator<MockResult>(MockInput(ticks));
+
+      final CloseValueIndicator<MockResult> openValueIndicator =
+          CloseValueIndicator<MockResult>(MockInput(_ticks));
+
+      final PercentBIndicator<MockResult> pcb =
+          PercentBIndicator<MockResult>(closeValueIndicator, 5);
+
+      final PercentBIndicator<MockResult> pcbWithNewData =
+          PercentBIndicator<MockResult>(openValueIndicator, 5);
+
+      expect(roundDouble(pcb.getValue(19).quote, 4), 0.7673);
+      expect(roundDouble(pcbWithNewData.getValue(12).quote, 4), 0.1047);
+
+      pcbWithNewData.copyValuesFrom(pcb);
+      expect(roundDouble(pcbWithNewData.getValue(19).quote, 4), 0.7673);
+
+      ticks.add(const MockTick(epoch: 21, quote: 5));
+
+      pcbWithNewData.refreshValueFor(20);
+      expect(roundDouble(pcbWithNewData.getValue(20).quote, 4), 0.0148);
     });
   });
 }

@@ -32,22 +32,15 @@ class AroonOscillatorIndicator<T extends IndicatorResult>
 
   @override
   void copyValuesFrom(covariant AroonOscillatorIndicator<T> other) {
-    super.copyValuesFrom(other);
     _downChannel.copyValuesFrom(other._downChannel);
     _upChannel.copyValuesFrom(other._upChannel);
+    super.copyValuesFrom(other);
   }
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _downChannel.invalidate(index);
     _upChannel.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _downChannel.getValue(index);
-    _upChannel.getValue(index);
+    super.invalidate(index);
   }
 }

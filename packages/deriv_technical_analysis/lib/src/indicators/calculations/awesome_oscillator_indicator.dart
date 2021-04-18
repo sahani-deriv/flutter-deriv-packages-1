@@ -40,15 +40,8 @@ class AwesomeOscillatorIndicator<T extends IndicatorResult>
 
   @override
   void invalidate(int index) {
-    super.invalidate(index);
     _smaIndicatorOne.invalidate(index);
     _smaIndicatorTwo.invalidate(index);
-  }
-
-  @override
-  T refreshValueFor(int index) {
-    super.refreshValueFor(index);
-    _smaIndicatorOne.getValue(index);
-    _smaIndicatorTwo.getValue(index);
+    super.invalidate(index);
   }
 }
