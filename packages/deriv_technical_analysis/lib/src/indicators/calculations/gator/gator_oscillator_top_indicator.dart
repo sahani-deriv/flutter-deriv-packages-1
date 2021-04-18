@@ -9,20 +9,29 @@ import 'package:deriv_technical_analysis/src/models/models.dart';
 class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes
-  GatorOscillatorIndicatorTopBar(Indicator<T> indicator,
-      {MMAIndicator<T> jawIndicator,
-      int jawPeriod = 13,
-      this.jawOffset = 8,
-      MMAIndicator<T> teethIndicator,
-      int teethPeriod = 8,
-      this.teethOffset = 5})
-      : _jawIndicator = jawIndicator ?? MMAIndicator<T>(indicator, jawPeriod),
-        _teethIndicator =
-            teethIndicator ?? MMAIndicator<T>(indicator, teethPeriod),
-        super.fromIndicator(indicator);
+  GatorOscillatorIndicatorTopBar(
+    Indicator<T> indicator, {
+    int jawPeriod = 13,
+    int jawOffset = 8,
+    int teethPeriod = 8,
+    int teethOffset = 5,
+  }) : this.fromIndicators(
+          MMAIndicator<T>(indicator, jawPeriod),
+          MMAIndicator<T>(indicator, teethPeriod),
+          jawOffset: jawOffset,
+          teethOffset: teethOffset,
+        );
+
+  /// Initializes GatorBottomBar from [lipsIndicator] and [teethIndicator].
+  GatorOscillatorIndicatorTopBar.fromIndicators(
+    this.jawIndicator,
+    this.teethIndicator, {
+    this.jawOffset = 3,
+    this.teethOffset = 5,
+  }) : super.fromIndicator(jawIndicator);
 
   /// Jaw (lower smoothed moving average) indicator
-  final MMAIndicator<T> _jawIndicator;
+  final MMAIndicator<T> jawIndicator;
 
   /// Offset of jaw
   final int jawOffset;
@@ -31,7 +40,7 @@ class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
   final int teethOffset;
 
   /// Teeth (upper smoothed moving average) indicator
-  final MMAIndicator<T> _teethIndicator;
+  final MMAIndicator<T> teethIndicator;
 
   @override
   T calculate(int index) {
@@ -41,11 +50,12 @@ class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
       return createResult(index: index, quote: double.nan);
     }
 
-    final T jawIndicator = _jawIndicator.getValue(index - jawOffset);
-    final T teethIndicator = _teethIndicator.getValue(index - teethOffset);
+    final T jawIndicatorValue = jawIndicator.getValue(index - jawOffset);
+    final T teethIndicatorValue = teethIndicator.getValue(index - teethOffset);
 
     // GatorTopBar = Absolute value of(Jaw - Teeth)
-    final double quote = (jawIndicator.quote - teethIndicator.quote).abs();
+    final double quote =
+        (jawIndicatorValue.quote - teethIndicatorValue.quote).abs();
 
     return createResult(index: index, quote: quote);
   }
