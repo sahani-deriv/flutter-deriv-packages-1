@@ -12,14 +12,20 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
   /// Initializes
   CommodityChannelIndexIndicator(
     IndicatorDataInput input,
-    this.period, {
-    this.factor = 0.015,
-  })  : _typicalPriceIndicator = HLC3Indicator<T>(input),
-        super(input) {
-    _smaIndicator = SMAIndicator<T>(_typicalPriceIndicator, period);
-    _meanDeviationIndicator =
-        MeanDeviationIndicator<T>(_typicalPriceIndicator, period);
-  }
+    int period, {
+    double factor = 0.015,
+  }) : this._(input, period, HLC3Indicator<T>(input), factor: factor);
+
+  CommodityChannelIndexIndicator._(
+    IndicatorDataInput input,
+    this.period,
+    HLC3Indicator<T> typicalPriceIndicator, {
+    this.factor,
+  })  : _typicalPriceIndicator = typicalPriceIndicator,
+        _smaIndicator = SMAIndicator<T>(typicalPriceIndicator, period),
+        _meanDeviationIndicator =
+            MeanDeviationIndicator<T>(typicalPriceIndicator, period),
+        super(input);
 
   /// Factor. Usually is `0.015`.
   final double factor;
