@@ -35,7 +35,7 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         super.fromIndicator(indicator);
 
   /// Indicator
-  Indicator<T> indicator;
+  final Indicator<T> indicator;
 
   /// The upper indicator of the BollingerBand
   final BollingerBandsUpperIndicator<T> bbu;
@@ -43,6 +43,7 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// The lower indicator of the BollingerBand
   final BollingerBandsLowerIndicator<T> bbl;
 
+  ///SMA Indicator
   final SMAIndicator<T> bbm;
 
   @override
@@ -63,7 +64,6 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     bbu.copyValuesFrom(other.bbu);
     bbl.copyValuesFrom(other.bbl);
     bbm.copyValuesFrom(other.bbm);
-    indicator = other.indicator;
   }
 
   @override

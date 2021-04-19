@@ -126,24 +126,24 @@ void main() {
     });
 
     test(
-        "Ichimoku Span A copyValuesFrom and refreshValueFor should works fine.",
+        'Ichimoku Span A copyValuesFrom and refreshValueFor should works fine.',
         () {
-      final IchimokuSpanAIndicator<MockResult> spanAIndicator =
+      final IchimokuSpanAIndicator<MockResult> spanAIndicator1 =
           IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
               conversionLineIndicator: conversionLineIndicator,
               baseLineIndicator: baseLineIndicator);
 
-      final IchimokuSpanAIndicator<MockResult> spanAIndicatorWithNewData =
+      final IchimokuSpanAIndicator<MockResult> spanAIndicator2 =
           IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
               conversionLineIndicator: conversionLineIndicator,
               baseLineIndicator: baseLineIndicator);
 
       ticks.add(const MockOHLC(58, 79.386, 79.413, 79.413, 79.385));
-      spanAIndicatorWithNewData.refreshValueFor(58);
-      expect(
-          roundDouble(spanAIndicatorWithNewData.getValue(58).quote, 3), 79.454);
-      spanAIndicator.copyValuesFrom(spanAIndicatorWithNewData);
-      expect(roundDouble(spanAIndicator.getValue(58).quote, 3), 79.454);
+      spanAIndicator2.refreshValueFor(58);
+      expect(roundDouble(spanAIndicator2.getValue(58).quote, 3), 79.454);
+
+      spanAIndicator1.copyValuesFrom(spanAIndicator2);
+      expect(roundDouble(spanAIndicator1.getValue(58).quote, 3), 79.454);
     });
 
     test(

@@ -147,25 +147,26 @@ void main() {
       final CloseValueIndicator<MockResult> closeValueIndicator =
           CloseValueIndicator<MockResult>(MockInput(ticks));
 
-      final CloseValueIndicator<MockResult> openValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(_ticks));
-
       final PercentBIndicator<MockResult> pcb =
           PercentBIndicator<MockResult>(closeValueIndicator, 5);
 
-      final PercentBIndicator<MockResult> pcbWithNewData =
-          PercentBIndicator<MockResult>(openValueIndicator, 5);
-
-      expect(roundDouble(pcb.getValue(19).quote, 4), 0.7673);
-      expect(roundDouble(pcbWithNewData.getValue(12).quote, 4), 0.1047);
-
-      pcbWithNewData.copyValuesFrom(pcb);
-      expect(roundDouble(pcbWithNewData.getValue(19).quote, 4), 0.7673);
+      final PercentBIndicator<MockResult> pcb2 =
+          PercentBIndicator<MockResult>(closeValueIndicator, 5);
 
       ticks.add(const MockTick(epoch: 21, quote: 5));
+      pcb2.refreshValueFor(20);
 
-      pcbWithNewData.refreshValueFor(20);
-      expect(roundDouble(pcbWithNewData.getValue(20).quote, 4), 0.0148);
+      expect(roundDouble(pcb2.getValue(20).quote, 4), 0.0148);
+      expect(roundDouble(pcb2.getValue(19).quote, 4), 0.7673);
+      expect(roundDouble(pcb2.getValue(18).quote, 4), 0.5);
+
+      pcb.copyValuesFrom(pcb2);
+
+      expect(roundDouble(pcb.getValue(20).quote, 4), 0.0148);
+      expect(roundDouble(pcb.getValue(19).quote, 4), 0.7673);
+      expect(roundDouble(pcb.getValue(18).quote, 4), 0.5);
+
+
     });
   });
 }

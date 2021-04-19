@@ -7,20 +7,34 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
   IchimokuLineIndicator(
     IndicatorDataInput input, {
     int period,
-  })  : _lowestValueIndicator =
+  })  : lowestValueIndicator =
             LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
-        _highestValueIndicator =
+        highestValueIndicator =
             HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
         super(input);
 
-  final LowestValueIndicator<T> _lowestValueIndicator;
-  final HighestValueIndicator<T> _highestValueIndicator;
+  final LowestValueIndicator<T> lowestValueIndicator;
+  final HighestValueIndicator<T> highestValueIndicator;
 
   @override
   T calculate(int index) {
-    final double lineQuote = (_highestValueIndicator.getValue(index).quote +
-            _lowestValueIndicator.getValue(index).quote) /
+    final double lineQuote = (highestValueIndicator.getValue(index).quote +
+            lowestValueIndicator.getValue(index).quote) /
         2;
     return createResult(index: index, quote: lineQuote);
+  }
+
+  @override
+  void copyValuesFrom(covariant IchimokuLineIndicator<T> other) {
+    super.copyValuesFrom(other);
+    highestValueIndicator.copyValuesFrom(other.highestValueIndicator);
+    lowestValueIndicator.copyValuesFrom(other.lowestValueIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    highestValueIndicator.invalidate(index);
+    lowestValueIndicator.invalidate(index);
+    super.invalidate(index);
   }
 }
