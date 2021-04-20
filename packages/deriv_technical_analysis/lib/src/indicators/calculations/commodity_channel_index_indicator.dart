@@ -63,13 +63,6 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
   }
 
   @override
-  T refreshValueFor(int index) {
-    _smaIndicator.refreshValueFor(index);
-    _meanDeviationIndicator.refreshValueFor(index);
-    return super.refreshValueFor(index);
-  }
-
-  @override
   void invalidate(int index) {
     super.invalidate(index);
 
