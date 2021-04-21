@@ -9,7 +9,7 @@ import 'statistics/mean_deviation_indicator.dart';
 /// Commodity Channel Index Indicator.
 class CommodityChannelIndexIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initializes
+  /// Initializes CCI indicator.
   CommodityChannelIndexIndicator(
     IndicatorDataInput input,
     int period, {
@@ -30,7 +30,7 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
   /// Factor. Usually is `0.015`.
   final double factor;
 
-  /// Period.
+  /// The period.
   final int period;
 
   final HLC3Indicator<T> _typicalPriceIndicator;
@@ -41,7 +41,7 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
   @override
   T calculate(int index) {
     final double typicalPrice = _typicalPriceIndicator.getValue(index).quote;
-    final double typicalPriceAvg = _smaIndicator.getValue(index).quote;
+    final double movingAverage = _smaIndicator.getValue(index).quote;
     final double meanDeviation = _meanDeviationIndicator.getValue(index).quote;
 
     if (meanDeviation == 0) {
@@ -50,7 +50,7 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
 
     return createResult(
       index: index,
-      quote: (typicalPrice - typicalPriceAvg) / (meanDeviation * factor),
+      quote: (typicalPrice - movingAverage) / (meanDeviation * factor),
     );
   }
 
