@@ -3,7 +3,7 @@ import 'package:update_checker/update_checker.dart';
 const int optionalBuildNumber = 10;
 const int mandatoryBuildNumber = 5;
 
-final Map<String, dynamic> rawData = {
+final Map<String, dynamic> rawData = <String, dynamic>{
   'optional': {
     'buildnumber': optionalBuildNumber,
     'changelog': 'something new!',
@@ -18,7 +18,7 @@ final Map<String, dynamic> rawData = {
   }
 };
 
-final UpdateInfo updateInfoOptional = UpdateInfo(
+const UpdateInfo updateInfoOptional = UpdateInfo(
   buildNumber: optionalBuildNumber,
   isOptional: true,
   changelog: 'something new!',
@@ -26,7 +26,7 @@ final UpdateInfo updateInfoOptional = UpdateInfo(
   url: 'https://app.deriv.com/dl',
 );
 
-final UpdateInfo updateInfoMandatory = UpdateInfo(
+const UpdateInfo updateInfoMandatory = UpdateInfo(
   buildNumber: mandatoryBuildNumber,
   isOptional: false,
   changelog: 'something new!',

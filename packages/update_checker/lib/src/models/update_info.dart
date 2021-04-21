@@ -13,13 +13,13 @@ class UpdateInfo extends Equatable {
   });
 
   /// [isOptional] determines if the update is optional or not.
-  final bool isOptional;
+  final bool? isOptional;
 
   /// [buildNumber] represents the minimum build required.
-  final int buildNumber;
+  final int? buildNumber;
 
   /// [changelog] contains changelog information for the latest release.
-  final String changelog;
+  final String? changelog;
 
   /// [changelogs] contains changelog information for different languages.
   /// ```
@@ -28,10 +28,10 @@ class UpdateInfo extends Equatable {
   ///    "es": "- característica 1\n- característica 2",
   /// }
   /// ```
-  final Map<String, dynamic> changelogs;
+  final Map<String, dynamic>? changelogs;
 
   /// [url] is alternative url for updating the app, can be empty.
-  final String url;
+  final String? url;
 
   @override
   List<dynamic> get props => <dynamic>[isOptional, buildNumber, url];
