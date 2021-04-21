@@ -37,6 +37,5 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
   void copyValuesFrom(covariant BollingerBandsLowerIndicator<T> other) {
     super.copyValuesFrom(other);
     bbm = other.bbm;
-    indicator = other.indicator;
   }
 }

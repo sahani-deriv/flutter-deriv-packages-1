@@ -12,12 +12,11 @@ void main() {
 
     setUpAll(() {
       ticks = <MockOHLC>[
-        const MockOHLC.withNames(epoch: 1, open: 0, close: 0, high: 16, low: 8),
-        const MockOHLC.withNames(epoch: 2, open: 0, close: 0, high: 12, low: 6),
-        const MockOHLC.withNames(
-            epoch: 3, open: 0, close: 0, high: 18, low: 14),
-        const MockOHLC.withNames(epoch: 4, open: 0, close: 0, high: 10, low: 6),
-        const MockOHLC.withNames(epoch: 5, open: 0, close: 0, high: 8, low: 4)
+        MockOHLC.withNames(epoch: 1, open: 0, close: 0, high: 16, low: 8),
+        MockOHLC.withNames(epoch: 2, open: 0, close: 0, high: 12, low: 6),
+        MockOHLC.withNames(epoch: 3, open: 0, close: 0, high: 18, low: 14),
+        MockOHLC.withNames(epoch: 4, open: 0, close: 0, high: 10, low: 6),
+        MockOHLC.withNames(epoch: 5, open: 0, close: 0, high: 8, low: 4)
       ];
     });
 
