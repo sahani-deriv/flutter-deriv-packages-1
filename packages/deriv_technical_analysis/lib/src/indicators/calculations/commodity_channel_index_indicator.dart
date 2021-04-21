@@ -35,8 +35,8 @@ class CommodityChannelIndexIndicator<T extends IndicatorResult>
 
   final HLC3Indicator<T> _typicalPriceIndicator;
 
-  SMAIndicator<T> _smaIndicator;
-  MeanDeviationIndicator<T> _meanDeviationIndicator;
+  final SMAIndicator<T> _smaIndicator;
+  final MeanDeviationIndicator<T> _meanDeviationIndicator;
 
   @override
   T calculate(int index) {
