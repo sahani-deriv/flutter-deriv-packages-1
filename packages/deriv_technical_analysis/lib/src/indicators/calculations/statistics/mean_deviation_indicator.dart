@@ -36,4 +36,16 @@ class MeanDeviationIndicator<T extends IndicatorResult>
     }
     return createResult(index: index, quote: absoluteDeviations / numOfValues);
   }
+
+  @override
+  void invalidate(int index) {
+    _smaIndicator.invalidate(index);
+    super.invalidate(index);
+  }
+
+  @override
+  void copyValuesFrom(covariant MeanDeviationIndicator<T> other) {
+    _smaIndicator.copyValuesFrom(other._smaIndicator);
+    super.copyValuesFrom(other);
+  }
 }
