@@ -31,10 +31,4 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
         quote:
             bbm.getValue(index).quote + (deviation.getValue(index).quote * k),
       );
-
-  @override
-  void copyValuesFrom(covariant BollingerBandsUpperIndicator<T> other) {
-    super.copyValuesFrom(other);
-    bbm = other.bbm;
-  }
 }

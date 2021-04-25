@@ -32,10 +32,4 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
         quote:
             bbm.getValue(index).quote - (indicator.getValue(index).quote * k),
       );
-
-  @override
-  void copyValuesFrom(covariant BollingerBandsLowerIndicator<T> other) {
-    super.copyValuesFrom(other);
-    bbm = other.bbm;
-  }
 }
