@@ -17,10 +17,10 @@ class BollingerBandsUpperIndicator<T extends IndicatorResult>
       : super.fromIndicator(deviation);
 
   /// Deviation indicator
-  Indicator<T> deviation;
+  final Indicator<T> deviation;
 
   /// The middle indicator of the BollingerBand
-  Indicator<T> bbm;
+  final Indicator<T> bbm;
 
   /// Default is 2.
   final double k;

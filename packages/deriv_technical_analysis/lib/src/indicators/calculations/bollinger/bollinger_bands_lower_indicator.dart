@@ -18,10 +18,10 @@ class BollingerBandsLowerIndicator<T extends IndicatorResult>
       : super.fromIndicator(bbm);
 
   /// Indicator
-  Indicator<T> indicator;
+  final Indicator<T> indicator;
 
   /// The middle indicator of the BollingerBand
-  Indicator<T> bbm;
+  final Indicator<T> bbm;
 
   /// Default is 2.
   final double k;

@@ -24,4 +24,18 @@ class NegativeDIIndicator<T extends IndicatorResult>
       quote: (_avgMinusDMIndicator.getValue(index).quote /
               _atrIndicator.getValue(index).quote) *
           100);
+
+  @override
+  void copyValuesFrom(covariant NegativeDIIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _avgMinusDMIndicator.copyValuesFrom(other._avgMinusDMIndicator);
+    _atrIndicator.copyValuesFrom(other._atrIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _avgMinusDMIndicator.invalidate(index);
+    _atrIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }
