@@ -11,7 +11,7 @@ void main() {
     List<MockOHLC> ticks;
 
     setUpAll(() {
-      ticks = <MockOHLC>[
+      ticks = const <MockOHLC>[
         MockOHLC.withNames(epoch: 1, open: 0, close: 0, high: 16, low: 8),
         MockOHLC.withNames(epoch: 2, open: 0, close: 0, high: 12, low: 6),
         MockOHLC.withNames(epoch: 3, open: 0, close: 0, high: 18, low: 14),
@@ -50,23 +50,36 @@ void main() {
     test(
         'AwesomeOscillator copyValuesFrom and refreshValueFor should works fine.',
         () {
-      final AwesomeOscillatorIndicator<MockResult> _aoIndicator =
-          AwesomeOscillatorIndicator<MockResult>(
-              HL2Indicator<MockResult>(MockInput(ticks)),
-              smaPeriodOne: 2,
-              smaPeriodTwo: 3);
-      final AwesomeOscillatorIndicator<MockResult> _aoIndicatorWithNewData =
+      // defining 1st indicator
+      final AwesomeOscillatorIndicator<MockResult> _aoIndicator1 =
           AwesomeOscillatorIndicator<MockResult>(
               HL2Indicator<MockResult>(MockInput(ticks)),
               smaPeriodOne: 2,
               smaPeriodTwo: 3);
 
-      ticks.add(const MockOHLC.withNames(
-          epoch: 6, open: 0, close: 0, high: 7, low: 5));
-      _aoIndicatorWithNewData.refreshValueFor(5);
-      expect(roundDouble(_aoIndicatorWithNewData.getValue(5).quote, 2), -0.67);
-      _aoIndicator.copyValuesFrom(_aoIndicatorWithNewData);
-      expect(roundDouble(_aoIndicator.getValue(5).quote, 2), -0.67);
+      // define a new input Changing the last data
+      final List<MockOHLC> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC.withNames(
+            epoch: 5, open: 0, close: 0, high: 12, low: 2));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final AwesomeOscillatorIndicator<MockResult> _aoIndicator2 =
+          AwesomeOscillatorIndicator<MockResult>(
+              HL2Indicator<MockResult>(MockInput(ticks2)),
+              smaPeriodOne: 2,
+              smaPeriodTwo: 3)
+            ..copyValuesFrom(_aoIndicator1)
+            ..refreshValueFor(4);
+
+      // Their result in index 3 should be the same since we've copied the result.
+      expect(_aoIndicator1.getValue(3).quote, _aoIndicator2.getValue(3).quote);
+
+      // Calculated result for index 4 is different because the last data is changed.
+      expect(roundDouble(_aoIndicator1.getValue(4).quote, 2), -3.0);
+      expect(roundDouble(_aoIndicator2.getValue(4).quote, 2), -2.83);
     });
   });
 }

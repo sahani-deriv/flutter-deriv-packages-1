@@ -9,7 +9,7 @@ void main() {
   List<MockTick> ticks;
 
   setUpAll(() {
-    ticks = <MockTick>[
+    ticks = const <MockTick>[
       MockOHLC(01, 127.01, 127.01, 127.01, 125.36),
       MockOHLC(02, 127.62, 127.62, 127.62, 126.16),
       MockOHLC(03, 126.59, 126.59, 126.59, 124.93),
@@ -77,51 +77,63 @@ void main() {
     test(
         'Fast Stochastic Indicator copyValuesFrom and refreshValueFor should works fine.',
         () {
-      final FastStochasticIndicator<MockResult> fastStochasticIndicator =
+      // defining 1st indicator
+      final FastStochasticIndicator<MockResult> indicator1 =
           FastStochasticIndicator<MockResult>(MockInput(ticks));
 
-      final FastStochasticIndicator<MockResult>
-          fastStochasticIndicatorWithNewData =
-          FastStochasticIndicator<MockResult>(MockInput(ticks));
+      // Checking the values of first indicator
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 66.91);
 
-      expect(
-          roundDouble(fastStochasticIndicatorWithNewData.getValue(28).quote, 2),
-          66.91);
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
 
-      ticks.add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
-      fastStochasticIndicatorWithNewData.refreshValueFor(29);
-      expect(
-          roundDouble(fastStochasticIndicatorWithNewData.getValue(29).quote, 2),
-          26.26);
-      fastStochasticIndicator
-          .copyValuesFrom(fastStochasticIndicatorWithNewData);
-      expect(roundDouble(fastStochasticIndicator.getValue(29).quote, 2), 26.26);
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final FastStochasticIndicator<MockResult> indicator2 =
+          FastStochasticIndicator<MockResult>(MockInput(ticks2))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(28);
+
+      // Their result in index 3 should be the same since we've copied the result.
+      expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
+
+      // Calculated result for index 20 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(28).quote, 2), 26.26);
+      expect(roundDouble(indicator1.getValue(4).quote, 4), 100);
     });
 
     test(
         'Slow Stochastic Indicator copyValuesFrom and refreshValueFor should works fine.',
         () {
-      final SlowStochasticIndicator<MockResult> slowStochasticIndicator =
-          SlowStochasticIndicator<MockResult>(
-        MockInput(ticks),
-      );
-
-      final SlowStochasticIndicator<MockResult>
-          slowStochasticIndicatorWithNewData =
+      // defining 1st indicator
+      final SlowStochasticIndicator<MockResult> indicator1 =
           SlowStochasticIndicator<MockResult>(MockInput(ticks));
 
-      expect(
-          roundDouble(slowStochasticIndicatorWithNewData.getValue(28).quote, 2),
-          49.36);
+      // Checking the values of first indicator
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 49.36);
 
-      ticks.add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
-      slowStochasticIndicatorWithNewData.refreshValueFor(29);
-      expect(
-          roundDouble(slowStochasticIndicatorWithNewData.getValue(29).quote, 2),
-          44.58);
-      slowStochasticIndicator
-          .copyValuesFrom(slowStochasticIndicatorWithNewData);
-      expect(roundDouble(slowStochasticIndicator.getValue(29).quote, 2), 44.58);
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final SlowStochasticIndicator<MockResult> indicator2 =
+          SlowStochasticIndicator<MockResult>(MockInput(ticks2))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(28);
+
+      // Their result in index 3 should be the same since we've copied the result.
+      expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
+
+      // Calculated result for index 20 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(28).quote, 2), 35.81);
+      expect(roundDouble(indicator1.getValue(4).quote, 4), 83.891);
     });
   });
 }

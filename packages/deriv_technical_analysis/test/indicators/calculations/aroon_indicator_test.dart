@@ -1,6 +1,8 @@
+import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/aroon/aroon_down_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/aroon/aroon_oscillator_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/aroon/aroon_up_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/high_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/low_value_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,7 +14,7 @@ void main() {
     List<MockOHLC> candles;
 
     setUpAll(() {
-      candles = <MockOHLC>[
+      candles = const <MockOHLC>[
         MockOHLC(0, 168.28, 169.64, 169.87, 167.15),
         MockOHLC(1, 168.84, 168.71, 169.36, 168.2),
         MockOHLC(2, 168.88, 167.74, 169.29, 166.41),
@@ -61,26 +63,36 @@ void main() {
       expect(aroonDownIndicator.getValue(5).quote, 100);
     });
     test('Aroon Down Indicator copyValuesFrom calculates correct result', () {
-      final LowValueIndicator<MockResult> lowValueIndicator =
-          LowValueIndicator<MockResult>(MockInput(candles));
+      final AroonDownIndicator<MockResult> indicator1 =
+          AroonDownIndicator<MockResult>.fromIndicator(
+        CloseValueIndicator<MockResult>(MockInput(candles)),
+        period: 5,
+      );
 
-      final AroonDownIndicator<MockResult> aroonDownIndicator =
-          AroonDownIndicator<MockResult>.fromIndicator(lowValueIndicator,
-              period: 5);
+      expect(indicator1.getValue(18).quote, 100);
+      expect(indicator1.getValue(19).quote, 80);
 
-      final AroonDownIndicator<MockResult> aroonDownIndicatorWithNewData =
-          AroonDownIndicator<MockResult>.fromIndicator(lowValueIndicator,
-              period: 5);
+      final List<MockOHLC> candles2 = candles.toList()
+        ..removeLast()
+        ..add(const MockOHLC(19, 170.75, 160, 172.56, 160));
 
-      expect(aroonDownIndicatorWithNewData.getValue(19).quote, 80);
-      expect(aroonDownIndicator.getValue(19).quote, 80);
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final AroonDownIndicator<MockResult> indicator2 =
+          AroonDownIndicator<MockResult>.fromIndicator(
+        CloseValueIndicator<MockResult>(MockInput(candles2)),
+        period: 5,
+      )
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(19);
 
-      candles.add(const MockOHLC(20, 171.75, 162.52, 175.56, 165.36));
-      aroonDownIndicatorWithNewData.refreshValueFor(20);
+      // Their result in index 18 should be the same since we've copied the result.
+      expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
 
-      expect(aroonDownIndicatorWithNewData.getValue(20).quote, 100);
-      aroonDownIndicator.copyValuesFrom(aroonDownIndicatorWithNewData);
-      expect(aroonDownIndicator.getValue(20).quote, 100);
+      // Calculated result for index 19 is different because the last data is changed.
+      expect(indicator2.getValue(19).quote, 100);
+      expect(indicator1.getValue(19).quote, 80);
     });
 
     test('Aroon Up Indicator calculates the correct result', () {
@@ -110,25 +122,34 @@ void main() {
     test(
         'Aroon Up Indicator copyValuesFrom  and refreshValueFor should works fine',
         () {
-      final HighValueIndicator<MockResult> highValueIndicator =
-          HighValueIndicator<MockResult>(MockInput(candles));
+      final AroonUpIndicator<MockResult> indicator1 =
+          AroonUpIndicator<MockResult>.fromIndicator(
+        HighValueIndicator<MockResult>(MockInput(candles)),
+        period: 5,
+      );
 
-      final AroonUpIndicator<MockResult> aroonUpIndicator =
-          AroonUpIndicator<MockResult>.fromIndicator(highValueIndicator,
-              period: 5);
-      final AroonUpIndicator<MockResult> aroonUpIndicatorWithNewData =
-          AroonUpIndicator<MockResult>.fromIndicator(highValueIndicator,
-              period: 5);
+      expect(indicator1.getValue(19).quote, 0.0);
 
-      expect(aroonUpIndicatorWithNewData.getValue(19).quote, 0);
-      expect(aroonUpIndicator.getValue(19).quote, 0);
+      final List<MockOHLC> candles2 = candles.toList()
+        ..removeLast()
+        ..add(const MockOHLC(19, 161.75, 152.52, 165.56, 155.36));
 
-      candles.add(const MockOHLC(20, 171.75, 162.52, 175.56, 165.36));
-      aroonUpIndicatorWithNewData.refreshValueFor(20);
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final AroonUpIndicator<MockResult> indicator2 =
+          AroonUpIndicator<MockResult>.fromIndicator(
+        HighValueIndicator<MockResult>(MockInput(candles2)),
+        period: 5,
+      )
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(19);
 
-      expect(aroonUpIndicatorWithNewData.getValue(20).quote, 100);
-      aroonUpIndicator.copyValuesFrom(aroonUpIndicatorWithNewData);
-      expect(aroonUpIndicator.getValue(20).quote, 100);
+      // Their result in index 19 should be the same since we've copied the result.
+      expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
+
+      // Calculated result for index 19 is different because the last candle is changed.
+      expect(indicator2.getValue(19).quote, 0.0);
     });
     test('Aroon Oscillator Indicator calculates the correct result', () {
       final AroonOscillatorIndicator<MockResult> aroonOscillatorIndicator =
@@ -143,24 +164,34 @@ void main() {
     test(
         'Aroon Oscillator Indicator copyValuesFrom and refreshValueFor should works fine',
         () {
-      final AroonOscillatorIndicator<MockResult> aroonOscillatorIndicator =
-          AroonOscillatorIndicator<MockResult>.fromIndicator(MockInput(candles),
+      final List<MockOHLC> candles2 = candles.toList();
+      final AroonOscillatorIndicator<MockResult> aroonOscillatorIndicator1 =
+          AroonOscillatorIndicator<MockResult>.fromIndicator(
+              MockInput(candles2),
               period: 5);
-      final AroonOscillatorIndicator<MockResult>
-          aroonOscillatorIndicatorWithNewData =
-          AroonOscillatorIndicator<MockResult>.fromIndicator(MockInput(candles),
+      final AroonOscillatorIndicator<MockResult> aroonOscillatorIndicator2 =
+          AroonOscillatorIndicator<MockResult>.fromIndicator(
+              MockInput(candles2),
               period: 5);
 
-      expect(aroonOscillatorIndicatorWithNewData.getValue(19).quote, -80);
-      expect(aroonOscillatorIndicator.getValue(19).quote, -80);
+      // Their result in index 19 should be the same since we've copied the result.
+      expect(aroonOscillatorIndicator2.getValue(19).quote, -80);
+      expect(aroonOscillatorIndicator1.getValue(19).quote, -80);
 
-      candles.add(const MockOHLC(20, 171.75, 162.52, 175.56, 165.36));
-      aroonOscillatorIndicatorWithNewData.refreshValueFor(20);
+      // add aa data to input list
+      candles2.add(const MockOHLC(20, 171.75, 162.52, 175.56, 165.36));
 
-      expect(aroonOscillatorIndicatorWithNewData.getValue(20).quote, -60);
-      aroonOscillatorIndicator
-          .copyValuesFrom(aroonOscillatorIndicatorWithNewData);
-      expect(aroonOscillatorIndicator.getValue(20).quote, -60);
+      // Refreshing to calculate the last value
+      aroonOscillatorIndicator2.refreshValueFor(20);
+
+      //check the new value
+      expect(aroonOscillatorIndicator2.getValue(20).quote, -60);
+
+      // Copying values of indicator2 into 1
+      aroonOscillatorIndicator1.copyValuesFrom(aroonOscillatorIndicator2);
+
+      // Calculated result for index 20 is different because the last data is changed.
+      expect(aroonOscillatorIndicator1.getValue(20).quote, -60);
     });
   });
 }

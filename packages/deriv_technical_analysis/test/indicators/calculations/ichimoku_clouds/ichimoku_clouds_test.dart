@@ -11,7 +11,7 @@ void main() {
     IchimokuBaseLineIndicator<MockResult> baseLineIndicator;
 
     setUpAll(() {
-      ticks = <MockOHLC>[
+      ticks = const <MockOHLC>[
         MockOHLC(00, 79.537, 79.532, 79.540, 79.529),
         MockOHLC(01, 79.532, 79.524, 79.536, 79.522),
         MockOHLC(02, 79.523, 79.526, 79.536, 79.522),
@@ -133,17 +133,34 @@ void main() {
               conversionLineIndicator: conversionLineIndicator,
               baseLineIndicator: baseLineIndicator);
 
+      // define a new input Changing the last data
+      final List<MockOHLC> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(57, 78.386, 77.3, 78.2, 78.285));
+
+      final IchimokuConversionLineIndicator<MockResult>
+          conversionLineIndicator2 =
+          IchimokuConversionLineIndicator<MockResult>(MockInput(ticks2));
+      final IchimokuBaseLineIndicator<MockResult> baseLineIndicator2 =
+          IchimokuBaseLineIndicator<MockResult>(MockInput(ticks2));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
       final IchimokuSpanAIndicator<MockResult> spanAIndicator2 =
-          IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
-              conversionLineIndicator: conversionLineIndicator,
-              baseLineIndicator: baseLineIndicator);
+          IchimokuSpanAIndicator<MockResult>(MockInput(ticks2),
+              conversionLineIndicator: conversionLineIndicator2,
+              baseLineIndicator: baseLineIndicator2)
+            ..copyValuesFrom(spanAIndicator1)
+            ..refreshValueFor(57);
 
-      ticks.add(const MockOHLC(58, 79.386, 79.413, 79.413, 79.385));
-      spanAIndicator2.refreshValueFor(58);
-      expect(roundDouble(spanAIndicator2.getValue(58).quote, 3), 79.454);
+      // Their result in index 56 should be the same since we've copied the result.
+      expect(spanAIndicator2.getValue(56).quote,
+          spanAIndicator1.getValue(56).quote);
 
-      spanAIndicator1.copyValuesFrom(spanAIndicator2);
-      expect(roundDouble(spanAIndicator1.getValue(58).quote, 3), 79.454);
+      // Calculated result for index 57 is different because the last data is changed.
+      expect(roundDouble(spanAIndicator2.getValue(57).quote, 3), 78.906);
+      expect(roundDouble(spanAIndicator1.getValue(57).quote, 3), 79.456);
     });
 
     test(

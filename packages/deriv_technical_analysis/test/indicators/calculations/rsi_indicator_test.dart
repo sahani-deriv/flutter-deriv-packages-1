@@ -10,7 +10,7 @@ void main() {
   List<MockTick> ticks;
 
   setUpAll(() {
-    ticks = <MockTick>[
+    ticks = const <MockTick>[
       MockOHLC(00, 79.537, 79.532, 79.540, 79.529),
       MockOHLC(01, 79.532, 79.524, 79.536, 79.522),
       MockOHLC(02, 79.523, 79.526, 79.536, 79.522),
@@ -52,28 +52,36 @@ void main() {
     });
     test('RSI Indicator copyValuesFrom and refreshValueFor should works fine',
         () {
-      final CloseValueIndicator<MockResult> closeValueIndicator =
-          CloseValueIndicator<MockResult>(MockInput(ticks));
+      // defining 1st indicator
+      final RSIIndicator<MockResult> rsiIndicator1 =
+          RSIIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator<MockResult>(MockInput(ticks)), 14);
 
-      final OpenValueIndicator<MockResult> openValueIndicator =
-          OpenValueIndicator<MockResult>(MockInput(ticks));
+      // Checking the values of first indicator
+      expect(roundDouble(rsiIndicator1.getValue(14).quote, 2), 52.88);
+      expect(roundDouble(rsiIndicator1.getValue(15).quote, 2), 65.42);
 
-      final RSIIndicator<MockResult> rsiIndicator =
-          RSIIndicator<MockResult>.fromIndicator(closeValueIndicator, 14);
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(20, 89.550, 89.548, 89.554, 89.545));
 
-      final RSIIndicator<MockResult> rsiIndicatorWithNewData =
-          RSIIndicator<MockResult>.fromIndicator(openValueIndicator, 14);
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final RSIIndicator<MockResult> rsiIndicator2 =
+          RSIIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator<MockResult>(MockInput(ticks2)), 14)
+            ..copyValuesFrom(rsiIndicator1)
+            ..refreshValueFor(20);
 
-      expect(roundDouble(rsiIndicator.getValue(14).quote, 2), 52.88);
-      expect(roundDouble(rsiIndicatorWithNewData.getValue(14).quote, 2), 51.22);
+      // Their result in index 19 should be the same since we've copied the result.
+      expect(
+          rsiIndicator2.getValue(19).quote, rsiIndicator1.getValue(19).quote);
 
-      rsiIndicatorWithNewData.copyValuesFrom(rsiIndicator);
-      expect(roundDouble(rsiIndicatorWithNewData.getValue(14).quote, 2), 52.88);
-
-      ticks.add(const MockOHLC(21, 89.550, 89.548, 89.554, 89.545));
-
-      rsiIndicatorWithNewData.refreshValueFor(21);
-      expect(roundDouble(rsiIndicatorWithNewData.getValue(21).quote, 2), 99.78);
+      // Calculated result for index 20 is different because the last data is changed.
+      expect(roundDouble(rsiIndicator2.getValue(20).quote, 2), 99.78);
+      expect(roundDouble(rsiIndicator1.getValue(20).quote, 2), 63.03);
     });
   });
 }

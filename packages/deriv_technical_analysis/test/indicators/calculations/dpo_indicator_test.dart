@@ -10,7 +10,7 @@ void main() {
     List<MockTick> ticks;
     DPOIndicator<MockResult> dpoIndicator;
     setUpAll(() {
-      ticks = <MockTick>[
+      ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 22.27),
         MockTick(epoch: 1, quote: 22.19),
         MockTick(epoch: 2, quote: 22.08),
@@ -118,19 +118,30 @@ void main() {
     test(
         'Detrended Price Oscillator copyValuesFrom and refreshValueFor should works fine',
         () {
-      final DPOIndicator<MockResult> dpoIndicatorWithNewData =
-          DPOIndicator<MockResult>(
-              CloseValueIndicator<MockResult>(MockInput(ticks)),
-              period: 9);
+      // defining 1st indicator
+      final DPOIndicator<MockResult> indicator1 = DPOIndicator<MockResult>(
+        CloseValueIndicator<MockResult>(MockInput(ticks)),
+      );
 
-      expect(
-          roundDouble(dpoIndicatorWithNewData.getValue(89).quote, 4), -1.4733);
-      ticks.add(const MockTick(epoch: 90, quote: 21.37));
-      dpoIndicatorWithNewData.refreshValueFor(90);
-      expect(
-          roundDouble(dpoIndicatorWithNewData.getValue(90).quote, 4), -2.2267);
-      dpoIndicator.copyValuesFrom(dpoIndicatorWithNewData);
-      expect(roundDouble(dpoIndicator.getValue(90).quote, 4), -2.2267);
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockTick(epoch: 89, quote: 21.37));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final DPOIndicator<MockResult> indicator2 = DPOIndicator<MockResult>(
+          CloseValueIndicator<MockResult>(MockInput(ticks2)))
+        ..copyValuesFrom(indicator1)
+        ..refreshValueFor(89);
+
+      // Their result in index 3 should be the same since we've copied the result.
+      expect(indicator1.getValue(88).quote, indicator2.getValue(88).quote);
+
+      // Calculated result for index 4 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(89).quote, 2), -1.8);
+      expect(roundDouble(indicator1.getValue(89).quote, 2), -1.0);
     });
   });
 }

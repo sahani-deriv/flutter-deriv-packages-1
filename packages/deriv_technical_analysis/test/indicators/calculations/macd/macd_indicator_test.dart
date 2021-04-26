@@ -16,7 +16,7 @@ void main() {
   SignalMACDIndicator<MockResult> signalMACDIndicator;
 
   setUpAll(() {
-    ticks = <MockTick>[
+    ticks = const <MockTick>[
       MockTick(epoch: 00, quote: 82.201),
       MockTick(epoch: 02, quote: 82.200),
       MockTick(epoch: 03, quote: 82.200),
@@ -86,20 +86,32 @@ void main() {
     test(
         ' Moving Average Convergance Divergence Indicator copyValuesFrom and refreshValueFor should works fine',
         () {
-      final MACDIndicator<MockResult> macdIndicatorWithNewData =
+      final MACDIndicator<MockResult> macdIndicator1 =
           MACDIndicator<MockResult>.fromIndicator(closeValueIndicator);
 
+      expect(roundDouble(macdIndicator1.getValue(36).quote, 4), -0.0012);
+
+      // define a new input by Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockTick(epoch: 38, quote: 82.152));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
+      final MACDIndicator<MockResult> macdIndicator2 =
+          MACDIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator(MockInput(ticks2)))
+            ..copyValuesFrom(macdIndicator1)
+            ..refreshValueFor(38);
+
+      // Their result in index 36 should be the same since we've copied the result.
       expect(
-          roundDouble(macdIndicatorWithNewData.getValue(36).quote, 4), -0.0012);
-      ticks.add(const MockTick(epoch: 40, quote: 82.152));
+          macdIndicator1.getValue(36).quote, macdIndicator2.getValue(36).quote);
 
-      macdIndicatorWithNewData.refreshValueFor(39);
-
-      expect(
-          roundDouble(macdIndicatorWithNewData.getValue(39).quote, 4), -0.0042);
-
-      macdIndicator.copyValuesFrom(macdIndicatorWithNewData);
-      expect(roundDouble(macdIndicator.getValue(39).quote, 4), -0.0042);
+      // Calculated result for index 57 is different because the last data is changed.
+      expect(roundDouble(macdIndicator1.getValue(38).quote, 3), -0.001);
+      expect(roundDouble(macdIndicator2.getValue(38).quote, 3), -0.004);
     });
 
     test(

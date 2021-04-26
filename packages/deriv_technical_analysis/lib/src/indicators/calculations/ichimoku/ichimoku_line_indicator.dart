@@ -7,19 +7,19 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
   IchimokuLineIndicator(
     IndicatorDataInput input, {
     int period,
-  })  : lowestValueIndicator =
+  })  : _lowestValueIndicator =
             LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
-        highestValueIndicator =
+        _highestValueIndicator =
             HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
         super(input);
 
-  final LowestValueIndicator<T> lowestValueIndicator;
-  final HighestValueIndicator<T> highestValueIndicator;
+  final LowestValueIndicator<T> _lowestValueIndicator;
+  final HighestValueIndicator<T> _highestValueIndicator;
 
   @override
   T calculate(int index) {
-    final double lineQuote = (highestValueIndicator.getValue(index).quote +
-            lowestValueIndicator.getValue(index).quote) /
+    final double lineQuote = (_highestValueIndicator.getValue(index).quote +
+            _lowestValueIndicator.getValue(index).quote) /
         2;
     return createResult(index: index, quote: lineQuote);
   }
@@ -27,14 +27,14 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
   @override
   void copyValuesFrom(covariant IchimokuLineIndicator<T> other) {
     super.copyValuesFrom(other);
-    highestValueIndicator.copyValuesFrom(other.highestValueIndicator);
-    lowestValueIndicator.copyValuesFrom(other.lowestValueIndicator);
+    _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
+    _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);
   }
 
   @override
   void invalidate(int index) {
-    highestValueIndicator.invalidate(index);
-    lowestValueIndicator.invalidate(index);
+    _highestValueIndicator.invalidate(index);
+    _lowestValueIndicator.invalidate(index);
     super.invalidate(index);
   }
 }
