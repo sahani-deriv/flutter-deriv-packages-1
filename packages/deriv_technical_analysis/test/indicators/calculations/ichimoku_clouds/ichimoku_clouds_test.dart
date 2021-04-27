@@ -6,9 +6,9 @@ import '../../mock_models.dart';
 
 void main() {
   group('Ichimoku Cloud Test', () {
-    List<MockTick> ticks;
-    IchimokuConversionLineIndicator<MockResult> conversionLineIndicator;
-    IchimokuBaseLineIndicator<MockResult> baseLineIndicator;
+    late List<MockTick> ticks;
+    late IchimokuConversionLineIndicator<MockResult> conversionLineIndicator;
+    late IchimokuBaseLineIndicator<MockResult> baseLineIndicator;
 
     setUpAll(() {
       ticks = const <MockOHLC>[
