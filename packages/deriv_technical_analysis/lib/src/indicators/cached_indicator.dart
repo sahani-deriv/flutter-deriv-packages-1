@@ -48,7 +48,13 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     _growResultsForIndex(index);
 
     if (results[index].quote.isInfinite) {
-      results[index] = calculate(index);
+      final T result = calculate(index);
+      if (!result.quote.isInfinite) {
+        results[index] = result;
+      } else {
+        // Avoid falling into a loop, if by any chance an indicator calculates a value as `double.infinity`.
+        results[index] = createResult(quote: double.nan, index: index);
+      }
     }
 
     if (index > lastResultIndex) {
