@@ -9,9 +9,11 @@ import 'indicator.dart';
 abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
   CachedIndicator(IndicatorDataInput input)
-      : results = List<T?>.generate(input.entries.length, (_) => null),
+      : results = List<T>.empty(growable: true),
         lastResultIndex = 0,
-        super(input);
+        super(input) {
+    _growResultsForIndex(entries.length - 1);
+  }
 
   /// Initializes from another [Indicator]
   CachedIndicator.fromIndicator(Indicator<T> indicator) : this(indicator.input);
@@ -22,7 +24,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   // TODO(NA): Can be overridden on those indicators that can calculate
   //  results for their entire list at once in a more optimal way.
   /// Calculates indicator's result for all [entries] and caches them.
-  List<T?> calculateValues() {
+  List<T> calculateValues() {
     for (int i = 0; i < entries.length; i++) {
       getValue(i);
     }
@@ -39,13 +41,13 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   }
 
   /// List of cached result.
-  final List<T?> results;
+  final List<T> results;
 
   @override
   T getValue(int index) {
     _growResultsForIndex(index);
 
-    if (results[index] == null) {
+    if (results[index].quote.isInfinite) {
       results[index] = calculate(index);
     }
 
@@ -53,7 +55,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
       lastResultIndex = index;
     }
 
-    return results[index]!;
+    return results[index];
   }
 
   /// Grows the results list with null elements to cover the given [index].
@@ -63,8 +65,10 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     final int oldResultsCount = results.length;
 
     if (index > oldResultsCount - 1) {
-      results.addAll(
-          List<T?>.filled(index - oldResultsCount + 1, null, growable: false));
+      results.addAll(List<T>.filled(
+        index - oldResultsCount + 1,
+        createResult(quote: double.infinity, index: index),
+      ));
     }
 
     return results.length - oldResultsCount;
@@ -78,7 +82,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Invalidates a calculated indicator value for [index]
   void invalidate(int index) {
     _growResultsForIndex(index);
-    results[index] = null;
+    results[index] = createResult(quote: double.infinity, index: index);
   }
 
   /// Recalculates indicator's value for the give [index] and caches it.
