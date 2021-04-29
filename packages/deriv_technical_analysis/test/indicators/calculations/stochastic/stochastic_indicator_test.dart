@@ -133,7 +133,7 @@ void main() {
 
       // Calculated result for index 20 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(28).quote, 2), 35.81);
-      expect(roundDouble(indicator1.getValue(4).quote, 4), 83.891);
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 49.36);
     });
   });
 }

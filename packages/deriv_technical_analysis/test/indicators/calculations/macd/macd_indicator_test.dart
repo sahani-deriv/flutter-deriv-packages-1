@@ -117,20 +117,32 @@ void main() {
     test(
         'Signal Moving Average Convergance Divergence Indicator copyValuesFrom and refreshValueFor should work fine.',
         () {
-      final SignalMACDIndicator<MockResult> signalMACDIndicatorrWithNewData =
+      final SignalMACDIndicator<MockResult> indicator1 =
           SignalMACDIndicator<MockResult>.fromIndicator(macdIndicator);
 
-      expect(roundDouble(signalMACDIndicatorrWithNewData.getValue(38).quote, 4),
-          -0.0014);
-      ticks.add(const MockTick(epoch: 40, quote: 82.152));
+      expect(roundDouble(indicator1.getValue(38).quote, 4), -0.0014);
 
-      signalMACDIndicatorrWithNewData.refreshValueFor(39);
+      // define a new input by Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockTick(epoch: 40, quote: 82.152));
 
-      expect(roundDouble(signalMACDIndicatorrWithNewData.getValue(39).quote, 4),
-          -0.002);
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
+      final SignalMACDIndicator<MockResult> indicator2 =
+          SignalMACDIndicator<MockResult>.fromIndicator(
+              MACDIndicator<MockResult>.fromIndicator(
+                  CloseValueIndicator<MockResult>(MockInput(ticks2))))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(38);
 
-      signalMACDIndicator.copyValuesFrom(signalMACDIndicatorrWithNewData);
-      expect(roundDouble(signalMACDIndicator.getValue(39).quote, 4), -0.002);
+      // Their result in index 36 should be the same since we've copied the result.
+      expect(indicator1.getValue(37).quote, indicator2.getValue(37).quote);
+
+      // Calculated result for index 57 is different because the last data is changed.
+      expect(roundDouble(indicator1.getValue(38).quote, 3), -0.001);
+      expect(roundDouble(indicator2.getValue(38).quote, 3), -0.002);
     });
 
     test(

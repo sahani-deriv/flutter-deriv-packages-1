@@ -8,7 +8,6 @@ import '../mock_models.dart';
 void main() {
   group('Detrended Price Oscillator', () {
     List<MockTick> ticks;
-    DPOIndicator<MockResult> dpoIndicator;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 22.27),
@@ -102,13 +101,14 @@ void main() {
         MockTick(epoch: 88, quote: 22.40),
         MockTick(epoch: 89, quote: 22.17),
       ];
-      dpoIndicator = DPOIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks)),
-          period: 9);
     });
 
     test('Detrended Price Oscillator should calculates the correct results',
         () {
+      final DPOIndicator<MockResult> dpoIndicator = DPOIndicator<MockResult>(
+          CloseValueIndicator<MockResult>(MockInput(ticks)),
+          period: 9);
+
       expect(roundDouble(dpoIndicator.getValue(9).quote, 4), 0.112);
       expect(roundDouble(dpoIndicator.getValue(10).quote, 4), -0.02);
       expect(roundDouble(dpoIndicator.getValue(11).quote, 4), 0.2114);
