@@ -145,7 +145,7 @@ void main() {
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(19);
 
-      // Their result in index 19 should be the same since we've copied the result.
+      // Their result in index 18 should be the same since we've copied the result.
       expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
 
       // Calculated result for index 19 is different because the last candle is changed.

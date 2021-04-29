@@ -109,7 +109,7 @@ void main() {
       expect(
           macdIndicator1.getValue(36).quote, macdIndicator2.getValue(36).quote);
 
-      // Calculated result for index 57 is different because the last data is changed.
+      // Calculated result for index 38 is different because the last data is changed.
       expect(roundDouble(macdIndicator1.getValue(38).quote, 3), -0.001);
       expect(roundDouble(macdIndicator2.getValue(38).quote, 3), -0.004);
     });
@@ -137,10 +137,10 @@ void main() {
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(38);
 
-      // Their result in index 36 should be the same since we've copied the result.
+      // Their result in index 37 should be the same since we've copied the result.
       expect(indicator1.getValue(37).quote, indicator2.getValue(37).quote);
 
-      // Calculated result for index 57 is different because the last data is changed.
+      // Calculated result for index 38 is different because the last data is changed.
       expect(roundDouble(indicator1.getValue(38).quote, 3), -0.001);
       expect(roundDouble(indicator2.getValue(38).quote, 3), -0.002);
     });

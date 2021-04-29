@@ -97,12 +97,12 @@ void main() {
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(28);
 
-      // Their result in index 3 should be the same since we've copied the result.
+      // Their result in index 27 should be the same since we've copied the result.
       expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
 
-      // Calculated result for index 20 is different because the last data is changed.
+      // Calculated result for index 28 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(28).quote, 2), 26.26);
-      expect(roundDouble(indicator1.getValue(4).quote, 4), 100);
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 66.91);
     });
 
     test(
@@ -128,10 +128,10 @@ void main() {
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(28);
 
-      // Their result in index 3 should be the same since we've copied the result.
+      // Their result in index 27 should be the same since we've copied the result.
       expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
 
-      // Calculated result for index 20 is different because the last data is changed.
+      // Calculated result for index 28 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(28).quote, 2), 35.81);
       expect(roundDouble(indicator1.getValue(28).quote, 2), 49.36);
     });

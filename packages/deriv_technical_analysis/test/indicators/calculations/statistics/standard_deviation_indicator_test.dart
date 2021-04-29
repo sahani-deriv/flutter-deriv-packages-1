@@ -1,6 +1,5 @@
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/open_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/statistics/standard_deviation_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -68,7 +67,7 @@ void main() {
       // Their result in index 3 should be the same since we've copied the result.
       expect(indicator2.getValue(3).quote, indicator1.getValue(3).quote);
 
-      // Calculated result for index 20 is different because the last data is changed.
+      // Calculated result for index 4 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(4).quote, 4), 3.7316);
       expect(roundDouble(indicator1.getValue(4).quote, 4), 3.8185);
     });

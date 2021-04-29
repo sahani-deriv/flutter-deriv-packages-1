@@ -136,10 +136,10 @@ void main() {
         ..copyValuesFrom(indicator1)
         ..refreshValueFor(89);
 
-      // Their result in index 3 should be the same since we've copied the result.
+      // Their result in index 88 should be the same since we've copied the result.
       expect(indicator1.getValue(88).quote, indicator2.getValue(88).quote);
 
-      // Calculated result for index 4 is different because the last data is changed.
+      // Calculated result for index 89 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(89).quote, 2), -1.8);
       expect(roundDouble(indicator1.getValue(89).quote, 2), -1.0);
     });

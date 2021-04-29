@@ -153,7 +153,7 @@ void main() {
       expect(roundDouble(pcb2.getValue(20).quote, 4), 0.0148);
 
       pcb.copyValuesFrom(pcb2);
-      // Their result in index 20 should be the same since we've copied the result.
+      // Their result in index 19 should be the same since we've copied the result.
       expect(pcb.getValue(19).quote, pcb2.getValue(19).quote);
     });
 
@@ -183,10 +183,10 @@ void main() {
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(19);
 
-      // Their result in index 19 should be the same since we've copied the result.
+      // Their result in index 18 should be the same since we've copied the result.
       expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
 
-      // Calculated result for index 20 is different because the last data is changed.
+      // Calculated result for index 19 is different because the last data is changed.
       expect(roundDouble(indicator2.getValue(19).quote, 4), 1.0);
     });
   });
