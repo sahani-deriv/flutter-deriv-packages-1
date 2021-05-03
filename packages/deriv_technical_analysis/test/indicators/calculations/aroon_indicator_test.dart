@@ -174,11 +174,11 @@ void main() {
               MockInput(candles2),
               period: 5);
 
-      // Their result in index 19 should be the same since we've copied the result.
+      // Their result in index 19 should be the same.
       expect(aroonOscillatorIndicator2.getValue(19).quote, -80);
       expect(aroonOscillatorIndicator1.getValue(19).quote, -80);
 
-      // add aa data to input list
+      // add a data to input list
       candles2.add(const MockOHLC(20, 171.75, 162.52, 175.56, 165.36));
 
       // Refreshing to calculate the last value
@@ -190,7 +190,8 @@ void main() {
       // Copying values of indicator2 into 1
       aroonOscillatorIndicator1.copyValuesFrom(aroonOscillatorIndicator2);
 
-      // Calculated result for index 20 is different because the last data is changed.
+      // Calculated result for index 20 should be same because we copied
+      // indicator2 into 1
       expect(aroonOscillatorIndicator1.getValue(20).quote, -60);
     });
   });
