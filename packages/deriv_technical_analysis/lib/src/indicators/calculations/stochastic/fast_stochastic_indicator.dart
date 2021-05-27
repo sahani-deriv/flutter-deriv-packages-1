@@ -33,4 +33,18 @@ class FastStochasticIndicator<T extends IndicatorResult>
 
     return createResult(index: index, quote: kPercent);
   }
+
+  @override
+  void copyValuesFrom(covariant FastStochasticIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
+    _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _highestValueIndicator.invalidate(index);
+    _lowestValueIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }
