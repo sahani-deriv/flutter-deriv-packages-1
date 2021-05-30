@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mock_models.dart';
 
 void main() {
-  group('William\'s R indicator', () {
-    test('description', () {
+  group('Williams R indicator', () {
+    test('Williams R indicators calculates the result correctly.', () {
       const List<MockOHLC> ticks = <MockOHLC>[
         MockOHLC(1, 44.98, 45.05, 45.17, 44.96),
         MockOHLC(2, 45.05, 45.10, 45.15, 44.99),
