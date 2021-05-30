@@ -25,14 +25,14 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         );
 
   WilliamsRIndicator._(
-    this._closePriceIndicator,
+    this._closeValueIndicator,
     this.period,
-    HighValueIndicator<T> highPriceIndicator,
-    LowValueIndicator<T> lowPriceIndicator,
+    HighValueIndicator<T> highValueIndicator,
+    LowValueIndicator<T> lowValueIndicator,
     this.multiplier,
-  )   : _highestHigh = HighestValueIndicator<T>(highPriceIndicator, period),
-        _lowestLow = LowestValueIndicator<T>(lowPriceIndicator, period),
-        super.fromIndicator(_closePriceIndicator);
+  )   : _highestHigh = HighestValueIndicator<T>(highValueIndicator, period),
+        _lowestLow = LowestValueIndicator<T>(lowValueIndicator, period),
+        super.fromIndicator(_closeValueIndicator);
 
   /// Period.
   final int period;
@@ -40,19 +40,19 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Multiplier, usually is -100.
   final double multiplier;
 
-  final Indicator<T> _closePriceIndicator;
+  final Indicator<T> _closeValueIndicator;
   final HighestValueIndicator<T> _highestHigh;
   final LowestValueIndicator<T> _lowestLow;
 
   @override
   T calculate(int index) {
-    final double highestHighPrice = _highestHigh.getValue(index).quote;
-    final double lowestLowPrice = _lowestLow.getValue(index).quote;
+    final double highestValue = _highestHigh.getValue(index).quote;
+    final double lowestLowValue = _lowestLow.getValue(index).quote;
 
     return createResult(
       index: index,
-      quote: ((highestHighPrice - _closePriceIndicator.getValue(index).quote) /
-              (highestHighPrice - lowestLowPrice)) *
+      quote: ((highestValue - _closeValueIndicator.getValue(index).quote) /
+              (highestValue - lowestLowValue)) *
           multiplier,
     );
   }
