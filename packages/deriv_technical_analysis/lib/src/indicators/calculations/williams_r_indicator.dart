@@ -56,4 +56,18 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
           multiplier,
     );
   }
+
+  @override
+  void copyValuesFrom(covariant WilliamsRIndicator<T> other) {
+    _highestHigh.copyValuesFrom(other._highestHigh);
+    _lowestLow.copyValuesFrom(other._lowestLow);
+    super.copyValuesFrom(other);
+  }
+
+  @override
+  void invalidate(int index) {
+    _highestHigh.invalidate(index);
+    _lowestLow.invalidate(index);
+    super.invalidate(index);
+  }
 }
