@@ -1,5 +1,5 @@
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/fast_percent_k_stochastic_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -46,8 +46,9 @@ void main() {
     test(
         'Fast Stochastic Indicator should caclulate the correct results from the given ticks.',
         () {
-      final FastStochasticIndicator<MockResult> fastStochasticIndicator =
-          FastStochasticIndicator<MockResult>(MockInput(ticks));
+      final FastPercentKStochasticIndicator<MockResult>
+          fastStochasticIndicator =
+          FastPercentKStochasticIndicator<MockResult>(MockInput(ticks));
 
       expect(roundDouble(fastStochasticIndicator.getValue(21).quote, 2), 69.98);
       expect(roundDouble(fastStochasticIndicator.getValue(22).quote, 2), 73.09);
@@ -78,8 +79,8 @@ void main() {
         'Fast Stochastic Indicator copyValuesFrom and refreshValueFor should works fine.',
         () {
       // defining 1st indicator
-      final FastStochasticIndicator<MockResult> indicator1 =
-          FastStochasticIndicator<MockResult>(MockInput(ticks));
+      final FastPercentKStochasticIndicator<MockResult> indicator1 =
+          FastPercentKStochasticIndicator<MockResult>(MockInput(ticks));
 
       // Checking the values of first indicator
       expect(roundDouble(indicator1.getValue(28).quote, 2), 66.91);
@@ -92,8 +93,8 @@ void main() {
       // Defining 2nd indicator with the new updated data
       // Copying values of indicator1 into 2
       // Refreshing last value because its candle is changed
-      final FastStochasticIndicator<MockResult> indicator2 =
-          FastStochasticIndicator<MockResult>(MockInput(ticks2))
+      final FastPercentKStochasticIndicator<MockResult> indicator2 =
+          FastPercentKStochasticIndicator<MockResult>(MockInput(ticks2))
             ..copyValuesFrom(indicator1)
             ..refreshValueFor(28);
 

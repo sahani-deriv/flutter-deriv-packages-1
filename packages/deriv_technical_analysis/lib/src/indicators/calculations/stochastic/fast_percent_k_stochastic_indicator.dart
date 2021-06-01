@@ -1,11 +1,20 @@
-import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/high_value_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/low_value_indicator.dart';
+import 'package:deriv_technical_analysis/src/models/data_input.dart';
+import 'package:deriv_technical_analysis/src/models/models.dart';
+
+import '../../cached_indicator.dart';
+import '../../indicator.dart';
+import '../highest_value_indicator.dart';
+import '../lowest_value_indicator.dart';
 
 /// %K also known as the Fast Stochastic Indicator.
 /// A stochastic oscillator is a popular technical indicator for generating overbought and oversold signals.
-class FastStochasticIndicator<T extends IndicatorResult>
+class FastPercentKStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes a Fast Stochastic Indicator.
-  FastStochasticIndicator(
+  FastPercentKStochasticIndicator(
     IndicatorDataInput input, {
     Indicator<T> indicator,
     int period = 14,
@@ -35,7 +44,7 @@ class FastStochasticIndicator<T extends IndicatorResult>
   }
 
   @override
-  void copyValuesFrom(covariant FastStochasticIndicator<T> other) {
+  void copyValuesFrom(covariant FastPercentKStochasticIndicator<T> other) {
     super.copyValuesFrom(other);
     _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
     _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);
