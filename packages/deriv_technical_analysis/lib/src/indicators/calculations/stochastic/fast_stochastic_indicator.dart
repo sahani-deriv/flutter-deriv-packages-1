@@ -1,13 +1,13 @@
 import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 
-/// %K also known as the Fast Stochatic Indicator.
+/// %K also known as the Fast Stochastic Indicator.
 /// A stochastic oscillator is a popular technical indicator for generating overbought and oversold signals.
 class FastStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initiaizes a Fast Stochatic Indicator.
+  /// Initializes a Fast Stochastic Indicator.
   FastStochasticIndicator(
     IndicatorDataInput input, {
-    CloseValueIndicator<T> indicator,
+    Indicator<T> indicator,
     int period = 14,
   })  : _indicator = indicator ?? CloseValueIndicator<T>(input),
         _highestValueIndicator =

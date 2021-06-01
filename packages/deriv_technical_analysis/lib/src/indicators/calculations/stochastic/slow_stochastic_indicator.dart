@@ -1,11 +1,11 @@
 import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
 
-/// %D also known as the Slow Stochatic Indicator.
+/// %D also known as the Slow Stochastic Indicator.
 /// It is a 3-period moving average of %K.
 class SlowStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initializes a Slow Stochatic Indicator.
+  /// Initializes a Slow Stochastic Indicator.
   SlowStochasticIndicator(
     IndicatorDataInput input, {
     FastStochasticIndicator<T> stochasticIndicator,
