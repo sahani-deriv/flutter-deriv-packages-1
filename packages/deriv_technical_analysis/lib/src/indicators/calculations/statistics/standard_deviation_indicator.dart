@@ -7,7 +7,8 @@ import '../../indicator.dart';
 import 'variance_indicator.dart';
 
 /// Standard deviation indicator.
-class StandardDeviationIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
+class StandardDeviationIndicator<T extends IndicatorResult>
+    extends CachedIndicator<T> {
   /// Initializes
   ///
   /// [indicator] the indicator to calculates SD on.
@@ -23,4 +24,16 @@ class StandardDeviationIndicator<T extends IndicatorResult> extends CachedIndica
         index: index,
         quote: sqrt(_variance.getValue(index).quote),
       );
+
+  @override
+  void copyValuesFrom(covariant StandardDeviationIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _variance.copyValuesFrom(other._variance);
+  }
+
+  @override
+  void invalidate(int index) {
+    _variance.invalidate(index);
+    super.invalidate(index);
+  }
 }

@@ -1,6 +1,8 @@
-import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/macd/macd_histogram_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/macd/macd_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/macd/signal_macd_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_models.dart';
@@ -67,7 +69,7 @@ void main() {
 
   group(' Moving Average Convergance Divergence Indicator tests', () {
     test(
-        ' Moving Average Convergance Divergence Indicator shoud calculate the correct result from the given closed value indicator ticks.',
+        ' Moving Average Convergance Divergence Indicator should calculate the correct result from the given closed value indicator ticks.',
         () {
       expect(roundDouble(macdIndicator.getValue(36).quote, 4), -0.0012);
       expect(roundDouble(macdIndicator.getValue(37).quote, 4), -0.0011);
@@ -75,11 +77,72 @@ void main() {
     });
 
     test(
-        'Signal Moving Average Convergance Divergence Indicator shoud calculate the correct result from the given closed value indicator ticks.',
+        'Signal Moving Average Convergance Divergence Indicator should calculate the correct result from the given closed value indicator ticks.',
         () {
       expect(roundDouble(signalMACDIndicator.getValue(36).quote, 4), -0.0016);
       expect(roundDouble(signalMACDIndicator.getValue(37).quote, 4), -0.0015);
       expect(roundDouble(signalMACDIndicator.getValue(38).quote, 4), -0.0014);
+    });
+    test(
+        ' Moving Average Convergance Divergence Indicator copyValuesFrom and refreshValueFor should works fine',
+        () {
+      final MACDIndicator<MockResult> macdIndicator1 =
+          MACDIndicator<MockResult>.fromIndicator(closeValueIndicator);
+
+      expect(roundDouble(macdIndicator1.getValue(36).quote, 4), -0.0012);
+
+      // define a new input by Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockTick(epoch: 38, quote: 82.152));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
+      final MACDIndicator<MockResult> macdIndicator2 =
+          MACDIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator(MockInput(ticks2)))
+            ..copyValuesFrom(macdIndicator1)
+            ..refreshValueFor(38);
+
+      // Their result in index 36 should be the same since we've copied the result.
+      expect(
+          macdIndicator1.getValue(36).quote, macdIndicator2.getValue(36).quote);
+
+      // Calculated result for index 38 is different because the last data is changed.
+      expect(roundDouble(macdIndicator1.getValue(38).quote, 3), -0.001);
+      expect(roundDouble(macdIndicator2.getValue(38).quote, 3), -0.004);
+    });
+
+    test(
+        'Signal Moving Average Convergance Divergence Indicator copyValuesFrom and refreshValueFor should work fine.',
+        () {
+      final SignalMACDIndicator<MockResult> indicator1 =
+          SignalMACDIndicator<MockResult>.fromIndicator(macdIndicator);
+
+      expect(roundDouble(indicator1.getValue(38).quote, 4), -0.0014);
+
+      // define a new input by Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockTick(epoch: 40, quote: 82.152));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
+      final SignalMACDIndicator<MockResult> indicator2 =
+          SignalMACDIndicator<MockResult>.fromIndicator(
+              MACDIndicator<MockResult>.fromIndicator(
+                  CloseValueIndicator<MockResult>(MockInput(ticks2))))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(38);
+
+      // Their result in index 37 should be the same since we've copied the result.
+      expect(indicator1.getValue(37).quote, indicator2.getValue(37).quote);
+
+      // Calculated result for index 38 is different because the last data is changed.
+      expect(roundDouble(indicator1.getValue(38).quote, 3), -0.001);
+      expect(roundDouble(indicator2.getValue(38).quote, 3), -0.002);
     });
 
     test(

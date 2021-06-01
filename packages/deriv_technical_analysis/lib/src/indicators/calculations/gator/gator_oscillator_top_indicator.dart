@@ -1,0 +1,62 @@
+import 'dart:math';
+
+import 'package:deriv_technical_analysis/src/indicators/cached_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/mma_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/indicator.dart';
+import 'package:deriv_technical_analysis/src/models/models.dart';
+
+/// Gator Oscillator Indicator Top bar
+class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
+    extends CachedIndicator<T> {
+  /// Initializes
+  GatorOscillatorIndicatorTopBar(
+    Indicator<T> indicator, {
+    int jawPeriod = 13,
+    int jawOffset = 8,
+    int teethPeriod = 8,
+    int teethOffset = 5,
+  }) : this.fromIndicators(
+          MMAIndicator<T>(indicator, jawPeriod),
+          MMAIndicator<T>(indicator, teethPeriod),
+          jawOffset: jawOffset,
+          teethOffset: teethOffset,
+        );
+
+  /// Initializes GatorBottomBar from [lipsIndicator] and [teethIndicator].
+  GatorOscillatorIndicatorTopBar.fromIndicators(
+    this.jawIndicator,
+    this.teethIndicator, {
+    this.jawOffset = 3,
+    this.teethOffset = 5,
+  }) : super.fromIndicator(jawIndicator);
+
+  /// Jaw (lower smoothed moving average) indicator
+  final MMAIndicator<T> jawIndicator;
+
+  /// Offset of jaw
+  final int jawOffset;
+
+  /// Offset of teeth
+  final int teethOffset;
+
+  /// Teeth (upper smoothed moving average) indicator
+  final MMAIndicator<T> teethIndicator;
+
+  @override
+  T calculate(int index) {
+    final int maxOffset = max(jawOffset, teethOffset);
+
+    if (index < maxOffset) {
+      return createResult(index: index, quote: double.nan);
+    }
+
+    final T jawIndicatorValue = jawIndicator.getValue(index - jawOffset);
+    final T teethIndicatorValue = teethIndicator.getValue(index - teethOffset);
+
+    // GatorTopBar = Absolute value of(Jaw - Teeth)
+    final double quote =
+        (jawIndicatorValue.quote - teethIndicatorValue.quote).abs();
+
+    return createResult(index: index, quote: quote);
+  }
+}

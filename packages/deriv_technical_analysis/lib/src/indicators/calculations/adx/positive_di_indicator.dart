@@ -25,4 +25,18 @@ class PositiveDIIndicator<T extends IndicatorResult>
                 _atrIndicator.getValue(index).quote) *
             100,
       );
+
+  @override
+  void copyValuesFrom(covariant PositiveDIIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _avgPositiveDMIndicator.copyValuesFrom(other._avgPositiveDMIndicator);
+    _atrIndicator.copyValuesFrom(other._atrIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _avgPositiveDMIndicator.invalidate(index);
+    _atrIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }

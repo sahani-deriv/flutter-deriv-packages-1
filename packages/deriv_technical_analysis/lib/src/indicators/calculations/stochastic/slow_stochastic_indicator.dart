@@ -19,4 +19,17 @@ class SlowStochasticIndicator<T extends IndicatorResult>
   T calculate(int index) => createResult(
       index: index,
       quote: _stochasticOscillatorDIndicator.getValue(index).quote);
+
+  @override
+  void copyValuesFrom(covariant SlowStochasticIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _stochasticOscillatorDIndicator
+        .copyValuesFrom(other._stochasticOscillatorDIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _stochasticOscillatorDIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }
