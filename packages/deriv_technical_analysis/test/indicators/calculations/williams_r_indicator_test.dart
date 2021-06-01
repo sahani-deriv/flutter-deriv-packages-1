@@ -22,16 +22,16 @@ void main() {
         MockOHLC(13, 45.58, 45.55, 45.61, 45.39),
       ];
 
-      final WilliamsRIndicator<MockResult> williamsRIndicator =
+      final WilliamsRIndicator<MockResult> wr =
           WilliamsRIndicator<MockResult>(MockInput(ticks), 5);
 
-      expect(williamsRIndicator.getValue(4).quote, -47.22222222222277);
-      expect(williamsRIndicator.getValue(5).quote, -54.54545454545474);
-      expect(williamsRIndicator.getValue(6).quote, -78.57142857142784);
-      expect(williamsRIndicator.getValue(7).quote, -47.619047619048104);
-      expect(williamsRIndicator.getValue(8).quote, -25.000000000001776);
-      expect(williamsRIndicator.getValue(9).quote, -5.263157894737629);
-      expect(williamsRIndicator.getValue(10).quote, -13.953488372093561);
+      expect(wr.getValue(4).quote, closeTo(-47.22222222, 0.000001));
+      expect(wr.getValue(5).quote, closeTo(-54.54545454, 0.000001));
+      expect(wr.getValue(6).quote, closeTo(-78.57142857, 0.000001));
+      expect(wr.getValue(7).quote, closeTo(-47.61904761, 0.000001));
+      expect(wr.getValue(8).quote, closeTo(-25.00000000, 0.000001));
+      expect(wr.getValue(9).quote, closeTo(-5.26315789, 0.000001));
+      expect(wr.getValue(10).quote, closeTo(-13.95348837, 0.000001));
     });
   });
 }
