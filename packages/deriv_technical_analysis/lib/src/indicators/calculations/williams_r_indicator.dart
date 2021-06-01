@@ -2,7 +2,6 @@ import 'package:deriv_technical_analysis/src/models/data_input.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
 import '../cached_indicator.dart';
-import '../indicator.dart';
 import 'helper_indicators/close_value_inidicator.dart';
 import 'helper_indicators/high_value_indicator.dart';
 import 'helper_indicators/low_value_indicator.dart';
@@ -40,7 +39,7 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Multiplier, usually is -100.
   final double multiplier;
 
-  final Indicator<T> _closeValueIndicator;
+  final CloseValueIndicator<T> _closeValueIndicator;
   final HighestValueIndicator<T> _highestHigh;
   final LowestValueIndicator<T> _lowestLow;
 
@@ -59,15 +58,15 @@ class WilliamsRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   void copyValuesFrom(covariant WilliamsRIndicator<T> other) {
+    super.copyValuesFrom(other);
     _highestHigh.copyValuesFrom(other._highestHigh);
     _lowestLow.copyValuesFrom(other._lowestLow);
-    super.copyValuesFrom(other);
   }
 
   @override
   void invalidate(int index) {
+    super.invalidate(index);
     _highestHigh.invalidate(index);
     _lowestLow.invalidate(index);
-    super.invalidate(index);
   }
 }
