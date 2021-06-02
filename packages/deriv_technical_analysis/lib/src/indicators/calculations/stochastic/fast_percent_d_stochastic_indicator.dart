@@ -11,10 +11,10 @@ class FastPercentDStochasticIndicator<T extends IndicatorResult>
     FastPercentKStochasticIndicator<T> fastPercentKStochasticIndicator, {
     int period = 2,
   })  : _smaIndicator =
-            EMAIndicator<T>(fastPercentKStochasticIndicator, period),
+            SMAIndicator<T>(fastPercentKStochasticIndicator, period),
         super.fromIndicator(fastPercentKStochasticIndicator);
 
-  final EMAIndicator<T> _smaIndicator;
+  final SMAIndicator<T> _smaIndicator;
 
   @override
   T calculate(int index) =>
