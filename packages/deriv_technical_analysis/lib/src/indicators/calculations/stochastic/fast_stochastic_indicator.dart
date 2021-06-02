@@ -11,19 +11,29 @@ import '../lowest_value_indicator.dart';
 
 /// %K also known as the Fast Stochastic Indicator.
 /// A stochastic oscillator is a popular technical indicator for generating overbought and oversold signals.
-class FastPercentKStochasticIndicator<T extends IndicatorResult>
+class FastStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
-  /// Initializes a Fast Stochastic Indicator.
-  FastPercentKStochasticIndicator(
+  /// Initializes a Fast Stochastic Indicator from the given [IndicatorDataInput].
+  FastStochasticIndicator(
     IndicatorDataInput input, {
-    Indicator<T> indicator,
     int period = 14,
-  })  : _indicator = indicator ?? CloseValueIndicator<T>(input),
+  })  : _indicator = CloseValueIndicator<T>(input),
         _highestValueIndicator =
             HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
         _lowestValueIndicator =
             LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
         super(input);
+
+  /// Initializes a Fast Stochastic Indicator from the given [Indicator].
+  FastStochasticIndicator.fromIndicator(
+    Indicator<T> indicator, {
+    int period = 14,
+  })  : _indicator = indicator,
+        _highestValueIndicator = HighestValueIndicator<T>(
+            HighValueIndicator<T>(indicator.input), period),
+        _lowestValueIndicator = LowestValueIndicator<T>(
+            LowValueIndicator<T>(indicator.input), period),
+        super.fromIndicator(indicator);
 
   final HighestValueIndicator<T> _highestValueIndicator;
   final LowestValueIndicator<T> _lowestValueIndicator;
@@ -44,7 +54,7 @@ class FastPercentKStochasticIndicator<T extends IndicatorResult>
   }
 
   @override
-  void copyValuesFrom(covariant FastPercentKStochasticIndicator<T> other) {
+  void copyValuesFrom(covariant FastStochasticIndicator<T> other) {
     super.copyValuesFrom(other);
     _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
     _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);

@@ -2,14 +2,15 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
 import '../../cached_indicator.dart';
+import 'fast_stochastic_indicator.dart';
 
 /// A stochastic oscillator is a popular technical indicator for generating overbought and oversold signals.
-class FastPercentDStochasticIndicator<T extends IndicatorResult>
+class SmoothedFastStochasticIndicator<T extends IndicatorResult>
     extends CachedIndicator<T> {
   /// Initializes a Fast Stochastic Indicator.
-  FastPercentDStochasticIndicator(
-    FastPercentKStochasticIndicator<T> fastPercentKStochasticIndicator, {
-    int period = 2,
+  SmoothedFastStochasticIndicator(
+    FastStochasticIndicator<T> fastPercentKStochasticIndicator, {
+    int period = 3,
   })  : _smaIndicator =
             SMAIndicator<T>(fastPercentKStochasticIndicator, period),
         super.fromIndicator(fastPercentKStochasticIndicator);
@@ -21,7 +22,7 @@ class FastPercentDStochasticIndicator<T extends IndicatorResult>
       createResult(index: index, quote: _smaIndicator.getValue(index).quote);
 
   @override
-  void copyValuesFrom(covariant FastPercentDStochasticIndicator<T> other) {
+  void copyValuesFrom(covariant SmoothedFastStochasticIndicator<T> other) {
     super.copyValuesFrom(other);
     _smaIndicator.copyValuesFrom(other._smaIndicator);
   }
