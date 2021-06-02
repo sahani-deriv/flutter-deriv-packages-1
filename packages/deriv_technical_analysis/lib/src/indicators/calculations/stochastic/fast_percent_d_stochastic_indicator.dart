@@ -9,7 +9,7 @@ class FastPercentDStochasticIndicator<T extends IndicatorResult>
   /// Initializes a Fast Stochastic Indicator.
   FastPercentDStochasticIndicator(
     FastPercentKStochasticIndicator<T> fastPercentKStochasticIndicator, {
-    int period = 3,
+    int period = 2,
   })  : _smaIndicator =
             SMAIndicator<T>(fastPercentKStochasticIndicator, period),
         super.fromIndicator(fastPercentKStochasticIndicator);
