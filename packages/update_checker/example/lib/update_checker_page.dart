@@ -8,20 +8,18 @@ class UpdateCheckerPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('UpdateChecker'),
         ),
-        body: UpdateCheckerProvider(
-          Builder(
-            builder: (BuildContext context) => UpdateChecker(
-              onNotAvailable: () => _showSnackBar(
-                context,
-                'Update not available',
-              ),
-              onAvailable: (_) => _showSnackBar(
-                context,
-                'Update available!',
-              ),
-              child: const Center(
-                child: Text('The result will be shown in the snack bar'),
-              ),
+        body: Builder(
+          builder: (BuildContext context) => UpdateChecker(
+            onNotAvailable: () => _showSnackBar(
+              context,
+              'Update not available',
+            ),
+            onAvailable: (_) => _showSnackBar(
+              context,
+              'Update available!',
+            ),
+            child: const Center(
+              child: Text('The result will be shown in the snack bar'),
             ),
           ),
         ),

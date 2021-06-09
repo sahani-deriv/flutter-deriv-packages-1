@@ -5,7 +5,7 @@ import '../../update_checker.dart';
 
 /// UpdateChecker is a higher-order widget that helps with handling the
 /// UpdateBloc states without dealing with bloc itself.
-class UpdateChecker extends StatelessWidget {
+class UpdateChecker extends StatefulWidget {
   /// Checks for update availability as soon as renders and will call the proper
   /// callback based on the UpdateState.
   const UpdateChecker({
@@ -28,21 +28,35 @@ class UpdateChecker extends StatelessWidget {
   final Function(UpdateState)? onStateChange;
 
   @override
-  Widget build(BuildContext context) {
-    BlocProvider.of<UpdateBloc>(context).add(UpdateFetchEvent());
+  _UpdateCheckerState createState() => _UpdateCheckerState();
+}
 
-    return BlocListener<UpdateBloc, UpdateState>(
-      listener: (_, UpdateState state) => _setListener(state),
-      child: child ?? const SizedBox.shrink(),
-    );
+class _UpdateCheckerState extends State<UpdateChecker> {
+  final UpdateBloc _updateBloc = UpdateBloc();
+
+  @override
+  void initState() {
+    super.initState();
+    _updateBloc.add(UpdateFetchEvent());
   }
 
+  @override
+  Widget build(BuildContext context) => BlocProvider<UpdateBloc>(
+        create: (_) => _updateBloc,
+        child: Builder(
+          builder: (_) => BlocListener<UpdateBloc, UpdateState>(
+            listener: (_, UpdateState state) => _setListener(state),
+            child: widget.child ?? const SizedBox.shrink(),
+          ),
+        ),
+      );
+
   void _setListener(UpdateState state) {
-    onStateChange?.call(state);
+    widget.onStateChange?.call(state);
     if (state is UpdateNotAvailableState) {
-      onNotAvailable?.call();
+      widget.onNotAvailable?.call();
     } else if (state is UpdateAvailableState) {
-      onAvailable?.call(state.updateInfo);
+      widget.onAvailable?.call(state.updateInfo);
     }
   }
 }

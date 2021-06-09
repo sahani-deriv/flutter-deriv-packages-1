@@ -22,7 +22,7 @@ class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final Indicator<T> minValueIndicator;
 
   /// Indicator to calculate Aroon Down on.
-  final Indicator<T> _lowestValueIndicator;
+  final LowestValueIndicator<T> _lowestValueIndicator;
 
   /// The period
   final int _period;
@@ -41,5 +41,17 @@ class AroonDownIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     return createResult(
         index: index, quote: ((_period - nbBars) / _period) * 100);
+  }
+
+  @override
+  void copyValuesFrom(covariant AroonDownIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+    _lowestValueIndicator.invalidate(index);
   }
 }
