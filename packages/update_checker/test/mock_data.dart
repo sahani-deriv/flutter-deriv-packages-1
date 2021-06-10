@@ -4,13 +4,13 @@ const int optionalBuildNumber = 10;
 const int mandatoryBuildNumber = 5;
 
 final Map<String, dynamic> rawData = <String, dynamic>{
-  'optional': {
+  'optional': <String, dynamic>{
     'buildnumber': optionalBuildNumber,
     'changelog': 'something new!',
     'changelogs': null,
     'url': 'https://app.deriv.com/dl',
   },
-  'mandatory': {
+  'mandatory': <String, dynamic>{
     'buildnumber': mandatoryBuildNumber,
     'changelog': 'something new!',
     'changelogs': null,

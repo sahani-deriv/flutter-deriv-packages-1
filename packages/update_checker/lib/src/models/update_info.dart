@@ -5,18 +5,18 @@ class UpdateInfo extends Equatable {
   /// Update info contains information about the update such as the optionality
   /// and changes for the update.
   const UpdateInfo({
-    this.isOptional,
-    this.buildNumber,
+    required this.buildNumber,
+    required this.isOptional,
     this.changelog,
     this.changelogs,
     this.url,
   });
 
   /// [isOptional] determines if the update is optional or not.
-  final bool? isOptional;
+  final bool isOptional;
 
   /// [buildNumber] represents the minimum build required.
-  final int? buildNumber;
+  final int buildNumber;
 
   /// [changelog] contains changelog information for the latest release.
   final String? changelog;

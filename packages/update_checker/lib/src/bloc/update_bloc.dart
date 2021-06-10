@@ -49,7 +49,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     }
 
     // checks if failed to get app build number and return
-    final int appBuildNumber = await packageInfoRepository.getAppBuildNumber();
+    final num appBuildNumber = await packageInfoRepository.getAppBuildNumber();
     if (appBuildNumber <= 0) {
       return null;
     }
