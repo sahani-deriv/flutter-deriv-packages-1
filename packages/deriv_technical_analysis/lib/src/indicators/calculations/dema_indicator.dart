@@ -27,4 +27,20 @@ class DEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         index: index,
         quote: (_ema.getValue(index).quote * 2) - _emaEma.getValue(index).quote,
       );
+
+  @override
+  void copyValuesFrom(covariant DEMAIndicator<T> other) {
+    super.copyValuesFrom(other);
+
+    _ema.copyValuesFrom(other._ema);
+    _emaEma.copyValuesFrom(other._emaEma);
+  }
+
+  @override
+  void invalidate(int index) {
+    super.invalidate(index);
+
+    _ema.invalidate(index);
+    _emaEma.invalidate(index);
+  }
 }
