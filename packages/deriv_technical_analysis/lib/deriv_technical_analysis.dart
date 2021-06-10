@@ -11,6 +11,7 @@ export 'src/indicators/calculations/bollinger/bollinger_band_width_indicator.dar
 export 'src/indicators/calculations/bollinger/bollinger_bands_lower_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.dart';
 export 'src/indicators/calculations/bullish_inidicator.dart';
+export 'src/indicators/calculations/commodity_channel_index_indicator.dart';
 export 'src/indicators/calculations/dema_indicator.dart';
 export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.dart';
 export 'src/indicators/calculations/dpo_indicator.dart';
