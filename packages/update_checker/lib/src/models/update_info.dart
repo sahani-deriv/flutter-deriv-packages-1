@@ -16,7 +16,7 @@ class UpdateInfo extends Equatable {
   final bool isOptional;
 
   /// [buildNumber] represents the minimum build required.
-  final int buildNumber;
+  final num buildNumber;
 
   /// [changelog] contains changelog information for the latest release.
   final String? changelog;

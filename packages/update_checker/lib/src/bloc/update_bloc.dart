@@ -54,8 +54,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
       return null;
     }
 
-    final int optionalBuildNumber = rawData['optional']['buildnumber'];
-    final int mandatoryBuildNumber = rawData['mandatory']['buildnumber'];
+    final num optionalBuildNumber = rawData['optional']['buildnumber'];
+    final num mandatoryBuildNumber = rawData['mandatory']['buildnumber'];
     final bool isMandatory = appBuildNumber < mandatoryBuildNumber;
     final bool isOptional = appBuildNumber < optionalBuildNumber &&
         appBuildNumber >= mandatoryBuildNumber;
@@ -75,7 +75,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   UpdateInfo _createUpdate(
     dynamic rawUpdateInfo,
     bool isOptional,
-    int buildNumber,
+    num buildNumber,
   ) {
     final String? rawChangelogs = rawUpdateInfo['changelogs']?.toString();
     final Map<String, dynamic>? changelogs = rawChangelogs != null
