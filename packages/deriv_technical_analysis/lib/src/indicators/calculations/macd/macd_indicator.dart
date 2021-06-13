@@ -2,8 +2,21 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 
 /// Moving Average Convergence Divergence Indicator.
 class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
-  // / Creates a  Moving average convergence divergence indicator from a given indicator,
-  /// with short term ema set to `12` periods and long term ema set to `26` periods as default.
+  /// Creates a  Moving average convergence divergence indicator from the given [input]],
+  /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
+  MACDIndicator(
+    IndicatorDataInput input, {
+    int fastMAPeriod = 12,
+    int slowMAPeriod = 26,
+  })  : assert(fastMAPeriod < slowMAPeriod),
+        _shortTermEma =
+            EMAIndicator<T>(CloseValueIndicator<T>(input), fastMAPeriod),
+        _longTermEma =
+            EMAIndicator<T>(CloseValueIndicator<T>(input), slowMAPeriod),
+        super(input);
+
+  /// Creates a  Moving average convergence divergence indicator from a given [indicator],
+  /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
   MACDIndicator.fromIndicator(
     Indicator<T> indicator, {
     int fastMAPeriod = 12,
