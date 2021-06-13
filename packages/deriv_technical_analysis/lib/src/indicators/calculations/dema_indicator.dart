@@ -19,7 +19,6 @@ class DEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final int period;
 
   final EMAIndicator<T> _ema;
-
   final EMAIndicator<T> _emaEma;
 
   @override
