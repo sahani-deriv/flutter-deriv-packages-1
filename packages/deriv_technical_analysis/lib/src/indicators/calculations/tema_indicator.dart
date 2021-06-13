@@ -7,7 +7,7 @@ import 'ema_indicator.dart';
 /// Triple EMA indicator.
 class TEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
-  TEMAIndicator(Indicator<T> indicator, int period)
+  TEMAIndicator(Indicator<T> indicator, {int period = 10})
       : this._first(indicator, EMAIndicator<T>(indicator, period), period);
 
   TEMAIndicator._first(Indicator<T> indicator, EMAIndicator<T> ema, int period)

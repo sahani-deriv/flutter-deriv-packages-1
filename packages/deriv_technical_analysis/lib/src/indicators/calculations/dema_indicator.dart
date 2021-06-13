@@ -7,7 +7,7 @@ import 'ema_indicator.dart';
 /// Double EMA indicator.
 class DEMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes.
-  DEMAIndicator(Indicator<T> indicator, int period)
+  DEMAIndicator(Indicator<T> indicator, {int period = 10})
       : this._(indicator, EMAIndicator<T>(indicator, period), period);
 
   DEMAIndicator._(Indicator<T> indicator, EMAIndicator<T> ema, this.period)
