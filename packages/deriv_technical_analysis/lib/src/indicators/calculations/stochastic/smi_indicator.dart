@@ -50,7 +50,7 @@ class SMIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
             LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
           ),
-          doubleSmoothingPeriod,
+          smoothingPeriod,
         ),
         super(input);
 
