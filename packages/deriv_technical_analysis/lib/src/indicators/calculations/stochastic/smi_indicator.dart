@@ -1,6 +1,6 @@
 import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/difference_indicator.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/median_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/mean_indicator.dart';
 
 /// Stochastic Momentum Index indicator
 ///
@@ -34,7 +34,7 @@ class SMIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final DifferenceIndicator<T> diff = DifferenceIndicator<T>(hh, ll);
     final DifferenceIndicator<T> rDiff = DifferenceIndicator<T>(
       CloseValueIndicator<T>(input),
-      MedianIndicator<T>(hh, ll),
+      MeanIndicator<T>(hh, ll),
     );
 
     return SMIIndicator<T>._(

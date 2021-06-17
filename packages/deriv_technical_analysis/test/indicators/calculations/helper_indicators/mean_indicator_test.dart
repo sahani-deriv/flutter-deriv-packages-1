@@ -1,11 +1,11 @@
 import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
-import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/median_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/mean_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_models.dart';
 
 void main() {
-  group('Median indicator', () {
+  group('Mean indicator', () {
     test('Calculates the results correctly', () {
       const List<MockOHLC> ticks = <MockOHLC>[
         MockOHLC(0, 168.28, 169.64, 169.87, 167.15),
@@ -19,7 +19,7 @@ void main() {
       ];
 
       final IndicatorDataInput input = MockInput(ticks);
-      final MedianIndicator<MockResult> mi = MedianIndicator<MockResult>(
+      final MeanIndicator<MockResult> mi = MeanIndicator<MockResult>(
         CloseValueIndicator<MockResult>(input),
         OpenValueIndicator<MockResult>(input),
       );

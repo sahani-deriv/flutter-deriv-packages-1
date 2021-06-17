@@ -2,10 +2,10 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 
 import '../../indicator.dart';
 
-/// A helper indicator to calculate median value of two indicators.
-class MedianIndicator<T extends IndicatorResult> extends Indicator<T> {
+/// A helper indicator to calculate Mean value of two indicators.
+class MeanIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
-  MedianIndicator(this.indicator1, this.indicator2) : super(indicator1.input);
+  MeanIndicator(this.indicator1, this.indicator2) : super(indicator1.input);
 
   /// First Indicator.
   final Indicator<T> indicator1;
