@@ -8,12 +8,11 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     IndicatorDataInput input, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-  })  : assert(fastMAPeriod < slowMAPeriod),
-        _shortTermEma =
-            EMAIndicator<T>(CloseValueIndicator<T>(input), fastMAPeriod),
-        _longTermEma =
-            EMAIndicator<T>(CloseValueIndicator<T>(input), slowMAPeriod),
-        super(input);
+  }) : this.fromIndicator(
+          CloseValueIndicator<T>(input),
+          fastMAPeriod: fastMAPeriod,
+          slowMAPeriod: slowMAPeriod,
+        );
 
   /// Creates a  Moving average convergence divergence indicator from a given [indicator],
   /// with short term ema set to `12` periods([fastMAPeriod]) and long term ema set to `26` periods([slowMAPeriod]) as default.
