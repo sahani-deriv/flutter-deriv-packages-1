@@ -4,74 +4,64 @@ import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indi
 
 /// Stochastic Momentum Index indicator
 ///
-/// C = (High MAX + Low MIN) / 2
-/// H = CLOSE – C
+/// p = period, sp = smoothingPeriod, dsp = doubleSmoothingPeriod
+/// ll = LowestLow, hh = HighestHigh
 ///
-/// HS1 = EMA(H, 3)
-/// HS2 = EMA(HS1, 3)
+/// ll = lowest (low, p)
+/// hh = highest (high, p)
+/// diff = hh - ll
+/// rDiff = close - (hh+ll) / 2
 ///
-/// DHL1 = EMA(High MAX – Low MIN, 3)
-/// DHL2 = EMA(High MAX – Low MIN, 3)
+/// avgRel = ema(ema(rDiff, sp), dsp)
+/// avgDiff = ema(ema(diff, sp), dsp)
 ///
-/// SMI = (HS2 / DHL2) * 100
+/// SMI = avgDiff != 0 ? (avgRel/(avgDiff / 2) * 100) : 0
+///
+/// https://in.tradingview.com/script/HLbqdCku-Stochastic-Momentum-Index-SMI/
 class SMIIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
-  /// Initializes
-  SMIIndicator(
+  /// Initializes and returns an instance of [SMIIndicator].
+  factory SMIIndicator(
     IndicatorDataInput input, {
     int period = 10,
     int smoothingPeriod = 3,
     int doubleSmoothingPeriod = 3,
-  }) : this._(
-          input,
-          EMAIndicator<T>(
-            DifferenceIndicator<T>(
-              CloseValueIndicator<T>(input),
-              MedianIndicator<T>(
-                HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
-                LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
-              ),
-            ),
-            smoothingPeriod,
-          ),
-          period: period,
-          smoothingPeriod: smoothingPeriod,
-          doubleSmoothingPeriod: doubleSmoothingPeriod,
-        );
+  }) {
+    final LowestValueIndicator<T> ll =
+        LowestValueIndicator<T>(LowValueIndicator<T>(input), period);
+    final HighestValueIndicator<T> hh =
+        HighestValueIndicator<T>(HighValueIndicator<T>(input), period);
 
-  SMIIndicator._(
-    IndicatorDataInput input,
-    EMAIndicator<T> hs1, {
-    this.period,
-    this.smoothingPeriod,
-    this.doubleSmoothingPeriod,
-  })  : _hs2 = EMAIndicator<T>(hs1, doubleSmoothingPeriod),
-        _dhl1 = EMAIndicator<T>(
-          DifferenceIndicator<T>(
-            HighestValueIndicator<T>(HighValueIndicator<T>(input), period),
-            LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
-          ),
-          period,
-        ),
-        super(input);
+    final DifferenceIndicator<T> diff = DifferenceIndicator<T>(hh, ll);
+    final DifferenceIndicator<T> rDiff = DifferenceIndicator<T>(
+      CloseValueIndicator<T>(input),
+      MedianIndicator<T>(hh, ll),
+    );
 
-  /// The SMI period.
-  final int period;
+    return SMIIndicator<T>._(
+      input,
+      EMAIndicator<T>(
+        EMAIndicator<T>(rDiff, smoothingPeriod),
+        doubleSmoothingPeriod,
+      ),
+      EMAIndicator<T>(
+        EMAIndicator<T>(diff, smoothingPeriod),
+        doubleSmoothingPeriod,
+      ),
+    );
+  }
 
-  /// Smoothing period
-  final int smoothingPeriod;
+  SMIIndicator._(IndicatorDataInput input, this._avgRel, this._avgDiff)
+      : super(input);
 
-  /// Double Smoothing period
-  final int doubleSmoothingPeriod;
-
-  final EMAIndicator<T> _hs2;
-  final EMAIndicator<T> _dhl1;
+  final EMAIndicator<T> _avgDiff;
+  final EMAIndicator<T> _avgRel;
 
   @override
   T calculate(int index) {
-    final double _dhl2 = _dhl1.getValue(index).quote / 2;
-    return createResult(
-      index: index,
-      quote: (_hs2.getValue(index).quote / _dhl2) * 100,
-    );
+    final double avgRel = _avgRel.getValue(index).quote;
+    final double avgDiff = _avgDiff.getValue(index).quote;
+    final double smi = avgDiff != 0 ? (avgRel / (avgDiff / 2) * 100) : 0;
+
+    return createResult(index: index, quote: smi);
   }
 }
