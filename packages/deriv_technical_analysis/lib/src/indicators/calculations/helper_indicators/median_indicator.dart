@@ -7,10 +7,10 @@ class MedianIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
   MedianIndicator(this.indicator1, this.indicator2) : super(indicator1.input);
 
-  /// Indicator
+  /// First Indicator.
   final Indicator<T> indicator1;
 
-  /// Indicator
+  /// Second Indicator.
   final Indicator<T> indicator2;
 
   @override

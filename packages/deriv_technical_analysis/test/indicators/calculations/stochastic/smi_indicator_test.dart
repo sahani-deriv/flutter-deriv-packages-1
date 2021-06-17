@@ -5,7 +5,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Stochastic Momentum Index', () {
-    test('Calculates the correct result', () {
+    test('Calculates the correct results', () {
       // Data from app.deriv.com:
       const List<MockOHLC> ticks = <MockOHLC>[
         MockOHLC(0, 908.677, 908.771, 908.808, 908.632),
@@ -27,7 +27,6 @@ void main() {
         MockOHLC(16, 909.305, 909.242, 909.350, 909.223),
         MockOHLC(17, 909.223, 908.869, 909.223, 908.837),
         MockOHLC(18, 908.864, 908.885, 909.001, 908.836),
-
         MockOHLC(19, 908.869, 908.923, 908.961, 908.820),
         MockOHLC(20, 908.927, 908.879, 908.946, 908.768),
         MockOHLC(21, 908.873, 909.059, 909.060, 908.873),
