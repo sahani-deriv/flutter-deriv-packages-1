@@ -1,4 +1,3 @@
-import 'package:deriv_technical_analysis/src/indicators/calculations/sma_indicator.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
 import '../cached_indicator.dart';
@@ -7,16 +6,17 @@ import '../indicator.dart';
 /// Detrended Price Oscillator Indicator
 class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
-  DPOIndicator(this.indicator, {int period = 14})
-      : _sma = SMAIndicator<T>(indicator, period),
+  DPOIndicator(this.indicator, CachedIndicator<T> maIndicator,
+      {int period = 14})
+      : _maIndicator = maIndicator,
         _timeShift = (period ~/ 2) + 1,
         super.fromIndicator(indicator);
 
-  /// Indicator to calculate SMA on
+  /// Indicator to calculate the MA on
   final Indicator<T> indicator;
 
-  /// Simple Moving Average Indicator
-  final SMAIndicator<T> _sma;
+  /// Moving Average Indicator
+  final CachedIndicator<T> _maIndicator;
 
   /// time shift of sma
   final int _timeShift;
@@ -25,17 +25,17 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   T calculate(int index) => createResult(
       index: index,
       quote: indicator.getValue(index).quote -
-          _sma.getValue(index - _timeShift).quote);
+          _maIndicator.getValue(index - _timeShift).quote);
 
   @override
   void copyValuesFrom(covariant DPOIndicator<T> other) {
     super.copyValuesFrom(other);
-    _sma.copyValuesFrom(other._sma);
+    _maIndicator.copyValuesFrom(other._maIndicator);
   }
 
   @override
   void invalidate(int index) {
-    _sma.invalidate(index);
+    _maIndicator.invalidate(index);
     super.invalidate(index);
   }
 }
