@@ -1,3 +1,4 @@
+import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/dpo_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/close_value_inidicator.dart';
@@ -8,6 +9,8 @@ import '../mock_models.dart';
 void main() {
   group('Detrended Price Oscillator', () {
     List<MockTick> ticks;
+    CloseValueIndicator<MockResult> closeValueIndicator;
+    SMAIndicator<MockResult> smaIndicator;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 22.27),
@@ -101,12 +104,15 @@ void main() {
         MockTick(epoch: 88, quote: 22.40),
         MockTick(epoch: 89, quote: 22.17),
       ];
+      closeValueIndicator = CloseValueIndicator<MockResult>(MockInput(ticks));
+      smaIndicator = SMAIndicator<MockResult>(closeValueIndicator, 14);
     });
-
     test('Detrended Price Oscillator should calculates the correct results',
         () {
       final DPOIndicator<MockResult> dpoIndicator = DPOIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks)),
+          closeValueIndicator,
+          (Indicator<MockResult> closeValueIndicator) =>
+              SMAIndicator<MockResult>(closeValueIndicator, 9),
           period: 9);
 
       expect(roundDouble(dpoIndicator.getValue(9).quote, 4), 0.112);
@@ -120,7 +126,9 @@ void main() {
         () {
       // defining 1st indicator
       final DPOIndicator<MockResult> indicator1 = DPOIndicator<MockResult>(
-        CloseValueIndicator<MockResult>(MockInput(ticks)),
+        closeValueIndicator,
+        (Indicator<MockResult> closeValueIndicator) =>
+            SMAIndicator<MockResult>(closeValueIndicator, 14),
       );
 
       // define a new input Changing the last data
@@ -132,7 +140,12 @@ void main() {
       // Copying values of indicator1 into 2
       // Refreshing last value because its candle is changed
       final DPOIndicator<MockResult> indicator2 = DPOIndicator<MockResult>(
-          CloseValueIndicator<MockResult>(MockInput(ticks2)))
+        CloseValueIndicator<MockResult>(
+          MockInput(ticks2),
+        ),
+        (Indicator<MockResult> closeValueIndicator) =>
+            SMAIndicator<MockResult>(closeValueIndicator, 14),
+      )
         ..copyValuesFrom(indicator1)
         ..refreshValueFor(89);
 

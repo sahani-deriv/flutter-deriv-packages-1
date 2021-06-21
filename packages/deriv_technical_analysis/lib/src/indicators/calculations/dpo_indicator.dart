@@ -1,31 +1,54 @@
+import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/difference_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/previous_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
+import 'package:flutter/material.dart';
 
 import '../cached_indicator.dart';
 import '../indicator.dart';
 
 /// Detrended Price Oscillator Indicator
 class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
-  /// Initializes
-  DPOIndicator(this.indicator, CachedIndicator<T> maIndicator,
-      {int period = 14})
-      : _maIndicator = maIndicator,
-        _timeShift = (period ~/ 2) + 1,
+  /// Initializes From the given [Indicator].
+  factory DPOIndicator(
+    Indicator<T> indicator,
+    CachedIndicator<T> Function(Indicator<T> indicator) getMAIndicator, {
+    int period = 14,
+  }) =>
+      DPOIndicator<T>._(
+        indicator,
+        getMAIndicator(indicator),
+        timeShift: period ~/ 2 + 1,
+      );
+
+  DPOIndicator._(
+    this.indicator,
+    this._maIndicator, {
+    @required int timeShift,
+  })  : _indicatorMinusPreviousSMAIndicator = DifferenceIndicator<T>(
+          indicator,
+          PreviousValueIndicator<T>.fromIndicator(
+            _maIndicator,
+            period: timeShift,
+          ),
+        ),
         super.fromIndicator(indicator);
 
-  /// Indicator to calculate the MA on
+  /// Indicator to calculate the MA on.
+  ///
+  /// Default is a `CloseValueIndicator`.
   final Indicator<T> indicator;
 
-  /// Moving Average Indicator
+  /// Moving Average Indicator.
   final CachedIndicator<T> _maIndicator;
 
-  /// time shift of sma
-  final int _timeShift;
+  final DifferenceIndicator<T> _indicatorMinusPreviousSMAIndicator;
 
   @override
   T calculate(int index) => createResult(
-      index: index,
-      quote: indicator.getValue(index).quote -
-          _maIndicator.getValue(index - _timeShift).quote);
+        index: index,
+        quote: _indicatorMinusPreviousSMAIndicator.getValue(index).quote,
+      );
 
   @override
   void copyValuesFrom(covariant DPOIndicator<T> other) {
