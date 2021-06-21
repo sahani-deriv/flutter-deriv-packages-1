@@ -10,7 +10,8 @@ import '../indicator.dart';
 class TRIMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   TRIMAIndicator(Indicator<T> inputIndicator, int inputPeriod)
-      : period=(inputPeriod/2).ceil(), indicator = SMAIndicator<T>(inputIndicator, (inputPeriod / 2).ceil()),
+      : period = (inputPeriod / 2).ceil(),
+        indicator = SMAIndicator<T>(inputIndicator, (inputPeriod / 2).ceil()),
         super.fromIndicator(inputIndicator);
 
   /// the period
@@ -26,7 +27,7 @@ class TRIMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       sum += indicator.getValue(i).quote;
     }
 
-    final int realBarCount = min(period, index + 1) ;
+    final int realBarCount = min(period, index + 1);
 
     return createResult(index: index, quote: sum / realBarCount);
   }
