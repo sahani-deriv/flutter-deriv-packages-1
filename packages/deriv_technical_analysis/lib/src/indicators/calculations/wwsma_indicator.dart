@@ -24,6 +24,6 @@ class WWSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         : getValue(index - 1).quote +
             (indicator.getValue(index).quote - getValue(index - 1).quote) /
                 realPeriod;
-    return createResult(index: index, quote: result / realPeriod);
+    return createResult(index: index, quote: result);
   }
 }
