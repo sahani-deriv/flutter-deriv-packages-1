@@ -14,24 +14,35 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     Indicator<T> indicator,
     CachedIndicator<T> Function(Indicator<T> indicator) getMAIndicator, {
     int period = 14,
+    bool isCentered = true,
   }) =>
       DPOIndicator<T>._(
         indicator,
         getMAIndicator(indicator),
         timeShift: period ~/ 2 + 1,
+        isCentered: isCentered,
       );
 
   DPOIndicator._(
     this.indicator,
     this._maIndicator, {
     @required int timeShift,
-  })  : _indicatorMinusPreviousSMAIndicator = DifferenceIndicator<T>(
-          PreviousValueIndicator<T>.fromIndicator(
-            _maIndicator,
-            period: timeShift,
-          ),
-          indicator,
-        ),
+    bool isCentered = true,
+  })  : _indicatorMinusPreviousSMAIndicator = isCentered
+            ? DifferenceIndicator<T>(
+                PreviousValueIndicator<T>.fromIndicator(
+                  _maIndicator,
+                  period: timeShift,
+                ),
+                indicator,
+              )
+            : DifferenceIndicator<T>(
+                _maIndicator,
+                PreviousValueIndicator<T>.fromIndicator(
+                  indicator,
+                  period: timeShift,
+                ),
+              ),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate the MA on.
