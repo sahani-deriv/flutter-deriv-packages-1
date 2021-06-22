@@ -30,18 +30,18 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     bool isCentered = true,
   })  : _indicatorMinusPreviousSMAIndicator = isCentered
             ? DifferenceIndicator<T>(
-                PreviousValueIndicator<T>.fromIndicator(
-                  _maIndicator,
-                  period: timeShift,
-                ),
-                indicator,
-              )
-            : DifferenceIndicator<T>(
                 _maIndicator,
                 PreviousValueIndicator<T>.fromIndicator(
                   indicator,
                   period: timeShift,
                 ),
+              )
+            : DifferenceIndicator<T>(
+                PreviousValueIndicator<T>.fromIndicator(
+                  _maIndicator,
+                  period: timeShift,
+                ),
+                indicator,
               ),
         super.fromIndicator(indicator);
 
