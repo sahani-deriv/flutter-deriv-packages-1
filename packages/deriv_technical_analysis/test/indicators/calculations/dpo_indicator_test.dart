@@ -10,7 +10,6 @@ void main() {
   group('Detrended Price Oscillator', () {
     List<MockTick> ticks;
     CloseValueIndicator<MockResult> closeValueIndicator;
-    SMAIndicator<MockResult> smaIndicator;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 22.27),
@@ -105,20 +104,38 @@ void main() {
         MockTick(epoch: 89, quote: 22.17),
       ];
       closeValueIndicator = CloseValueIndicator<MockResult>(MockInput(ticks));
-      smaIndicator = SMAIndicator<MockResult>(closeValueIndicator, 14);
     });
-    test('Detrended Price Oscillator should calculates the correct results',
+    test(
+        'Detrended Price Oscillator should calculates the correct results when isCentered is true',
         () {
       final DPOIndicator<MockResult> dpoIndicator = DPOIndicator<MockResult>(
-          closeValueIndicator,
-          (Indicator<MockResult> closeValueIndicator) =>
-              SMAIndicator<MockResult>(closeValueIndicator, 9),
-          period: 9);
+        closeValueIndicator,
+        (Indicator<MockResult> closeValueIndicator) =>
+            SMAIndicator<MockResult>(closeValueIndicator, 9),
+        period: 9,
+      );
 
-      expect(roundDouble(dpoIndicator.getValue(9).quote, 4), 0.112);
-      expect(roundDouble(dpoIndicator.getValue(10).quote, 4), -0.02);
-      expect(roundDouble(dpoIndicator.getValue(11).quote, 4), 0.2114);
-      expect(roundDouble(dpoIndicator.getValue(12).quote, 4), 0.17);
+      expect(roundDouble(dpoIndicator.getValue(9).quote, 4), 0.0356);
+      expect(roundDouble(dpoIndicator.getValue(10).quote, 4), 0.0811);
+      expect(roundDouble(dpoIndicator.getValue(11).quote, 4), 0.0156);
+      expect(roundDouble(dpoIndicator.getValue(12).quote, 4), -0.1611);
+    });
+
+    test(
+        'Detrended Price Oscillator should calculates the correct results when isCentered is False',
+        () {
+      final DPOIndicator<MockResult> dpoIndicator = DPOIndicator<MockResult>(
+        closeValueIndicator,
+        (Indicator<MockResult> closeValueIndicator) =>
+            SMAIndicator<MockResult>(closeValueIndicator, 9),
+        isCentered: false,
+        period: 9,
+      );
+
+      expect(roundDouble(dpoIndicator.getValue(9).quote, 4), -0.112);
+      expect(roundDouble(dpoIndicator.getValue(10).quote, 4), 0.02);
+      expect(roundDouble(dpoIndicator.getValue(11).quote, 4), -0.2114);
+      expect(roundDouble(dpoIndicator.getValue(12).quote, 4), -0.17);
     });
 
     test(
@@ -129,6 +146,7 @@ void main() {
         closeValueIndicator,
         (Indicator<MockResult> closeValueIndicator) =>
             SMAIndicator<MockResult>(closeValueIndicator, 14),
+        isCentered: false,
       );
 
       // define a new input Changing the last data
@@ -145,6 +163,7 @@ void main() {
         ),
         (Indicator<MockResult> closeValueIndicator) =>
             SMAIndicator<MockResult>(closeValueIndicator, 14),
+        isCentered: false,
       )
         ..copyValuesFrom(indicator1)
         ..refreshValueFor(89);
@@ -153,8 +172,8 @@ void main() {
       expect(indicator1.getValue(88).quote, indicator2.getValue(88).quote);
 
       // Calculated result for index 89 is different because the last data is changed.
-      expect(roundDouble(indicator2.getValue(89).quote, 2), -1.8);
-      expect(roundDouble(indicator1.getValue(89).quote, 2), -1.0);
+      expect(roundDouble(indicator2.getValue(89).quote, 2), 1.8);
+      expect(roundDouble(indicator1.getValue(89).quote, 2), 1.0);
     });
   });
 }
