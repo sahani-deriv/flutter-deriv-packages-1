@@ -27,8 +27,8 @@ class TRIMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       sum += indicator.getValue(i).quote;
     }
 
-    final int realBarCount = min(period, index + 1);
+    final int realPeriod = min(period, index + 1);
 
-    return createResult(index: index, quote: sum / realBarCount);
+    return createResult(index: index, quote: sum / realPeriod);
   }
 }
