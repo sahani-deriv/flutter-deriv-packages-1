@@ -19,11 +19,15 @@ class WWSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   @override
   T calculate(int index) {
     final int realPeriod = min(period, index + 1);
-    final double result = index == 0
-        ? indicator.getValue(index).quote / realPeriod
-        : getValue(index - 1).quote +
-            (indicator.getValue(index).quote - getValue(index - 1).quote) /
-                realPeriod;
+
+    if (index == 0) {
+      return createResult(
+          index: index, quote: indicator.getValue(index).quote / realPeriod);
+    }
+
+    final double result = getValue(index - 1).quote +
+        (indicator.getValue(index).quote - getValue(index - 1).quote) /
+            realPeriod;
     return createResult(index: index, quote: result);
   }
 }
