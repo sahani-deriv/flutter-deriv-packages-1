@@ -26,11 +26,11 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     this._maIndicator, {
     @required int timeShift,
   })  : _indicatorMinusPreviousSMAIndicator = DifferenceIndicator<T>(
-          indicator,
           PreviousValueIndicator<T>.fromIndicator(
             _maIndicator,
             period: timeShift,
           ),
+          indicator,
         ),
         super.fromIndicator(indicator);
 
