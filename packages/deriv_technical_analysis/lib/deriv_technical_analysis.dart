@@ -59,6 +59,7 @@ export 'src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/williams_r_indicator.dart';
 export 'src/indicators/calculations/wma_indicator.dart';
+export 'src/indicators/calculations/lsma_indicator.dart';
 export 'src/indicators/calculations/zelma_indicator.dart';
 export 'src/indicators/calculations/zigzag_indicator.dart';
 export 'src/indicators/indicator.dart';
