@@ -1,3 +1,4 @@
+import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
 import '../cached_indicator.dart';
@@ -6,41 +7,34 @@ import '../indicator.dart';
 /// Least Square Moving Average indicator
 class LSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
-  LSMAIndicator(this.indicator, this.period) : super.fromIndicator(indicator);
+  LSMAIndicator(this.indicator, this.period)
+      : wma = WMAIndicator<T>(indicator, period),
+        sma = SMAIndicator<T>(indicator, period),
+        super.fromIndicator(indicator);
 
-  /// Bar count
+  /// Period
   final int period;
 
   /// Indicator
   final Indicator<T> indicator;
 
+  /// Weighted Moving Average
+  final Indicator<T> wma;
+
+  /// Simple Moving Average
+  final Indicator<T> sma;
+
   @override
   T calculate(int index) {
-    if (index == 0) {
-      return indicator.getValue(0);
-    }
-    double value = 0;
-    if (index - period < 0) {
-      for (int i = index + 1; i > 0; i--) {
-        value = value + (i * (indicator.getValue(i - 1).quote));
-      }
-
-      return createResult(
-        index: index,
-        quote: value / (((index + 1) * (index + 2)) / 2),
-      );
-    }
-
-    int actualIndex = index;
-
-    for (int i = period; i > 0; i--) {
-      value = value + (i * (indicator.getValue(actualIndex).quote));
-      actualIndex--;
-    }
-
+    final double result =
+        3 * wma
+            .getValue(index)
+            .quote - 2 * sma
+            .getValue(index)
+            .quote;
     return createResult(
       index: index,
-      quote: value / ((period * (period + 1)) / 6),
+      quote: result,
     );
   }
 }
