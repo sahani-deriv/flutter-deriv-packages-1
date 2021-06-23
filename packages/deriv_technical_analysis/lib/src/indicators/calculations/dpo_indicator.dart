@@ -14,13 +14,12 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     Indicator<T> indicator,
     CachedIndicator<T> Function(Indicator<T> indicator) getMAIndicator, {
     int period = 14,
-    int timeShift,
     bool isCentered = true,
   }) =>
       DPOIndicator<T>._(
         indicator,
         getMAIndicator(indicator),
-        timeShift: timeShift ?? period ~/ 2 + 1,
+        timeShift: period ~/ 2 + 1,
         isCentered: isCentered,
       );
 
