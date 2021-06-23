@@ -26,7 +26,7 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   DPOIndicator._(
     this.indicator,
     this._maIndicator, {
-    @required int timeShift,
+    @required this.timeShift,
     bool isCentered = true,
   })  : _indicatorMinusPreviousSMAIndicator = isCentered
             ? DifferenceIndicator<T>(
@@ -49,6 +49,14 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   /// Default is a `CloseValueIndicator`.
   final Indicator<T> indicator;
+
+  /// The shift value for the `PreviousValueIndicator` to calculate the pervious value of.
+  ///
+  /// It will be calculated this way by using [period]:
+  /// ```dart
+  /// timeShift = period ~/ 2 + 1
+  /// ```
+  final int timeShift;
 
   /// Moving Average Indicator.
   final CachedIndicator<T> _maIndicator;
