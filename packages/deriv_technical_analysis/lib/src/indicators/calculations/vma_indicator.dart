@@ -23,10 +23,14 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   @override
   T calculate(int index) {
     final int realBarCount = min(period, index + 1);
+    double value = 0;
+    if (index > 0) {
+      value = getValue(index - 1).quote;
+    }
     final double result = 2 /
             (1 + realBarCount) *
             indicator.getValue(index).quote *
-            (indicator.getValue(index).quote - getValue(index - 1).quote) +
+            (indicator.getValue(index).quote - value) +
         getValue(index - 1).quote;
     return createResult(index: index, quote: result);
   }
