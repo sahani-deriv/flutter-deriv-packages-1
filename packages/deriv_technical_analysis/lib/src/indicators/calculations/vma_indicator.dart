@@ -26,8 +26,8 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     if (index <= 1) {
       return createResult(index: index, quote: indicator.getValue(index).quote);
     }
-    final int realBarCount = min(period, index + 1);
-    final double factor = 2 / (realBarCount + 1);
+    // final int realBarCount = min(period, index + 1);
+    final double factor = 2 / (period + 1);
     final double result =
         (factor * cmo.getValue(index).quote * indicator.getValue(index).quote) +
             ((1 - factor * cmo.getValue(index).quote) * getValue(1).quote);
