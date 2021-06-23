@@ -31,7 +31,7 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
             (1 + realBarCount) *
             indicator.getValue(index).quote *
             (indicator.getValue(index).quote - value) +
-        getValue(index - 1).quote;
+        value;
     return createResult(index: index, quote: result);
   }
 }
