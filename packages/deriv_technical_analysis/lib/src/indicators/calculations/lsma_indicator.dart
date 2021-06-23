@@ -19,22 +19,32 @@ class LSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final Indicator<T> indicator;
 
   /// Weighted Moving Average
-  final Indicator<T> wma;
+  final CachedIndicator<T> wma;
 
   /// Simple Moving Average
-  final Indicator<T> sma;
+  final CachedIndicator<T> sma;
 
   @override
   T calculate(int index) {
     final double result =
-        3 * wma
-            .getValue(index)
-            .quote - 2 * sma
-            .getValue(index)
-            .quote;
+        3 * wma.getValue(index).quote - 2 * sma.getValue(index).quote;
     return createResult(
       index: index,
       quote: result,
     );
+  }
+
+  @override
+  void copyValuesFrom(covariant LSMAIndicator<T> other) {
+    super.copyValuesFrom(other);
+    sma.copyValuesFrom(other.sma);
+    wma.copyValuesFrom(other.wma);
+  }
+
+  @override
+  void invalidate(int index) {
+    sma.invalidate(index);
+    wma.invalidate(index);
+    super.invalidate(index);
   }
 }
