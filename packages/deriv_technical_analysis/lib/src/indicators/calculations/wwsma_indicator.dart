@@ -10,7 +10,7 @@ class WWSMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   WWSMAIndicator(this.indicator, this.period) : super.fromIndicator(indicator);
 
-  /// Indicator to calculate SMA on
+  /// Indicator to calculate WWSMA on
   final Indicator<T> indicator;
 
   /// Period
