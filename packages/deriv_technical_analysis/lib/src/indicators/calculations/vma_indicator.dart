@@ -29,9 +29,9 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     final double result = 2 /
             (1 + realBarCount) *
-            indicator.getValue(index).quote *
+        cmo.getValue(index).quote *
             (indicator.getValue(index).quote - value) +
         value;
-    return createResult(index: index, quote: result);
+    return createResult(index: index, quote: result/realBarCount);
   }
 }
