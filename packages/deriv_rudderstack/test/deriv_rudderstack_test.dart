@@ -4,7 +4,7 @@ import 'package:deriv_rudderstack/deriv_rudderstack.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('deriv_rudderstack');
-  List<MethodCall> log;
+  late List<MethodCall> log;
 
   const String userId = '999';
   const String token = 'xxx-xxx-xxx';
