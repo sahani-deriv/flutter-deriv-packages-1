@@ -33,11 +33,12 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
 
   /// Copies the result of [other] as its own.
   void copyValuesFrom(covariant CachedIndicator<T> other) {
-    results
-      ..clear()
-      ..addAll(other.results);
-
-    lastResultIndex = other.lastResultIndex;
+    if (!identical(this, other)) {
+      results
+        ..clear()
+        ..addAll(other.results);
+      lastResultIndex = other.lastResultIndex;
+    }
   }
 
   /// List of cached result.

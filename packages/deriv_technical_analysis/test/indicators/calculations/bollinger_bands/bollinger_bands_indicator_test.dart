@@ -11,6 +11,31 @@ import '../../mock_models.dart';
 
 void main() {
   group('BollingerBands Indicator', () {
+    late List<MockTick> ticks;
+    setUpAll(() {
+      ticks = const <MockTick>[
+        MockTick(epoch: 1, quote: 10),
+        MockTick(epoch: 2, quote: 12),
+        MockTick(epoch: 3, quote: 15),
+        MockTick(epoch: 4, quote: 14),
+        MockTick(epoch: 5, quote: 17),
+        MockTick(epoch: 6, quote: 20),
+        MockTick(epoch: 7, quote: 21),
+        MockTick(epoch: 8, quote: 20),
+        MockTick(epoch: 9, quote: 20),
+        MockTick(epoch: 10, quote: 19),
+        MockTick(epoch: 11, quote: 20),
+        MockTick(epoch: 12, quote: 17),
+        MockTick(epoch: 13, quote: 12),
+        MockTick(epoch: 14, quote: 12),
+        MockTick(epoch: 15, quote: 9),
+        MockTick(epoch: 16, quote: 8),
+        MockTick(epoch: 17, quote: 9),
+        MockTick(epoch: 18, quote: 10),
+        MockTick(epoch: 19, quote: 9),
+        MockTick(epoch: 20, quote: 10),
+      ];
+    });
     test('BollingerBandsUpperIndicator calculates the correct result', () {
       const List<MockTick> ticks = <MockTick>[
         MockTick(epoch: 1, quote: 1),
@@ -72,29 +97,6 @@ void main() {
     });
 
     test('Bollinger Percent B calculates the correct result', () {
-      const List<MockTick> ticks = <MockTick>[
-        MockTick(epoch: 1, quote: 10),
-        MockTick(epoch: 2, quote: 12),
-        MockTick(epoch: 3, quote: 15),
-        MockTick(epoch: 4, quote: 14),
-        MockTick(epoch: 5, quote: 17),
-        MockTick(epoch: 6, quote: 20),
-        MockTick(epoch: 7, quote: 21),
-        MockTick(epoch: 8, quote: 20),
-        MockTick(epoch: 9, quote: 20),
-        MockTick(epoch: 10, quote: 19),
-        MockTick(epoch: 11, quote: 20),
-        MockTick(epoch: 12, quote: 17),
-        MockTick(epoch: 13, quote: 12),
-        MockTick(epoch: 14, quote: 12),
-        MockTick(epoch: 15, quote: 9),
-        MockTick(epoch: 16, quote: 8),
-        MockTick(epoch: 17, quote: 9),
-        MockTick(epoch: 18, quote: 10),
-        MockTick(epoch: 19, quote: 9),
-        MockTick(epoch: 20, quote: 10),
-      ];
-
       final Indicator<MockResult> closePrice =
           CloseValueIndicator<MockResult>(MockInput(ticks));
 
@@ -121,6 +123,71 @@ void main() {
       expect(roundDouble(pcb.getValue(17).quote, 4), 0.5737);
       expect(pcb.getValue(18).quote, 0.5);
       expect(roundDouble(pcb.getValue(19).quote, 4), 0.7673);
+    });
+
+    test(
+        'Bollinger Percent B copyValuesFrom and refreshValueFor should works fine',
+        () {
+      final List<MockTick> ticks2 = ticks.toList();
+      final CloseValueIndicator<MockResult> closeValueIndicator =
+          CloseValueIndicator<MockResult>(MockInput(ticks2));
+
+      // defining 1st indicator
+      final PercentBIndicator<MockResult> pcb =
+          PercentBIndicator<MockResult>(closeValueIndicator, 5);
+
+      // defining 2nd indicator
+      final PercentBIndicator<MockResult> pcb2 =
+          PercentBIndicator<MockResult>(closeValueIndicator, 5);
+
+      // Their result should be the same since input data is the same.
+      expect(pcb2.getValue(19).quote, pcb.getValue(19).quote);
+      expect(pcb2.getValue(18).quote, pcb.getValue(18).quote);
+
+      // add new data to this list
+      ticks2.add(const MockTick(epoch: 21, quote: 5));
+
+      // Refreshing last value because we add new data
+      pcb2.refreshValueFor(20);
+
+      expect(roundDouble(pcb2.getValue(20).quote, 4), 0.0148);
+
+      pcb.copyValuesFrom(pcb2);
+      // Their result in index 19 should be the same since we've copied the result.
+      expect(pcb.getValue(19).quote, pcb2.getValue(19).quote);
+    });
+
+    test(
+        'Bollinger Percent B Indicator copyValuesFrom calculates correct result',
+        () {
+      // defining 1st indicator
+      final PercentBIndicator<MockResult> indicator1 =
+          PercentBIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
+
+      // Checking the values of first indicator
+      expect(indicator1.getValue(18).quote, 0.5);
+      expect(roundDouble(indicator1.getValue(19).quote, 4), 0.7673);
+
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(19, 170.75, 160, 172.56, 160));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final PercentBIndicator<MockResult> indicator2 =
+          PercentBIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks2)), 5)
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(19);
+
+      // Their result in index 18 should be the same since we've copied the result.
+      expect(indicator2.getValue(18).quote, indicator1.getValue(18).quote);
+
+      // Calculated result for index 19 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(19).quote, 4), 1.0);
     });
   });
 }

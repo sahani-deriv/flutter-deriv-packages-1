@@ -23,4 +23,18 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
         2;
     return createResult(index: index, quote: lineQuote);
   }
+
+  @override
+  void copyValuesFrom(covariant IchimokuLineIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
+    _lowestValueIndicator.copyValuesFrom(other._lowestValueIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _highestValueIndicator.invalidate(index);
+    _lowestValueIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }

@@ -36,5 +36,40 @@ void main() {
       expect(roundDouble(indicator.getValue(3).quote, 4), 4.1141);
       expect(roundDouble(indicator.getValue(4).quote, 4), 3.8185);
     });
+
+    test(
+        'StandardDeviationIndicator copyValuesFrom and refreshValueFor should work fine',
+        () {
+      // defining 1st indicator
+      final StandardDeviationIndicator<MockResult> indicator1 =
+          StandardDeviationIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks)), 5);
+
+      // Checking the values of first indicator
+      expect(roundDouble(indicator1.getValue(3).quote, 4), 4.1141);
+      expect(roundDouble(indicator1.getValue(4).quote, 4), 3.8185);
+
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC.withNames(
+            epoch: 6, open: 73.21, close: 72.64, high: 76.3, low: 72.31));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final StandardDeviationIndicator<MockResult> indicator2 =
+          StandardDeviationIndicator<MockResult>(
+              CloseValueIndicator<MockResult>(MockInput(ticks2)), 5)
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(4);
+
+      // Their result in index 3 should be the same since we've copied the result.
+      expect(indicator2.getValue(3).quote, indicator1.getValue(3).quote);
+
+      // Calculated result for index 4 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(4).quote, 4), 3.7316);
+      expect(roundDouble(indicator1.getValue(4).quote, 4), 3.8185);
+    });
   });
 }

@@ -1,6 +1,6 @@
-import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/helpers/functions.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
+import 'package:deriv_technical_analysis/src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_models.dart';
@@ -72,6 +72,68 @@ void main() {
       expect(roundDouble(slowStochasticIndicator.getValue(26).quote, 2), 54.23);
       expect(roundDouble(slowStochasticIndicator.getValue(27).quote, 2), 47.36);
       expect(roundDouble(slowStochasticIndicator.getValue(28).quote, 2), 49.36);
+    });
+
+    test(
+        'Fast Stochastic Indicator copyValuesFrom and refreshValueFor should works fine.',
+        () {
+      // defining 1st indicator
+      final FastStochasticIndicator<MockResult> indicator1 =
+          FastStochasticIndicator<MockResult>(MockInput(ticks));
+
+      // Checking the values of first indicator
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 66.91);
+
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final FastStochasticIndicator<MockResult> indicator2 =
+          FastStochasticIndicator<MockResult>(MockInput(ticks2))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(28);
+
+      // Their result in index 27 should be the same since we've copied the result.
+      expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
+
+      // Calculated result for index 28 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(28).quote, 2), 26.26);
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 66.91);
+    });
+
+    test(
+        'Slow Stochastic Indicator copyValuesFrom and refreshValueFor should works fine.',
+        () {
+      // defining 1st indicator
+      final SlowStochasticIndicator<MockResult> indicator1 =
+          SlowStochasticIndicator<MockResult>(MockInput(ticks));
+
+      // Checking the values of first indicator
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 49.36);
+
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(30, 125.69, 126.69, 127.14, 125.49));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final SlowStochasticIndicator<MockResult> indicator2 =
+          SlowStochasticIndicator<MockResult>(MockInput(ticks2))
+            ..copyValuesFrom(indicator1)
+            ..refreshValueFor(28);
+
+      // Their result in index 27 should be the same since we've copied the result.
+      expect(indicator2.getValue(27).quote, indicator1.getValue(27).quote);
+
+      // Calculated result for index 28 is different because the last data is changed.
+      expect(roundDouble(indicator2.getValue(28).quote, 2), 35.81);
+      expect(roundDouble(indicator1.getValue(28).quote, 2), 49.36);
     });
   });
 }
