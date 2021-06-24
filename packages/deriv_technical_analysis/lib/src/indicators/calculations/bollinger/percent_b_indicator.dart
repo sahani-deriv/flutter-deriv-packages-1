@@ -28,7 +28,7 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   PercentBIndicator._(
     this.indicator,
     StandardDeviationIndicator<T> sd,
-    Indicator<T> bbm,
+    this.bbm,
     double k,
   )   : bbu = BollingerBandsUpperIndicator<T>(bbm, sd, k: k),
         bbl = BollingerBandsLowerIndicator<T>(bbm, sd, k: k),
@@ -43,6 +43,9 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// The lower indicator of the BollingerBand
   final BollingerBandsLowerIndicator<T> bbl;
 
+  ///SMA Indicator
+  final SMAIndicator<T> bbm;
+
   @override
   T calculate(int index) {
     final double value = indicator.getValue(index).quote;
@@ -53,5 +56,21 @@ class PercentBIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
       index: index,
       quote: (value - lowValue) / (upValue - lowValue),
     );
+  }
+
+  @override
+  void copyValuesFrom(covariant PercentBIndicator<T> other) {
+    super.copyValuesFrom(other);
+    bbu.copyValuesFrom(other.bbu);
+    bbl.copyValuesFrom(other.bbl);
+    bbm.copyValuesFrom(other.bbm);
+  }
+
+  @override
+  void invalidate(int index) {
+    bbu.invalidate(index);
+    bbl.invalidate(index);
+    bbm.invalidate(index);
+    super.invalidate(index);
   }
 }
