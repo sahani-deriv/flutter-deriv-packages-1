@@ -16,4 +16,16 @@ class ATRIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) => _averageTrueRangeIndicator.getValue(index);
+
+  @override
+  void copyValuesFrom(covariant ATRIndicator<T> other) {
+    super.copyValuesFrom(other);
+    _averageTrueRangeIndicator.copyValuesFrom(other._averageTrueRangeIndicator);
+  }
+
+  @override
+  void invalidate(int index) {
+    _averageTrueRangeIndicator.invalidate(index);
+    super.invalidate(index);
+  }
 }

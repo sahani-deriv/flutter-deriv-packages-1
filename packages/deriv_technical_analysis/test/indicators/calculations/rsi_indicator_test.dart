@@ -49,5 +49,38 @@ void main() {
       expect(roundDouble(rsiIndicator.getValue(16).quote, 2), 65.96);
       expect(roundDouble(rsiIndicator.getValue(17).quote, 2), 71.28);
     });
+    test('RSI Indicator copyValuesFrom and refreshValueFor should works fine',
+        () {
+      // defining 1st indicator
+      final RSIIndicator<MockResult> rsiIndicator1 =
+          RSIIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator<MockResult>(MockInput(ticks)), 14);
+
+      // Checking the values of first indicator
+      expect(roundDouble(rsiIndicator1.getValue(14).quote, 2), 52.88);
+      expect(roundDouble(rsiIndicator1.getValue(15).quote, 2), 65.42);
+
+      // define a new input Changing the last data
+      final List<MockTick> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(20, 89.550, 89.548, 89.554, 89.545));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator1 into 2
+      // Refreshing last value because its candle is changed
+      final RSIIndicator<MockResult> rsiIndicator2 =
+          RSIIndicator<MockResult>.fromIndicator(
+              CloseValueIndicator<MockResult>(MockInput(ticks2)), 14)
+            ..copyValuesFrom(rsiIndicator1)
+            ..refreshValueFor(20);
+
+      // Their result in index 19 should be the same since we've copied the result.
+      expect(
+          rsiIndicator2.getValue(19).quote, rsiIndicator1.getValue(19).quote);
+
+      // Calculated result for index 20 is different because the last data is changed.
+      expect(roundDouble(rsiIndicator2.getValue(20).quote, 2), 99.78);
+      expect(roundDouble(rsiIndicator1.getValue(20).quote, 2), 63.03);
+    });
   });
 }

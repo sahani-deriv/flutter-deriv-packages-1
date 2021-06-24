@@ -126,6 +126,44 @@ void main() {
     });
 
     test(
+        'Ichimoku Span A copyValuesFrom and refreshValueFor should works fine.',
+        () {
+      final IchimokuSpanAIndicator<MockResult> spanAIndicator1 =
+          IchimokuSpanAIndicator<MockResult>(MockInput(ticks),
+              conversionLineIndicator: conversionLineIndicator,
+              baseLineIndicator: baseLineIndicator);
+
+      // define a new input Changing the last data
+      final List<MockOHLC> ticks2 = ticks.toList()
+        ..removeLast()
+        ..add(const MockOHLC(57, 78.386, 77.3, 78.2, 78.285));
+
+      final IchimokuConversionLineIndicator<MockResult>
+          conversionLineIndicator2 =
+          IchimokuConversionLineIndicator<MockResult>(MockInput(ticks2));
+      final IchimokuBaseLineIndicator<MockResult> baseLineIndicator2 =
+          IchimokuBaseLineIndicator<MockResult>(MockInput(ticks2));
+
+      // Defining 2nd indicator with the new updated data
+      // Copying values of indicator 1 into 2
+      // Refreshing last value because its candle is changed
+      final IchimokuSpanAIndicator<MockResult> spanAIndicator2 =
+          IchimokuSpanAIndicator<MockResult>(MockInput(ticks2),
+              conversionLineIndicator: conversionLineIndicator2,
+              baseLineIndicator: baseLineIndicator2)
+            ..copyValuesFrom(spanAIndicator1)
+            ..refreshValueFor(57);
+
+      // Their result in index 56 should be the same since we've copied the result.
+      expect(spanAIndicator2.getValue(56).quote,
+          spanAIndicator1.getValue(56).quote);
+
+      // Calculated result for index 57 is different because the last data is changed.
+      expect(roundDouble(spanAIndicator2.getValue(57).quote, 3), 78.906);
+      expect(roundDouble(spanAIndicator1.getValue(57).quote, 3), 79.456);
+    });
+
+    test(
         "Ichimoku Span B calculates the previous [period]s(52 by default) average of the given candle's highest high and lowest low.",
         () {
       final IchimokuSpanBIndicator<MockResult> spanAIndicator =
