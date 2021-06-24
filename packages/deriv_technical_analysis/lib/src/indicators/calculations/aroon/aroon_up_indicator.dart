@@ -18,7 +18,7 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final Indicator<T> maxValueIndicator;
 
   /// Indicator to calculate highest value.
-  final Indicator<T> _highestValueIndicator;
+  final HighestValueIndicator<T> _highestValueIndicator;
 
   /// The period
   final int _period;
@@ -37,5 +37,17 @@ class AroonUpIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     return createResult(
         index: index, quote: (_period - nbBars) / _period * 100);
+  }
+
+  @override
+  void copyValuesFrom(covariant AroonUpIndicator<T> other) {
+    _highestValueIndicator.copyValuesFrom(other._highestValueIndicator);
+    super.copyValuesFrom(other);
+  }
+
+  @override
+  void invalidate(int index) {
+    _highestValueIndicator.invalidate(index);
+    super.invalidate(index);
   }
 }
