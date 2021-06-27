@@ -90,7 +90,7 @@ class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
         .getValue(index - 1)
         .quote, 0);
     return createResult(index: index, quote:(1 - period) *
-        ((index < 1 ? 0 : getValue(index - 1).quote) + period * pdm);
+        ((index < 1 ? 0 : getValue(index - 1).quote) + period * pdm));
   }
 }
 
