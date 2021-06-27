@@ -11,10 +11,10 @@ import '../indicator.dart';
 class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   VMAIndicator(this.indicator, this.period)
-      : pdmS = PdmS<T>(indicator, 1 / period)..calculateValues(),
-        mdmS = MdmS<T>(indicator, 1 / period)..calculateValues(),
-        pdiS = PdiS<T>(indicator, 1 / period)..calculateValues(),
-        mdiS = MdiS<T>(indicator, 1 / period)..calculateValues(),
+      : pdmS = PdmS<T>(indicator, 1 / period),
+        mdmS = MdmS<T>(indicator, 1 / period),
+        pdiS = PdiS<T>(indicator, 1 / period),
+        mdiS = MdiS<T>(indicator, 1 / period),
         iS = IS<T>(indicator, 1 / period)..calculateValues(),
         super.fromIndicator(indicator);
 
@@ -218,8 +218,8 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 class IS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   IS(Indicator<T> indicator, this.period)
-      : mdiS = MdiS<T>(indicator, period)..calculateValues(),
-        pdiS = PdiS<T>(indicator, period)..calculateValues(),
+      : mdiS = MdiS<T>(indicator, period),
+        pdiS = PdiS<T>(indicator, period),
         super.fromIndicator(indicator);
 
   /// Period
