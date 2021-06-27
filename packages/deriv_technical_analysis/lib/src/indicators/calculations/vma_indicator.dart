@@ -11,11 +11,11 @@ import '../indicator.dart';
 class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   VMAIndicator(this.indicator, this.period)
-      : pdmS = PdmS<T>(indicator, 1 / period),
-        mdmS = MdmS<T>(indicator, 1 / period),
-        pdiS = PdiS<T>(indicator, 1 / period),
-        mdiS = MdiS<T>(indicator, 1 / period),
-        iS = IS<T>(indicator, 1 / period),
+      : pdmS = PdmS<T>(indicator, 1 / period)..calculateValues(),
+        mdmS = MdmS<T>(indicator, 1 / period)..calculateValues(),
+        pdiS = PdiS<T>(indicator, 1 / period)..calculateValues(),
+        mdiS = MdiS<T>(indicator, 1 / period)..calculateValues(),
+        iS = IS<T>(indicator, 1 / period)..calculateValues(),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate SMA on
@@ -92,7 +92,9 @@ class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    print(index);
     if(index<1){
+      print("Aaaa");
       return createResult(
           index: index,
           quote:0);
@@ -146,8 +148,8 @@ class MdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   PdiS(Indicator<T> indicator, this.period)
-      : mdmS = MdmS<T>(indicator, period),
-        pdmS = PdmS<T>(indicator, period),
+      : mdmS = MdmS<T>(indicator, period)..calculateValues(),
+        pdmS = PdmS<T>(indicator, period)..calculateValues(),
         super.fromIndicator(indicator);
 
   /// Period
@@ -181,8 +183,8 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   MdiS(Indicator<T> indicator, this.period)
-      : mdmS = MdmS<T>(indicator, period),
-        pdmS = PdmS<T>(indicator, period),
+      : mdmS = MdmS<T>(indicator, period)..calculateValues(),
+        pdmS = PdmS<T>(indicator, period)..calculateValues(),
         super.fromIndicator(indicator);
 
   /// Period
@@ -216,8 +218,8 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 class IS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   IS(Indicator<T> indicator, this.period)
-      : mdiS = MdiS<T>(indicator, period),
-        pdiS = PdiS<T>(indicator, period),
+      : mdiS = MdiS<T>(indicator, period)..calculateValues(),
+        pdiS = PdiS<T>(indicator, period)..calculateValues(),
         super.fromIndicator(indicator);
 
   /// Period
