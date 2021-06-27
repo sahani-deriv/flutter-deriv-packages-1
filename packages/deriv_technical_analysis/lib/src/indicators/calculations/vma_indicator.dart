@@ -92,6 +92,11 @@ class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+    }
     final double pdm = index < 1
         ? 0
         : max(
@@ -119,6 +124,11 @@ class MdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+    }
     final double mdm = index < 1
         ? 0
         : max(
@@ -151,6 +161,11 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+    }
     final double pdi = index < 1
         ? 0
         : pdmS.getValue(index).quote /
@@ -181,6 +196,11 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+    }
     final double mdi = index < 1
         ? 0
         : mdmS.getValue(index).quote /
@@ -211,10 +231,17 @@ class IS<T extends IndicatorResult> extends CachedIndicator<T> {
   final Indicator<T> mdiS;
 
   @override
-  T calculate(int index) => createResult(
+  T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+    }
+    return createResult(
       index: index,
       quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
           period *
               (pdiS.getValue(index).quote - mdiS.getValue(index).quote).abs() /
               (pdiS.getValue(index).quote + mdiS.getValue(index).quote));
+  }
 }
