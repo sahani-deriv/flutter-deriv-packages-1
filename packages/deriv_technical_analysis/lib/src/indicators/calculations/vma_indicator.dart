@@ -242,7 +242,7 @@ class IS<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     return createResult(
       index: index,
-      quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
+      quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1).quote) +
           period *
               (pdiS.getValue(index).quote - mdiS.getValue(index).quote).abs() /
               (pdiS.getValue(index).quote + mdiS.getValue(index).quote));
