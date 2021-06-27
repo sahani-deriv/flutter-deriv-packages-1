@@ -44,6 +44,11 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+    if(index<1){
+      return createResult(
+          index: index,
+          quote:0);
+          }
     final double hhv =
         HighestValueIndicator<T>(iS, period).getValue(index).quote;
     final double llv =
