@@ -135,7 +135,9 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double pdi = pdmS.getValue(index).quote /
+    final double pdi =  index < 1
+        ? 0
+        : pdmS.getValue(index).quote /
         (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
     createResult(
         index: index,
@@ -163,7 +165,9 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double mdi = mdmS.getValue(index).quote /
+    final double mdi = index < 1
+        ? 0
+        : mdmS.getValue(index).quote /
         (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
     createResult(
         index: index,
