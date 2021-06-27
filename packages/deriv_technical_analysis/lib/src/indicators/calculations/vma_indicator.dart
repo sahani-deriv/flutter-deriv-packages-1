@@ -11,12 +11,11 @@ import '../indicator.dart';
 class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   VMAIndicator(this.indicator, this.period)
-      :
-        pdmS=PdmS(indicator, 1 / period),
-        mdmS=MdmS(indicator, 1 / period),
-        pdiS=PdiS(indicator, 1 / period),
-        mdiS=MdiS(indicator, 1 / period),
-        iS=IS(indicator, 1 / period),
+      : pdmS = PdmS(indicator, 1 / period),
+        mdmS = MdmS(indicator, 1 / period),
+        pdiS = PdiS(indicator, 1 / period),
+        mdiS = MdiS(indicator, 1 / period),
+        iS = IS(indicator, 1 / period),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate SMA on
@@ -27,34 +26,29 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   final CachedIndicator<T> mdiS;
   final CachedIndicator<T> iS;
 
-
   /// Chande Momentum Oscillator indicator
   // final Indicator<T> cmo;
 
   /// Period
   final int period;
 
-
   @override
   T calculate(int index) {
-    final double hhv = HighestValueIndicator<T>(iS, period)
-        .getValue(index)
-        .quote;
-    final double llv = LowestValueIndicator<T>(iS, period)
-        .getValue(index)
-        .quote;
+    final double hhv =
+        HighestValueIndicator<T>(iS, period).getValue(index).quote;
+    final double llv =
+        LowestValueIndicator<T>(iS, period).getValue(index).quote;
 
-    return createResult(index: index, quote: ((1 - (1 / period)) * (iS
-        .getValue(index)
-        .quote - llv) / (hhv - llv)) *
-        (index < 1 ? 0 :
-        getValue(index - 1)
-            .quote) + indicator
-        .getValue(index)
-        .quote * (1 / period) * (iS
-        .getValue(index)
-        .quote - llv) / (hhv - llv));
-
+    return createResult(
+        index: index,
+        quote: ((1 - (1 / period)) *
+                    (iS.getValue(index).quote - llv) /
+                    (hhv - llv)) *
+                (index < 1 ? 0 : getValue(index - 1).quote) +
+            indicator.getValue(index).quote *
+                (1 / period) *
+                (iS.getValue(index).quote - llv) /
+                (hhv - llv));
 
     //
     // if (index <= 1) {
@@ -73,8 +67,7 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 /// Variable Moving Average Indicator
 class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
-  PdmS(this.indicator, this.period)
-      :super.fromIndicator(indicator);
+  PdmS(this.indicator, this.period) : super.fromIndicator(indicator);
 
   /// Period
   final double period;
@@ -84,21 +77,23 @@ class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double pdm = max(indicator
-        .getValue(index)
-        .quote - indicator
-        .getValue(index - 1)
-        .quote, 0);
-    return createResult(index: index, quote:(1 - period) *
-        ((index < 1 ? 0 : getValue(index - 1).quote) + period * pdm));
+    final double pdm = index < 1
+        ? 0
+        : max(
+            indicator.getValue(index).quote -
+                indicator.getValue(index - 1).quote,
+            0);
+    return createResult(
+        index: index,
+        quote: (1 - period) *
+            ((index < 1 ? 0 : getValue(index - 1).quote) + period * pdm));
   }
 }
 
 /// Variable Moving Average Indicator
 class MdmS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
-  MdmS(this.indicator, this.period)
-      :super.fromIndicator(indicator);
+  MdmS(this.indicator, this.period) : super.fromIndicator(indicator);
 
   /// Period
   final double period;
@@ -108,24 +103,25 @@ class MdmS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double mdm = max(indicator
-        .getValue(index - 1)
-        .quote - indicator
-        .getValue(index)
-        .quote, 0);
-    return createResult(index: index,
+    final double mdm = index < 1
+        ? 0
+        : max(
+            indicator.getValue(index - 1).quote -
+                indicator.getValue(index).quote,
+            0);
+    return createResult(
+        index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
             period * mdm);
   }
 }
 
-
 /// Variable Moving Average Indicator
 class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   PdiS(Indicator<T> indicator, this.period)
-      :mdmS=MdmS<T>(indicator, period),
-        pdmS=PdmS<T>(indicator, period),
+      : mdmS = MdmS<T>(indicator, period),
+        pdmS = PdmS<T>(indicator, period),
         super.fromIndicator(indicator);
 
   /// Period
@@ -139,14 +135,10 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double pdi = pdmS
-        .getValue(index)
-        .quote / (pdmS
-        .getValue(index)
-        .quote + mdmS
-        .getValue(index)
-        .quote);
-    createResult(index: index,
+    final double pdi = pdmS.getValue(index).quote /
+        (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
+    createResult(
+        index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1).quote) +
             period * pdi);
   }
@@ -156,8 +148,8 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   MdiS(Indicator<T> indicator, this.period)
-      :mdmS=MdmS(indicator, period),
-        pdmS=PdmS(indicator, period),
+      : mdmS = MdmS(indicator, period),
+        pdmS = PdmS(indicator, period),
         super.fromIndicator(indicator);
 
   /// Period
@@ -171,14 +163,10 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-    final double mdi = mdmS
-        .getValue(index)
-        .quote / (pdmS
-        .getValue(index)
-        .quote + mdmS
-        .getValue(index)
-        .quote);
-    createResult(index: index,
+    final double mdi = mdmS.getValue(index).quote /
+        (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
+    createResult(
+        index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1).quote) +
             period * mdi);
   }
@@ -188,8 +176,8 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 class IS<T extends IndicatorResult> extends CachedIndicator<T> {
   ///
   IS(Indicator<T> indicator, this.period)
-      :mdiS=MdiS(indicator, period),
-        pdiS=PdiS(indicator, period),
+      : mdiS = MdiS(indicator, period),
+        pdiS = PdiS(indicator, period),
         super.fromIndicator(indicator);
 
   /// Period
@@ -203,17 +191,10 @@ class IS<T extends IndicatorResult> extends CachedIndicator<T> {
   final Indicator<T> mdiS;
 
   @override
-  T calculate(int index) =>
-      createResult(index: index,
-          quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
-              period * (pdiS
-                  .getValue(index)
-                  .quote - mdiS
-                  .getValue(index)
-                  .quote).abs() / (pdiS
-                  .getValue(index)
-                  .quote + mdiS
-                  .getValue(index)
-                  .quote));
-
+  T calculate(int index) => createResult(
+      index: index,
+      quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
+          period *
+              (pdiS.getValue(index).quote - mdiS.getValue(index).quote).abs() /
+              (pdiS.getValue(index).quote + mdiS.getValue(index).quote));
 }
