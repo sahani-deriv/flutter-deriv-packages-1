@@ -15,15 +15,20 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
         mdmS = MdmS<T>(indicator, 1 / period),
         pdiS = PdiS<T>(indicator, 1 / period),
         mdiS = MdiS<T>(indicator, 1 / period),
-        iS = IS(indicator, 1 / period),
+        iS = IS<T>(indicator, 1 / period),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate SMA on
   final Indicator<T> indicator;
+  ///
   final CachedIndicator<T> pdmS;
+  ///
   final CachedIndicator<T> mdmS;
+  ///
   final CachedIndicator<T> pdiS;
+  ///
   final CachedIndicator<T> mdiS;
+  ///
   final CachedIndicator<T> iS;
 
   /// Chande Momentum Oscillator indicator
@@ -34,6 +39,7 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+
     final double hhv =
         HighestValueIndicator<T>(iS, period).getValue(index).quote;
     final double llv =
@@ -135,6 +141,7 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
+
     final double pdi =  index < 1
         ? 0
         : pdmS.getValue(index).quote /
