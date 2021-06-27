@@ -20,14 +20,19 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   /// Indicator to calculate SMA on
   final Indicator<T> indicator;
+
   ///
   final CachedIndicator<T> pdmS;
+
   ///
   final CachedIndicator<T> mdmS;
+
   ///
   final CachedIndicator<T> pdiS;
+
   ///
   final CachedIndicator<T> mdiS;
+
   ///
   final CachedIndicator<T> iS;
 
@@ -39,7 +44,6 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-
     final double hhv =
         HighestValueIndicator<T>(iS, period).getValue(index).quote;
     final double llv =
@@ -92,7 +96,8 @@ class PdmS<T extends IndicatorResult> extends CachedIndicator<T> {
     return createResult(
         index: index,
         quote: (1 - period) *
-            ((index < 1 ? 0 : getValue(index - 1).quote) + period * pdm));
+            ((index < 1 ? 0 : getValue(index - 1).quote) +
+                period * (pdm.isNaN ? 0 : pdm)));
   }
 }
 
@@ -118,7 +123,7 @@ class MdmS<T extends IndicatorResult> extends CachedIndicator<T> {
     return createResult(
         index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1)) +
-            period * mdm);
+            period * (mdm.isNaN ? 0 : mdm));
   }
 }
 
@@ -141,15 +146,14 @@ class PdiS<T extends IndicatorResult> extends CachedIndicator<T> {
 
   @override
   T calculate(int index) {
-
-    final double pdi =  index < 1
+    final double pdi = index < 1
         ? 0
         : pdmS.getValue(index).quote /
-        (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
+            (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
     createResult(
         index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1).quote) +
-            period * pdi);
+            period * (pdi.isNaN ? 0 : pdi));
   }
 }
 
@@ -175,11 +179,11 @@ class MdiS<T extends IndicatorResult> extends CachedIndicator<T> {
     final double mdi = index < 1
         ? 0
         : mdmS.getValue(index).quote /
-        (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
+            (pdmS.getValue(index).quote + mdmS.getValue(index).quote);
     createResult(
         index: index,
         quote: (1 - period) * (index < 1 ? 0 : getValue(index - 1).quote) +
-            period * mdi);
+            period * (mdi.isNaN ? 0 : mdi));
   }
 }
 
