@@ -6,7 +6,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Least Square Moving Average', () {
-    List<MockTick> ticks;
+    late List<MockTick> ticks;
 
     setUpAll(() {
       // Data from app.deriv.com:
