@@ -2,6 +2,7 @@ import 'package:deriv_technical_analysis/deriv_technical_analysis.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/difference_indicator.dart';
 import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indicators/previous_value_indicator.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
+import 'package:flutter/material.dart';
 
 import '../cached_indicator.dart';
 import '../indicator.dart';
@@ -25,7 +26,7 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   DPOIndicator._(
     this.indicator,
     this._maIndicator, {
-    required this.timeShift,
+    @required this.timeShift,
     bool isCentered = true,
   })  : _indicatorMinusPreviousSMAIndicator = isCentered
             ? DifferenceIndicator<T>(

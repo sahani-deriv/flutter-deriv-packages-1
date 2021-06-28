@@ -1,10 +1,9 @@
-import 'package:deriv_theme/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_theme/src/colors.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:deriv_theme/text_styles.dart';
-import 'package:deriv_theme/src/colors.dart';
-
+import 'package:flutter_deriv_theme/text_styles.dart';
+import 'theme_provider.dart';
 
 ValueKey<String> key = const ValueKey<String>('ok');
 
@@ -12,11 +11,13 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('ThemeProviderTest', () {
-    final ThemeProvider themeProviderTest  = ThemeProvider();
+    ThemeProviderTest themeProviderTest;
+
+    setUpAll(() => themeProviderTest = ThemeProviderTest());
 
     group('getStyleTest()', () {
       test('pass all arguments correctly', () {
-        themeProviderTest.getStyle(
+        themeProviderTest.getStyleTest(
           textStyle: TextStyles.captionBold,
           color: DarkThemeColors.base08,
         );
@@ -30,7 +31,7 @@ void main() {
             fontWeight: FontWeight.w400,
             height: 1.5);
 
-        final TextStyle style = themeProviderTest.getStyle(
+        final TextStyle style = themeProviderTest.getStyleTest(
           textStyle: TextStyles.display1,
           color: DarkThemeColors.base01,
         );
@@ -38,11 +39,20 @@ void main() {
         expect(style, equals(resultStyle));
       });
 
+      test('do not accept null values', () {
+        expect(
+          () => themeProviderTest.getStyleTest(
+            textStyle: null,
+            color: null,
+          ),
+          throwsArgumentError,
+        );
+      });
     });
 
     group('textStyleTest()', () {
       test('pass arguments correctly', () {
-        themeProviderTest.getStyle(
+        themeProviderTest.textStyleTest(
           textStyle: TextStyles.display1,
           color: DarkThemeColors.base02,
         );
@@ -56,7 +66,7 @@ void main() {
             fontWeight: FontWeight.w400,
             height: 1.5);
 
-        final TextStyle style = themeProviderTest.getStyle(
+        final TextStyle style = themeProviderTest.textStyleTest(
           textStyle: TextStyles.display1,
           color: DarkThemeColors.base02,
         );
@@ -64,21 +74,29 @@ void main() {
         expect(style, equals(resultStyle));
       });
 
+      test('do not accept null type', () {
+        expect(
+          () => themeProviderTest.textStyleTest(
+            textStyle: null,
+          ),
+          throwsArgumentError,
+        );
+      });
+
       test('accepts no color', () {
-        themeProviderTest.textStyle(
+        themeProviderTest.textStyleTest(
           textStyle: TextStyles.display1,
         );
       });
 
       test('accepts null color', () {
-        themeProviderTest.textStyle(
+        themeProviderTest.textStyleTest(
           textStyle: TextStyles.display1,
-          color: null,
         );
       });
 
       test('accepts color', () {
-        themeProviderTest.getStyle(
+        themeProviderTest.textStyleTest(
           textStyle: TextStyles.display1,
           color: DarkThemeColors.base01,
         );
@@ -87,10 +105,10 @@ void main() {
 
     group('updateThemeTest()', () {
       test('_isDarkTheme changes based on brightness value', () {
-        themeProviderTest.updateTheme(brightness: Brightness.dark);
+        themeProviderTest.updateThemeTest(brightness: Brightness.dark);
         expect(themeProviderTest.isDarkTheme, isTrue);
 
-        themeProviderTest.updateTheme(brightness: Brightness.light);
+        themeProviderTest.updateThemeTest(brightness: Brightness.light);
         expect(themeProviderTest.isDarkTheme, isFalse);
       });
     });

@@ -8,12 +8,12 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock_models.dart';
 
 void main() {
-  late List<MockTick> ticks;
-  late CloseValueIndicator<MockResult> closeValueIndicator;
+  List<MockTick> ticks;
+  CloseValueIndicator<MockResult> closeValueIndicator;
 
-  late MACDIndicator<MockResult> macdIndicator;
+  MACDIndicator<MockResult> macdIndicator;
 
-  late SignalMACDIndicator<MockResult> signalMACDIndicator;
+  SignalMACDIndicator<MockResult> signalMACDIndicator;
 
   setUpAll(() {
     ticks = const <MockTick>[

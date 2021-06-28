@@ -6,7 +6,7 @@ abstract class IchimokuLineIndicator<T extends IndicatorResult>
   /// Initializes an [IchimokuLineIndicator].
   IchimokuLineIndicator(
     IndicatorDataInput input, {
-    required int period,
+    int period,
   })  : _lowestValueIndicator =
             LowestValueIndicator<T>(LowValueIndicator<T>(input), period),
         _highestValueIndicator =

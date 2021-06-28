@@ -5,7 +5,7 @@ import '../../mock_models.dart';
 
 void main() {
   group('Bearish indicator test', () {
-    late List<MockOHLC> candles;
+    List<MockOHLC> candles;
 
     setUpAll(() {
       candles = const <MockOHLC>[

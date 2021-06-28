@@ -12,7 +12,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Moving Average Envelope', () {
-    late List<MockTick> ticks;
+    List<MockTick> ticks;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 1, quote: 1),

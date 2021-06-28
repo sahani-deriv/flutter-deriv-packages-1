@@ -9,11 +9,9 @@ import 'indicator.dart';
 abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Initializes
   CachedIndicator(IndicatorDataInput input)
-      : results = List<T>.empty(growable: true),
+      : results = List<T>.generate(input.entries.length, (_) => null),
         lastResultIndex = 0,
-        super(input) {
-    _growResultsForIndex(entries.length - 1);
-  }
+        super(input);
 
   /// Initializes from another [Indicator]
   CachedIndicator.fromIndicator(Indicator<T> indicator) : this(indicator.input);
@@ -48,14 +46,8 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   T getValue(int index) {
     _growResultsForIndex(index);
 
-    if (results[index].quote.isInfinite) {
-      final T result = calculate(index);
-      if (!result.quote.isInfinite) {
-        results[index] = result;
-      } else {
-        // Avoid falling into a loop, if by any chance an indicator calculates a value as `double.infinity`.
-        results[index] = createResult(quote: double.nan, index: index);
-      }
+    if (results[index] == null) {
+      results[index] = calculate(index);
     }
 
     if (index > lastResultIndex) {
@@ -72,10 +64,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
     final int oldResultsCount = results.length;
 
     if (index > oldResultsCount - 1) {
-      results.addAll(List<T>.filled(
-        index - oldResultsCount + 1,
-        createResult(quote: double.infinity, index: index),
-      ));
+      results.addAll(List<T>(index - oldResultsCount + 1));
     }
 
     return results.length - oldResultsCount;
@@ -89,7 +78,7 @@ abstract class CachedIndicator<T extends IndicatorResult> extends Indicator<T> {
   /// Invalidates a calculated indicator value for [index]
   void invalidate(int index) {
     _growResultsForIndex(index);
-    results[index] = createResult(quote: double.infinity, index: index);
+    results[index] = null;
   }
 
   /// Recalculates indicator's value for the give [index] and caches it.

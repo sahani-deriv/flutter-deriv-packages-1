@@ -8,8 +8,8 @@ import '../mock_models.dart';
 
 void main() {
   group('Detrended Price Oscillator', () {
-    late List<MockTick> ticks;
-    late CloseValueIndicator<MockResult> closeValueIndicator;
+    List<MockTick> ticks;
+    CloseValueIndicator<MockResult> closeValueIndicator;
     setUpAll(() {
       ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 22.27),

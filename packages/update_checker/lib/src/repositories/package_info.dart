@@ -6,10 +6,10 @@ class PackageInfoRepository {
   const PackageInfoRepository();
 
   /// Returns the running app's build number.
-  Future<num> getAppBuildNumber() async {
+  Future<int> getAppBuildNumber() async {
     try {
       final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      return num.tryParse(packageInfo.buildNumber) ?? -1;
+      return int.tryParse(packageInfo.buildNumber) ?? -1;
     } on Exception catch (_) {
       return -1;
     }

@@ -11,7 +11,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Aroon Indicator', () {
-    late List<MockOHLC> candles;
+    List<MockOHLC> candles;
 
     setUpAll(() {
       candles = const <MockOHLC>[

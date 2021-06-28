@@ -8,7 +8,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Awesome Oscillator Indicator', () {
-    late List<MockOHLC> ticks;
+    List<MockOHLC> ticks;
 
     setUpAll(() {
       ticks = const <MockOHLC>[

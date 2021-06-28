@@ -4,7 +4,7 @@ import 'package:deriv_rudderstack/deriv_rudderstack.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('deriv_rudderstack');
-  late List<MethodCall> log;
+  List<MethodCall> log;
 
   const String userId = '999';
   const String token = 'xxx-xxx-xxx';
@@ -39,8 +39,7 @@ void main() {
       await DerivRudderstack().identify(userId: userId);
 
       expect(log, <Matcher>[
-        isMethodCall('identify',
-            arguments: {'userId': userId, 'traits': <String, dynamic>{}}),
+        isMethodCall('identify', arguments: {'userId': userId, 'traits': {}}),
       ]);
     });
 
@@ -69,10 +68,8 @@ void main() {
       await DerivRudderstack().track(eventName: eventName);
 
       expect(log, <Matcher>[
-        isMethodCall('track', arguments: {
-          'eventName': eventName,
-          'properties': <String, dynamic>{}
-        }),
+        isMethodCall('track',
+            arguments: {'eventName': eventName, 'properties': {}}),
       ]);
     });
 
@@ -87,10 +84,8 @@ void main() {
       await DerivRudderstack().screen(screenName: screenName);
 
       expect(log, <Matcher>[
-        isMethodCall('screen', arguments: {
-          'screenName': screenName,
-          'properties': <String, dynamic>{}
-        }),
+        isMethodCall('screen',
+            arguments: {'screenName': screenName, 'properties': {}}),
       ]);
     });
 
@@ -104,8 +99,7 @@ void main() {
       await DerivRudderstack().group(groupId: groupId);
 
       expect(log, <Matcher>[
-        isMethodCall('group',
-            arguments: {'groupId': groupId, 'traits': <String, dynamic>{}}),
+        isMethodCall('group', arguments: {'groupId': groupId, 'traits': {}}),
       ]);
     });
 

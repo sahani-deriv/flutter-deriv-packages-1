@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock_models.dart';
 
 void main() {
-  late List<MockTick> ticks;
+  List<MockTick> ticks;
 
   setUpAll(() {
     ticks = const <MockTick>[
