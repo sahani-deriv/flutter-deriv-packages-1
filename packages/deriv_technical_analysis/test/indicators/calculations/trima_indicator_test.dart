@@ -6,7 +6,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Triangular Moving Average (TRIMA)', () {
-    List<MockTick> ticks;
+    late List<MockTick> ticks;
 
     setUpAll(() {
       // Data from app.deriv.com:
