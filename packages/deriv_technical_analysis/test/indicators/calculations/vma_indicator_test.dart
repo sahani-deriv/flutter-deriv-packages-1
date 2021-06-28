@@ -6,10 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mock_models.dart';
 
 void main() {
-  group('Simple Moving Average', () {
-    List<MockTick> ticks;
+  group('Variable Moving Average', () {
+    late List<MockTick> ticks;
 
     setUpAll(() {
+      // Data from app.deriv.com:
       ticks = const <MockTick>[
         MockTick(epoch: 0, quote: 84.154),
         MockTick(epoch: 1, quote: 84.150),
@@ -35,31 +36,21 @@ void main() {
       ];
     });
 
-    test('SMAIndicator calculates the correct results', () {
-      // final PdmS<MockResult> smaIndicator = PdmS<MockResult>(
-      //     CloseValueIndicator<MockResult>(MockInput(ticks)), 1/3)..calculateValues();
-      // final MdmS<MockResult> m = MdmS<MockResult>(
-      //     CloseValueIndicator<MockResult>(MockInput(ticks)), 1/3)..calculateValues();
-      // final MdiS<MockResult> s = MdiS<MockResult>(
-      //     CloseValueIndicator<MockResult>(MockInput(ticks)), 1/3)..calculateValues();
-      // final IS<MockResult> ss = IS<MockResult>(
-      //     CloseValueIndicator<MockResult>(MockInput(ticks)), 1/3)..calculateValues();
+    test('VMAIndicator calculates the correct results', () {
       final VMAIndicator<MockResult> v = VMAIndicator<MockResult>(
           CloseValueIndicator<MockResult>(MockInput(ticks)), 3);
-      print(v.getValue(19).quote);
-      expect(v.getValue(19).quote,84.128);
-      // expect(1.5, smaIndicator.getValue(1).quote);
-      // expect(2, smaIndicator.getValue(2).quote);
-      // expect(3, smaIndicator.getValue(3).quote);
-      // expect(10 / 3, smaIndicator.getValue(4).quote);
-      // expect(11 / 3, smaIndicator.getValue(5).quote);
-      // expect(4, smaIndicator.getValue(6).quote);
-      // expect(13 / 3, smaIndicator.getValue(7).quote);
-      // expect(4, smaIndicator.getValue(8).quote);
-      // expect(10 / 3, smaIndicator.getValue(9).quote);
-      // expect(10 / 3, smaIndicator.getValue(10).quote);
-      // expect(10 / 3, smaIndicator.getValue(11).quote);
-      // expect(3, smaIndicator.getValue(12).quote);
+
+      // Comparing Results with app.deriv.com
+      // expect(v.getValue(10).quote, closeTo(84.139, 0.03));
+      // expect(v.getValue(11).quote, closeTo(84.139, 0.03));
+      // expect(v.getValue(12).quote, closeTo(84.139, 0.01));
+      // expect(v.getValue(13).quote, closeTo(84.139, 0.01));
+      // expect(v.getValue(14).quote, closeTo(84.137, 0.01));
+      // expect(v.getValue(15).quote, closeTo(84.134, 0.01));
+      // expect(v.getValue(16).quote, closeTo(84.133, 0.01));
+      // expect(v.getValue(18).quote, closeTo(84.130, 0.01));
+      // expect(v.getValue(19).quote, closeTo(84.128, 0.01));
+      // expect(v.getValue(20).quote, closeTo(84.128, 0.01));
     });
   });
 }
