@@ -50,8 +50,8 @@ class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
       return createResult(index: index, quote: double.nan);
     }
 
-    final T jawIndicatorValue = jawIndicator.getValue(index - jawOffset);
-    final T teethIndicatorValue = teethIndicator.getValue(index - teethOffset);
+    final T jawIndicatorValue = jawIndicator.getValue(index + jawOffset);
+    final T teethIndicatorValue = teethIndicator.getValue(index + teethOffset);
 
     // GatorTopBar = Absolute value of(Jaw - Teeth)
     final double quote =
