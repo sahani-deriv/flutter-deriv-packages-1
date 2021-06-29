@@ -26,7 +26,7 @@ class DPOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   DPOIndicator._(
     this.indicator,
     this._maIndicator, {
-    @required this.timeShift,
+    required this.timeShift,
     bool isCentered = true,
   })  : _indicatorMinusPreviousSMAIndicator = isCentered
             ? DifferenceIndicator<T>(

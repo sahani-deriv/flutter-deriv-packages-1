@@ -6,7 +6,7 @@ import '../mock_models.dart';
 
 void main() {
   group('Welles Wilder’s Smoothing Average (WWS)', () {
-    List<MockTick> ticks;
+    late List<MockTick> ticks;
 
     setUpAll(() {
       // Data from app.deriv.com:
