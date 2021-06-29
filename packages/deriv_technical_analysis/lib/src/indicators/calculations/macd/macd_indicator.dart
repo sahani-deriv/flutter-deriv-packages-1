@@ -20,8 +20,7 @@ class MACDIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     Indicator<T> indicator, {
     int fastMAPeriod = 12,
     int slowMAPeriod = 26,
-  })  : assert(fastMAPeriod < slowMAPeriod),
-        _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
+  })  : _shortTermEma = EMAIndicator<T>(indicator, fastMAPeriod),
         _longTermEma = EMAIndicator<T>(indicator, slowMAPeriod),
         super.fromIndicator(indicator);
 
