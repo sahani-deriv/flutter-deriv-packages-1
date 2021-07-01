@@ -2,6 +2,7 @@ library deriv_technical_analysis;
 
 export 'src/helpers/functions.dart';
 export 'src/indicators/cached_indicator.dart';
+export 'src/indicators/calculations/adx/adx_histogram_indicator.dart';
 export 'src/indicators/calculations/adx/adx_indicator.dart';
 export 'src/indicators/calculations/adx/negative_di_indicator.dart';
 export 'src/indicators/calculations/adx/positive_di_indicator.dart';
