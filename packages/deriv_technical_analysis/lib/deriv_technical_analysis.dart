@@ -9,6 +9,7 @@ export 'src/indicators/calculations/aroon/aroon_down_indicator.dart';
 export 'src/indicators/calculations/aroon/aroon_oscillator_indicator.dart';
 export 'src/indicators/calculations/aroon/aroon_up_indicator.dart';
 export 'src/indicators/calculations/atr_indicator.dart';
+export 'src/indicators/calculations/awesome_oscillator_indicator.dart';
 export 'src/indicators/calculations/bearish_inidicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_band_width_indicator.dart';
 export 'src/indicators/calculations/bollinger/bollinger_bands_lower_indicator.dart';
