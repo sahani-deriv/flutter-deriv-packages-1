@@ -15,6 +15,7 @@ export 'src/indicators/calculations/bollinger/bollinger_bands_lower_indicator.da
 export 'src/indicators/calculations/bollinger/bollinger_bands_upper_indicator.dart';
 export 'src/indicators/calculations/bullish_inidicator.dart';
 export 'src/indicators/calculations/commodity_channel_index_indicator.dart';
+export 'src/indicators/calculations/dema_indicator.dart';
 export 'src/indicators/calculations/donchian/donchian_middle_channel_indicator.dart';
 export 'src/indicators/calculations/dpo_indicator.dart';
 export 'src/indicators/calculations/ema_indicator.dart';
@@ -64,6 +65,7 @@ export 'src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/smi_indicator.dart';
 export 'src/indicators/calculations/stochastic/smoothed_fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/smoothed_slow_stochastic_indicator.dart';
+export 'src/indicators/calculations/tema_indicator.dart';
 export 'src/indicators/calculations/williams_r_indicator.dart';
 export 'src/indicators/calculations/wma_indicator.dart';
 export 'src/indicators/calculations/wwsma_indicator.dart';
