@@ -10,7 +10,7 @@ class AwesomeOscillatorIndicator<T extends IndicatorResult>
   /// Initializes
   factory AwesomeOscillatorIndicator(IndicatorDataInput input,
       {int smaPeriodOne = 5, int smaPeriodTwo = 34}) {
-    final HL2Indicator<T> hl2indicator = HL2Indicator(input);
+    final HL2Indicator<T> hl2indicator = HL2Indicator<T>(input);
     return AwesomeOscillatorIndicator<T>._(
         input,
         SMAIndicator<T>(hl2indicator, smaPeriodOne),
