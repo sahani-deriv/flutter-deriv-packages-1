@@ -57,6 +57,7 @@ export 'src/indicators/calculations/statistics/standard_deviation_indicator.dart
 export 'src/indicators/calculations/statistics/variance_indicator.dart';
 export 'src/indicators/calculations/stochastic/fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/slow_stochastic_indicator.dart';
+export 'src/indicators/calculations/stochastic/smi_indicator.dart';
 export 'src/indicators/calculations/stochastic/smoothed_fast_stochastic_indicator.dart';
 export 'src/indicators/calculations/stochastic/smoothed_slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/williams_r_indicator.dart';
