@@ -49,7 +49,7 @@ class GatorOscillatorIndicatorTopBar<T extends IndicatorResult>
     if (index < maxOffset) {
       return createResult(index: index, quote: double.nan);
     }
-    final int offsetDiff = jawOffset - teethOffset.abs();
+    final int offsetDiff = (jawOffset - teethOffset).abs();
     final T jawIndicatorValue = jawIndicator.getValue(index - offsetDiff);
     final T teethIndicatorValue = teethIndicator.getValue(index);
 
