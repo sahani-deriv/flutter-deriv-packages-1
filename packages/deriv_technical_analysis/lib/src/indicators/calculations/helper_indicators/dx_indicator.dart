@@ -8,9 +8,10 @@ class DXIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   DXIndicator(
     IndicatorDataInput input, {
     int period = 14,
-  })  : positiveDIIndicator = PositiveDIIndicator<T>(input, period: period),
-        negativeDIIndicator = NegativeDIIndicator<T>(input, period: period),
-        super(input);
+  }) : this.fromIndicator(
+          PositiveDIIndicator<T>(input, period: period),
+          NegativeDIIndicator<T>(input, period: period),
+        );
 
   /// Initializes a Directional movement line Indicator from given [PositiveDIIndicator] and [NegativeDIIndicator].
   DXIndicator.fromIndicator(
