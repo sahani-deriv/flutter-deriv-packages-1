@@ -6,8 +6,6 @@ import 'package:deriv_technical_analysis/src/indicators/calculations/helper_indi
 import 'package:deriv_technical_analysis/src/indicators/indicator.dart';
 import 'package:deriv_technical_analysis/src/models/models.dart';
 
-
-
 /// Chande Momentum Oscillator indicator.
 class CMOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
@@ -33,7 +31,7 @@ class CMOIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
     return createResult(
       index: index,
-      quote: (sumOfGains - sumOfLosses) / (sumOfGains + sumOfLosses)* 100,
+      quote: (sumOfGains - sumOfLosses) / (sumOfGains + sumOfLosses) * 100,
     );
   }
 }
