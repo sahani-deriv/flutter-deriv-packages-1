@@ -11,7 +11,7 @@ import '../indicator.dart';
 class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
   /// Initializes
   VMAIndicator(this.indicator, this.period)
-      : cmoIndicator = CMOIndicator<T>(indicator, 9),
+      : cmoIndicator = CMOIndicator<T>(indicator, period),
         super.fromIndicator(indicator);
 
   /// Indicator to calculate VMAA on
@@ -30,11 +30,13 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     }
 
     final double a = 2 / (period + 1);
-    final double cmo = (cmoIndicator.getValue(index).quote / 100).abs();
+    double cmo = (cmoIndicator.getValue(index).quote / 100).abs();
+    if (cmo.isNaN) {
+      cmo = 0;
+    }
     final double prev = getValue(index - 1).quote;
     final double src = indicator.getValue(index).quote;
-
-    final double result = a * cmo * (src - prev) + prev;
+    final double result = a * cmo * src + (1 - a * cmo) * prev;
     return createResult(index: index, quote: result);
   }
 }
