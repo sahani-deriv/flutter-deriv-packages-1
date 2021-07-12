@@ -37,7 +37,7 @@ class VMAIndicator<T extends IndicatorResult> extends CachedIndicator<T> {
     final double prev = getValue(index - 1).quote;
     final double src = indicator.getValue(index).quote;
 
-    final double result = a * cmo * src + (1 - a * cmo) * prev;
+    final double result = a * cmo * (src - prev) + prev;
     return createResult(index: index, quote: result);
   }
 }
