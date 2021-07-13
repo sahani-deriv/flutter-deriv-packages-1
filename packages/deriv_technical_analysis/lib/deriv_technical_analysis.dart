@@ -35,6 +35,7 @@ export 'src/indicators/calculations/helper_indicators/negative_dm_indicator.dart
 export 'src/indicators/calculations/helper_indicators/ohlc4_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/open_value_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/positive_dm_indicator.dart';
+export 'src/indicators/calculations/helper_indicators/previous_value_indicator.dart';
 export 'src/indicators/calculations/helper_indicators/tr_indicator.dart';
 export 'src/indicators/calculations/highest_value_indicator.dart';
 export 'src/indicators/calculations/hma_indicator.dart';
