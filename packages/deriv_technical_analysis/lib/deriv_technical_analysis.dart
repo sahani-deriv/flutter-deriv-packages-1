@@ -49,6 +49,7 @@ export 'src/indicators/calculations/ichimoku/ichimoku_line_indicator.dart';
 export 'src/indicators/calculations/ichimoku/ichimoku_span_a_indicator.dart';
 export 'src/indicators/calculations/ichimoku/ichimoku_span_b_indicator.dart';
 export 'src/indicators/calculations/lowest_value_indicator.dart';
+export 'src/indicators/calculations/lsma_indicator.dart';
 export 'src/indicators/calculations/ma_env/ma_env_lower_indicator.dart';
 export 'src/indicators/calculations/ma_env/ma_env_shift_types.dart';
 export 'src/indicators/calculations/ma_env/ma_env_upper_indicator.dart';
