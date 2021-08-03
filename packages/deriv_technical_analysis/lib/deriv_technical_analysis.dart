@@ -71,6 +71,7 @@ export 'src/indicators/calculations/stochastic/smoothed_fast_stochastic_indicato
 export 'src/indicators/calculations/stochastic/smoothed_slow_stochastic_indicator.dart';
 export 'src/indicators/calculations/tema_indicator.dart';
 export 'src/indicators/calculations/trima_indicator.dart';
+export 'src/indicators/calculations/vma_indicator.dart';
 export 'src/indicators/calculations/williams_r_indicator.dart';
 export 'src/indicators/calculations/wma_indicator.dart';
 export 'src/indicators/calculations/wwsma_indicator.dart';
