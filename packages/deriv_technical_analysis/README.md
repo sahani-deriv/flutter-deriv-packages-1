@@ -98,9 +98,17 @@ const List<MockOHLC> input = <MockOHLC>[
         ParabolicSarIndicator<MockResult>(SampleInput(input));
         
     // Calculating all indicator's results.    
-    pSar.calculateValues()    
+    print(pSar.calculateValues());
         
     // Calculating and getting result for an index.    
     print(pSar.getValue(0));
     print(pSar.getValue(1));
+    
+    // Passing another indicator to SMAIndicator
+    final SMAIndicator<MockResult> sma = SMAIndicator<MockResult>(pSar, 3);
+    
+
+    print(sma.calculateValues());        
+    print(sma.getValue(0));
+    print(sma.getValue(1));
 ```
