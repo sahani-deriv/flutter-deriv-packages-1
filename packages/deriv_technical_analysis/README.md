@@ -2,7 +2,7 @@
 
 A Dart package for Technical Analysis. 
 
-In order to make the type of indicators result objects defined by user, indicator classes now take generic type. The generic type should be a subclass of `IndicatorResult`. It has `quote` value which is the calculated value of the indicator. Your model class can extend this `IndicatorResult` and add it's own properties.          |
+In order to make the type of indicators result objects defined by user, indicator classes now take generic type. The generic type should be a subclass of `IndicatorResult`. It has `quote` value which is the calculated value of the indicator. Your model class can extend this `IndicatorResult` and add it's own properties.
 
 ### Usage
 
@@ -38,7 +38,7 @@ class SampleInput implements IndicatorDataInput {
 
 
 The input data is a list of `IndicatorOHLC`, which has four `open, high, low, close` values. since some indcators are based on these four values and do their calculation based on them. (e.g. `ParabolicSarIndicator`). 
-There are also some other indicators that calculate the value list of input that each item has only one value. (e.g. `SAMIndicator`). These indicators take another indicator and use their result as input. in this way you can combine any number of indicators in any.
+There are also some other indicators that calculate the value list of input that each item has only one value. (e.g. `SAMIndicator`). These indicators take another indicator and use their result as input. In this way you can combine indicators with each other to create more complex ones. (Some of current indicators are combination of other indicators e.g. `CommodityChannelIndexIndicator`).
 In addition indicators that take their input as `IndicatorOHLC` can also take one value inputs, the you only need to return the single value for all four (`open, high, low, close`) properties.
 
 ```Dart
