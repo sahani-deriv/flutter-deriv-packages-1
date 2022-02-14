@@ -84,13 +84,13 @@ class SampleOHLC extends SampleTick {
 
 ```Dart
 const List<MockOHLC> input = <MockOHLC>[
-      SampleOHLC(1, 0, 75.1, 74.06, 75.11),
-      SampleOHLC(2, 0, 75.9, 76.030000, 74.640000),
-      SampleOHLC(3, 0, 75.24, 76.269900, 75.060000),
-      SampleOHLC(4, 0, 75.17, 75.280000, 74.500000),
-      SampleOHLC(5, 0, 74.6, 75.310000, 74.540000),
-      SampleOHLC(6, 0, 74.1, 75.467000, 74.010000),
-      SampleOHLC(7, 0, 73.740000, 74.700000, 73.546000),
+      SampleOHLC(0, 75.1, 74.06, 75.11),
+      SampleOHLC(0, 75.9, 76.030000, 74.640000),
+      SampleOHLC(0, 75.24, 76.269900, 75.060000),
+      SampleOHLC(0, 75.17, 75.280000, 74.500000),
+      SampleOHLC(0, 74.6, 75.310000, 74.540000),
+      SampleOHLC(0, 74.1, 75.467000, 74.010000),
+      SampleOHLC(0, 73.740000, 74.700000, 73.546000),
     ];
     
     // Instantiating an indicator
