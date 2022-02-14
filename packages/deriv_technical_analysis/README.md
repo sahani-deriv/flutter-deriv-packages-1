@@ -91,24 +91,24 @@ const List<MockOHLC> input = <MockOHLC>[
       SampleOHLC(0, 74.6, 75.310000, 74.540000),
       SampleOHLC(0, 74.1, 75.467000, 74.010000),
       SampleOHLC(0, 73.740000, 74.700000, 73.546000),
-    ];
+ ];
     
-    // Instantiating an indicator
-    final ParabolicSarIndicator<MockResult> pSar =
-        ParabolicSarIndicator<MockResult>(SampleInput(input));
+// Instantiating an indicator
+final ParabolicSarIndicator<MockResult> pSar =
+ParabolicSarIndicator<MockResult>(SampleInput(input));
         
-    // Calculating all indicator's results.    
-    print(pSar.calculateValues());
+// Calculating all indicator's results.    
+print(pSar.calculateValues());
         
-    // Calculating and getting result for an index.    
-    print(pSar.getValue(0));
-    print(pSar.getValue(1));
+// Calculating and getting result for an index.    
+print(pSar.getValue(0));
+print(pSar.getValue(1));
     
-    // Passing another indicator to SMAIndicator
-    final SMAIndicator<MockResult> sma = SMAIndicator<MockResult>(pSar, 3);
+// Passing an indicator to another indicator
+final SMAIndicator<MockResult> sma = SMAIndicator<MockResult>(pSar, 3);
     
 
-    print(sma.calculateValues());        
-    print(sma.getValue(0));
-    print(sma.getValue(1));
+print(sma.calculateValues());        
+print(sma.getValue(0));
+print(sma.getValue(1));
 ```
