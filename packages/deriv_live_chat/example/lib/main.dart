@@ -11,104 +11,130 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  /// Stream Subscription for in app notification event listner.
+  /// Stream Subscription for in app notification event listener.
   late final StreamSubscription? subscription;
+
+  bool _canGoBack = true;
   int _unreadNotificationCounter = 1;
+
   @override
   void initState() {
     super.initState();
-    subscription = DerivLiveChat.onEventRecieved?.listen((event) {
-      if (event != 'chatOpen' && event != 'chatClose') {
-        _setCounter(++_unreadNotificationCounter);
+
+    subscription = DerivLiveChat.onEventReceived?.listen((event) {
+      switch (event) {
+        case 'chatOpen':
+          break;
+        case 'chatClose':
+          _canGoBack = true;
+          break;
+
+        default:
+          _setCounter(_unreadNotificationCounter++);
       }
     });
   }
 
-  @override
-  void dispose() {
-    subscription?.cancel();
-    super.dispose();
+  /// When chat open it close first.
+  Future<bool> _onWillPop() async {
+    if (!_canGoBack) {
+      _canGoBack = true;
+
+      DerivLiveChat.closeChatView();
+
+      return false;
+    }
+    return true;
   }
 
-  void _setCounter(int counter) => setState(() => _unreadNotificationCounter = counter);
+  void _setCounter(int counter) =>
+      setState(() => _unreadNotificationCounter = counter);
 
   Future<void> openChatView() async {
     await DerivLiveChat.startChatView(
-        '12345678', //Set your licence number (get from Live chat App dashboard)
-        '', //Group ID Optionally, You can route your customers groupid
-        'Demo User', // You can provide customer name so a customer will not need to fill out the pre-chat survey
-        'DemoUser@gmail.com', // You can provide customer email so a customer will not need to fill out the pre-chat survey:
-        <String, String>{
-          'Appid': 'Demo', //optional
-          'udid': 'User' //optional
-        }
+      licenseNo: '12345678',
+      username: 'Demo User',
+      email: 'DemoUser@gmail.com',
+      groupId: '',
+      customParameters: <String, String>{'Appid': 'Demo', 'udid': 'User'},
     );
+
+    _canGoBack = false;
   }
 
   @override
   Widget build(BuildContext context) {
     Widget _chatButton() => Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.blue[500],
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: TextButton(
-            onPressed: () {
-              openChatView();
-            },
-            child: const Text(
-              'Open Chat',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                color: Color(0xFFFFFFFF),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[500],
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: TextButton(
+              onPressed: openChatView,
+              child: const Text(
+                'Open Chat',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFFFFFFFF),
+                ),
               ),
-            )
-        ),
-      ),
-    );
+            ),
+          ),
+        );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Deriv Live Chat'),
-          actions: <Widget>[
-            Stack(children: <Widget>[
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications,
-                  color: Colors.white,
+      home: WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text('Deriv Live Chat'),
+            actions: <Widget>[
+              Stack(children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.notifications, color: Colors.white),
+                  onPressed: () {
+                    _setCounter(1);
+
+                    openChatView();
+                  },
                 ),
-                onPressed: () {
-                  _setCounter(1);
-                  openChatView();
-                },
-              ),
-              _unreadNotificationCounter > 1
-                  ? const Positioned(
-                // draw a red marble
-                top: 10,
-                right: 14,
-                child: Icon(Icons.brightness_1,
-                    size: 8, color: Colors.redAccent),
+                _unreadNotificationCounter > 1
+                    ? const Positioned(
+                        // draw a red marble
+                        top: 10,
+                        right: 14,
+                        child: Icon(
+                          Icons.brightness_1,
+                          size: 8,
+                          color: Colors.redAccent,
+                        ),
+                      )
+                    : Container()
+              ]),
+            ],
+          ),
+          body: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 36, 0, 0),
+                child: _chatButton(),
               )
-                  : Container()
-            ]),
-          ],
-        ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 36, 0, 0),
-              child: _chatButton(),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+
+    super.dispose();
   }
 }
