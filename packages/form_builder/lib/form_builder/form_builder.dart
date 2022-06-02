@@ -34,12 +34,12 @@ class FormBuilder extends StatefulWidget {
   final WillPopCallback? onWillPop;
 
   /// Finds the closest [FormBuilderState] in the [BuildContext] and returns it.
-  static FormBuilderState of(BuildContext context) {
+  static FormBuilderState? of(BuildContext context) {
     final FormBuilderState? result =
         context.findAncestorStateOfType<FormBuilderState>();
 
     if (result == null) {
-      throw FlutterError(
+      debugPrint(
         'FormBuilder: FormBuilderState is not found. Make sure you have '
         'a FormBuilder widget as a parent of your widget.',
       );
