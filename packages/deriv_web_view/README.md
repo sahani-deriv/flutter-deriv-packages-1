@@ -183,7 +183,7 @@ wallets: '/dashboard/wallets'
 
 - `destinationAppId` is the id of the destination app that will be used to open the URL, default is `16929`.
 - `refreshToken` is the app token, default is `null`.
-- `defaultAccount` is the app default account that is already logged in, default is `null`.\
+- `defaultAccount` is the app default account that is already logged in, default is `null`.
 - `loadingDialog` should be a dialog that will be shown while the URL is loading.
 - `tokenExpiredDialog` should be a dialog that will be shown when the token is expired or token is not valid.
 - `validateCredentialsOnClosed` if true, the credentials will be validated when the browser is closed, default is false.
