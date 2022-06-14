@@ -91,7 +91,7 @@ Future<void> openLoggedInWebPage({
 })
 ```
 
-- `redirectPath` is the path to a page that needs authorization to be open, this path will be provide by `BE` team.
+- `redirectPath` is the path to a page that needs authorization to be open, this path will be provide by `Front-End` team.
 
 ```
 error404: '/404'
