@@ -1,21 +1,22 @@
 package com.deriv.app.deriv_live_chat
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.content.Context
-import android.webkit.WebStorage
 import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
-
-
+import android.webkit.WebStorage
 import androidx.annotation.NonNull
 import com.livechatinc.inappchat.ChatWindowConfiguration
 import com.livechatinc.inappchat.ChatWindowErrorType
 import com.livechatinc.inappchat.ChatWindowView
 import com.livechatinc.inappchat.models.NewMessageModel
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -24,7 +25,6 @@ import io.flutter.plugin.common.EventChannel.EventSink
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 
 /** DerivLiveChatPlugin */
@@ -51,7 +51,7 @@ class DerivLiveChatPlugin : FlutterPlugin, MethodCallHandler,
             .setStreamHandler(this)
     }
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) =
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) =
         if (call.method.equals("open_live_chat_view")) {
             val licenseId = call.argument<String>("licenseId")
             val visitorName = call.argument<String>("visitorName")
@@ -59,7 +59,7 @@ class DerivLiveChatPlugin : FlutterPlugin, MethodCallHandler,
             val groupId = call.argument<String>("groupId")
             val customParams = call.argument<HashMap<String, String>>("customParams")!!
 
-            chatWindowView = ChatWindowView.createAndAttachChatWindowInstance(activity!!)
+            chatWindowView = createCustomAndAttachChatWindowInstance(activity!!)
 
             val configuration = ChatWindowConfiguration.Builder()
                 .setLicenceNumber(licenseId)
@@ -166,5 +166,29 @@ class DerivLiveChatPlugin : FlutterPlugin, MethodCallHandler,
             cookieSyncManager.stopSync()
             cookieSyncManager.sync()
         }
+    }
+
+    private fun createCustomAndAttachChatWindowInstance(activity: Activity): ChatWindowView {
+        val contentView =
+            activity.window.decorView.findViewById<View>(android.R.id.content) as ViewGroup
+        var statusBarHeight = 100;
+        val statusBarID = activity.resources.getIdentifier("status_bar_height", "dimen", "android")
+        statusBarHeight = activity.resources.getDimensionPixelSize(statusBarID)
+
+        val chatWindowView = LayoutInflater.from(activity)
+            .inflate(
+                com.livechatinc.inappchat.R.layout.view_chat_window,
+                contentView,
+                false
+            ) as ChatWindowView
+        chatWindowView.setPadding(0, statusBarHeight, 0, 0)
+
+        contentView.addView(
+            chatWindowView,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
+        )
+
+        return chatWindowView
     }
 }
