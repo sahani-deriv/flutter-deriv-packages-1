@@ -6,7 +6,6 @@ This repository contains private packages & plugins that are used by the company
 
 | Name                                                            | Description                                                                       |
 | --------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [form_builder](./packages/form_builder)                         | A simpler and cleaner way to create, validate and submit forms.                   |
 | [analytics](./packages/analytics)                               | Used to collect and send analytical information to 'Firebase' and 'Segment'.      |
 | [deriv_api_key_provider](./packages/deriv_api_key_provider)     | Used to provide deriv api key.                                                    |
 | [deriv_banner](./packages/deriv_banner)                         | A widget to show banner in apps.                                                  |
