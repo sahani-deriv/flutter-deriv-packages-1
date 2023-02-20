@@ -98,8 +98,15 @@ class BlocManager implements BaseBlocManager {
         .toList();
 
     for (final String key in subscriptionKeys) {
-      await _subscriptions[key]?.cancel();
-      _subscriptions.remove(key);
+      try {
+        await _subscriptions[key]?.cancel();
+      } on Exception catch (exception) {
+        BlocManagerException(
+          message: '<$B::$key> remove listener exception: $exception',
+        );
+      } finally {
+        _subscriptions.remove(key);
+      }
     }
   }
 
