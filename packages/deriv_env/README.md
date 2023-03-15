@@ -1,6 +1,6 @@
 # Deriv Env
 
-`deriv_env` is a Flutter package that provides a way to store, retrieve and manage environment variables. It is built on top of the `base_env.dart` inteface, which provides an interface for interacting with the environment.
+`deriv_env` is a Flutter package that provides a way to retrieve and manage environment variables. It is built on top of the `base_env.dart` inteface, which provides an interface for interacting with the environment.
 
 ## Installation
 
