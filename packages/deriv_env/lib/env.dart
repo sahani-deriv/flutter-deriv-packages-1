@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 
 import 'base_env.dart';
+import 'cipher.dart';
 
 /// Provides a way to store, and retrieve environment variables.
 class Env extends BaseEnv {
@@ -43,7 +44,17 @@ class Env extends BaseEnv {
   }
 
   @override
-  T get<T>(String key, {T? defaultValue}) {
+  T get<T>(
+    String key, {
+    T? defaultValue,
+    T Function(String value)? parser,
+    bool encrypted = false,
+    String decryptionKey = '',
+  }) {
+    if (encrypted && decryptionKey.isEmpty) {
+      throw Exception('$runtimeType encrypted key is required.');
+    }
+
     _checkInitialization();
 
     if (!_entries.containsKey(key)) {
@@ -54,7 +65,13 @@ class Env extends BaseEnv {
       return defaultValue;
     }
 
-    final String value = _entries[key];
+    final String value = encrypted
+        ? Cipher().decrypt(message: _entries[key], key: decryptionKey)
+        : _entries[key];
+
+    if (parser != null) {
+      return parser(value);
+    }
 
     switch (T) {
       case int:
