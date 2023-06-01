@@ -7,8 +7,8 @@ homepage: https://deriv.com/
 publish_to: "none"
 
 environment:
-  sdk: ">=2.19.5 <3.0.0"
-  flutter: "3.7.8"
+  sdk: ">=3.0.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
@@ -16,8 +16,14 @@ dependencies:
 
   flutter_deriv_api:
     git:
-      url: git@github.com:deriv-com/flutter-deriv-api.git
-      ref: flutter-version-3
+      url: git@github.com:bassam-deriv/flutter-deriv-api.git
+      ref: new-flutter-3.10
+
+  deriv_api_key_provider:
+    git:
+      url: git@github.com:bassam-deriv/flutter-deriv-packages.git
+      path: packages/deriv_api_key_provider
+      ref: flutter-3.10
 
   crypto: ^3.0.2
   equatable: ^2.0.3
