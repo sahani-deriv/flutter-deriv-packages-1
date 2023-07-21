@@ -13,6 +13,9 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) => DerivSignupLayout(
+        signupPageLabel: 'Start trading with Deriv',
+        signupPageDescription:
+            'Join over 1 million traders worldwide who loves trading at Deriv.',
         onSocialAuthButtonPressed: (_) {},
         onSingupError: (_) {},
         onSingupEmailSent: (email) {

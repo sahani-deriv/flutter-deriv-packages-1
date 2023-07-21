@@ -19,6 +19,8 @@ class DerivLoginLayout extends StatefulWidget {
     required this.onLoginError,
     required this.onLoggedIn,
     required this.onSocialAuthButtonPressed,
+    required this.welcomeLabel,
+    required this.greetingLabel,
     this.onLoginTapped,
     Key? key,
   }) : super(key: key);
@@ -40,6 +42,12 @@ class DerivLoginLayout extends StatefulWidget {
 
   /// Callback to be called when login button is tapped.
   final VoidCallback? onLoginTapped;
+
+  /// Welcome text to be displayed on login page.
+  final String welcomeLabel;
+
+  /// Greeting text to be displayed on login page.
+  final String greetingLabel;
 
   @override
   State<DerivLoginLayout> createState() => _DerivLoginLayoutState();
@@ -119,7 +127,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
 
   List<Widget> _buildTopSection() => <Widget>[
         Text(
-          context.localization.labelLoginWelcomeBack,
+          widget.welcomeLabel,
           style: context.theme.textStyle(
             textStyle: TextStyles.title,
             color: context.theme.colors.prominent,
@@ -127,7 +135,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
         ),
         const SizedBox(height: ThemeProvider.margin08),
         Text(
-          context.localization.labelLoginGreeting,
+          widget.greetingLabel,
           style: context.theme.textStyle(
             textStyle: TextStyles.body1,
             color: context.theme.colors.lessProminent,

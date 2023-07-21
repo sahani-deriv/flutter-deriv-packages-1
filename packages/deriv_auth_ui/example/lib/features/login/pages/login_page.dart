@@ -23,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return DerivLoginLayout(
+      welcomeLabel: 'Welcome back!',
+      greetingLabel:
+          'Log in to your Deriv account to start trading and investing.',
       onLoggedIn: (_) => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
