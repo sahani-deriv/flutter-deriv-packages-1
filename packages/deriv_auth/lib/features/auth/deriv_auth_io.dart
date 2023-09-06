@@ -12,10 +12,7 @@ abstract class DerivAuthIO {
   });
 
   /// Social login with [oneAllConnectionToken].
-  Future<void> socialLogin({
-    required String oneAllConnectionToken,
-    String? otp,
-  });
+  Future<void> socialLogin({required String oneAllConnectionToken});
 
   /// Log user in with [token] after reset password or sign up.
   Future<void> tokenLogin(String token);

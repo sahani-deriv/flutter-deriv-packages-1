@@ -43,7 +43,6 @@ class DerivAuthCubit extends Cubit<DerivAuthState> implements DerivAuthIO {
   Future<void> socialLogin({
     required String oneAllConnectionToken,
     final String? signupProvider,
-    String? otp,
   }) async {
     emit(DerivAuthLoadingState());
 
@@ -52,7 +51,6 @@ class DerivAuthCubit extends Cubit<DerivAuthState> implements DerivAuthIO {
         type: AuthType.social,
         oneAllConnectionToken: oneAllConnectionToken,
         signupProvider: signupProvider,
-        otp: otp,
       ),
     );
   }
