@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'states/web_view_page_cubit.dart';
@@ -12,6 +10,7 @@ import 'states/web_view_page_cubit.dart';
 class WebViewPage extends StatefulWidget {
   /// Starts an in-app web view to launch a [url].
   const WebViewPage({
+    required this.userAgent,
     Key? key,
     this.url,
     this.title,
@@ -22,6 +21,9 @@ class WebViewPage extends StatefulWidget {
     this.appId,
     this.onClosed,
   }) : super(key: key);
+
+  /// User Agent.
+  final String userAgent;
 
   /// Web view route name.
   static const String routeName = 'web_view_page';
@@ -63,20 +65,16 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final userAgent = await getUserAgent();
-
-      _webViewController = WebViewController()
-        ..setUserAgent(userAgent)
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onPageStarted: (_) => _onPageStarted(),
-            onProgress: _onProgress,
-          ),
-        )
-        ..loadRequest(Uri.parse(widget.url ?? 'https://deriv.com'))
-        ..setJavaScriptMode(JavaScriptMode.unrestricted);
-    });
+    _webViewController = WebViewController()
+      ..setUserAgent(widget.userAgent)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (_) => _onPageStarted(),
+          onProgress: _onProgress,
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url ?? 'https://deriv.com'))
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override
@@ -91,17 +89,11 @@ class _WebViewPageState extends State<WebViewPage> {
         ),
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
-        body: FutureBuilder<String?>(
-          future: getUserAgent(),
-          builder: (BuildContext context, AsyncSnapshot<String?> snapshot) =>
-              snapshot.connectionState == ConnectionState.done
-                  ? WillPopScope(
-                      onWillPop: _onWillPop,
-                      child: WebViewWidget(
-                        controller: _webViewController,
-                      ),
-                    )
-                  : const SizedBox(),
+        body: WillPopScope(
+          onWillPop: _onWillPop,
+          child: WebViewWidget(
+            controller: _webViewController,
+          ),
         ),
       );
 
