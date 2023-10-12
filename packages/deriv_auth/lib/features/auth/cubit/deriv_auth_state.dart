@@ -12,20 +12,14 @@ class DerivAuthLoadingState extends DerivAuthState {}
 /// can be accessed by the client.
 class DerivAuthLoggedInState extends DerivAuthState {
   /// Initialize [DerivAuthLoggedInState].
-  DerivAuthLoggedInState({
-    required this.authorizeEntity,
-    required this.landingCompany,
-  });
+  DerivAuthLoggedInState(this.authModel);
 
-  /// [AuthorizeEntity] hold all user information.
-  final AuthorizeEntity authorizeEntity;
-
-  /// [LandingCompanyEntity] hold all landing company information.
-  final LandingCompanyEntity landingCompany;
+  /// The auth information of the user.
+  final DerivAuthModel authModel;
 
   /// Indicates if the user is migrated to wallets or not.
   bool get isMigratedToWallets =>
-      authorizeEntity.linkedTo?.isNotEmpty ?? false;
+      authModel.authorizeEntity.linkedTo?.isNotEmpty ?? false;
 }
 
 /// Logged out state.
@@ -44,4 +38,20 @@ class DerivAuthErrorState extends DerivAuthState {
 
   /// Error type.
   final AuthErrorType type;
+}
+
+/// Encapsulates the [AuthorizeEntity] and [LandingCompanyEntity] date of the
+/// user.
+class DerivAuthModel {
+  /// Initializes [DerivAuthModel].
+  const DerivAuthModel({
+    required this.authorizeEntity,
+    required this.landingCompany,
+  });
+
+  /// [AuthorizeEntity] hold all user information.
+  final AuthorizeEntity authorizeEntity;
+
+  /// [LandingCompanyEntity] hold all landing company information.
+  final LandingCompanyEntity landingCompany;
 }

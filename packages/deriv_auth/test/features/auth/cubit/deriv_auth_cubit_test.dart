@@ -211,7 +211,7 @@ void main() {
             <TypeMatcher<DerivAuthState>>[
           isA<DerivAuthLoadingState>(),
           isA<DerivAuthLoggedInState>().having(
-              (DerivAuthLoggedInState state) => state.authorizeEntity,
+              (DerivAuthLoggedInState state) => state.authModel.authorizeEntity,
               'authorized entity',
               mockedValidAuthorizeEntity),
         ];
@@ -270,9 +270,10 @@ void main() {
             Stream<DerivAuthState>.fromIterable(
               <DerivAuthState>[
                 DerivAuthLoadingState(),
-                DerivAuthLoggedInState(
-                    authorizeEntity: mockedValidAuthorizeEntity,
-                    landingCompany: const LandingCompanyEntity()),
+                DerivAuthLoggedInState(const DerivAuthModel(
+                  authorizeEntity: mockedValidAuthorizeEntity,
+                  landingCompany: LandingCompanyEntity(),
+                )),
               ],
             ),
           );
