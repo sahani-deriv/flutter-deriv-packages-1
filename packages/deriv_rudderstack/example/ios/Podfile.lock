@@ -1,0 +1,30 @@
+PODS:
+  - deriv_rudderstack (0.0.1):
+    - Flutter
+    - Rudder (~> 1.1.0)
+  - Flutter (1.0.0)
+  - Rudder (1.1.5)
+
+DEPENDENCIES:
+  - deriv_rudderstack (from `.symlinks/plugins/deriv_rudderstack/ios`)
+  - Flutter (from `Flutter`)
+  - Rudder
+
+SPEC REPOS:
+  trunk:
+    - Rudder
+
+EXTERNAL SOURCES:
+  deriv_rudderstack:
+    :path: ".symlinks/plugins/deriv_rudderstack/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  deriv_rudderstack: 2b40c54282698ef571b35c40289a224b14d07b23
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Rudder: ef9240308583b37ee163f69e1bb24b8e6b5ce69b
+
+PODFILE CHECKSUM: 10ad9430ce285540acaeec6d0be04eebce76fafb
+
+COCOAPODS: 1.12.1

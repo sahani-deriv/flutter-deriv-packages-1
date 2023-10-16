@@ -1,0 +1,30 @@
+name: deriv_theme
+description: A flutter package that contains the theme used by deriv products
+version: 2.0.0
+
+homepage: https://deriv.com/
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: "3.10.2"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: IBMPlexSans
+      fonts:
+        - asset: assets/fonts/ibm_plex_sans_bold.ttf
+          weight: 700
+        - asset: assets/fonts/ibm_plex_sans_medium.ttf
+          weight: 500
+        - asset: assets/fonts/ibm_plex_sans_light.ttf
+          weight: 300
+        - asset: assets/fonts/ibm_plex_sans_regular.ttf
