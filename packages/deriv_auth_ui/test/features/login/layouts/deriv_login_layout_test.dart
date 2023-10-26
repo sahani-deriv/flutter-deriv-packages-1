@@ -14,6 +14,8 @@ import 'package:patrol_finders/patrol_finders.dart';
 import '../../../mocks.dart';
 import '../../../pump_app.dart';
 
+class MockAuthStateErrorHandler extends Mock implements AuthErrorStateHandler {}
+
 void main() {
   group('DerivLoginLayout', () {
     late MockAuthCubit authCubit;
@@ -41,9 +43,10 @@ void main() {
             greetingLabel: greetingLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
-            onLoginError: (_) {},
             onLoggedIn: (_) {},
             onSocialAuthButtonPressed: (p0) {},
+            onLoginError: (_) {},
+            authErrorStateHandler: MockAuthStateErrorHandler(),
           ),
         ),
       );
@@ -72,9 +75,10 @@ void main() {
             greetingLabel: greetingLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
-            onLoginError: (_) {},
             onLoggedIn: (_) {},
             onSocialAuthButtonPressed: (_) {},
+            onLoginError: (_) {},
+            authErrorStateHandler: MockAuthStateErrorHandler(),
           ),
         ),
       );
@@ -105,9 +109,10 @@ void main() {
               greetingLabel: greetingLabel,
               onResetPassTapped: () {},
               onSignupTapped: () {},
-              onLoginError: (_) {},
               onLoggedIn: (_) {},
               onSocialAuthButtonPressed: (_) {},
+              onLoginError: (_) {},
+              authErrorStateHandler: MockAuthStateErrorHandler(),
             ),
           ));
 
@@ -134,9 +139,10 @@ void main() {
           onSignupTapped: () {
             onSignupTappedCalled = true;
           },
-          onLoginError: (_) {},
           onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
+          onLoginError: (_) {},
+          authErrorStateHandler: MockAuthStateErrorHandler(),
         ),
       ));
 
@@ -170,11 +176,12 @@ void main() {
           greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
-          onLoginError: (_) {},
           onLoggedIn: (_) {
             onLoggedInCalled = true;
           },
           onSocialAuthButtonPressed: (_) {},
+          onLoginError: (_) {},
+          authErrorStateHandler: MockAuthStateErrorHandler(),
         ),
       ));
 
@@ -208,6 +215,7 @@ void main() {
           },
           onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
+          authErrorStateHandler: MockAuthStateErrorHandler(),
         ),
       ));
 
@@ -234,9 +242,10 @@ void main() {
             onResetPassTappedCalled = true;
           },
           onSignupTapped: () {},
-          onLoginError: (_) {},
           onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
+          onLoginError: (_) {},
+          authErrorStateHandler: MockAuthStateErrorHandler(),
         ),
       ));
 
@@ -264,11 +273,12 @@ void main() {
           greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
-          onLoginError: (_) {},
           onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {
             onSocialAuthButtonPressedCalled = true;
           },
+          onLoginError: (_) {},
+          authErrorStateHandler: MockAuthStateErrorHandler(),
         ),
       ));
 

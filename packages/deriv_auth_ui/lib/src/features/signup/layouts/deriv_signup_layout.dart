@@ -1,4 +1,5 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
@@ -21,6 +22,7 @@ class DerivSignupLayout extends StatefulWidget {
     required this.onLoginTapped,
     required this.signupPageLabel,
     required this.signupPageDescription,
+    required this.authErrorStateHandler,
     this.enableReferralSection = true,
     Key? key,
   }) : super(key: key);
@@ -30,6 +32,9 @@ class DerivSignupLayout extends StatefulWidget {
 
   /// Callback to be called when signup error occurs.
   final Function(DerivSignupErrorState) onSingupError;
+
+  /// Implementation of [AuthErrorStateHandler].
+  final AuthErrorStateHandler authErrorStateHandler;
 
   /// Callback to be called when signup email is sent.
   final Function(String) onSingupEmailSent;
@@ -77,39 +82,42 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
               Text(context.localization.labelSignUp, style: TextStyles.title),
           backgroundColor: context.theme.colors.secondary,
         ),
-        body: BlocConsumer<DerivSignupCubit, DerivSignupState>(
-          listener: _onSignUpState,
-          builder: (BuildContext context, DerivSignupState state) => Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: ThemeProvider.margin16,
-                  vertical: ThemeProvider.margin24,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ..._buildHeaderSection(),
-                    const SizedBox(height: ThemeProvider.margin24),
-                    _buildEmailTextField(),
-                    const SizedBox(height: ThemeProvider.margin36),
-                    if (widget.enableReferralSection) _buildReferralSection(),
-                    const SizedBox(height: ThemeProvider.margin16),
-                    _buildSignUpButton(),
-                    const SizedBox(height: ThemeProvider.margin24),
-                    DerivSocialAuthDivider(
-                      label: context.localization.labelOrSignUpWith,
-                    ),
-                    const SizedBox(height: ThemeProvider.margin24),
-                    DerivSocialAuthPanel(
-                      isEnabled: !isReferralEnabled,
-                      onSocialAuthButtonPressed:
-                          widget.onSocialAuthButtonPressed,
-                    ),
-                    const SizedBox(height: ThemeProvider.margin24),
-                    _buildFooterSection(),
-                  ],
+        body: BlocListener<DerivAuthCubit, DerivAuthState>(
+          listener: _onAuthState,
+          child: BlocConsumer<DerivSignupCubit, DerivSignupState>(
+            listener: _onSignUpState,
+            builder: (BuildContext context, DerivSignupState state) => Form(
+              key: formKey,
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: ThemeProvider.margin16,
+                    vertical: ThemeProvider.margin24,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ..._buildHeaderSection(),
+                      const SizedBox(height: ThemeProvider.margin24),
+                      _buildEmailTextField(),
+                      const SizedBox(height: ThemeProvider.margin36),
+                      if (widget.enableReferralSection) _buildReferralSection(),
+                      const SizedBox(height: ThemeProvider.margin16),
+                      _buildSignUpButton(),
+                      const SizedBox(height: ThemeProvider.margin24),
+                      DerivSocialAuthDivider(
+                        label: context.localization.labelOrSignUpWith,
+                      ),
+                      const SizedBox(height: ThemeProvider.margin24),
+                      DerivSocialAuthPanel(
+                        isEnabled: !isReferralEnabled,
+                        onSocialAuthButtonPressed:
+                            widget.onSocialAuthButtonPressed,
+                      ),
+                      const SizedBox(height: ThemeProvider.margin24),
+                      _buildFooterSection(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -296,6 +304,15 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
       widget.onSingupError(state);
     } else if (state is DerivSignupEmailSentState) {
       widget.onSingupEmailSent(emailController.text);
+    }
+  }
+
+  void _onAuthState(BuildContext _, DerivAuthState state) {
+    if (state is DerivAuthErrorState) {
+      authErrorStateMapper(
+        authErrorState: state,
+        authErrorStateHandler: widget.authErrorStateHandler,
+      );
     }
   }
 
