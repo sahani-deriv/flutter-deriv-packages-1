@@ -34,6 +34,9 @@ class Dimens {
   /// 18 pixels margin
   static const double margin18 = 18;
 
+  /// 20 pixels margin.
+  static const double margin20 = 20;
+
   /// 24 pixels margin
   static const double margin24 = 24;
 
@@ -78,6 +81,36 @@ class Dimens {
 
   /// 176 pixels margin.
   static const double margin176 = 176;
+
+  /// 192 pixels margin.
+  static const double margin192 = 192;
+
+  /// 224 pixels margin.
+  static const double margin224 = 224;
+
+  /// 250 pixels margin.
+  static const double margin250 = 250;
+
+  /// 256 pixels margin.
+  static const double margin256 = 256;
+
+  /// 288 pixels margin.
+  static const double margin288 = 288;
+
+  /// 320 pixels margin.
+  static const double margin320 = 320;
+
+  /// 360 pixels margin.
+  static const double margin360 = 360;
+
+  /// 400 pixels margin.
+  static const double margin400 = 400;
+
+  /// 448 pixels margin.
+  static const double margin448 = 448;
+
+  /// 512 pixels margin.
+  static const double margin512 = 512;
 
   /// Border radius small.
   static const double borderRadius01 = 1;
