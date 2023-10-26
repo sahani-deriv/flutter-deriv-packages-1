@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
-import 'package:deriv_auth_ui/src/core/helpers/auth_error_state_handler.dart';
+import 'package:deriv_auth_ui/src/core/states/auth_error_state_handler.dart';
+import 'package:deriv_auth_ui/src/core/states/auth_error_state_mapper.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_panel.dart';
 import 'package:deriv_theme/deriv_theme.dart';
@@ -17,11 +18,12 @@ class DerivLoginLayout extends StatefulWidget {
   const DerivLoginLayout({
     required this.onResetPassTapped,
     required this.onSignupTapped,
-    required this.onLoginError,
     required this.onLoggedIn,
     required this.onSocialAuthButtonPressed,
     required this.welcomeLabel,
     required this.greetingLabel,
+    required this.authErrorStateHandler,
+    this.onLoginError,
     this.onLoginTapped,
     Key? key,
   }) : super(key: key);
@@ -33,7 +35,10 @@ class DerivLoginLayout extends StatefulWidget {
   final VoidCallback onSignupTapped;
 
   /// Implementation of [AuthErrorStateHandler].
-  final AuthErrorStateHandler onLoginError;
+  final AuthErrorStateHandler authErrorStateHandler;
+
+  /// Callback to be called when login error occurs.
+  final Function(DerivAuthErrorState)? onLoginError;
 
   /// Callback to be called when user is logged in.
   final Function(DerivAuthLoggedInState) onLoggedIn;
@@ -263,32 +268,12 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
 
   void _onAuthState(BuildContext context, DerivAuthState state) {
     if (state is DerivAuthErrorState) {
-      switch (state.type) {
-        case AuthErrorType.missingOtp:
-          widget.onLoginError.onMissingOtp();
-          return;
-        case AuthErrorType.selfClosed:
-          widget.onLoginError.onSelfClosed();
-          return;
-        case AuthErrorType.unsupportedCountry:
-          widget.onLoginError.onUnsupportedCountry();
-          return;
-        case AuthErrorType.accountUnavailable:
-          widget.onLoginError.onAccountUnavailable();
-          return;
-        case AuthErrorType.invalidCredential:
-          widget.onLoginError.onInvalidCredentials();
-          return;
-        case AuthErrorType.invalid2faCode:
-          widget.onLoginError.invalid2faCode();
-          return;
-        case AuthErrorType.failedAuthorization:
-          widget.onLoginError.onFailedAuthorization();
-          return;
-        default:
-          widget.onLoginError.defaultError();
-          return;
-      }
+      widget.onLoginError?.call(state);
+
+      authErrorStateMapper(
+        authErrorState: state,
+        authErrorStateHandler: widget.authErrorStateHandler,
+      );
     }
 
     if (state is DerivAuthLoggedInState) {

@@ -690,6 +690,126 @@ class DerivAuthUILocalization {
       args: [],
     );
   }
+
+  /// `Try Again`
+  String get actionTryAgain {
+    return Intl.message(
+      'Try Again',
+      name: 'actionTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code you entered is invalid. Check and try again.`
+  String get informInvalid2FACode {
+    return Intl.message(
+      'The code you entered is invalid. Check and try again.',
+      name: 'informInvalid2FACode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your email or password may be incorrect. Did you sign up with a social account? Check and try again.`
+  String get informFailedAuthentication {
+    return Intl.message(
+      'Your email or password may be incorrect. Did you sign up with a social account? Check and try again.',
+      name: 'informFailedAuthentication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is deactivated.`
+  String get informDeactivatedAccount {
+    return Intl.message(
+      'Your account is deactivated.',
+      name: 'informDeactivatedAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Authorization failed.`
+  String get informFailedAuthorization {
+    return Intl.message(
+      'Authorization failed.',
+      name: 'informFailedAuthorization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid residence.`
+  String get informInvalidResidence {
+    return Intl.message(
+      'Invalid residence.',
+      name: 'informInvalidResidence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid credentials.`
+  String get informInvalidCredentials {
+    return Intl.message(
+      'Invalid credentials.',
+      name: 'informInvalidCredentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Missing one-time password.`
+  String get informMissingOtp {
+    return Intl.message(
+      'Missing one-time password.',
+      name: 'informMissingOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account has been closed.`
+  String get informSelfClosed {
+    return Intl.message(
+      'Your account has been closed.',
+      name: 'informSelfClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An unexpected error occurred.`
+  String get informUnexpectedError {
+    return Intl.message(
+      'An unexpected error occurred.',
+      name: 'informUnexpectedError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your country is not supported.`
+  String get informUnsupportedCountry {
+    return Intl.message(
+      'Your country is not supported.',
+      name: 'informUnsupportedCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is expired`
+  String get informExpiredAccount {
+    return Intl.message(
+      'Your account is expired',
+      name: 'informExpiredAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

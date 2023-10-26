@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           builder: (context) => const HomePage(),
         ),
       ),
+      authErrorStateHandler: DefaultAuthErrorStateHandler(context: context),
       onLoginError: (_) {},
       onResetPassTapped: () => Navigator.push(
         context,
