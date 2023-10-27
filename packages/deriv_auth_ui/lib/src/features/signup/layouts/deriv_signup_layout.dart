@@ -2,6 +2,7 @@ import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
+import 'package:deriv_auth_ui/src/core/states/auth_state_listener.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_panel.dart';
 import 'package:deriv_theme/deriv_theme.dart';
@@ -24,6 +25,7 @@ class DerivSignupLayout extends StatefulWidget {
     required this.signupPageDescription,
     required this.authErrorStateHandler,
     this.enableReferralSection = true,
+    this.onAuthError,
     Key? key,
   }) : super(key: key);
 
@@ -35,6 +37,10 @@ class DerivSignupLayout extends StatefulWidget {
 
   /// Implementation of [AuthErrorStateHandler].
   final AuthErrorStateHandler authErrorStateHandler;
+
+  /// Callback to be called on [DerivAuthErrorState].
+  /// Useful if needed to do anything additional to [authErrorStateHandler].
+  final Function(DerivAuthErrorState)? onAuthError;
 
   /// Callback to be called when signup email is sent.
   final Function(String) onSingupEmailSent;
@@ -82,8 +88,9 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
               Text(context.localization.labelSignUp, style: TextStyles.title),
           backgroundColor: context.theme.colors.secondary,
         ),
-        body: BlocListener<DerivAuthCubit, DerivAuthState>(
-          listener: _onAuthState,
+        body: AuthStateListener(
+          authErrorStateHandler: widget.authErrorStateHandler,
+          onError: widget.onAuthError,
           child: BlocConsumer<DerivSignupCubit, DerivSignupState>(
             listener: _onSignUpState,
             builder: (BuildContext context, DerivSignupState state) => Form(
@@ -304,15 +311,6 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
       widget.onSingupError(state);
     } else if (state is DerivSignupEmailSentState) {
       widget.onSingupEmailSent(emailController.text);
-    }
-  }
-
-  void _onAuthState(BuildContext _, DerivAuthState state) {
-    if (state is DerivAuthErrorState) {
-      authErrorStateMapper(
-        authErrorState: state,
-        authErrorStateHandler: widget.authErrorStateHandler,
-      );
     }
   }
 

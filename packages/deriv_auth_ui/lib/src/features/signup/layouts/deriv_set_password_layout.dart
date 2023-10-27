@@ -3,6 +3,7 @@ import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
 import 'package:deriv_auth_ui/src/core/helpers/assets.dart';
+import 'package:deriv_auth_ui/src/core/states/auth_state_listener.dart';
 import 'package:deriv_auth_ui/src/features/signup/widgets/password_policy_checker_widget.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/deriv_ui.dart';
@@ -20,6 +21,7 @@ class DerivSetPasswordLayout extends StatefulWidget {
     required this.residence,
     required this.authErrorStateHandler,
     this.utmModel,
+    this.onAuthError,
     Key? key,
   }) : super(key: key);
 
@@ -34,6 +36,9 @@ class DerivSetPasswordLayout extends StatefulWidget {
 
   /// Implementation of [AuthErrorStateHandler].
   final AuthErrorStateHandler authErrorStateHandler;
+
+  /// Callback to be called on [DerivAuthErrorState]
+  final Function(DerivAuthErrorState)? onAuthError;
 
   /// Callback to be called when signup state changes.
   final void Function(BuildContext, DerivSignupState) onDerivSignupState;
@@ -63,9 +68,9 @@ class _DerivSetPasswordLayoutState extends State<DerivSetPasswordLayout> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BlocListener<DerivAuthCubit, DerivAuthState>(
-        listener: _onAuthState,
+  Widget build(BuildContext context) => AuthStateListener(
+        authErrorStateHandler: widget.authErrorStateHandler,
+        onError: widget.onAuthError,
         child: Scaffold(
           backgroundColor: context.theme.colors.primary,
           body: SafeArea(
@@ -206,14 +211,5 @@ class _DerivSetPasswordLayoutState extends State<DerivSetPasswordLayout> {
       utmAdGroupId: widget.utmModel?.utmAdGroupId,
       utmAdId: widget.utmModel?.utmAdId,
     );
-  }
-
-  void _onAuthState(BuildContext _, DerivAuthState state) {
-    if (state is DerivAuthErrorState) {
-      authErrorStateMapper(
-        authErrorState: state,
-        authErrorStateHandler: widget.authErrorStateHandler,
-      );
-    }
   }
 }
