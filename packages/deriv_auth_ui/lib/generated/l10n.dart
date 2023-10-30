@@ -810,6 +810,16 @@ class DerivAuthUILocalization {
       args: [],
     );
   }
+
+  /// `I hereby confirm that my request for opening an account with Deriv to trade OTC products issued and offered exclusively outside Brazil was initiated by me. I fully understand that Deriv is not regulated by CVM and by approaching Deriv I intend to set up a relation with a foreign company.`
+  String get labelCountryConsentBrazil {
+    return Intl.message(
+      'I hereby confirm that my request for opening an account with Deriv to trade OTC products issued and offered exclusively outside Brazil was initiated by me. I fully understand that Deriv is not regulated by CVM and by approaching Deriv I intend to set up a relation with a foreign company.',
+      name: 'labelCountryConsentBrazil',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

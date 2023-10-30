@@ -7,6 +7,7 @@ class DerivResidenceModel extends Equatable {
     required this.isDisabled,
     required this.name,
     required this.code,
+    this.value,
   });
 
   /// Disabled.
@@ -17,6 +18,9 @@ class DerivResidenceModel extends Equatable {
 
   /// 2-letter country code.
   final String code;
+
+  /// 2-letter country code
+  final String? value;
 
   @override
   List<Object?> get props => <Object?>[isDisabled, name, code];

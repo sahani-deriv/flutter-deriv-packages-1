@@ -27,7 +27,7 @@ void main() {
     blocTest<DerivCountrySelectionCubit, DerivCountrySelectionState>(
       'emits DerivCountrySelectionLoadedState with filtered countries when fetchResidenceCounties is called',
       build: () => cubit,
-      act: (cubit) => cubit.fetchResidenceCounties(),
+      act: (cubit) => cubit.fetchResidenceCountries(),
       expect: () => [isA<DerivCountrySelectionLoadedState>()],
     );
   });

@@ -101,5 +101,6 @@
   "informSelfClosed": "Your account has been closed.",
   "informUnexpectedError": "An unexpected error occurred.",
   "informUnsupportedCountry": "Your country is not supported.",
-  "informExpiredAccount": "Your account is expired"
+  "informExpiredAccount": "Your account is expired",
+  "labelCountryConsentBrazil": "I hereby confirm that my request for opening an account with Deriv to trade OTC products issued and offered exclusively outside Brazil was initiated by me. I fully understand that Deriv is not regulated by CVM and by approaching Deriv I intend to set up a relation with a foreign company."
 }
