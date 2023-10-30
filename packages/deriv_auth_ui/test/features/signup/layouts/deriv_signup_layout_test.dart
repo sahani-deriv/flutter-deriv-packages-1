@@ -52,7 +52,6 @@ void main() {
                 onSingupEmailSent: (_) {},
                 onSignupPressed: () {},
                 onLoginTapped: () {},
-                authErrorStateHandler: MockAuthErrorStateHandler(),
               ),
             ),
           ));
@@ -82,7 +81,6 @@ void main() {
             onSingupEmailSent: (_) {},
             onSignupPressed: () {},
             onLoginTapped: () {},
-            authErrorStateHandler: MockAuthErrorStateHandler(),
           ),
         ),
       ));
@@ -107,15 +105,13 @@ void main() {
         child: BlocProvider<DerivSignupCubit>.value(
           value: signupCubit,
           child: DerivSignupLayout(
-            signupPageLabel: signupPageLabel,
-            signupPageDescription: signupPageDescription,
-            onSocialAuthButtonPressed: (_) {},
-            onSingupError: (_) {},
-            onSingupEmailSent: (_) => isOnSignupEmailSentCalled = true,
-            onSignupPressed: () {},
-            onLoginTapped: () {},
-            authErrorStateHandler: MockAuthErrorStateHandler(),
-          ),
+              signupPageLabel: signupPageLabel,
+              signupPageDescription: signupPageDescription,
+              onSocialAuthButtonPressed: (_) {},
+              onSingupError: (_) {},
+              onSingupEmailSent: (_) => isOnSignupEmailSentCalled = true,
+              onSignupPressed: () {},
+              onLoginTapped: () {}),
         ),
       ));
 
@@ -134,15 +130,13 @@ void main() {
         child: BlocProvider<DerivSignupCubit>.value(
           value: signupCubit,
           child: DerivSignupLayout(
-            signupPageLabel: signupPageLabel,
-            signupPageDescription: signupPageDescription,
-            onSocialAuthButtonPressed: (_) {},
-            onSingupError: (_) {},
-            onSingupEmailSent: (_) {},
-            onSignupPressed: () => isOnSignupPressedCalled = true,
-            onLoginTapped: () {},
-            authErrorStateHandler: MockAuthErrorStateHandler(),
-          ),
+              signupPageLabel: signupPageLabel,
+              signupPageDescription: signupPageDescription,
+              onSocialAuthButtonPressed: (_) {},
+              onSingupError: (_) {},
+              onSingupEmailSent: (_) {},
+              onSignupPressed: () => isOnSignupPressedCalled = true,
+              onLoginTapped: () {}),
         ),
       ));
 
@@ -166,17 +160,15 @@ void main() {
         child: BlocProvider<DerivSignupCubit>.value(
           value: signupCubit,
           child: DerivSignupLayout(
-            signupPageLabel: signupPageLabel,
-            signupPageDescription: signupPageDescription,
-            onSocialAuthButtonPressed: (_) {},
-            onSingupError: (_) {},
-            onSingupEmailSent: (_) {},
-            onSignupPressed: () {},
-            onLoginTapped: () {
-              isOnLoginTappedCalled = true;
-            },
-            authErrorStateHandler: MockAuthErrorStateHandler(),
-          ),
+              signupPageLabel: signupPageLabel,
+              signupPageDescription: signupPageDescription,
+              onSocialAuthButtonPressed: (_) {},
+              onSingupError: (_) {},
+              onSingupEmailSent: (_) {},
+              onSignupPressed: () {},
+              onLoginTapped: () {
+                isOnLoginTappedCalled = true;
+              }),
         ),
       ));
 
@@ -203,15 +195,13 @@ void main() {
         child: BlocProvider<DerivSignupCubit>.value(
           value: signupCubit,
           child: DerivSignupLayout(
-            signupPageLabel: signupPageLabel,
-            signupPageDescription: signupPageDescription,
-            onSocialAuthButtonPressed: (_) {},
-            onSingupError: (_) => isOnSignupErrorCalled = true,
-            onSingupEmailSent: (_) {},
-            onSignupPressed: () {},
-            onLoginTapped: () {},
-            authErrorStateHandler: MockAuthErrorStateHandler(),
-          ),
+              signupPageLabel: signupPageLabel,
+              signupPageDescription: signupPageDescription,
+              onSocialAuthButtonPressed: (_) {},
+              onSingupError: (_) => isOnSignupErrorCalled = true,
+              onSingupEmailSent: (_) {},
+              onSignupPressed: () {},
+              onLoginTapped: () {}),
         ),
       ));
 

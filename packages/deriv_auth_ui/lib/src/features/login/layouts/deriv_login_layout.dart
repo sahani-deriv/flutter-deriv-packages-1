@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
-import 'package:deriv_auth_ui/src/core/states/auth_error_state_handler.dart';
-import 'package:deriv_auth_ui/src/core/states/auth_error_state_mapper.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_panel.dart';
 import 'package:deriv_theme/deriv_theme.dart';
@@ -22,7 +21,7 @@ class DerivLoginLayout extends StatefulWidget {
     required this.onSocialAuthButtonPressed,
     required this.welcomeLabel,
     required this.greetingLabel,
-    required this.authErrorStateHandler,
+    this.authErrorStateHandler,
     this.onLoginError,
     this.onLoginTapped,
     Key? key,
@@ -34,8 +33,8 @@ class DerivLoginLayout extends StatefulWidget {
   /// Callback to be called when signup button is tapped.
   final VoidCallback onSignupTapped;
 
-  /// Implementation of [AuthErrorStateHandler].
-  final AuthErrorStateHandler authErrorStateHandler;
+  /// Extension of base [AuthErrorStateHandler]. If not provided, base implementation will be used.
+  final AuthErrorStateHandler? authErrorStateHandler;
 
   /// Callback to be called when login error occurs.
   final Function(DerivAuthErrorState)? onLoginError;
@@ -272,7 +271,8 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
 
       authErrorStateMapper(
         authErrorState: state,
-        authErrorStateHandler: widget.authErrorStateHandler,
+        authErrorStateHandler: widget.authErrorStateHandler ??
+            AuthErrorStateHandler(context: context),
       );
     }
 

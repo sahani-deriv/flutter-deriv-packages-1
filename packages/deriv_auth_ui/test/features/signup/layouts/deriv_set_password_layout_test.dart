@@ -40,7 +40,6 @@ void main() {
               BlocProvider<DerivSignupCubit>.value(value: signupCubit),
             ],
             child: DerivSetPasswordLayout(
-              authErrorStateHandler: MockAuthErrorStateHandler(),
               onDerivSignupState: (_, __) {},
               onPreviousPressed: () {},
               verificationCode: '123456',
@@ -71,7 +70,6 @@ void main() {
               BlocProvider<DerivSignupCubit>.value(value: signupCubit),
             ],
             child: DerivSetPasswordLayout(
-                authErrorStateHandler: MockAuthErrorStateHandler(),
                 onDerivSignupState: (_, __) =>
                     isOnDerivSignupStateCalled = true,
                 onPreviousPressed: () {},
@@ -94,7 +92,6 @@ void main() {
               BlocProvider<DerivSignupCubit>.value(value: signupCubit),
             ],
             child: DerivSetPasswordLayout(
-                authErrorStateHandler: MockAuthErrorStateHandler(),
                 onDerivSignupState: (_, __) {},
                 onPreviousPressed: () => isOnPreviousPressedCalled = true,
                 verificationCode: 'verificationCode',
@@ -117,7 +114,6 @@ void main() {
               BlocProvider<DerivSignupCubit>.value(value: signupCubit),
             ],
             child: DerivSetPasswordLayout(
-                authErrorStateHandler: MockAuthErrorStateHandler(),
                 onDerivSignupState: (_, __) {},
                 onPreviousPressed: () {},
                 verificationCode: 'verificationCode',
@@ -147,7 +143,6 @@ void main() {
               BlocProvider<DerivSignupCubit>.value(value: signupCubit),
             ],
             child: DerivSetPasswordLayout(
-                authErrorStateHandler: MockAuthErrorStateHandler(),
                 onDerivSignupState: (_, __) {},
                 onPreviousPressed: () {},
                 verificationCode: 'verificationCode',

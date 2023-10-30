@@ -19,7 +19,7 @@ class DerivSetPasswordLayout extends StatefulWidget {
     required this.onPreviousPressed,
     required this.verificationCode,
     required this.residence,
-    required this.authErrorStateHandler,
+    this.authErrorStateHandler,
     this.utmModel,
     this.onAuthError,
     Key? key,
@@ -34,8 +34,8 @@ class DerivSetPasswordLayout extends StatefulWidget {
   /// Utm model
   final DerivAuthUtmModel? utmModel;
 
-  /// Implementation of [AuthErrorStateHandler].
-  final AuthErrorStateHandler authErrorStateHandler;
+  /// Extension of base [AuthErrorStateHandler]. If not provided, base implementation will be used.
+  final AuthErrorStateHandler? authErrorStateHandler;
 
   /// Callback to be called on [DerivAuthErrorState]
   final Function(DerivAuthErrorState)? onAuthError;

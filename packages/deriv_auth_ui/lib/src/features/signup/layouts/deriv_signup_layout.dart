@@ -1,5 +1,4 @@
 import 'package:deriv_auth/deriv_auth.dart';
-import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
 import 'package:deriv_auth_ui/src/core/states/auth_state_listener.dart';
@@ -9,6 +8,8 @@ import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:deriv_auth_ui/src/core/states/auth_error_state_handler.dart';
 
 /// It offers creating demo accounts via email and third-party providers.
 /// It Also provides optional referral code section which can be disabled
@@ -23,7 +24,7 @@ class DerivSignupLayout extends StatefulWidget {
     required this.onLoginTapped,
     required this.signupPageLabel,
     required this.signupPageDescription,
-    required this.authErrorStateHandler,
+    this.authErrorStateHandler,
     this.enableReferralSection = true,
     this.onAuthError,
     Key? key,
@@ -35,8 +36,8 @@ class DerivSignupLayout extends StatefulWidget {
   /// Callback to be called when signup error occurs.
   final Function(DerivSignupErrorState) onSingupError;
 
-  /// Implementation of [AuthErrorStateHandler].
-  final AuthErrorStateHandler authErrorStateHandler;
+  /// Extension of base [AuthErrorStateHandler]. If not provided, base implementation will be used.
+  final AuthErrorStateHandler? authErrorStateHandler;
 
   /// Callback to be called on [DerivAuthErrorState].
   /// Useful if needed to do anything additional to [authErrorStateHandler].

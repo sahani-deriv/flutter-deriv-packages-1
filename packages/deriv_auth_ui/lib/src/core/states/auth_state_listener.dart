@@ -34,7 +34,7 @@ class AuthStateListener extends StatelessWidget {
   /// Callback to be called when an error occurs.
   final Function(DerivAuthErrorState)? onError;
 
-  /// Implementation of [AuthErrorStateHandler].
+  /// Extension of base [AuthErrorStateHandler]. If not provided, base implementation will be used.
   final AuthErrorStateHandler? authErrorStateHandler;
 
   @override
@@ -50,12 +50,11 @@ class AuthStateListener extends StatelessWidget {
           } else if (state is DerivAuthErrorState) {
             onError?.call(state);
 
-            if (authErrorStateHandler != null) {
-              authErrorStateMapper(
-                authErrorState: state,
-                authErrorStateHandler: authErrorStateHandler!,
-              );
-            }
+            authErrorStateMapper(
+              authErrorState: state,
+              authErrorStateHandler: authErrorStateHandler ??
+                  AuthErrorStateHandler(context: context),
+            );
           }
         },
         child: child,
