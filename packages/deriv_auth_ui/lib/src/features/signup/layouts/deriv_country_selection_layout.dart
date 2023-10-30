@@ -214,7 +214,7 @@ class _DerivCountrySelectionLayoutState
             message: countryConsentMessage ??
                 getCountryConsentMessage(
                   context,
-                  countryCode: selectedCountry.value,
+                  countryCode: selectedCountry.code,
                 ),
           );
         },

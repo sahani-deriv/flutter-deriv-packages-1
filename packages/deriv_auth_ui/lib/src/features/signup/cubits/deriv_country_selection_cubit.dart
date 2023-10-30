@@ -20,7 +20,7 @@ class DerivCountrySelectionCubit extends Cubit<DerivCountrySelectionState> {
     final List<DerivResidenceModel> filteredCountries = countries
         .where(
           (DerivResidenceModel country) =>
-              isAllowedCountry(countryCode: country.value),
+              isAllowedCountry(countryCode: country.code),
         )
         .toList();
 
@@ -42,7 +42,7 @@ class DerivCountrySelectionCubit extends Cubit<DerivCountrySelectionState> {
           state.countries,
           selectedCountry: selectedCountry,
           selectedCountryRequiresConsent: isConsentRequired(
-            countryCode: selectedCountry.value,
+            countryCode: selectedCountry.code,
           ),
         ),
       );
