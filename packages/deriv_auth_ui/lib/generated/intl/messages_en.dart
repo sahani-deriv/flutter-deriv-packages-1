@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "actionTryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "infoReferralInfoDescription": MessageLookupByLibrary.simpleMessage(
             "An alphanumeric code provided by a Deriv affiliate, applicable for email sign-ups only."),
+        "informConnectionError": MessageLookupByLibrary.simpleMessage(
+            "Connection error. Please try again later."),
         "informDeactivatedAccount": MessageLookupByLibrary.simpleMessage(
             "Your account is deactivated."),
         "informEnterTwoFactorAuthCode": MessageLookupByLibrary.simpleMessage(
@@ -98,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "informSelfClosed": MessageLookupByLibrary.simpleMessage(
             "Your account has been closed."),
         "informSendResetPasswordEmail": m0,
+        "informSwitchAccountError": MessageLookupByLibrary.simpleMessage(
+            "Switch account error. Please try again later."),
         "informUnexpectedError": MessageLookupByLibrary.simpleMessage(
             "An unexpected error occurred."),
         "informUnsupportedCountry": MessageLookupByLibrary.simpleMessage(

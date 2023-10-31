@@ -207,5 +207,68 @@ void main() {
 
       expect(isOnSignupErrorCalled, true);
     });
+    patrolWidgetTest('onAuthError is called upon auth error state',
+        (PatrolTester $) async {
+      bool isOnAuthErrorCalled = false;
+
+      final mockAuthState = DerivAuthErrorState(
+        isSocialLogin: false,
+        message: 'error',
+        type: AuthErrorType.failedAuthorization,
+      );
+
+      when(() => authCubit.state).thenAnswer((_) => mockAuthState);
+
+      when(() => authCubit.stream)
+          .thenAnswer((_) => Stream.fromIterable([mockAuthState]));
+
+      await $.pumpApp(BlocProvider<DerivAuthCubit>.value(
+        value: authCubit,
+        child: BlocProvider<DerivSignupCubit>.value(
+          value: signupCubit,
+          child: DerivSignupLayout(
+              signupPageLabel: signupPageLabel,
+              signupPageDescription: signupPageDescription,
+              onSocialAuthButtonPressed: (_) {},
+              onSingupError: (_) {},
+              onSingupEmailSent: (_) {},
+              onSignupPressed: () {},
+              onAuthError: (_) => isOnAuthErrorCalled = true,
+              onLoginTapped: () {}),
+        ),
+      ));
+
+      expect(isOnAuthErrorCalled, true);
+    });
+
+    patrolWidgetTest('calls [AuthErrorStateHandler] on auth error state.',
+        (PatrolTester $) async {
+      final mockAuthState = DerivAuthErrorState(
+        isSocialLogin: false,
+        message: 'error',
+        type: AuthErrorType.failedAuthorization,
+      );
+
+      when(() => authCubit.state).thenAnswer((_) => mockAuthState);
+
+      when(() => authCubit.stream)
+          .thenAnswer((_) => Stream.fromIterable([mockAuthState]));
+
+      await $.pumpApp(BlocProvider<DerivAuthCubit>.value(
+          value: authCubit,
+          child: BlocProvider<DerivSignupCubit>.value(
+            value: signupCubit,
+            child: DerivSignupLayout(
+                signupPageLabel: signupPageLabel,
+                signupPageDescription: signupPageDescription,
+                onSocialAuthButtonPressed: (_) {},
+                onSingupError: (_) {},
+                onSingupEmailSent: (_) {},
+                onSignupPressed: () {},
+                onLoginTapped: () {}),
+          )));
+
+      expect($(PopupAlertDialog).$('Authorization failed.'), findsOneWidget);
+    });
   });
 }

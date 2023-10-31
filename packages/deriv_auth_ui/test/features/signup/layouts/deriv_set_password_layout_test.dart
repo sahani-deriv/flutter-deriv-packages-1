@@ -80,6 +80,65 @@ void main() {
       expect(isOnDerivSignupStateCalled, true);
     });
 
+    patrolWidgetTest('calls [AuthErrorStateHandler] on auth error state.',
+        (PatrolTester $) async {
+      final mockAuthState = DerivAuthErrorState(
+        isSocialLogin: false,
+        message: 'error',
+        type: AuthErrorType.failedAuthorization,
+      );
+
+      when(() => authCubit.state).thenReturn(mockAuthState);
+      when(() => authCubit.stream)
+          .thenAnswer((_) => Stream.fromIterable([mockAuthState]));
+
+      await $.pumpApp(MultiBlocProvider(
+        providers: [
+          BlocProvider<DerivAuthCubit>.value(value: authCubit),
+          BlocProvider<DerivSignupCubit>.value(value: signupCubit),
+        ],
+        child: DerivSetPasswordLayout(
+            onDerivSignupState: (_, __) {},
+            onPreviousPressed: () {},
+            verificationCode: 'verificationCode',
+            residence: 'residence'),
+      ));
+
+      expect($(PopupAlertDialog).$('Authorization failed.'), findsOneWidget);
+    });
+
+    patrolWidgetTest('onAuthError is called on auth error state.',
+        (PatrolTester $) async {
+      final mockAuthState = DerivAuthErrorState(
+        isSocialLogin: false,
+        message: 'error',
+        type: AuthErrorType.failedAuthorization,
+      );
+
+      when(() => authCubit.state).thenReturn(mockAuthState);
+      when(() => authCubit.stream)
+          .thenAnswer((_) => Stream.fromIterable([mockAuthState]));
+
+      bool isOnAuthErrorCalled = false;
+
+      await $.pumpApp(MultiBlocProvider(
+        providers: [
+          BlocProvider<DerivAuthCubit>.value(value: authCubit),
+          BlocProvider<DerivSignupCubit>.value(value: signupCubit),
+        ],
+        child: DerivSetPasswordLayout(
+            onDerivSignupState: (_, __) {},
+            onPreviousPressed: () {},
+            onAuthError: (_) {
+              isOnAuthErrorCalled = true;
+            },
+            verificationCode: 'verificationCode',
+            residence: 'residence'),
+      ));
+
+      expect(isOnAuthErrorCalled, true);
+    });
+
     patrolWidgetTest('onPreviousPressed is called upon tapping previous button',
         (PatrolTester $) async {
       bool isOnPreviousPressedCalled = false;

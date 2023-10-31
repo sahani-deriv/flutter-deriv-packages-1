@@ -38,6 +38,12 @@ void authErrorStateMapper({
     case AuthErrorType.expiredAccount:
       authErrorStateHandler.onExpiredAccount(authErrorState);
       return;
+    case AuthErrorType.connectionError:
+      authErrorStateHandler.onConnectionError(authErrorState);
+      return;
+    case AuthErrorType.switchAccountError:
+      authErrorStateHandler.onSwitchAccountError(authErrorState);
+      return;
     default:
       authErrorStateHandler.onUnexpectedError(authErrorState);
       return;

@@ -106,4 +106,22 @@ base class AuthErrorStateHandler {
       actionLabel: context.localization.actionTryAgain,
     );
   }
+
+  /// On connection error.
+  void onConnectionError(DerivAuthErrorState state) {
+    showErrorDialog(
+      context: context,
+      errorMessage: context.localization.informConnectionError,
+      actionLabel: context.localization.actionTryAgain,
+    );
+  }
+
+  /// On switch account error.
+  void onSwitchAccountError(DerivAuthErrorState state) {
+    showErrorDialog(
+      context: context,
+      errorMessage: context.localization.informSwitchAccountError,
+      actionLabel: context.localization.actionTryAgain,
+    );
+  }
 }

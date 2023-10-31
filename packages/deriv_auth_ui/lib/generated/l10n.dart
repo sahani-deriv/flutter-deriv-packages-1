@@ -820,6 +820,26 @@ class DerivAuthUILocalization {
       args: [],
     );
   }
+
+  /// `Connection error. Please try again later.`
+  String get informConnectionError {
+    return Intl.message(
+      'Connection error. Please try again later.',
+      name: 'informConnectionError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch account error. Please try again later.`
+  String get informSwitchAccountError {
+    return Intl.message(
+      'Switch account error. Please try again later.',
+      name: 'informSwitchAccountError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate
