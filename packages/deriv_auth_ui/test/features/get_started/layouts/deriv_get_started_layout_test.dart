@@ -29,6 +29,7 @@ void main() {
     patrolWidgetTest('should render DerivGetStartedLayout',
         (PatrolTester $) async {
       await $.pumpApp(DerivGetStartedLayout(
+        onTapNavigation: () {},
         slides: [mockSlideModel],
         appLogoIconPath: appLogoIconPath,
         backgroundImagePath: backgroundImagePath,
@@ -47,6 +48,7 @@ void main() {
       bool loginTapped = false;
 
       await $.pumpApp(DerivGetStartedLayout(
+        onTapNavigation: () {},
         slides: [mockSlideModel],
         appLogoIconPath: appLogoIconPath,
         backgroundImagePath: backgroundImagePath,
@@ -66,6 +68,7 @@ void main() {
       bool signupTapped = false;
 
       await $.pumpApp(DerivGetStartedLayout(
+        onTapNavigation: () {},
         slides: [mockSlideModel],
         appLogoIconPath: appLogoIconPath,
         backgroundImagePath: backgroundImagePath,
