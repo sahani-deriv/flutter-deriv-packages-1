@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// {@template auth_state_listener}
 /// A [Widget] that listens to the [DerivAuthCubit] state changes.
-/// This was created to make it easier to use [AuthErrorStateHandler].
+/// This was created to make it easier to use [AuthErrorStateHandler] by
+/// handling the mapping of auth error states with [AuthErrorStateHandler]'s method'.
 /// {@endtemplate}
 class AuthStateListener extends StatelessWidget {
   /// {@macro auth_state_listener}
