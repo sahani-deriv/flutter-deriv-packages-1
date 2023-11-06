@@ -11,7 +11,7 @@ abstract class DerivCountrySelectionState {
   });
 
   /// List of countries.
-  final List<DerivResidenceModel>? countries;
+  final List<DerivResidenceModel> countries;
 
   /// Selected country.
   final DerivResidenceModel? selectedCountry;
@@ -38,7 +38,7 @@ class DerivCountrySelectionInitialState extends DerivCountrySelectionState {
 class DerivCountrySelectionLoadedState extends DerivCountrySelectionState {
   /// Initialise country list loaded state
   const DerivCountrySelectionLoadedState(
-    List<DerivResidenceModel>? countries, {
+    List<DerivResidenceModel> countries, {
     DerivResidenceModel? selectedCountry,
   }) : super(countries, selectedCountry: selectedCountry);
 }
@@ -47,7 +47,7 @@ class DerivCountrySelectionLoadedState extends DerivCountrySelectionState {
 class DerivCountryChangedState extends DerivCountrySelectionState {
   /// Initialise country selection changed state.
   const DerivCountryChangedState(
-    List<DerivResidenceModel>? countries, {
+    List<DerivResidenceModel> countries, {
     DerivResidenceModel? selectedCountry,
     bool? selectedCountryRequiresConsent,
   }) : super(
@@ -62,7 +62,7 @@ class DerivCountryChangedState extends DerivCountrySelectionState {
 class DerivCountryConsentChangedState extends DerivCountrySelectionState {
   /// Initialize country list loaded state
   const DerivCountryConsentChangedState(
-    List<DerivResidenceModel>? countries, {
+    List<DerivResidenceModel> countries, {
     DerivResidenceModel? selectedCountry,
     bool? selectedCountryRequiresConsent,
     bool? agreedToTerms,
