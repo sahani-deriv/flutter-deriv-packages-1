@@ -16,10 +16,6 @@ class DerivAuthLoggedInState extends DerivAuthState {
 
   /// The auth information of the user.
   final DerivAuthModel authModel;
-
-  /// Indicates if the user is migrated to wallets or not.
-  bool get isMigratedToWallets =>
-      authModel.authorizeEntity.linkedTo?.isNotEmpty ?? false;
 }
 
 /// Logged out state.
