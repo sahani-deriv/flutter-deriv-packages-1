@@ -30,6 +30,9 @@ feat(deriv_auth): add UI for sign in page
 - add bloc for sign in logic implementation
 - add google services for authentication
 ```
+### Breaking Changes Indicator
+Breaking changes should be indicated by an `!` before the `:` in the subject line e.g. `feat(api)!: remove status endpoint`
+* Is an **optional** part of the format
 
 More changes types:
 
@@ -51,6 +54,46 @@ Optional: If you would like to pre populate your commit box with the commit temp
 
 `git config commit.template "YOUR_PROJECT_PATH/.github/.gitmessage"`
 
+### Examples
+* ```
+  feat: add email notifications on new direct messages
+  ```
+* ```
+  feat(shopping cart): add the amazing button
+  ```
+* ```
+  feat!: remove ticket list endpoint
+
+  refers to JIRA-1337
+
+  BREAKING CHANGES: ticket enpoints no longer supports list all entites.
+  ```
+* ```
+  fix(api): handle empty message in request body
+  ```
+* ```
+  fix(api): fix wrong calculation of request body checksum
+  ```
+* ```
+  fix: add missing parameter to service call
+
+  The error occurred because of <reasons>.
+  ```
+* ```
+  perf: decrease memory footprint for determine uniqe visitors by using HyperLogLog
+  ```
+* ```
+  build: update dependencies
+  ```
+* ```
+  build(release): `bump version to 1.0.0
+  ```
+* ```
+  refactor: implement fibonacci number calculation as recursion
+  ```
+* ```
+  style: remove empty line
+  ```
 ## PR Rules:
 
 This Rules is set to create a uniform way of submitting Pull requests where all the necessary information for the changes are listed in the title, or description. There is a standard template for creating PR. When you are creating a PR to any repo always make sure:
