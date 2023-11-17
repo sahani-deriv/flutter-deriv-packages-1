@@ -152,6 +152,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                   dialogTitle: context.localization.labelReferralInfoTitle,
                   dialogDescription:
                       context.localization.infoReferralInfoDescription,
+                  positiveActionLabel: context.localization.actionOk,
                   iconSize: ThemeProvider.iconSize24,
                 ),
                 const SizedBox(width: ThemeProvider.margin08),
