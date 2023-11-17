@@ -89,7 +89,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
               Text(context.localization.labelSignUp, style: TextStyles.title),
           backgroundColor: context.theme.colors.secondary,
         ),
-        body: AuthStateListener(
+        body: DerivAuthStateListener(
           authErrorStateHandler: widget.authErrorStateHandler,
           onError: widget.onAuthError,
           child: BlocConsumer<DerivSignupCubit, DerivSignupState>(
