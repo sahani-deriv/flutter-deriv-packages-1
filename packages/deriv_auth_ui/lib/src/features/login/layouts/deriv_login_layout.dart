@@ -21,6 +21,7 @@ class DerivLoginLayout extends StatefulWidget {
     required this.onSocialAuthButtonPressed,
     required this.welcomeLabel,
     required this.greetingLabel,
+    this.isSocialAuthEnabled = true,
     this.authErrorStateHandler,
     this.onLoginError,
     this.onLoginTapped,
@@ -53,6 +54,9 @@ class DerivLoginLayout extends StatefulWidget {
 
   /// Greeting text to be displayed on login page.
   final String greetingLabel;
+
+  /// Whether to display social auth buttons.
+  final bool isSocialAuthEnabled;
 
   @override
   State<DerivLoginLayout> createState() => _DerivLoginLayoutState();
@@ -113,11 +117,13 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
                       const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthDivider(
                         label: context.localization.informLoginOptions,
+                        isVisible: widget.isSocialAuthEnabled,
                       ),
                       const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthPanel(
                         onSocialAuthButtonPressed:
                             widget.onSocialAuthButtonPressed,
+                        isEnabled: widget.isSocialAuthEnabled,
                       ),
                       const SizedBox(height: ThemeProvider.margin24),
                       _buildFooterSection(),

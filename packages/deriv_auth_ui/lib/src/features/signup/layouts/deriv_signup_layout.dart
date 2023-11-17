@@ -24,6 +24,7 @@ class DerivSignupLayout extends StatefulWidget {
     required this.onLoginTapped,
     required this.signupPageLabel,
     required this.signupPageDescription,
+    this.isSocialAuthEnabled = true,
     this.authErrorStateHandler,
     this.enableReferralSection = true,
     this.onAuthError,
@@ -60,6 +61,9 @@ class DerivSignupLayout extends StatefulWidget {
 
   /// Description of signup page.
   final String signupPageDescription;
+
+  /// Whether to display social auth buttons.
+  final bool isSocialAuthEnabled;
 
   @override
   State<DerivSignupLayout> createState() => _DerivSignupLayoutState();
@@ -115,12 +119,14 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                       const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthDivider(
                         label: context.localization.labelOrSignUpWith,
+                        isVisible: widget.isSocialAuthEnabled,
                       ),
                       const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthPanel(
                         isEnabled: !isReferralEnabled,
                         onSocialAuthButtonPressed:
                             widget.onSocialAuthButtonPressed,
+                        isVisible: widget.isSocialAuthEnabled,
                       ),
                       const SizedBox(height: ThemeProvider.margin24),
                       _buildFooterSection(),
