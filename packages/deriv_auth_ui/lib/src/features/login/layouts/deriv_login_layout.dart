@@ -119,13 +119,15 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
                         label: context.localization.informLoginOptions,
                         isVisible: widget.isSocialAuthEnabled,
                       ),
-                      const SizedBox(height: ThemeProvider.margin24),
+                      if (widget.isSocialAuthEnabled)
+                        const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthPanel(
                         onSocialAuthButtonPressed:
                             widget.onSocialAuthButtonPressed,
-                        isEnabled: widget.isSocialAuthEnabled,
+                        isVisible: widget.isSocialAuthEnabled,
                       ),
-                      const SizedBox(height: ThemeProvider.margin24),
+                      if (widget.isSocialAuthEnabled)
+                        const SizedBox(height: ThemeProvider.margin24),
                       _buildFooterSection(),
                     ],
                   ),

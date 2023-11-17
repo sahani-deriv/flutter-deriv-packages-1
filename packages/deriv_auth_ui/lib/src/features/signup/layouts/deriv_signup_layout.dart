@@ -121,14 +121,16 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                         label: context.localization.labelOrSignUpWith,
                         isVisible: widget.isSocialAuthEnabled,
                       ),
-                      const SizedBox(height: ThemeProvider.margin24),
+                      if (widget.isSocialAuthEnabled)
+                        const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthPanel(
                         isEnabled: !isReferralEnabled,
                         onSocialAuthButtonPressed:
                             widget.onSocialAuthButtonPressed,
                         isVisible: widget.isSocialAuthEnabled,
                       ),
-                      const SizedBox(height: ThemeProvider.margin24),
+                      if (widget.isSocialAuthEnabled)
+                        const SizedBox(height: ThemeProvider.margin24),
                       _buildFooterSection(),
                     ],
                   ),
