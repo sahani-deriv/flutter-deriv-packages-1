@@ -25,6 +25,7 @@ dependencies:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_theme
       ref: dev
+
   deriv_ui:
     git:
       url: git@github.com:sahani-deriv/flutter-deriv-packages.git
