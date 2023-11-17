@@ -23,7 +23,7 @@ class DerivSocialAuthDivider extends StatelessWidget {
               label,
               style: context.theme.textStyle(
                 textStyle: TextStyles.body1,
-                color: context.theme.colors.lessProminent,
+                color: context.theme.colors.general,
               ),
             ),
           ),

@@ -143,7 +143,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
           widget.greetingLabel,
           style: context.theme.textStyle(
             textStyle: TextStyles.body1,
-            color: context.theme.colors.lessProminent,
+            color: context.theme.colors.general,
           ),
         ),
       ];
@@ -245,7 +245,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
               context.localization.labelDontHaveAnAccountYet,
               style: context.theme.textStyle(
                 textStyle: TextStyles.body1,
-                color: context.theme.colors.lessProminent,
+                color: context.theme.colors.general,
               ),
             ),
             InkWell(

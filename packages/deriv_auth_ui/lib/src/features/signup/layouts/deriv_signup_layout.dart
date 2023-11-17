@@ -233,7 +233,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
           widget.signupPageDescription,
           style: context.theme.textStyle(
             textStyle: TextStyles.body1,
-            color: context.theme.colors.lessProminent,
+            color: context.theme.colors.general,
           ),
         ),
       ];
@@ -246,7 +246,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
               context.localization.labelHaveAccount,
               style: context.theme.textStyle(
                 textStyle: TextStyles.body1,
-                color: context.theme.colors.lessProminent,
+                color: context.theme.colors.general,
               ),
             ),
             InkWell(
