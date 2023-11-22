@@ -15,13 +15,13 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_theme
-      ref: dev
+      ref: deriv_theme-v1.0.0
 
   deriv_web_view:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_web_view
-      ref: dev
+      ref: deriv_web_view-v1.0.0
 
   flutter_svg: ^1.0.3
 
