@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth_ui` - `v0.0.1`](#deriv_auth_ui---v001)
+
+---
+
+#### `deriv_auth_ui` - `v0.0.1`
+
+ - Bump "deriv_auth_ui" to `0.0.1`.
+
+
+## 2023-11-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_ui` - `v0.0.1`](#deriv_ui---v001)
  - [`deriv_auth_ui` - `v0.0.1+1`](#deriv_auth_ui---v0011)
 
