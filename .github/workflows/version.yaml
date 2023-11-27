@@ -40,7 +40,7 @@ jobs:
 
       - name: Create git tag based on version
         # only consider changes from the commit mentioned below
-        run: melos version --all --diff=6f208c9d5e7d4babfeb55dafcadec6ac76e88dea --yes
+        run: melos version --all --diff=53ffa34282e2d58e30252927152de53a85855b1e --yes
 
       - name: Push tag
         run: git push --tags
