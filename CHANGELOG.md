@@ -15,6 +15,71 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v1.0.2`](#deriv_auth---v102)
+ - [`deriv_banner` - `v0.0.1`](#deriv_banner---v001)
+ - [`deriv_date_range_picker` - `v0.0.1`](#deriv_date_range_picker---v001)
+ - [`deriv_expandable_bottom_sheet` - `v0.0.1`](#deriv_expandable_bottom_sheet---v001)
+ - [`deriv_live_chat` - `v0.0.1`](#deriv_live_chat---v001)
+ - [`deriv_numpad` - `v1.0.0+1`](#deriv_numpad---v1001)
+ - [`deriv_store_launcher` - `v0.0.1`](#deriv_store_launcher---v001)
+ - [`deriv_web_view` - `v0.0.1`](#deriv_web_view---v001)
+ - [`deriv_auth_ui` - `v0.0.1+1`](#deriv_auth_ui---v0011)
+ - [`deriv_ui` - `v0.0.1+1`](#deriv_ui---v0011)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth_ui` - `v0.0.1+1`
+ - `deriv_ui` - `v0.0.1+1`
+
+---
+
+#### `deriv_auth` - `v1.0.2`
+
+ - Bump "deriv_auth" to `1.0.2`.
+
+#### `deriv_banner` - `v0.0.1`
+
+ - Bump "deriv_banner" to `0.0.1`.
+
+#### `deriv_date_range_picker` - `v0.0.1`
+
+ - Bump "deriv_date_range_picker" to `0.0.1`.
+
+#### `deriv_expandable_bottom_sheet` - `v0.0.1`
+
+ - Bump "deriv_expandable_bottom_sheet" to `0.0.1`.
+
+#### `deriv_live_chat` - `v0.0.1`
+
+ - Bump "deriv_live_chat" to `0.0.1`.
+
+#### `deriv_numpad` - `v1.0.0+1`
+
+ - Bump "deriv_numpad" to `1.0.0+1`.
+
+#### `deriv_store_launcher` - `v0.0.1`
+
+ - Bump "deriv_store_launcher" to `0.0.1`.
+
+#### `deriv_web_view` - `v0.0.1`
+
+ - Bump "deriv_web_view" to `0.0.1`.
+
+
+## 2023-11-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`analytics` - `v1.0.0`](#analytics---v100)
  - [`deriv_app_performance` - `v0.0.1`](#deriv_app_performance---v001)
  - [`flutter_deriv_bloc_manager` - `v0.0.1`](#flutter_deriv_bloc_manager---v001)
