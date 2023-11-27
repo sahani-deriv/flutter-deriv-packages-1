@@ -1,3 +1,7 @@
+## 1.0.0
+
+ - Bump "analytics" to `1.0.0`.
+
 ## [1.0.0]
 - Migrated the package to null safety.
 
