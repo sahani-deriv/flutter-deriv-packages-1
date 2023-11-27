@@ -15,6 +15,34 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_ui` - `v0.0.1`](#deriv_ui---v001)
+ - [`deriv_auth_ui` - `v0.0.1+1`](#deriv_auth_ui---v0011)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth_ui` - `v0.0.1+1`
+
+---
+
+#### `deriv_ui` - `v0.0.1`
+
+ - Bump "deriv_ui" to `0.0.1`.
+
+
+## 2023-11-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v1.0.2`](#deriv_auth---v102)
  - [`deriv_banner` - `v0.0.1`](#deriv_banner---v001)
  - [`deriv_date_range_picker` - `v0.0.1`](#deriv_date_range_picker---v001)
