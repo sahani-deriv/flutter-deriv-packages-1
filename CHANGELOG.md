@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-11-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth_ui` - `v0.0.1+2`](#deriv_auth_ui---v0012)
+ - [`deriv_ui` - `v0.0.1+2`](#deriv_ui---v0012)
+
+---
+
+#### `deriv_auth_ui` - `v0.0.1+2`
+
+ - **REFACTOR**(deriv_auth_ui): [MOBC-629] Adding semantics to UI components ([#321](https://github.com/regentmarkets/flutter-deriv-packages/issues/321)). ([36a0c1fa](https://github.com/regentmarkets/flutter-deriv-packages/commit/36a0c1faa0b47d4f735a79daf67c9e2c0089938e))
+
+#### `deriv_ui` - `v0.0.1+2`
+
+ - **REFACTOR**(deriv_auth_ui): [MOBC-629] Adding semantics to UI components ([#321](https://github.com/regentmarkets/flutter-deriv-packages/issues/321)). ([36a0c1fa](https://github.com/regentmarkets/flutter-deriv-packages/commit/36a0c1faa0b47d4f735a79daf67c9e2c0089938e))
+
+
 ## 2023-11-28
 
 ### Changes
