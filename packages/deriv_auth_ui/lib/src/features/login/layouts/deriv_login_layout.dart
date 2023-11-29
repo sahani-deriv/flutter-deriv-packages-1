@@ -4,6 +4,7 @@ import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth_ui/deriv_auth_ui.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
+import 'package:deriv_auth_ui/src/core/helpers/semantic_labels.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_panel.dart';
 import 'package:deriv_theme/deriv_theme.dart';
@@ -158,6 +159,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
 
   List<Widget> _buildTextFields({required bool isEnabled}) => <Widget>[
         BaseTextField(
+          semanticLabel: SemanticsLabels.loginEmailFieldSemantic,
           controller: _emailController,
           focusNode: _emailFocusNode,
           labelText: context.localization.labelEmail,
@@ -172,6 +174,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
         ),
         const SizedBox(height: ThemeProvider.margin32),
         BaseTextField(
+          semanticLabel: SemanticsLabels.loginPasswordFieldSemantic,
           controller: _passwordController,
           focusNode: _passwordFocusNode,
           labelText: context.localization.labelPassword,

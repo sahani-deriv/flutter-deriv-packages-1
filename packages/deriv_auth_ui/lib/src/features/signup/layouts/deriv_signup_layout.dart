@@ -1,6 +1,7 @@
 import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth_ui/src/core/extensions/context_extension.dart';
 import 'package:deriv_auth_ui/src/core/extensions/string_extension.dart';
+import 'package:deriv_auth_ui/src/core/helpers/semantic_labels.dart';
 import 'package:deriv_auth_ui/src/core/states/auth_state_listener.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth_ui/src/features/login/widgets/deriv_social_auth_panel.dart';
@@ -212,6 +213,8 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                     vertical: ThemeProvider.margin16,
                   ),
                   child: BaseTextField(
+                    semanticLabel:
+                        SemanticsLabels.signupReferralTextFieldSemantic,
                     controller: referralController,
                     onChanged: (_) {
                       if (mounted) {
@@ -276,6 +279,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
       );
 
   Widget _buildEmailTextField() => BaseTextField(
+        semanticLabel: SemanticsLabels.signupEmailFieldSemantic,
         controller: emailController,
         focusNode: emailFocusNode,
         labelText: context.localization.labelEmail,
@@ -291,25 +295,28 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
         },
       );
 
-  Widget _buildSignUpButton() => PrimaryButton(
-        isEnabled: _isFormValid(),
-        onPressed: _onSignupTapped,
-        child: Center(
-          child:
-              context.read<DerivSignupCubit>().state is DerivSignupProgressState
-                  ? const LoadingIndicator(
-                      valueColor: Colors.white,
-                      strokeWidth: ThemeProvider.margin02,
-                      height: ThemeProvider.iconSize16,
-                      width: ThemeProvider.iconSize16,
-                    )
-                  : Text(
-                      context.localization.actionCreateAccount,
-                      style: context.theme.textStyle(
-                        textStyle: TextStyles.body2,
-                        color: context.theme.colors.prominent,
-                      ),
+  Widget _buildSignUpButton() => Semantics(
+        label: SemanticsLabels.signupButtonSemantic,
+        child: PrimaryButton(
+          isEnabled: _isFormValid(),
+          onPressed: _onSignupTapped,
+          child: Center(
+            child: context.read<DerivSignupCubit>().state
+                    is DerivSignupProgressState
+                ? const LoadingIndicator(
+                    valueColor: Colors.white,
+                    strokeWidth: ThemeProvider.margin02,
+                    height: ThemeProvider.iconSize16,
+                    width: ThemeProvider.iconSize16,
+                  )
+                : Text(
+                    context.localization.actionCreateAccount,
+                    style: context.theme.textStyle(
+                      textStyle: TextStyles.body2,
+                      color: context.theme.colors.prominent,
                     ),
+                  ),
+          ),
         ),
       );
 
