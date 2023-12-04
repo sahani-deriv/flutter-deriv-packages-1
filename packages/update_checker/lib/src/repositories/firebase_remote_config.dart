@@ -7,7 +7,7 @@ class FirebaseRemoteConfigRepository implements FireBaseBase {
   /// Initializes the Firebase Database repository
   const FirebaseRemoteConfigRepository();
 
-  static const String _versionControlKey = 'p2p_in_app_dialog';
+  static const String _versionControlKey = 'app_version_control';
 
   /// Fetches the update information from the database.
   @override
