@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:update_checker/src/repositories/firebase_base.dart';
 
 import '../../update_checker.dart';
 
@@ -9,6 +10,7 @@ class UpdateChecker extends StatefulWidget {
   /// Checks for update availability as soon as renders and will call the proper
   /// callback based on the UpdateState.
   const UpdateChecker({
+    required this.fireBaseRepository,
     this.child,
     this.onAvailable,
     this.onNotAvailable,
@@ -17,6 +19,10 @@ class UpdateChecker extends StatefulWidget {
 
   /// The [child] that UpdateChecker widget will wrap.
   final Widget? child;
+
+  /// The [fireBaseRepository] that fetch the update information
+  /// from the firebase system.
+  final FireBaseBase fireBaseRepository;
 
   /// [onAvailable] will be called when there is an update available.
   final Function(UpdateInfo)? onAvailable;
@@ -32,11 +38,12 @@ class UpdateChecker extends StatefulWidget {
 }
 
 class _UpdateCheckerState extends State<UpdateChecker> {
-  final UpdateBloc _updateBloc = UpdateBloc();
+  late final UpdateBloc _updateBloc;
 
   @override
   void initState() {
     super.initState();
+    _updateBloc = UpdateBloc(fireBaseRepository: widget.fireBaseRepository);
     _updateBloc.add(UpdateFetchEvent());
   }
 

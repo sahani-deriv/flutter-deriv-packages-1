@@ -1,13 +1,16 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:update_checker/src/repositories/firebase_base.dart';
 
 import '../models/models.dart';
 import '../repositories/repositories.dart';
 import '../utils/utils.dart';
 
 part 'update_event.dart';
+
 part 'update_state.dart';
 
 /// UpdateBloc is responsible for fetching the update availability from the
@@ -17,7 +20,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   /// availability from the Firebase Database and `PackageInfoRepository` to
   /// check the app version with the update to determine the update availability
   UpdateBloc({
-    this.firebaseDatabaseRepository = const FirebaseDatabaseRepository(),
+    required this.fireBaseRepository,
     this.packageInfoRepository = const PackageInfoRepository(),
   }) : super(UpdateInitialState()) {
     on<UpdateFetchEvent>(
@@ -27,7 +30,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   }
 
   /// Firebase database repository for fetching the update information.
-  final FirebaseDatabaseRepository firebaseDatabaseRepository;
+  final FireBaseBase fireBaseRepository;
 
   /// Package info repository for fetching the app build number.
   final PackageInfoRepository packageInfoRepository;
@@ -36,7 +39,10 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
       UpdateFetchEvent event, Emitter<UpdateState> emit) async {
     if (state is! UpdateInProgressState) {
       emit(UpdateInProgressState());
-      final UpdateInfo? info = await _getUpdateInfo();
+      final UpdateInfo? info =
+          (fireBaseRepository is FirebaseRemoteConfigRepository)
+              ? await _getUpdateInfoFromRemoteConfig()
+              : await _getUpdateInfoFromDataBase();
       if (info != null) {
         emit(UpdateAvailableState(info));
       } else {
@@ -45,8 +51,46 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     }
   }
 
-  Future<UpdateInfo?> _getUpdateInfo() async {
-    final dynamic rawData = await firebaseDatabaseRepository.fetchUpdateData();
+  Future<UpdateInfo?> _getUpdateInfoFromRemoteConfig() async {
+    final String rawData = await fireBaseRepository.fetchUpdateData();
+
+    // checks if failed to fetch data from Firebase Database and return
+    if (rawData.isEmpty) {
+      return null;
+    }
+
+    // checks if failed to get app build number and return
+    final num appBuildNumber = await packageInfoRepository.getAppBuildNumber();
+    if (appBuildNumber <= 0) {
+      return null;
+    }
+
+    final Map<String, dynamic> mapValues = json.decode(rawData);
+
+    final num minVersion =
+        mapValues[Platform.isAndroid ? 'android' : 'ios']['version']['minimum'];
+    final num latestVersion =
+        mapValues[Platform.isAndroid ? 'android' : 'ios']['version']['latest'];
+
+    final bool isMandatory = appBuildNumber < minVersion;
+
+    final bool isOptional =
+        appBuildNumber < latestVersion && appBuildNumber > minVersion;
+
+    // checks if no update available and return
+    if (!isMandatory && !isOptional) {
+      return null;
+    }
+
+    return _createUpdate(
+      mapValues[Platform.isAndroid ? 'android' : 'ios'],
+      isOptional,
+      isOptional ? latestVersion : minVersion,
+    );
+  }
+
+  Future<UpdateInfo?> _getUpdateInfoFromDataBase() async {
+    final dynamic rawData = await fireBaseRepository.fetchUpdateData();
 
     // checks if failed to fetch data from Firebase Database and return
     if (rawData == null) {
