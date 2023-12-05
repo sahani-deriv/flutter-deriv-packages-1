@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
-import 'package:update_checker/src/repositories/firebase_base.dart';
+import 'package:update_checker/src/repositories/base_firebase.dart';
 
 /// Firebase Database repository will help to fetch the update information from
 /// the firebase database.
-class FirebaseDatabaseRepository implements FireBaseBase{
+class FirebaseDatabaseRepository implements BaseFireBase{
   /// Initializes the Firebase Database repository
   const FirebaseDatabaseRepository();
 

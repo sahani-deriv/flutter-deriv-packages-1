@@ -1,9 +1,9 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:update_checker/src/repositories/firebase_base.dart';
+import 'package:update_checker/src/repositories/base_firebase.dart';
 
 /// Firebase Remote Config repository will help to fetch the update information from
 /// the firebase database.
-class FirebaseRemoteConfigRepository implements FireBaseBase {
+class FirebaseRemoteConfigRepository implements BaseFireBase {
   /// Initializes the Firebase Database repository
   const FirebaseRemoteConfigRepository();
 

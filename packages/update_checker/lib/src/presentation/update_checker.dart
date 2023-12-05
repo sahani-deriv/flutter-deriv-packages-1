@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:update_checker/src/repositories/firebase_base.dart';
+import 'package:update_checker/src/repositories/base_firebase.dart';
 
 import '../../update_checker.dart';
 
@@ -22,7 +22,7 @@ class UpdateChecker extends StatefulWidget {
 
   /// The [fireBaseRepository] that fetch the update information
   /// from the firebase system.
-  final FireBaseBase fireBaseRepository;
+  final BaseFireBase fireBaseRepository;
 
   /// [onAvailable] will be called when there is an update available.
   final Function(UpdateInfo)? onAvailable;

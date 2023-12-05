@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:update_checker/src/repositories/firebase_base.dart';
+import 'package:update_checker/src/repositories/base_firebase.dart';
 
 import '../models/models.dart';
 import '../repositories/repositories.dart';
@@ -30,7 +30,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   }
 
   /// Firebase database repository for fetching the update information.
-  final FireBaseBase fireBaseRepository;
+  final BaseFireBase fireBaseRepository;
 
   /// Package info repository for fetching the app build number.
   final PackageInfoRepository packageInfoRepository;
@@ -51,6 +51,16 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     }
   }
 
+  String? _platformName() {
+    if (Platform.isAndroid) {
+      return 'android';
+    } else if (Platform.isIOS) {
+      return 'ios';
+    } else {
+      return null;
+    }
+  }
+
   Future<UpdateInfo?> _getUpdateInfoFromRemoteConfig() async {
     final String rawData = await fireBaseRepository.fetchUpdateData();
 
@@ -67,10 +77,14 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
 
     final Map<String, dynamic> mapValues = json.decode(rawData);
 
-    final num minVersion =
-        mapValues[Platform.isAndroid ? 'android' : 'ios']['version']['minimum'];
-    final num latestVersion =
-        mapValues[Platform.isAndroid ? 'android' : 'ios']['version']['latest'];
+    final String? platformName = _platformName();
+
+    if (platformName == null) {
+      return null;
+    }
+
+    final num minVersion = mapValues[platformName]['version']['minimum'];
+    final num latestVersion = mapValues[platformName]['version']['latest'];
 
     final bool isMandatory = appBuildNumber < minVersion;
 
@@ -83,7 +97,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     }
 
     return _createUpdate(
-      mapValues[Platform.isAndroid ? 'android' : 'ios'],
+      mapValues[platformName],
       isOptional,
       isOptional ? latestVersion : minVersion,
     );
