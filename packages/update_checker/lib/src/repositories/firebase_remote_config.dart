@@ -14,8 +14,9 @@ class FirebaseRemoteConfigRepository implements BaseFireBase {
   Future<String> fetchUpdateData() async {
     await FirebaseRemoteConfig.instance.app
         .setAutomaticDataCollectionEnabled(true);
-    FirebaseRemoteConfig.instance.settings.fetchTimeout =
-        const Duration(seconds: 1);
+    await FirebaseRemoteConfig.instance.setConfigSettings(RemoteConfigSettings(
+        minimumFetchInterval: const Duration(seconds: 1),
+        fetchTimeout: const Duration(seconds: 60)));
     await FirebaseRemoteConfig.instance.fetchAndActivate();
     final RemoteConfigValue remoteConfigValue =
         FirebaseRemoteConfig.instance.getValue(_versionControlKey);
