@@ -143,7 +143,11 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     final String? rawChangelogs = rawUpdateInfo['changelogs']?.toString();
     final Map<String, dynamic>? changelogs = rawChangelogs != null
         ? json.decode(
-            rawChangelogs.toString().substring(1, rawChangelogs.length - 1),
+            fireBaseRepository is FirebaseRemoteConfigRepository
+                ? rawChangelogs
+                : rawChangelogs
+                    .toString()
+                    .substring(1, rawChangelogs.length - 1),
           )
         : null;
 
