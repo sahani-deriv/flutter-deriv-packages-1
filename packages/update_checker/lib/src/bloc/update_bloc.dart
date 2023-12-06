@@ -140,16 +140,17 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     bool isOptional,
     num buildNumber,
   ) {
-    final String? rawChangelogs = rawUpdateInfo['changelogs']?.toString();
-    final Map<String, dynamic>? changelogs = rawChangelogs != null
-        ? json.decode(
-            fireBaseRepository is FirebaseRemoteConfigRepository
-                ? rawChangelogs
-                : rawChangelogs
-                    .toString()
-                    .substring(1, rawChangelogs.length - 1),
-          )
-        : null;
+    final Map<String, dynamic>? changelogs;
+    if (fireBaseRepository is FirebaseRemoteConfigRepository) {
+      changelogs = rawUpdateInfo['changelogs'];
+    } else {
+      final String? rawChangelogs = rawUpdateInfo['changelogs']?.toString();
+      changelogs = rawChangelogs != null
+          ? json.decode(
+              rawChangelogs.toString().substring(1, rawChangelogs.length - 1),
+            )
+          : null;
+    }
 
     return UpdateInfo(
       buildNumber: buildNumber,
