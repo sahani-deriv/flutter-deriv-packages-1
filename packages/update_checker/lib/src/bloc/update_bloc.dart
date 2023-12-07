@@ -155,6 +155,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     return UpdateInfo(
       buildNumber: buildNumber,
       url: rawUpdateInfo['url'],
+      huaweiUrl: rawUpdateInfo['huawei_url'],
       changelog: decodeBase64(rawUpdateInfo['changelog'] ?? ''),
       changelogs: changelogs,
       isOptional: isOptional,
