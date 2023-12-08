@@ -10,7 +10,7 @@ class UpdateChecker extends StatefulWidget {
   /// Checks for update availability as soon as renders and will call the proper
   /// callback based on the UpdateState.
   const UpdateChecker({
-    required this.fireBaseRepository,
+    required this.firebaseRepository,
     this.child,
     this.onAvailable,
     this.onNotAvailable,
@@ -20,9 +20,9 @@ class UpdateChecker extends StatefulWidget {
   /// The [child] that UpdateChecker widget will wrap.
   final Widget? child;
 
-  /// The [fireBaseRepository] that fetch the update information
+  /// The [firebaseRepository] that fetch the update information
   /// from the firebase system.
-  final BaseFirebase fireBaseRepository;
+  final BaseFirebase firebaseRepository;
 
   /// [onAvailable] will be called when there is an update available.
   final Function(UpdateInfo)? onAvailable;
@@ -43,7 +43,7 @@ class _UpdateCheckerState extends State<UpdateChecker> {
   @override
   void initState() {
     super.initState();
-    _updateBloc = UpdateBloc(firebaseRepository: widget.fireBaseRepository);
+    _updateBloc = UpdateBloc(firebaseRepository: widget.firebaseRepository);
     _updateBloc.add(UpdateFetchEvent());
   }
 
