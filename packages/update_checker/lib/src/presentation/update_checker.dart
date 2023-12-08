@@ -22,7 +22,7 @@ class UpdateChecker extends StatefulWidget {
 
   /// The [fireBaseRepository] that fetch the update information
   /// from the firebase system.
-  final BaseFireBase fireBaseRepository;
+  final BaseFirebase fireBaseRepository;
 
   /// [onAvailable] will be called when there is an update available.
   final Function(UpdateInfo)? onAvailable;
@@ -43,7 +43,7 @@ class _UpdateCheckerState extends State<UpdateChecker> {
   @override
   void initState() {
     super.initState();
-    _updateBloc = UpdateBloc(fireBaseRepository: widget.fireBaseRepository);
+    _updateBloc = UpdateBloc(firebaseRepository: widget.fireBaseRepository);
     _updateBloc.add(UpdateFetchEvent());
   }
 

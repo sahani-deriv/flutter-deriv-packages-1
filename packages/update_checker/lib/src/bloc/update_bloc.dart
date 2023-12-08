@@ -20,7 +20,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   /// availability from the Firebase Database and `PackageInfoRepository` to
   /// check the app version with the update to determine the update availability
   UpdateBloc({
-    required this.fireBaseRepository,
+    required this.firebaseRepository,
     this.packageInfoRepository = const PackageInfoRepository(),
   }) : super(UpdateInitialState()) {
     on<UpdateFetchEvent>(
@@ -30,7 +30,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   }
 
   /// Firebase database repository for fetching the update information.
-  final BaseFireBase fireBaseRepository;
+  final BaseFirebase firebaseRepository;
 
   /// Package info repository for fetching the app build number.
   final PackageInfoRepository packageInfoRepository;
@@ -40,9 +40,9 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     if (state is! UpdateInProgressState) {
       emit(UpdateInProgressState());
       final UpdateInfo? info =
-          (fireBaseRepository is FirebaseRemoteConfigRepository)
+          (firebaseRepository is FirebaseRemoteConfigRepository)
               ? await _getUpdateInfoFromRemoteConfig()
-              : await _getUpdateInfoFromDataBase();
+              : await _getUpdateInfoFromDatabase();
       if (info != null) {
         emit(UpdateAvailableState(info));
       } else {
@@ -52,17 +52,15 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   }
 
   String? _platformName() {
-    if (Platform.isAndroid) {
-      return 'android';
-    } else if (Platform.isIOS) {
-      return 'ios';
+    if (Platform.isAndroid || Platform.isIOS) {
+      return Platform.operatingSystem;
     } else {
       return null;
     }
   }
 
   Future<UpdateInfo?> _getUpdateInfoFromRemoteConfig() async {
-    final String rawData = await fireBaseRepository.fetchUpdateData();
+    final String rawData = await firebaseRepository.fetchUpdateData();
 
     // checks if failed to fetch data from Firebase Database and return
     if (rawData.isEmpty) {
@@ -103,8 +101,8 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     );
   }
 
-  Future<UpdateInfo?> _getUpdateInfoFromDataBase() async {
-    final dynamic rawData = await fireBaseRepository.fetchUpdateData();
+  Future<UpdateInfo?> _getUpdateInfoFromDatabase() async {
+    final dynamic rawData = await firebaseRepository.fetchUpdateData();
 
     // checks if failed to fetch data from Firebase Database and return
     if (rawData == null) {
@@ -141,7 +139,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     num buildNumber,
   ) {
     final Map<String, dynamic>? changelogs;
-    if (fireBaseRepository is FirebaseRemoteConfigRepository) {
+    if (firebaseRepository is FirebaseRemoteConfigRepository) {
       changelogs = rawUpdateInfo['changelogs'];
     } else {
       final String? rawChangelogs = rawUpdateInfo['changelogs']?.toString();
