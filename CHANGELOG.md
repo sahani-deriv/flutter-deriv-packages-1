@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-12-21
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth_ui` - `v0.0.2+2`](#deriv_auth_ui---v0022)
+
+---
+
+#### `deriv_auth_ui` - `v0.0.2+2`
+
+ - **FIX**(deriv_auth_ui): login button enabled on invalid email and password ([#366](https://github.com/regentmarkets/flutter-deriv-packages/issues/366)). ([5109a0c0](https://github.com/regentmarkets/flutter-deriv-packages/commit/5109a0c0bdc2d5adcfe699db2a8abfcd499126d4))
+
+
 ## 2023-12-18
 
 ### Changes

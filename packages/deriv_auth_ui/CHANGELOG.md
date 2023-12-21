@@ -1,3 +1,7 @@
+## 0.0.2+2
+
+ - **FIX**(deriv_auth_ui): login button enabled on invalid email and password ([#366](https://github.com/regentmarkets/flutter-deriv-packages/issues/366)). ([5109a0c0](https://github.com/regentmarkets/flutter-deriv-packages/commit/5109a0c0bdc2d5adcfe699db2a8abfcd499126d4))
+
 ## 0.0.2+1
 
  - Update a dependency to the latest release.
