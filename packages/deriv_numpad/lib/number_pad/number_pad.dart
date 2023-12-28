@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
+import 'package:deriv_numpad/core/widgets/currency_switcher.dart';
 import 'package:deriv_numpad/core/widgets/info_icon_button.dart';
+import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
 import 'package:deriv_numpad/number_pad/model/number_pad_label.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +109,7 @@ class NumberPad extends StatefulWidget {
     this.currentFocus = NumberPadInputFocus.firstInputField,
     this.dialogDescription,
     this.headerLeading,
+    this.currencyExchangePayload,
     Key? key,
   }) : super(key: key);
 
@@ -203,6 +206,8 @@ class NumberPad extends StatefulWidget {
   /// The leading widget on the header of this [NumberPad].
   final Widget? headerLeading;
 
+  final CurrencyExchangePayload? currencyExchangePayload;
+
   @override
   State<StatefulWidget> createState() => _NumberPadState();
 }
@@ -212,6 +217,7 @@ class _NumberPadState extends State<NumberPad> {
   late NumberFormat _formatter;
   TextEditingController? _firstInputController;
   TextEditingController? _secondInputController;
+  late ExchangeController _exchangeController;
   late FocusNode _firstInputFocusNode;
   FocusNode? _secondInputFocusNode;
 
@@ -240,100 +246,122 @@ class _NumberPadState extends State<NumberPad> {
     } else {
       _secondInputFocusNode?.requestFocus();
     }
-
+    _exchangeController = ExchangeController(
+      primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
+      secondaryCurrency: widget.currencyExchangePayload!.secondaryCurrency,
+      currencyFieldController: _firstInputController,
+    );
     widget.onOpen?.call();
   }
 
   @override
-  Widget build(BuildContext context) => _NumberPadProvider(
-        type: widget.numberPadType,
-        label: widget.label,
-        formatter: _formatter,
-        currency: _currency,
-        firstInputController: _firstInputController,
-        secondInputController: _secondInputController,
-        firstInputFocusNode: _firstInputFocusNode,
-        secondInputFocusNode: _secondInputFocusNode,
-        firstInputMinimumValue: widget.firstInputMinimumValue,
-        firstInputMaximumValue: widget.firstInputMaximumValue,
-        secondInputMinimumValue: widget.secondInputMinimumValue,
-        secondInputMaximumValue: widget.secondInputMaximumValue,
-        focusedInput: _getFocusedInput,
-        isSecondInputInRange: _isSecondInputInRange,
-        isFirstInputInRange: _isFirstInputInRange,
-        isAllInputsValid: _isAllInputsValid,
-        child: WillPopScope(
-          onWillPop: () async {
-            _applyInputs(NumberPadCloseType.clickOutsideView);
+  Widget build(BuildContext ctx) => ExchangeNotifier(
+        notifier: _exchangeController,
+        child: Builder(
+            builder: (BuildContext context) => _NumberPadProvider(
+                  type: widget.numberPadType,
+                  label: widget.label,
+                  formatter: _formatter,
+                  currency: _currency,
+                  firstInputController: _firstInputController,
+                  secondInputController: _secondInputController,
+                  firstInputFocusNode: _firstInputFocusNode,
+                  secondInputFocusNode: _secondInputFocusNode,
+                  firstInputMinimumValue: widget.firstInputMinimumValue,
+                  firstInputMaximumValue: widget.firstInputMaximumValue,
+                  secondInputMinimumValue: widget.secondInputMinimumValue,
+                  secondInputMaximumValue: widget.secondInputMaximumValue,
+                  focusedInput: _getFocusedInput,
+                  isSecondInputInRange: _isSecondInputInRange,
+                  isFirstInputInRange: _isFirstInputInRange,
+                  isAllInputsValid: _isAllInputsValid,
+                  child: WillPopScope(
+                    onWillPop: () async {
+                      _applyInputs(NumberPadCloseType.clickOutsideView);
 
-            return Future<bool>.value(true);
-          },
-          child: ListView(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            children: <Widget>[
-              Container(
-                  decoration: BoxDecoration(
-                    color: context.theme.colors.primary,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(ThemeProvider.borderRadius16),
-                      topRight: Radius.circular(ThemeProvider.borderRadius16),
-                    ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(
-                          ThemeProvider.margin16,
-                          0,
-                          ThemeProvider.margin16,
-                          0,
-                        ),
-                        decoration: BoxDecoration(
-                          color: context.theme.colors.secondary,
-                          borderRadius: const BorderRadius.only(
-                            topLeft:
-                                Radius.circular(ThemeProvider.borderRadius16),
-                            topRight:
-                                Radius.circular(ThemeProvider.borderRadius16),
-                          ),
-                        ),
-                        child: Align(
-                          child: InkWell(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.all(ThemeProvider.margin08),
-                              child: SvgPicture.asset(
-                                handleIcon,
-                                width: 40,
-                                height: 4,
-                                semanticsLabel: widget
-                                    .label.semanticNumberPadBottomSheetHandle,
+                      return Future<bool>.value(true);
+                    },
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      children: <Widget>[
+                        Container(
+                            decoration: BoxDecoration(
+                              color: context.theme.colors.primary,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(
+                                    ThemeProvider.borderRadius16),
+                                topRight: Radius.circular(
+                                    ThemeProvider.borderRadius16),
                               ),
                             ),
-                            onTap: () => Navigator.pop(context),
-                          ),
-                        ),
-                      ),
-                      widget.numberPadType == NumberPadWidgetType.singleInput
-                          ? _NumberPadSingleTextField(
-                              leading: widget.headerLeading,
-                              title: widget.firstInputTitle,
-                              dialogDescription: widget.dialogDescription,
-                            )
-                          : _NumberPadDoubleTextFields(
-                              firstTitleValue: widget.firstInputTitle,
-                              secondTitleValue: widget.secondInputTitle,
-                            ),
-                      _NumberPadMessage(message: _validateMessage()),
-                      _NumberPadKeypadWidget(
-                        onKeyPressed: _onKeyboardButtonPressed,
-                      )
-                    ],
-                  )),
-            ],
-          ),
-        ),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    ThemeProvider.margin16,
+                                    0,
+                                    ThemeProvider.margin16,
+                                    0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: context.theme.colors.secondary,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(
+                                          ThemeProvider.borderRadius16),
+                                      topRight: Radius.circular(
+                                          ThemeProvider.borderRadius16),
+                                    ),
+                                  ),
+                                  child: Align(
+                                    child: InkWell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(
+                                            ThemeProvider.margin08),
+                                        child: SvgPicture.asset(
+                                          handleIcon,
+                                          width: 40,
+                                          height: 4,
+                                          semanticsLabel: widget.label
+                                              .semanticNumberPadBottomSheetHandle,
+                                        ),
+                                      ),
+                                      onTap: () => Navigator.pop(context),
+                                    ),
+                                  ),
+                                ),
+                                CurrencySwitcher(
+                                  amount: ExchangeNotifier.of(context)!
+                                      .secondaryCurrency
+                                      .displayAmount,
+                                  currency: ExchangeNotifier.of(context)!
+                                      .secondaryCurrency
+                                      .currencyType,
+                                  onTap: () => Navigator.of(context).pop(),
+                                ),
+                                widget.numberPadType ==
+                                        NumberPadWidgetType.singleInput
+                                    ? _NumberPadSingleTextField(
+                                        leading: widget.headerLeading,
+                                        title: widget.firstInputTitle,
+                                        dialogDescription:
+                                            widget.dialogDescription,
+                                      )
+                                    : _NumberPadDoubleTextFields(
+                                        firstTitleValue: widget.firstInputTitle,
+                                        secondTitleValue:
+                                            widget.secondInputTitle,
+                                      ),
+                                _NumberPadMessage(message: _validateMessage()),
+                                _NumberPadKeypadWidget(
+                                  onKeyPressed: _onKeyboardButtonPressed,
+                                )
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                )),
       );
 
   void _onKeyboardButtonPressed(

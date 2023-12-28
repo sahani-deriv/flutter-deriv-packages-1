@@ -52,3 +52,43 @@ class _NumberPadProvider extends InheritedWidget {
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 }
+
+class ExchangeController extends ChangeNotifier {
+  ExchangeController({
+    // required this.rateSource,
+    required this.primaryCurrency,
+    required this.secondaryCurrency,
+    required this.currencyFieldController,
+  }) {
+    currencyFieldController!.addListener(() {
+      onChangeCurrency();
+    });
+  }
+  late TextEditingController? currencyFieldController;
+  CurrencyDetail primaryCurrency;
+  CurrencyDetail secondaryCurrency;
+
+  // final Stream<int> rateSource;
+
+  void onChangeCurrency() {
+    if (currencyFieldController!.text.isNotEmpty) {
+      final double value = double.parse(currencyFieldController!.text) * 1.4;
+      secondaryCurrency = CurrencyDetail(value, secondaryCurrency.currencyType);
+      notifyListeners();
+    } else {
+      secondaryCurrency = CurrencyDetail(0, secondaryCurrency.currencyType);
+    }
+  }
+}
+
+///
+class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
+  ///
+  const ExchangeNotifier({
+    required super.child,
+    super.notifier,
+  });
+
+  static ExchangeController? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ExchangeNotifier>()!.notifier;
+}

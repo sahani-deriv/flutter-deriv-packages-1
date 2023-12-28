@@ -1,4 +1,5 @@
 import 'package:deriv_numpad/deriv_numberpad.dart';
+import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -39,36 +40,45 @@ class Homepage extends StatelessWidget {
               isScrollControlled: true,
               context: context,
               backgroundColor: Colors.transparent,
-              builder: (BuildContext context) => NumberPad(
-                formatter: NumberFormat.decimalPattern(),
-                numberPadType: NumberPadWidgetType.singleInput,
-                firstInputTitle: 'Hello',
-                firstInputInitialValue: 25,
-                firstInputMinimumValue: 10,
-                firstInputMaximumValue: 100,
-                currency: 'USD',
-                onClose: (
-                  NumberPadWidgetType type,
-                  NumberPadCloseType closeType,
-                  NumberPadData result,
-                ) async {
-                  print('Calling onClose() method.');
-                },
-                label: NumberPadLabel(
-                  semanticNumberPadBottomSheetHandle:
-                      'semanticNumberPadBottomSheetHandle',
-                  warnValueCantBeLessThan: (_, __, ___) =>
-                      'warnValueCantBeLessThan',
-                  warnValueCantBeGreaterThan: (_, __, ___) =>
-                      'warnValueCantBeGreaterThan',
-                  warnDoubleInputValueCantBeLessThan: (_, __, ___) =>
-                      'warnDoubleInputValueCantBeLessThan',
-                  warnDoubleInputValueCantBeGreaterThan: (_, __, ___) =>
-                      'warnDoubleInputValueCantBeGreaterThan',
-                  warnValueShouldBeInRange: (_, __, ___, ____) =>
-                      'warnValueShouldBeInRange',
-                  actionOK: 'OK',
-                ),
+              builder: (BuildContext context) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  NumberPad(
+                    currencyExchangePayload: CurrencyExchangePayload(
+                      primaryCurrency: CurrencyDetail(0.0, 'USD'),
+                      secondaryCurrency: CurrencyDetail(0.0, 'BTC'),
+                    ),
+                    formatter: NumberFormat.decimalPattern(),
+                    numberPadType: NumberPadWidgetType.singleInput,
+                    firstInputTitle: 'Hello',
+                    firstInputInitialValue: 25,
+                    firstInputMinimumValue: 10,
+                    firstInputMaximumValue: 100,
+                    currency: 'USD',
+                    onClose: (
+                      NumberPadWidgetType type,
+                      NumberPadCloseType closeType,
+                      NumberPadData result,
+                    ) async {
+                      print('Calling onClose() method.');
+                    },
+                    label: NumberPadLabel(
+                      semanticNumberPadBottomSheetHandle:
+                          'semanticNumberPadBottomSheetHandle',
+                      warnValueCantBeLessThan: (_, __, ___) =>
+                          'warnValueCantBeLessThan',
+                      warnValueCantBeGreaterThan: (_, __, ___) =>
+                          'warnValueCantBeGreaterThan',
+                      warnDoubleInputValueCantBeLessThan: (_, __, ___) =>
+                          'warnDoubleInputValueCantBeLessThan',
+                      warnDoubleInputValueCantBeGreaterThan: (_, __, ___) =>
+                          'warnDoubleInputValueCantBeGreaterThan',
+                      warnValueShouldBeInRange: (_, __, ___, ____) =>
+                          'warnValueShouldBeInRange',
+                      actionOK: 'OK',
+                    ),
+                  ),
+                ],
               ),
             );
           },
