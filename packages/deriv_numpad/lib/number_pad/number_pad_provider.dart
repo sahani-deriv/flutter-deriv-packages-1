@@ -60,24 +60,59 @@ class ExchangeController extends ChangeNotifier {
     required this.secondaryCurrency,
     required this.currencyFieldController,
   }) {
-    currencyFieldController!.addListener(() {
-      onChangeCurrency();
-    });
+    // currencyFieldController.addListener(() {
+    //   onChangeCurrency();
+    // });
   }
-  late TextEditingController? currencyFieldController;
+  late TextEditingController currencyFieldController;
   CurrencyDetail primaryCurrency;
   CurrencyDetail secondaryCurrency;
 
+  final ExchangeRateModel exchangeRate = ExchangeRateModel(
+    baseCurrency: 'USD',
+    targetCurrency: 'BTC',
+    exchangeRate: 42880,
+  );
+
   // final Stream<int> rateSource;
 
-  void onChangeCurrency() {
-    if (currencyFieldController!.text.isNotEmpty) {
-      final double value = double.parse(currencyFieldController!.text) * 1.4;
-      secondaryCurrency = CurrencyDetail(value, secondaryCurrency.currencyType);
+  void onChangeCurrency(String newValue) {
+    if (currencyFieldController.text.isNotEmpty &&
+        currencyFieldController.text != primaryCurrency.amount.toString()) {
+      secondaryCurrency = _getUpdatedSecondaryCurrency();
+      primaryCurrency = _getUpdatedPrimaryCurrency();
       notifyListeners();
     } else {
       secondaryCurrency = CurrencyDetail(0, secondaryCurrency.currencyType);
     }
+  }
+
+  CurrencyDetail _getUpdatedSecondaryCurrency() {
+    final double value = double.parse(
+        (double.parse(currencyFieldController.text) / exchangeRate.exchangeRate)
+            .toStringAsFixed(8));
+    return CurrencyDetail(value, secondaryCurrency.currencyType);
+  }
+
+  CurrencyDetail _getUpdatedPrimaryCurrency() => CurrencyDetail(
+      double.parse(currencyFieldController.text), primaryCurrency.currencyType);
+
+  void swap() {
+    final double localPrimary =
+        double.tryParse(currencyFieldController.text) ?? 0.0;
+    final String localPrimaryCurrency = primaryCurrency.currencyType;
+
+    primaryCurrency = CurrencyDetail(
+      secondaryCurrency.amount,
+      secondaryCurrency.currencyType,
+    );
+    secondaryCurrency = CurrencyDetail(localPrimary, localPrimaryCurrency);
+    currencyFieldController.text =
+        primaryCurrency.amount == 0.0 ? '' : primaryCurrency.amount.toString();
+    currencyFieldController.selection = TextSelection.fromPosition(
+      TextPosition(offset: currencyFieldController.text.length),
+    );
+    notifyListeners();
   }
 }
 

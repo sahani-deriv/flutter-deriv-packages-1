@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:deriv_numpad/core/widgets/currency_switcher.dart';
 import 'package:deriv_numpad/core/widgets/info_icon_button.dart';
 import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:deriv_numpad/number_pad/model/number_pad_label.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
@@ -249,7 +250,7 @@ class _NumberPadState extends State<NumberPad> {
     _exchangeController = ExchangeController(
       primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
       secondaryCurrency: widget.currencyExchangePayload!.secondaryCurrency,
-      currencyFieldController: _firstInputController,
+      currencyFieldController: _firstInputController!,
     );
     widget.onOpen?.call();
   }
@@ -330,15 +331,6 @@ class _NumberPadState extends State<NumberPad> {
                                     ),
                                   ),
                                 ),
-                                CurrencySwitcher(
-                                  amount: ExchangeNotifier.of(context)!
-                                      .secondaryCurrency
-                                      .displayAmount,
-                                  currency: ExchangeNotifier.of(context)!
-                                      .secondaryCurrency
-                                      .currencyType,
-                                  onTap: () => Navigator.of(context).pop(),
-                                ),
                                 widget.numberPadType ==
                                         NumberPadWidgetType.singleInput
                                     ? _NumberPadSingleTextField(
@@ -382,6 +374,7 @@ class _NumberPadState extends State<NumberPad> {
           _setNewAmount(controller, text);
         }
     }
+    ExchangeNotifier.of(context)!.onChangeCurrency(controller.text);
   }
 
   void _applyInputs(NumberPadCloseType closeStyle) {

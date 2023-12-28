@@ -61,6 +61,7 @@ class _NumberPadTextFieldState extends State<_NumberPadTextField> {
         textAlign: widget.textAlign ?? TextAlign.start,
         readOnly: true,
         showCursor: true,
+        cursorColor: context.theme.colors.prominent,
         enableInteractiveSelection: false,
         autofocus: true,
       );

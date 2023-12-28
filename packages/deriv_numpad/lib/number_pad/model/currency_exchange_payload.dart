@@ -1,3 +1,5 @@
+import 'package:deriv_numpad/core/helpers/custom_website_status_helper.dart';
+
 class CurrencyExchangePayload {
   CurrencyExchangePayload({
     required this.primaryCurrency,
@@ -15,4 +17,6 @@ class CurrencyDetail {
   final String currencyType;
 
   String get displayAmount => amount != 0.0 ? amount.toStringAsFixed(8) : '';
+
+  String get displayCurrency => getStringWithMappedCurrencyName(currencyType);
 }

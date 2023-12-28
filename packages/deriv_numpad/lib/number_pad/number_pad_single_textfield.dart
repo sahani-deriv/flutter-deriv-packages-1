@@ -46,6 +46,20 @@ class _NumberPadSingleTextField extends StatelessWidget {
                 dialogDescription: dialogDescription,
                 leading: leading,
               ),
+        ExchangeNotifier.of(context) != null
+            ? Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: CurrencySwitcher(
+                  amount: ExchangeNotifier.of(context)!
+                      .secondaryCurrency
+                      .displayAmount,
+                  currency: ExchangeNotifier.of(context)!
+                      .secondaryCurrency
+                      .currencyType,
+                  onTap: () => ExchangeNotifier.of(context)!.swap(),
+                ),
+              )
+            : const SizedBox.shrink(),
         Row(
           children: <Widget>[
             Expanded(
@@ -83,7 +97,9 @@ class _NumberPadSingleTextField extends StatelessWidget {
                       right: margin,
                     ),
                     child: Text(
-                      getStringWithMappedCurrencyName(numPadProvider.currency),
+                      ExchangeNotifier.of(context)!
+                          .primaryCurrency
+                          .currencyType,
                       style: context.theme.textStyle(
                         textStyle: TextStyles.headlineNormal,
                         color: context.theme.colors.disabled,
