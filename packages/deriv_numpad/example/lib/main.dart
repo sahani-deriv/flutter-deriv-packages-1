@@ -52,8 +52,6 @@ class Homepage extends StatelessWidget {
                     numberPadType: NumberPadWidgetType.singleInput,
                     firstInputTitle: 'Hello',
                     firstInputInitialValue: 25,
-                    firstInputMinimumValue: 10,
-                    firstInputMaximumValue: 100,
                     currency: 'USD',
                     onClose: (
                       NumberPadWidgetType type,
