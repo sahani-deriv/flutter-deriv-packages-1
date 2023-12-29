@@ -33,8 +33,8 @@ class ExchangeController extends ChangeNotifier {
 
   final ExchangeRateModel exchangeRate = ExchangeRateModel(
     baseCurrency: 'BTC',
-    targetCurrency: 'USD',
-    exchangeRate: 42880,
+    targetCurrency: 'ETH',
+    exchangeRate: 18.0695090444717,
   );
 
   // final Stream<int> rateSource;
@@ -88,8 +88,8 @@ class ExchangeController extends ChangeNotifier {
       _primaryCurrency.currencyType);
 
   double _getExchangedOutput(double amount) => _isSwapped
-      ? exchangeRate.exchangeRate * amount
-      : exchangeRate.getInverseOfExchangeRate() * amount;
+      ? exchangeRate.getInverseOfExchangeRate() * amount
+      : exchangeRate.exchangeRate * amount;
 }
 
 extension ExchangeRateInverse on ExchangeRateModel {

@@ -45,14 +45,14 @@ class Homepage extends StatelessWidget {
                 children: [
                   NumberPad(
                     currencyExchangePayload: CurrencyExchangePayload(
-                      primaryCurrency: CurrencyDetail(0.0, 'USD'),
-                      secondaryCurrency: CurrencyDetail(0.0, 'BTC'),
+                      primaryCurrency: CurrencyDetail(0.0, 'BTC'),
+                      secondaryCurrency: CurrencyDetail(0.0, 'ETH'),
                     ),
                     formatter: NumberFormat.decimalPattern(),
                     numberPadType: NumberPadWidgetType.singleInput,
                     firstInputTitle: 'Hello',
-                    firstInputInitialValue: 25,
-                    currency: 'USD',
+                    firstInputInitialValue: 0.0,
+                    currency: 'PPT',
                     onClose: (
                       NumberPadWidgetType type,
                       NumberPadCloseType closeType,
