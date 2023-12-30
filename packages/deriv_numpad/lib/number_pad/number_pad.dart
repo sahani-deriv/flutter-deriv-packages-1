@@ -230,9 +230,7 @@ class _NumberPadState extends State<NumberPad> {
     _formatter = widget.formatter;
     _firstInputController = TextEditingController();
     _firstInputFocusNode = FocusNode();
-    _firstInputController?.text = widget.firstInputInitialValue == null
-        ? noInput
-        : _formatter.format(widget.firstInputInitialValue);
+    _firstInputController?.text = _getFirstInputControllerText();
 
     if (widget.numberPadType == NumberPadWidgetType.doubleInput) {
       _secondInputController = TextEditingController();
@@ -247,12 +245,24 @@ class _NumberPadState extends State<NumberPad> {
     } else {
       _secondInputFocusNode?.requestFocus();
     }
+
     _exchangeController = ExchangeController(
       primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
-      secondaryCurrency: widget.currencyExchangePayload!.secondaryCurrency,
       currencyFieldController: _firstInputController!,
+      rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
+      initialExchangeRate: widget.currencyExchangePayload!.initialExchangeRate,
     );
     widget.onOpen?.call();
+  }
+
+  String _getFirstInputControllerText() {
+    if (widget.currencyExchangePayload != null) {
+      return widget.currencyExchangePayload!.primaryCurrency.displayAmount;
+    } else if (widget.firstInputInitialValue != null) {
+      return _formatter.format(widget.firstInputInitialValue);
+    } else {
+      return noInput;
+    }
   }
 
   @override

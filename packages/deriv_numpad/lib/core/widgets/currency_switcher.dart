@@ -1,15 +1,14 @@
+import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CurrencySwitcher extends StatelessWidget {
   const CurrencySwitcher({
-    required this.amount,
-    required this.currency,
+    required this.currencyDetail,
     this.onTap,
   });
-  final String amount;
-  final String currency;
+  final CurrencyDetail currencyDetail;
   final VoidCallback? onTap;
 
   @override
@@ -28,8 +27,10 @@ class CurrencySwitcher extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                amount.isEmpty ? const SizedBox() : _CurrencyText('$amount '),
-                _CurrencyText(currency),
+                currencyDetail.displayAmount.isEmpty
+                    ? const SizedBox()
+                    : _CurrencyText('${currencyDetail.displayAmount} '),
+                _CurrencyText(currencyDetail.displayCurrency),
                 const SizedBox(width: 4),
                 SvgPicture.asset(
                   'assets/ic_currency_swap.svg',

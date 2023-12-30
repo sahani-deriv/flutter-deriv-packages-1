@@ -19,19 +19,26 @@ class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
 class ExchangeController extends ChangeNotifier {
   ///
   ExchangeController({
-    // required this.rateSource,
+    required this.rateSource,
     required CurrencyDetail primaryCurrency,
-    required CurrencyDetail secondaryCurrency,
     required this.currencyFieldController,
-  })  : _secondaryCurrency = secondaryCurrency,
-        _primaryCurrency = primaryCurrency;
+    required ExchangeRateModel initialExchangeRate,
+  }) {
+    exchangeRate = initialExchangeRate;
+    _primaryCurrency = primaryCurrency;
+    _secondaryCurrency = CurrencyDetail(
+        _getExchangedOutput(_primaryCurrency.amount),
+        exchangeRate.targetCurrency);
+    _listenForExchangeRateChange();
+  }
 
   /// controller for active textfield.
   TextEditingController currencyFieldController;
   late bool _isSwapped = false;
-
-  CurrencyDetail _primaryCurrency;
-  CurrencyDetail _secondaryCurrency;
+  late ExchangeRateModel exchangeRate;
+  late CurrencyDetail _primaryCurrency;
+  late CurrencyDetail _secondaryCurrency;
+  Stream<ExchangeRateModel> rateSource;
 
   /// Currently active currency in textField
   CurrencyDetail get primaryCurrency => _primaryCurrency;
@@ -39,13 +46,16 @@ class ExchangeController extends ChangeNotifier {
   /// Exchanged currency
   CurrencyDetail get secondaryCurrency => _secondaryCurrency;
 
-  final ExchangeRateModel exchangeRate = ExchangeRateModel(
-    baseCurrency: 'BTC',
-    targetCurrency: 'ETH',
-    exchangeRate: 18.0695090444717,
-  );
-
-  // final Stream<int> rateSource;
+  Future<void> _listenForExchangeRateChange() async {
+    rateSource.listen((ExchangeRateModel rate) {
+      exchangeRate = rate;
+      _secondaryCurrency = CurrencyDetail(
+        _getExchangedOutput(_primaryCurrency.amount),
+        rate.targetCurrency,
+      );
+      notifyListeners();
+    });
+  }
 
   /// This is called when an amount is changed in textField and immediately converts amount in secondary currency.
   void onChangeCurrency(String newValue) {
@@ -65,7 +75,7 @@ class ExchangeController extends ChangeNotifier {
 
     final double localPrimary =
         double.tryParse(currencyFieldController.text) ?? 0.0;
-    // localPrimary = _getExchangedOutput(localPrimary);
+
     final String localPrimaryCurrency = _primaryCurrency.currencyType;
 
     _primaryCurrency = CurrencyDetail(

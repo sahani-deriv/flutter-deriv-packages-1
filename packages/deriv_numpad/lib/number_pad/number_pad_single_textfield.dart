@@ -50,12 +50,8 @@ class _NumberPadSingleTextField extends StatelessWidget {
             ? Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: CurrencySwitcher(
-                  amount: ExchangeNotifier.of(context)!
-                      .secondaryCurrency
-                      .displayAmount,
-                  currency: ExchangeNotifier.of(context)!
-                      .secondaryCurrency
-                      .currencyType,
+                  currencyDetail:
+                      ExchangeNotifier.of(context)!.secondaryCurrency,
                   onTap: () => ExchangeNotifier.of(context)!.swap(),
                 ),
               )

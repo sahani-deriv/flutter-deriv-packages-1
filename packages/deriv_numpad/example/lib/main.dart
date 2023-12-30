@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:deriv_numpad/deriv_numberpad.dart';
 import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -36,6 +39,15 @@ class Homepage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
+            final stream = StreamController<ExchangeRateModel>.broadcast();
+            Future.delayed(const Duration(seconds: 5), () {
+              stream.sink.add(ExchangeRateModel(
+                baseCurrency: 'BTC',
+                targetCurrency: 'USD',
+                exchangeRate: 12,
+              ));
+            });
+
             showModalBottomSheet<void>(
               isScrollControlled: true,
               context: context,
@@ -45,13 +57,17 @@ class Homepage extends StatelessWidget {
                 children: [
                   NumberPad(
                     currencyExchangePayload: CurrencyExchangePayload(
-                      primaryCurrency: CurrencyDetail(0.0, 'BTC'),
-                      secondaryCurrency: CurrencyDetail(0.0, 'ETH'),
-                    ),
+                        primaryCurrency: CurrencyDetail(0.00123, 'BTC'),
+                        initialExchangeRate: ExchangeRateModel(
+                          baseCurrency: 'BTC',
+                          targetCurrency: 'USD',
+                          exchangeRate: 42880,
+                        ),
+                        exchangeRatesStream: stream.stream,
+                        onValid: (_) => true),
                     formatter: NumberFormat.decimalPattern(),
                     numberPadType: NumberPadWidgetType.singleInput,
                     firstInputTitle: 'Hello',
-                    firstInputInitialValue: 0.0,
                     currency: 'PPT',
                     onClose: (
                       NumberPadWidgetType type,
