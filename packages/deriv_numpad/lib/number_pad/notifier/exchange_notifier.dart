@@ -10,11 +10,14 @@ class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
     super.notifier,
   });
 
+  /// Retrieve [ExchangeController] from the widget tree.
   static ExchangeController? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<ExchangeNotifier>()!.notifier;
 }
 
+/// It controls exchange rate conversion, switching between currencies and all the logic related to currency.
 class ExchangeController extends ChangeNotifier {
+  ///
   ExchangeController({
     // required this.rateSource,
     required CurrencyDetail primaryCurrency,
@@ -22,13 +25,18 @@ class ExchangeController extends ChangeNotifier {
     required this.currencyFieldController,
   })  : _secondaryCurrency = secondaryCurrency,
         _primaryCurrency = primaryCurrency;
+
+  /// controller for active textfield.
   TextEditingController currencyFieldController;
   late bool _isSwapped = false;
 
   CurrencyDetail _primaryCurrency;
   CurrencyDetail _secondaryCurrency;
 
+  /// Currently active currency in textField
   CurrencyDetail get primaryCurrency => _primaryCurrency;
+
+  /// Exchanged currency
   CurrencyDetail get secondaryCurrency => _secondaryCurrency;
 
   final ExchangeRateModel exchangeRate = ExchangeRateModel(
@@ -39,6 +47,7 @@ class ExchangeController extends ChangeNotifier {
 
   // final Stream<int> rateSource;
 
+  /// This is called when an amount is changed in textField and immediately converts amount in secondary currency.
   void onChangeCurrency(String newValue) {
     if (currencyFieldController.text.isNotEmpty &&
         currencyFieldController.text != _primaryCurrency.amount.toString()) {
@@ -50,11 +59,8 @@ class ExchangeController extends ChangeNotifier {
     }
   }
 
+  /// This will interchange the currency, amount from textField to switcher and vice-versa.
   void swap() {
-    // Its better to have a boolean flag to hold swapped or not flag. meaning
-    //swapped from the initial point.
-    //eg: in initial state the flag will be false.
-    // when swapped it will toggle and so will the logic from actual to inverse. i.e exchangeRate to 1 / exchangeRate
     _isSwapped = !_isSwapped;
 
     final double localPrimary =
@@ -67,12 +73,13 @@ class ExchangeController extends ChangeNotifier {
       _secondaryCurrency.currencyType,
     );
     _secondaryCurrency = CurrencyDetail(localPrimary, localPrimaryCurrency);
-    currencyFieldController.text = _primaryCurrency.amount == 0.0
-        ? ''
-        : _primaryCurrency.amount.toString();
-    currencyFieldController.selection = TextSelection.fromPosition(
-      TextPosition(offset: currencyFieldController.text.length),
-    );
+    currencyFieldController
+      ..text = _primaryCurrency.amount == 0.0
+          ? ''
+          : _primaryCurrency.amount.toString()
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: currencyFieldController.text.length),
+      );
     notifyListeners();
   }
 
@@ -92,6 +99,8 @@ class ExchangeController extends ChangeNotifier {
       : exchangeRate.exchangeRate * amount;
 }
 
+/// Inversion extension
 extension ExchangeRateInverse on ExchangeRateModel {
+  /// This will get the inverse of the actual exchange rate.
   double getInverseOfExchangeRate() => 1 / exchangeRate;
 }
