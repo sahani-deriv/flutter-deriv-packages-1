@@ -36,7 +36,7 @@ class _NumberPadSingleTextField extends StatelessWidget {
       TextStyles.headlineNormal,
       context,
     );
-
+    final ExchangeController? exchangeProvider = ExchangeNotifier.of(context);
     return Column(
       children: <Widget>[
         title.isEmpty
@@ -46,7 +46,7 @@ class _NumberPadSingleTextField extends StatelessWidget {
                 dialogDescription: dialogDescription,
                 leading: leading,
               ),
-        ExchangeNotifier.of(context) != null
+        exchangeProvider != null
             ? Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: CurrencySwitcher(
@@ -93,9 +93,8 @@ class _NumberPadSingleTextField extends StatelessWidget {
                       right: margin,
                     ),
                     child: Text(
-                      ExchangeNotifier.of(context)!
-                          .primaryCurrency
-                          .currencyType,
+                      exchangeProvider?.primaryCurrency.currencyType ??
+                          numPadProvider.currency,
                       style: context.theme.textStyle(
                         textStyle: TextStyles.headlineNormal,
                         color: context.theme.colors.disabled,

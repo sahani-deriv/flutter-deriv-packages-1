@@ -246,12 +246,15 @@ class _NumberPadState extends State<NumberPad> {
       _secondInputFocusNode?.requestFocus();
     }
 
-    _exchangeController = ExchangeController(
-      primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
-      currencyFieldController: _firstInputController!,
-      rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
-      initialExchangeRate: widget.currencyExchangePayload!.initialExchangeRate,
-    );
+    if (widget.currencyExchangePayload != null) {
+      _exchangeController = ExchangeController(
+        primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
+        currencyFieldController: _firstInputController!,
+        rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
+        initialExchangeRate:
+            widget.currencyExchangePayload!.initialExchangeRate,
+      );
+    }
     widget.onOpen?.call();
   }
 
@@ -266,104 +269,107 @@ class _NumberPadState extends State<NumberPad> {
   }
 
   @override
-  Widget build(BuildContext ctx) => ExchangeNotifier(
+  Widget build(BuildContext ctx) => widget.currencyExchangePayload == null
+      ? _buildWholeNumpad(context)
+      : _buildNumpadWithExchange(context);
+
+  Widget _buildNumpadWithExchange(BuildContext context) => ExchangeNotifier(
         notifier: _exchangeController,
         child: Builder(
-            builder: (BuildContext context) => _NumberPadProvider(
-                  type: widget.numberPadType,
-                  label: widget.label,
-                  formatter: _formatter,
-                  currency: _currency,
-                  firstInputController: _firstInputController,
-                  secondInputController: _secondInputController,
-                  firstInputFocusNode: _firstInputFocusNode,
-                  secondInputFocusNode: _secondInputFocusNode,
-                  firstInputMinimumValue: widget.firstInputMinimumValue,
-                  firstInputMaximumValue: widget.firstInputMaximumValue,
-                  secondInputMinimumValue: widget.secondInputMinimumValue,
-                  secondInputMaximumValue: widget.secondInputMaximumValue,
-                  focusedInput: _getFocusedInput,
-                  isSecondInputInRange: _isSecondInputInRange,
-                  isFirstInputInRange: _isFirstInputInRange,
-                  isAllInputsValid: _isAllInputsValid,
-                  child: WillPopScope(
-                    onWillPop: () async {
-                      _applyInputs(NumberPadCloseType.clickOutsideView);
+          builder: (BuildContext context) => _buildWholeNumpad(context),
+        ),
+      );
 
-                      return Future<bool>.value(true);
-                    },
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      children: <Widget>[
-                        Container(
-                            decoration: BoxDecoration(
-                              color: context.theme.colors.primary,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(
-                                    ThemeProvider.borderRadius16),
-                                topRight: Radius.circular(
-                                    ThemeProvider.borderRadius16),
-                              ),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(
-                                    ThemeProvider.margin16,
-                                    0,
-                                    ThemeProvider.margin16,
-                                    0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: context.theme.colors.secondary,
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(
-                                          ThemeProvider.borderRadius16),
-                                      topRight: Radius.circular(
-                                          ThemeProvider.borderRadius16),
-                                    ),
-                                  ),
-                                  child: Align(
-                                    child: InkWell(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(
-                                            ThemeProvider.margin08),
-                                        child: SvgPicture.asset(
-                                          handleIcon,
-                                          width: 40,
-                                          height: 4,
-                                          semanticsLabel: widget.label
-                                              .semanticNumberPadBottomSheetHandle,
-                                        ),
-                                      ),
-                                      onTap: () => Navigator.pop(context),
-                                    ),
-                                  ),
-                                ),
-                                widget.numberPadType ==
-                                        NumberPadWidgetType.singleInput
-                                    ? _NumberPadSingleTextField(
-                                        leading: widget.headerLeading,
-                                        title: widget.firstInputTitle,
-                                        dialogDescription:
-                                            widget.dialogDescription,
-                                      )
-                                    : _NumberPadDoubleTextFields(
-                                        firstTitleValue: widget.firstInputTitle,
-                                        secondTitleValue:
-                                            widget.secondInputTitle,
-                                      ),
-                                _NumberPadMessage(message: _validateMessage()),
-                                _NumberPadKeypadWidget(
-                                  onKeyPressed: _onKeyboardButtonPressed,
-                                )
-                              ],
-                            )),
-                      ],
+  _NumberPadProvider _buildWholeNumpad(BuildContext context) =>
+      _NumberPadProvider(
+        type: widget.numberPadType,
+        label: widget.label,
+        formatter: _formatter,
+        currency: _currency,
+        firstInputController: _firstInputController,
+        secondInputController: _secondInputController,
+        firstInputFocusNode: _firstInputFocusNode,
+        secondInputFocusNode: _secondInputFocusNode,
+        firstInputMinimumValue: widget.firstInputMinimumValue,
+        firstInputMaximumValue: widget.firstInputMaximumValue,
+        secondInputMinimumValue: widget.secondInputMinimumValue,
+        secondInputMaximumValue: widget.secondInputMaximumValue,
+        focusedInput: _getFocusedInput,
+        isSecondInputInRange: _isSecondInputInRange,
+        isFirstInputInRange: _isFirstInputInRange,
+        isAllInputsValid: _isAllInputsValid,
+        child: WillPopScope(
+          onWillPop: () async {
+            _applyInputs(NumberPadCloseType.clickOutsideView);
+
+            return Future<bool>.value(true);
+          },
+          child: ListView(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            children: <Widget>[
+              Container(
+                  decoration: BoxDecoration(
+                    color: context.theme.colors.primary,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(ThemeProvider.borderRadius16),
+                      topRight: Radius.circular(ThemeProvider.borderRadius16),
                     ),
                   ),
-                )),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(
+                          ThemeProvider.margin16,
+                          0,
+                          ThemeProvider.margin16,
+                          0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: context.theme.colors.secondary,
+                          borderRadius: const BorderRadius.only(
+                            topLeft:
+                                Radius.circular(ThemeProvider.borderRadius16),
+                            topRight:
+                                Radius.circular(ThemeProvider.borderRadius16),
+                          ),
+                        ),
+                        child: Align(
+                          child: InkWell(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.all(ThemeProvider.margin08),
+                              child: SvgPicture.asset(
+                                handleIcon,
+                                width: 40,
+                                height: 4,
+                                semanticsLabel: widget
+                                    .label.semanticNumberPadBottomSheetHandle,
+                              ),
+                            ),
+                            onTap: () => Navigator.pop(context),
+                          ),
+                        ),
+                      ),
+                      widget.numberPadType == NumberPadWidgetType.singleInput
+                          ? _NumberPadSingleTextField(
+                              leading: widget.headerLeading,
+                              title: widget.firstInputTitle,
+                              dialogDescription: widget.dialogDescription,
+                            )
+                          : _NumberPadDoubleTextFields(
+                              firstTitleValue: widget.firstInputTitle,
+                              secondTitleValue: widget.secondInputTitle,
+                            ),
+                      _NumberPadMessage(message: _validateMessage()),
+                      _NumberPadKeypadWidget(
+                        onKeyPressed: _onKeyboardButtonPressed,
+                      )
+                    ],
+                  )),
+            ],
+          ),
+        ),
       );
 
   void _onKeyboardButtonPressed(

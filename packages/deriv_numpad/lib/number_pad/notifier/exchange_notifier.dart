@@ -12,7 +12,7 @@ class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
 
   /// Retrieve [ExchangeController] from the widget tree.
   static ExchangeController? of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<ExchangeNotifier>()!.notifier;
+      context.dependOnInheritedWidgetOfExactType<ExchangeNotifier>()?.notifier;
 }
 
 /// It controls exchange rate conversion, switching between currencies and all the logic related to currency.
