@@ -15,6 +15,11 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
+  deriv_theme:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_theme
+      ref: deriv_theme-v2.2.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4

@@ -259,22 +259,10 @@ class _NumberPadState extends State<NumberPad> {
       _secondInputFocusNode?.requestFocus();
     }
 
-    // if (widget.currencyExchangePayload != null) {
-    //   _exchangeController = ExchangeController(
-    //     primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
-    //     currencyFieldController: _firstInputController!,
-    //     rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
-    //     initialExchangeRate:
-    //         widget.currencyExchangePayload!.initialExchangeRate,
-    //   );
-    // }
     widget.onOpen?.call();
   }
 
   String _getFirstInputControllerText() {
-    // if (widget.currencyExchangePayload != null) {
-    //   return widget.currencyExchangePayload!.primaryCurrency.displayAmount;
-    // } else
     if (widget.firstInputInitialValue != null) {
       return _formatter.format(widget.firstInputInitialValue);
     } else {
@@ -285,15 +273,7 @@ class _NumberPadState extends State<NumberPad> {
   @override
   Widget build(BuildContext ctx) => _buildWholeNumpad(context);
 
-  Widget _buildNumpadWithExchange(BuildContext context) => ExchangeNotifier(
-        notifier: _exchangeController,
-        child: Builder(
-          builder: (BuildContext context) => _buildWholeNumpad(context),
-        ),
-      );
-
-  _NumberPadProvider _buildWholeNumpad(BuildContext context) =>
-      _NumberPadProvider(
+  Widget _buildWholeNumpad(BuildContext context) => _NumberPadProvider(
         type: widget.numberPadType,
         label: widget.label,
         formatter: _formatter,
@@ -310,78 +290,90 @@ class _NumberPadState extends State<NumberPad> {
         isSecondInputInRange: _isSecondInputInRange,
         isFirstInputInRange: _isFirstInputInRange,
         isAllInputsValid: _isAllInputsValid,
-        child: WillPopScope(
-          onWillPop: () async {
-            _applyInputs(NumberPadCloseType.clickOutsideView);
+        child: Builder(
+            builder: (BuildContext context) => WillPopScope(
+                  onWillPop: () async {
+                    _applyInputs(NumberPadCloseType.clickOutsideView);
 
-            return Future<bool>.value(true);
-          },
-          child: ListView(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            children: <Widget>[
-              Container(
-                  decoration: BoxDecoration(
-                    color: context.theme.colors.primary,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(ThemeProvider.borderRadius16),
-                      topRight: Radius.circular(ThemeProvider.borderRadius16),
-                    ),
-                  ),
-                  child: Column(
+                    return Future<bool>.value(true);
+                  },
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
                     children: <Widget>[
                       Container(
-                        padding: const EdgeInsets.fromLTRB(
-                          ThemeProvider.margin16,
-                          0,
-                          ThemeProvider.margin16,
-                          0,
-                        ),
-                        decoration: BoxDecoration(
-                          color: context.theme.colors.secondary,
-                          borderRadius: const BorderRadius.only(
-                            topLeft:
-                                Radius.circular(ThemeProvider.borderRadius16),
-                            topRight:
-                                Radius.circular(ThemeProvider.borderRadius16),
+                          decoration: BoxDecoration(
+                            color: context.theme.colors.primary,
+                            borderRadius: const BorderRadius.only(
+                              topLeft:
+                                  Radius.circular(ThemeProvider.borderRadius16),
+                              topRight:
+                                  Radius.circular(ThemeProvider.borderRadius16),
+                            ),
                           ),
-                        ),
-                        child: Align(
-                          child: InkWell(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.all(ThemeProvider.margin08),
-                              child: SvgPicture.asset(
-                                handleIcon,
-                                width: 40,
-                                height: 4,
-                                semanticsLabel: widget
-                                    .label.semanticNumberPadBottomSheetHandle,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(
+                                  ThemeProvider.margin16,
+                                  0,
+                                  ThemeProvider.margin16,
+                                  0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: context.theme.colors.secondary,
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(
+                                        ThemeProvider.borderRadius16),
+                                    topRight: Radius.circular(
+                                        ThemeProvider.borderRadius16),
+                                  ),
+                                ),
+                                child: Align(
+                                  child: InkWell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(
+                                          ThemeProvider.margin08),
+                                      child: SvgPicture.asset(
+                                        handleIcon,
+                                        width: 40,
+                                        height: 4,
+                                        semanticsLabel: widget.label
+                                            .semanticNumberPadBottomSheetHandle,
+                                      ),
+                                    ),
+                                    onTap: () => Navigator.pop(context),
+                                  ),
+                                ),
                               ),
-                            ),
-                            onTap: () => Navigator.pop(context),
-                          ),
-                        ),
-                      ),
-                      widget.numberPadType == NumberPadWidgetType.singleInput
-                          ? _NumberPadSingleTextField(
-                              leading: widget.headerLeading,
-                              title: widget.firstInputTitle,
-                              dialogDescription: widget.dialogDescription,
-                            )
-                          : _NumberPadDoubleTextFields(
-                              firstTitleValue: widget.firstInputTitle,
-                              secondTitleValue: widget.secondInputTitle,
-                            ),
-                      _NumberPadMessage(message: _validateMessage()),
-                      _NumberPadKeypadWidget(
-                        onKeyPressed: _onKeyboardButtonPressed,
-                      )
+                              widget.numberPadType ==
+                                      NumberPadWidgetType.singleInput
+                                  ? _NumberPadSingleTextField(
+                                      leading: widget.headerLeading,
+                                      title: widget.firstInputTitle,
+                                      dialogDescription:
+                                          widget.dialogDescription,
+                                    )
+                                  : _NumberPadDoubleTextFields(
+                                      firstTitleValue: widget.firstInputTitle,
+                                      secondTitleValue: widget.secondInputTitle,
+                                    ),
+                              getCustomValidationText(context) != null
+                                  ? _NumberPadMessage(
+                                      messageText:
+                                          getCustomValidationText(context),
+                                    )
+                                  : _NumberPadMessage(
+                                      message: _validateMessage(),
+                                    ),
+                              _NumberPadKeypadWidget(
+                                onKeyPressed: _onKeyboardButtonPressed,
+                              )
+                            ],
+                          )),
                     ],
-                  )),
-            ],
-          ),
-        ),
+                  ),
+                )),
       );
 
   void _onKeyboardButtonPressed(
@@ -402,7 +394,7 @@ class _NumberPadState extends State<NumberPad> {
           _setNewAmount(controller, text);
         }
     }
-    ExchangeNotifier.of(context)!.onChangeCurrency(controller.text);
+    ExchangeNotifier.of(context)?.onChangeCurrency(controller.text);
   }
 
   void _applyInputs(NumberPadCloseType closeStyle) {
@@ -447,10 +439,23 @@ class _NumberPadState extends State<NumberPad> {
     Navigator.pop(context, data);
   }
 
+  RichText? getCustomValidationText(BuildContext context) {
+    final RichText? Function(String value)? onValidate =
+        _NumberPadProvider.of(context)?.label.onValidate;
+    if (onValidate == null) {
+      return null;
+    } else {
+      final RichText? richText = onValidate(_firstInputController?.text ?? '');
+      return richText;
+    }
+  }
+
   String _validateMessage() {
     String message = '';
 
-    if (!hasNoValue(_firstInputController?.text)) {
+    if (hasNoValue(_firstInputController?.text)) {
+      return message;
+    } else {
       final bool isFirstLessThanMax = isLessOrEqualLimit(
           value: _firstInputController?.text ?? '',
           upperLimit: widget.firstInputMaximumValue);
@@ -460,17 +465,25 @@ class _NumberPadState extends State<NumberPad> {
           lowerLimit: widget.firstInputMinimumValue ?? 0);
 
       if (!isFirstMoreThanMin) {
-        return message = widget.label.warnValueCantBeLessThan(
-          widget.firstInputTitle,
-          widget.firstInputMinimumValue ?? 0,
-          getStringWithMappedCurrencyName(_currency),
-        );
+        final String Function(
+                Object input, Object minAmount, Object currencySymbol)?
+            callback = widget.label.warnValueCantBeLessThan;
+        return message = callback?.call(
+              widget.firstInputTitle,
+              widget.firstInputMinimumValue ?? 0,
+              getStringWithMappedCurrencyName(_currency),
+            ) ??
+            '';
       } else if (!isFirstLessThanMax) {
-        return message = widget.label.warnValueCantBeGreaterThan(
-          widget.firstInputTitle,
-          widget.firstInputMaximumValue,
-          getStringWithMappedCurrencyName(_currency),
-        );
+        final String Function(
+                Object input, Object maxAmount, Object currencySymbol)?
+            callback = widget.label.warnValueCantBeGreaterThan;
+        return message = callback?.call(
+              widget.firstInputTitle,
+              widget.firstInputMaximumValue,
+              getStringWithMappedCurrencyName(_currency),
+            ) ??
+            '';
       }
     }
     if (widget.numberPadType == NumberPadWidgetType.doubleInput) {
@@ -484,27 +497,41 @@ class _NumberPadState extends State<NumberPad> {
             lowerLimit: widget.secondInputMinimumValue);
 
         if (!isSecondMoreThanMin) {
-          return message = widget.label.warnDoubleInputValueCantBeLessThan(
-            widget.secondInputTitle,
-            widget.secondInputMinimumValue,
-            getStringWithMappedCurrencyName(_currency),
-          );
+          final String Function(
+                  Object input, Object minAmount, Object currencySymbol)?
+              callback = widget.label.warnDoubleInputValueCantBeLessThan;
+          return message = callback?.call(
+                widget.secondInputTitle,
+                widget.secondInputMinimumValue,
+                getStringWithMappedCurrencyName(_currency),
+              ) ??
+              '';
         } else if (!isSecondLessThanMax) {
-          return message = widget.label.warnDoubleInputValueCantBeGreaterThan(
-            widget.secondInputTitle,
-            widget.secondInputMaximumValue!,
-            getStringWithMappedCurrencyName(_currency),
-          );
+          final String Function(
+                  Object input, Object maxAmount, Object currencySymbol)?
+              callback = widget.label.warnDoubleInputValueCantBeGreaterThan;
+          return message = callback?.call(
+                widget.secondInputTitle,
+                widget.secondInputMaximumValue!,
+                getStringWithMappedCurrencyName(_currency),
+              ) ??
+              '';
         }
       }
     } else if (widget.firstInputMinimumValue != null &&
         widget.firstInputMaximumValue != double.maxFinite) {
-      return message = widget.label.warnValueShouldBeInRange(
-        widget.firstInputTitle,
-        widget.firstInputMinimumValue ?? 0,
-        getStringWithMappedCurrencyName(_currency),
-        widget.firstInputMaximumValue,
-      );
+      final String Function(
+          Object input,
+          Object minAmountClear,
+          Object currencySymbol,
+          Object maxAmount)? callback = widget.label.warnValueShouldBeInRange;
+      return callback?.call(
+            widget.firstInputTitle,
+            widget.firstInputMinimumValue ?? 0,
+            getStringWithMappedCurrencyName(_currency),
+            widget.firstInputMaximumValue,
+          ) ??
+          '';
     }
     return message;
   }
@@ -582,7 +609,7 @@ class _NumberPadState extends State<NumberPad> {
   }
 
   bool _isFirstInputInRange() =>
-      hasNoValue(_firstInputController?.text) ||
+      !hasNoValue(_firstInputController?.text) &&
       isBetweenLimits(
         value: _firstInputController?.text ?? '',
         upperLimit: widget.firstInputMaximumValue,
@@ -607,7 +634,7 @@ class _NumpadWithExchange extends NumberPad {
     required this.initialExchangeRate,
   }) : super(
           numberPadType: NumberPadWidgetType.singleInput,
-          formatter: NumberFormat.decimalPattern(),
+          formatter: NumberFormat.decimalPattern()..maximumFractionDigits = 8,
           label: label,
         );
 
