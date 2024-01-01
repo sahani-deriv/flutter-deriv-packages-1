@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:deriv_numpad/core/widgets/currency_switcher.dart';
 import 'package:deriv_numpad/core/widgets/info_icon_button.dart';
 import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:deriv_numpad/number_pad/model/number_pad_label.dart';
 import 'package:deriv_numpad/number_pad/notifier/exchange_notifier.dart';
 import 'package:deriv_theme/deriv_theme.dart';
@@ -110,9 +111,23 @@ class NumberPad extends StatefulWidget {
     this.currentFocus = NumberPadInputFocus.firstInputField,
     this.dialogDescription,
     this.headerLeading,
-    this.currencyExchangePayload,
     Key? key,
   }) : super(key: key);
+
+  factory NumberPad.withCurrencyExchanger({
+    required bool Function(String) onValid,
+    required CurrencyDetail primaryCurrency,
+    required Stream<ExchangeRateModel> exchangeRatesStream,
+    required ExchangeRateModel initialExchangeRate,
+    required NumberPadLabel label,
+  }) =>
+      _NumpadWithExchange(
+        label: label,
+        onValid: onValid,
+        primaryCurrency: primaryCurrency,
+        exchangeRatesStream: exchangeRatesStream,
+        initialExchangeRate: initialExchangeRate,
+      );
 
   /// Sets the currency of the number pad
   ///
@@ -207,8 +222,6 @@ class NumberPad extends StatefulWidget {
   /// The leading widget on the header of this [NumberPad].
   final Widget? headerLeading;
 
-  final CurrencyExchangePayload? currencyExchangePayload;
-
   @override
   State<StatefulWidget> createState() => _NumberPadState();
 }
@@ -246,22 +259,23 @@ class _NumberPadState extends State<NumberPad> {
       _secondInputFocusNode?.requestFocus();
     }
 
-    if (widget.currencyExchangePayload != null) {
-      _exchangeController = ExchangeController(
-        primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
-        currencyFieldController: _firstInputController!,
-        rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
-        initialExchangeRate:
-            widget.currencyExchangePayload!.initialExchangeRate,
-      );
-    }
+    // if (widget.currencyExchangePayload != null) {
+    //   _exchangeController = ExchangeController(
+    //     primaryCurrency: widget.currencyExchangePayload!.primaryCurrency,
+    //     currencyFieldController: _firstInputController!,
+    //     rateSource: widget.currencyExchangePayload!.exchangeRatesStream,
+    //     initialExchangeRate:
+    //         widget.currencyExchangePayload!.initialExchangeRate,
+    //   );
+    // }
     widget.onOpen?.call();
   }
 
   String _getFirstInputControllerText() {
-    if (widget.currencyExchangePayload != null) {
-      return widget.currencyExchangePayload!.primaryCurrency.displayAmount;
-    } else if (widget.firstInputInitialValue != null) {
+    // if (widget.currencyExchangePayload != null) {
+    //   return widget.currencyExchangePayload!.primaryCurrency.displayAmount;
+    // } else
+    if (widget.firstInputInitialValue != null) {
       return _formatter.format(widget.firstInputInitialValue);
     } else {
       return noInput;
@@ -269,9 +283,7 @@ class _NumberPadState extends State<NumberPad> {
   }
 
   @override
-  Widget build(BuildContext ctx) => widget.currencyExchangePayload == null
-      ? _buildWholeNumpad(context)
-      : _buildNumpadWithExchange(context);
+  Widget build(BuildContext ctx) => _buildWholeNumpad(context);
 
   Widget _buildNumpadWithExchange(BuildContext context) => ExchangeNotifier(
         notifier: _exchangeController,
@@ -583,5 +595,65 @@ class _NumberPadState extends State<NumberPad> {
         value: _secondInputController?.text ?? '',
         upperLimit: widget.secondInputMaximumValue!,
         lowerLimit: widget.secondInputMinimumValue,
+      );
+}
+
+class _NumpadWithExchange extends NumberPad {
+  _NumpadWithExchange({
+    required super.label,
+    required this.onValid,
+    required this.primaryCurrency,
+    required this.exchangeRatesStream,
+    required this.initialExchangeRate,
+  }) : super(
+          numberPadType: NumberPadWidgetType.singleInput,
+          formatter: NumberFormat.decimalPattern(),
+        );
+
+  final CurrencyDetail primaryCurrency;
+
+  final bool Function(String) onValid;
+
+  final Stream<ExchangeRateModel> exchangeRatesStream;
+
+  final ExchangeRateModel initialExchangeRate;
+
+  @override
+  State<StatefulWidget> createState() => _NumberPadWithExchangeState(
+        exchangeRatesStream: exchangeRatesStream,
+        initialExchangeRate: initialExchangeRate,
+        onValid: onValid,
+        primaryCurrency: primaryCurrency,
+      );
+}
+
+class _NumberPadWithExchangeState extends _NumberPadState {
+  _NumberPadWithExchangeState({
+    required this.primaryCurrency,
+    required this.onValid,
+    required this.exchangeRatesStream,
+    required this.initialExchangeRate,
+  });
+  final CurrencyDetail primaryCurrency;
+  final bool Function(String) onValid;
+  final Stream<ExchangeRateModel> exchangeRatesStream;
+  final ExchangeRateModel initialExchangeRate;
+
+  @override
+  void initState() {
+    super.initState();
+    super._firstInputController!.text = primaryCurrency.displayAmount;
+    _exchangeController = ExchangeController(
+      primaryCurrency: primaryCurrency,
+      currencyFieldController: super._firstInputController!,
+      rateSource: exchangeRatesStream,
+      initialExchangeRate: initialExchangeRate,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => ExchangeNotifier(
+        child: super.build(context),
+        notifier: _exchangeController,
       );
 }
