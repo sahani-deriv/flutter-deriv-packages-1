@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
   ///
   const ExchangeNotifier({
-    required super.child,
-    super.notifier,
-  });
+    required Widget child,
+    ExchangeController? notifier,
+  }) : super(child: child, notifier: notifier);
 
   /// Retrieve [ExchangeController] from the widget tree.
   static ExchangeController? of(BuildContext context) =>

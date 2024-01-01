@@ -600,7 +600,7 @@ class _NumberPadState extends State<NumberPad> {
 
 class _NumpadWithExchange extends NumberPad {
   _NumpadWithExchange({
-    required super.label,
+    required NumberPadLabel label,
     required this.onValid,
     required this.primaryCurrency,
     required this.exchangeRatesStream,
@@ -608,6 +608,7 @@ class _NumpadWithExchange extends NumberPad {
   }) : super(
           numberPadType: NumberPadWidgetType.singleInput,
           formatter: NumberFormat.decimalPattern(),
+          label: label,
         );
 
   final CurrencyDetail primaryCurrency;

@@ -1,3 +1,4 @@
+import 'package:deriv_numpad/core/assets.dart';
 import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,9 @@ class CurrencySwitcher extends StatelessWidget {
                 _CurrencyText(currencyDetail.displayCurrency),
                 const SizedBox(width: 4),
                 SvgPicture.asset(
-                  'assets/ic_currency_swap.svg',
-                  height: 8,
-                  width: 8,
+                  swapIcon,
+                  height: 16,
+                  width: 16,
                   color: context.theme.colors.prominent,
                 )
               ],
