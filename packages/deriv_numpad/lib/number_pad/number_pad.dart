@@ -120,6 +120,7 @@ class NumberPad extends StatefulWidget {
     required Stream<ExchangeRateModel> exchangeRatesStream,
     required ExchangeRateModel initialExchangeRate,
     required NumberPadLabel label,
+    String title = '',
   }) =>
       _NumpadWithExchange(
         label: label,
@@ -127,6 +128,7 @@ class NumberPad extends StatefulWidget {
         primaryCurrency: primaryCurrency,
         exchangeRatesStream: exchangeRatesStream,
         initialExchangeRate: initialExchangeRate,
+        title: title,
       );
 
   /// Sets the currency of the number pad
@@ -632,10 +634,12 @@ class _NumpadWithExchange extends NumberPad {
     required this.primaryCurrency,
     required this.exchangeRatesStream,
     required this.initialExchangeRate,
+    required String title,
   }) : super(
           numberPadType: NumberPadWidgetType.singleInput,
           formatter: NumberFormat.decimalPattern()..maximumFractionDigits = 8,
           label: label,
+          firstInputTitle: title,
         );
 
   final CurrencyDetail primaryCurrency;

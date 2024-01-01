@@ -60,6 +60,7 @@ class Homepage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     NumberPad.withCurrencyExchanger(
+                      title: 'AMount',
                       exchangeRatesStream: stream.stream,
                       onValid: (_) => true,
                       initialExchangeRate: ExchangeRateModel(
