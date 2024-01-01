@@ -59,8 +59,7 @@ class ExchangeController extends ChangeNotifier {
 
   /// This is called when an amount is changed in textField and immediately converts amount in secondary currency.
   void onChangeCurrency(String newValue) {
-    if (currencyFieldController.text.isNotEmpty &&
-        currencyFieldController.text != _primaryCurrency.amount.toString()) {
+    if (currencyFieldController.text.isNotEmpty) {
       _secondaryCurrency = _getUpdatedSecondaryCurrency();
       _primaryCurrency = _getUpdatedPrimaryCurrency();
       notifyListeners();
@@ -84,9 +83,7 @@ class ExchangeController extends ChangeNotifier {
     );
     _secondaryCurrency = CurrencyDetail(localPrimary, localPrimaryCurrency);
     currencyFieldController
-      ..text = _primaryCurrency.amount == 0.0
-          ? ''
-          : _primaryCurrency.amount.toString()
+      ..text = _primaryCurrency.displayAmount
       ..selection = TextSelection.fromPosition(
         TextPosition(offset: currencyFieldController.text.length),
       );
