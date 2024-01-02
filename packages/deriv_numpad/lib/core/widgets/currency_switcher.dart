@@ -1,15 +1,21 @@
 import 'package:deriv_numpad/core/assets.dart';
-import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/currency_detail.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// A widget that reflects the exchanged currency of what every typed in currency textfield.
 class CurrencySwitcher extends StatelessWidget {
+  /// A widget that reflects the exchanged currency of what every typed in currency textfield.
   const CurrencySwitcher({
     required this.currencyDetail,
     this.onTap,
   });
+
+  /// Data class for currency information to show in this widget.
   final CurrencyDetail currencyDetail;
+
+  /// call back when this widget is pressed.
   final VoidCallback? onTap;
 
   @override

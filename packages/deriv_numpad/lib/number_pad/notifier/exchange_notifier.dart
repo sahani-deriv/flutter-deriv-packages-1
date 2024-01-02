@@ -1,4 +1,4 @@
-import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/currency_detail.dart';
 import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:flutter/material.dart';
 
@@ -19,26 +19,26 @@ class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
 class ExchangeController extends ChangeNotifier {
   ///
   ExchangeController({
-    required this.rateSource,
+    required Stream<ExchangeRateModel> rateSource,
     required CurrencyDetail primaryCurrency,
     required this.currencyFieldController,
     required ExchangeRateModel initialExchangeRate,
-  }) {
-    exchangeRate = initialExchangeRate;
+  }) : _rateSource = rateSource {
+    _exchangeRate = initialExchangeRate;
     _primaryCurrency = primaryCurrency;
     _secondaryCurrency = CurrencyDetail(
         _getExchangedOutput(_primaryCurrency.amount),
-        exchangeRate.targetCurrency);
+        _exchangeRate.targetCurrency);
     _listenForExchangeRateChange();
   }
 
   /// controller for active textfield.
   TextEditingController currencyFieldController;
   late bool _isSwapped = false;
-  late ExchangeRateModel exchangeRate;
+  late ExchangeRateModel _exchangeRate;
   late CurrencyDetail _primaryCurrency;
   late CurrencyDetail _secondaryCurrency;
-  Stream<ExchangeRateModel> rateSource;
+  final Stream<ExchangeRateModel> _rateSource;
 
   /// Currently active currency in textField
   CurrencyDetail get primaryCurrency => _primaryCurrency;
@@ -47,8 +47,8 @@ class ExchangeController extends ChangeNotifier {
   CurrencyDetail get secondaryCurrency => _secondaryCurrency;
 
   Future<void> _listenForExchangeRateChange() async {
-    rateSource.listen((ExchangeRateModel rate) {
-      exchangeRate = rate;
+    _rateSource.listen((ExchangeRateModel rate) {
+      _exchangeRate = rate;
       _secondaryCurrency = CurrencyDetail(
         _getExchangedOutput(_primaryCurrency.amount),
         rate.targetCurrency,
@@ -102,8 +102,8 @@ class ExchangeController extends ChangeNotifier {
       _primaryCurrency.currencyType);
 
   double _getExchangedOutput(double amount) => _isSwapped
-      ? exchangeRate.getInverseOfExchangeRate() * amount
-      : exchangeRate.exchangeRate * amount;
+      ? _exchangeRate.getInverseOfExchangeRate() * amount
+      : _exchangeRate.exchangeRate * amount;
 }
 
 /// Inversion extension

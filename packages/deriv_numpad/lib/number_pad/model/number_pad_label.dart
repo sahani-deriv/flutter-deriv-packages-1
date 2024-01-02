@@ -56,5 +56,8 @@ class NumberPadLabel {
     Object maxAmount,
   )? warnValueShouldBeInRange;
 
+  /// With this, client code can have their own validation logic.
+  /// Returning [RichText] means this will show the message in the UI
+  /// Returning [null] means it won't show the message in the UI.
   final RichText? Function(String)? onValidate;
 }

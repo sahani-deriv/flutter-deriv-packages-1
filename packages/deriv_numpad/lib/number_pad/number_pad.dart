@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:deriv_numpad/core/widgets/currency_switcher.dart';
 import 'package:deriv_numpad/core/widgets/info_icon_button.dart';
-import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
+import 'package:deriv_numpad/number_pad/model/currency_detail.dart';
 import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:deriv_numpad/number_pad/model/number_pad_label.dart';
 import 'package:deriv_numpad/number_pad/notifier/exchange_notifier.dart';
@@ -114,17 +114,26 @@ class NumberPad extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+  /// This is the instance of Numberpad which has currency exchanger within it.
   factory NumberPad.withCurrencyExchanger({
-    required bool Function(String) onValid,
+    /// This information will be prefilled in the textField
     required CurrencyDetail primaryCurrency,
+
+    /// stream of exchange rate of the currencies. Here, <br>
+    ///  [base_currency] should be same as [currencyType] in `primaryCurrency`.
+    /// [target_currency] will be the currency shown in currency switcher.
+    /// When there is a new exchange rate in this stream, the value in currency switcher changes.
     required Stream<ExchangeRateModel> exchangeRatesStream,
+
+    /// The initial exchange rate for the currency provided.
     required ExchangeRateModel initialExchangeRate,
+
+    /// any validation for currencies
     required NumberPadLabel label,
     String title = '',
   }) =>
       _NumpadWithExchange(
         label: label,
-        onValid: onValid,
         primaryCurrency: primaryCurrency,
         exchangeRatesStream: exchangeRatesStream,
         initialExchangeRate: initialExchangeRate,
@@ -630,7 +639,6 @@ class _NumberPadState extends State<NumberPad> {
 class _NumpadWithExchange extends NumberPad {
   _NumpadWithExchange({
     required NumberPadLabel label,
-    required this.onValid,
     required this.primaryCurrency,
     required this.exchangeRatesStream,
     required this.initialExchangeRate,
@@ -644,8 +652,6 @@ class _NumpadWithExchange extends NumberPad {
 
   final CurrencyDetail primaryCurrency;
 
-  final bool Function(String) onValid;
-
   final Stream<ExchangeRateModel> exchangeRatesStream;
 
   final ExchangeRateModel initialExchangeRate;
@@ -654,7 +660,6 @@ class _NumpadWithExchange extends NumberPad {
   State<StatefulWidget> createState() => _NumberPadWithExchangeState(
         exchangeRatesStream: exchangeRatesStream,
         initialExchangeRate: initialExchangeRate,
-        onValid: onValid,
         primaryCurrency: primaryCurrency,
       );
 }
@@ -662,12 +667,10 @@ class _NumpadWithExchange extends NumberPad {
 class _NumberPadWithExchangeState extends _NumberPadState {
   _NumberPadWithExchangeState({
     required this.primaryCurrency,
-    required this.onValid,
     required this.exchangeRatesStream,
     required this.initialExchangeRate,
   });
   final CurrencyDetail primaryCurrency;
-  final bool Function(String) onValid;
   final Stream<ExchangeRateModel> exchangeRatesStream;
   final ExchangeRateModel initialExchangeRate;
 

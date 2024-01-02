@@ -1,25 +1,10 @@
 import 'package:deriv_numpad/core/helpers/custom_website_status_helper.dart';
-import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
-
-class CurrencyExchangePayload {
-  /// Here, the primaryCurrency is the one in keypad by default and
-  /// secondary is in the switcher
-  CurrencyExchangePayload({
-    required this.onValid,
-    required this.primaryCurrency,
-    required this.exchangeRatesStream,
-    required this.initialExchangeRate,
-  });
-
-  final CurrencyDetail primaryCurrency;
-  final bool Function(String) onValid;
-  final Stream<ExchangeRateModel> exchangeRatesStream;
-  final ExchangeRateModel initialExchangeRate;
-}
 
 /// This is a data class for storing the currency data like amount, currencyType
 class CurrencyDetail {
-  /// Data class for currency
+  /// Data class for currency.Here, <br>
+  /// [amount] - amount in this currency
+  /// [currencyType] - type of currency like: 'USD','AUD',BTC,'ETH' and so on.
   CurrencyDetail(this.amount, this.currencyType);
 
   /// Available fiat currency that Deriv supports.
