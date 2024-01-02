@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:deriv_numpad/deriv_numberpad.dart';
-import 'package:deriv_numpad/number_pad/model/currency_exchange_payload.dart';
-import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -62,7 +60,6 @@ class Homepage extends StatelessWidget {
                     NumberPad.withCurrencyExchanger(
                       title: 'AMount',
                       exchangeRatesStream: stream.stream,
-                      onValid: (_) => true,
                       initialExchangeRate: ExchangeRateModel(
                         baseCurrency: 'BTC',
                         targetCurrency: 'USD',
@@ -106,31 +103,32 @@ class Homepage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     NumberPad(
-                      formatter: NumberFormat.decimalPattern(),
                       numberPadType: NumberPadWidgetType.singleInput,
-                      firstInputTitle: 'Hello',
-                      currency: 'PPT',
-                      firstInputMaximumValue: 50,
-                      firstInputInitialValue: 21,
-                      onClose: (
-                        NumberPadWidgetType type,
-                        NumberPadCloseType closeType,
-                        NumberPadData result,
-                      ) async {
-                        print('Calling onClose() method.');
-                      },
+                      currency: 'USD',
+                      firstInputTitle: 'Trade Amount',
+                      formatter: NumberFormat.decimalPattern(),
+                      firstInputMinimumValue: 10,
+                      firstInputMaximumValue: 60,
                       label: NumberPadLabel(
                         semanticNumberPadBottomSheetHandle:
                             'semanticNumberPadBottomSheetHandle',
-                        warnValueCantBeLessThan: (_, __, ___) =>
-                            'warnValueCantBeLessThan',
-                        warnValueCantBeGreaterThan: (_, __, ___) =>
-                            'warnValueCantBeGreaterThan',
-                        warnDoubleInputValueCantBeLessThan: (_, __, ___) =>
-                            'warnDoubleInputValueCantBeLessThan',
-                        warnDoubleInputValueCantBeGreaterThan: (_, __, ___) =>
-                            'warnDoubleInputValueCantBeGreaterThan',
-                        warnValueShouldBeInRange: (_, __, ___, ____) => 'hehe',
+                        warnValueCantBeLessThan: (Object input, Object minValue,
+                                Object currency) =>
+                            '$input can\'t be less than $minValue $currency',
+                        warnValueCantBeGreaterThan: (Object input,
+                                Object maxValue, Object currency) =>
+                            '$input can\'t be greater than $maxValue $currency',
+                        warnDoubleInputValueCantBeLessThan: (Object input,
+                                Object minValue, Object currency) =>
+                            'Invalid $input. $input can\'t be less than $minValue $currency',
+                        warnDoubleInputValueCantBeGreaterThan: (Object input,
+                                Object maxValue, Object currency) =>
+                            'Invalid $input. $input can\'t be greater than $maxValue $currency',
+                        warnValueShouldBeInRange: (Object input,
+                                Object minValue,
+                                Object currency,
+                                Object maxValue) =>
+                            '$input between $minValue $currency and $maxValue $currency',
                         actionOK: 'OK',
                       ),
                     ),

@@ -33,7 +33,7 @@ class CurrencySwitcher extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: <Widget>[
                 currencyDetail.displayAmount.isEmpty
                     ? const SizedBox()
                     : _CurrencyText('${currencyDetail.displayAmount} '),
