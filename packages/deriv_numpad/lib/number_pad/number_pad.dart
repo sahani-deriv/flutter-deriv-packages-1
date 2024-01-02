@@ -464,9 +464,7 @@ class _NumberPadState extends State<NumberPad> {
   String _validateMessage() {
     String message = '';
 
-    if (hasNoValue(_firstInputController?.text)) {
-      return message;
-    } else {
+    if (!hasNoValue(_firstInputController?.text)) {
       final bool isFirstLessThanMax = isLessOrEqualLimit(
           value: _firstInputController?.text ?? '',
           upperLimit: widget.firstInputMaximumValue);
