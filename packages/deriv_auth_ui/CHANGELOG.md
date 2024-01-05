@@ -1,3 +1,7 @@
+## 0.0.3+1
+
+ - Update a dependency to the latest release.
+
 ## 0.0.3
 
  - **FEAT**(deriv_auth_ui): add option to enable/disable forgot password & create account ([#352](https://github.com/regentmarkets/flutter-deriv-packages/issues/352)). ([1db8715b](https://github.com/regentmarkets/flutter-deriv-packages/commit/1db8715bb48474f89a464f8f777c927ec1fa313a))
