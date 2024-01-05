@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth_ui` - `v0.0.4`](#deriv_auth_ui---v004)
+
+---
+
+#### `deriv_auth_ui` - `v0.0.4`
+
+ - **FEAT**(deriv_auth_ui): [MOBC-679] add settings page to auth_ui example ([#387](https://github.com/regentmarkets/flutter-deriv-packages/issues/387)). ([d4503231](https://github.com/regentmarkets/flutter-deriv-packages/commit/d450323116555cdbcedd6d19945cf2d97044ccbc))
+
+
+## 2024-01-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_live_chat` - `v0.0.1+1`](#deriv_live_chat---v0011)
 
 ---

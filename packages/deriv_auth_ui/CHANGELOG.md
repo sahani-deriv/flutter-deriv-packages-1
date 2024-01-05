@@ -1,3 +1,7 @@
+## 0.0.4
+
+ - **FEAT**(deriv_auth_ui): [MOBC-679] add settings page to auth_ui example ([#387](https://github.com/regentmarkets/flutter-deriv-packages/issues/387)). ([d4503231](https://github.com/regentmarkets/flutter-deriv-packages/commit/d450323116555cdbcedd6d19945cf2d97044ccbc))
+
 ## 0.0.3+1
 
  - Update a dependency to the latest release.
