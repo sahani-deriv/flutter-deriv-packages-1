@@ -104,6 +104,18 @@ class ExchangeController extends ChangeNotifier {
   double _getExchangedOutput(double amount) => _isSwapped
       ? _exchangeRate.getInverseOfExchangeRate() * amount
       : _exchangeRate.exchangeRate * amount;
+
+  /// This will return the final output currency. <br>
+  ///  The output amount is the same as the base of exchange rate(as this is <br>
+  ///  what user send by default in primaryCurrency when coming to numpad.) <br>
+
+  double finalAmount() {
+    if (_exchangeRate.baseCurrency == primaryCurrency.currencyType) {
+      return primaryCurrency.amount;
+    } else {
+      return secondaryCurrency.amount;
+    }
+  }
 }
 
 /// Inversion extension

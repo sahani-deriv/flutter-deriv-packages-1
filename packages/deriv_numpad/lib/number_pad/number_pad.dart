@@ -114,12 +114,13 @@ class NumberPad extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  /// This is the instance of Numberpad which has currency exchanger within it.
+  /// This is the instance of Numberpad which has currency exchanger within it.<br>
+  /// It will return [NumberPadData] which contains the latest currency amount.
   factory NumberPad.withCurrencyExchanger({
     /// This information will be prefilled in the textField
     required CurrencyDetail primaryCurrency,
 
-    /// stream of exchange rate of the currencies. Here, <br>
+    /// stream of exchange rate of the currencies. Here,
     ///  [base_currency] should be same as [currencyType] in `primaryCurrency`.
     /// [target_currency] will be the currency shown in currency switcher.
     /// When there is a new exchange rate in this stream, the value in currency switcher changes.
@@ -392,6 +393,16 @@ class _NumberPadState extends State<NumberPad> {
   ) {
     switch (text) {
       case applyValuesInput:
+        if (ExchangeNotifier.of(context) != null) {
+          final double returningValue =
+              ExchangeNotifier.of(context)!.finalAmount();
+          final NumberPadData data = NumberPadData(
+            firstInputValue: returningValue,
+          );
+          widget.onClose?.call(NumberPadWidgetType.doubleInput,
+              NumberPadCloseType.pressOK, data);
+          return Navigator.of(context).pop(data);
+        }
         _applyInputs(NumberPadCloseType.pressOK);
         break;
       case backspaceInput:
