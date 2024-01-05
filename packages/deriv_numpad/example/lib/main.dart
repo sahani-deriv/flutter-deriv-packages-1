@@ -42,14 +42,6 @@ class Homepage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               final stream = StreamController<ExchangeRateModel>.broadcast();
-              // Future.delayed(const Duration(seconds: 5), () {
-              //   stream.sink.add(ExchangeRateModel(
-              //     baseCurrency: 'BTC',
-              //     targetCurrency: 'USD',
-              //     exchangeRate: 12,
-              //   ));
-              // });
-
               showModalBottomSheet<void>(
                 isScrollControlled: true,
                 context: context,
@@ -58,7 +50,7 @@ class Homepage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     NumberPad.withCurrencyExchanger(
-                      title: 'AMount',
+                      title: 'Amount',
                       exchangeRatesStream: stream.stream,
                       initialExchangeRate: ExchangeRateModel(
                         baseCurrency: 'BTC',

@@ -48,7 +48,7 @@ class _NumberPadSingleTextField extends StatelessWidget {
               ),
         exchangeProvider != null
             ? Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: ThemeProvider.margin16),
                 child: CurrencySwitcher(
                   currencyDetail:
                       ExchangeNotifier.of(context)!.secondaryCurrency,

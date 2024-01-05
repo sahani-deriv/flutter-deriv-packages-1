@@ -327,9 +327,9 @@ class _NumberPadState extends State<NumberPad> {
                               Container(
                                 padding: const EdgeInsets.fromLTRB(
                                   ThemeProvider.margin16,
-                                  0,
+                                  ThemeProvider.zeroMargin,
                                   ThemeProvider.margin16,
-                                  0,
+                                  ThemeProvider.zeroMargin,
                                 ),
                                 decoration: BoxDecoration(
                                   color: context.theme.colors.secondary,
@@ -347,8 +347,8 @@ class _NumberPadState extends State<NumberPad> {
                                           ThemeProvider.margin08),
                                       child: SvgPicture.asset(
                                         handleIcon,
-                                        width: 40,
-                                        height: 4,
+                                        width: ThemeProvider.margin40,
+                                        height: ThemeProvider.margin04,
                                         semanticsLabel: widget.label
                                             .semanticNumberPadBottomSheetHandle,
                                       ),
@@ -372,11 +372,9 @@ class _NumberPadState extends State<NumberPad> {
                               getCustomValidationText(context) != null
                                   ? _NumberPadMessage(
                                       messageText:
-                                          getCustomValidationText(context),
-                                    )
+                                          getCustomValidationText(context))
                                   : _NumberPadMessage(
-                                      message: _validateMessage(),
-                                    ),
+                                      message: _validateMessage()),
                               _NumberPadKeypadWidget(
                                 onKeyPressed: _onKeyboardButtonPressed,
                               )
