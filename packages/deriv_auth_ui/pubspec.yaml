@@ -1,6 +1,6 @@
 name: deriv_auth_ui
 description: A flutter package for deriv auth UI flows.
-version: 0.0.3
+version: 0.0.3+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -28,7 +28,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_ui
-      ref: deriv_ui-v0.0.2
+      ref: deriv_ui-v0.0.2+1
   flutter_svg: ^1.1.6
   smooth_page_indicator: ^1.1.0
   intl_utils: ^2.8.3
