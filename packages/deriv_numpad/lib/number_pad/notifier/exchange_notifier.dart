@@ -50,9 +50,8 @@ class ExchangeController extends ChangeNotifier {
     _rateSource.listen((ExchangeRateModel rate) {
       _exchangeRate = rate;
       _secondaryCurrency = CurrencyDetail(
-        _getExchangedOutput(_primaryCurrency.amount),
-        rate.targetCurrency,
-      );
+          _getExchangedOutput(_primaryCurrency.amount),
+          secondaryCurrency.currencyType);
       notifyListeners();
     });
   }
