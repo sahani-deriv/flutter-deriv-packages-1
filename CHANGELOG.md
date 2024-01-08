@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-01-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_auth` - `v2.0.0`](#deriv_auth---v200)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `deriv_auth` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**: [MOBC-701] [MOBC-702] combine deriv_auth_ui with deriv_auth and remove deriv_auth_ui ([#388](https://github.com/regentmarkets/flutter-deriv-packages/issues/388)). ([853bcbfa](https://github.com/regentmarkets/flutter-deriv-packages/commit/853bcbfaa63f86194fae3d262fdac736c9a15c48))
+
+
 ## 2024-01-05
 
 ### Changes
