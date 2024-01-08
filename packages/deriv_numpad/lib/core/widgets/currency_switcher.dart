@@ -24,13 +24,16 @@ class CurrencySwitcher extends StatelessWidget {
           border: Border.all(
             color: context.theme.colors.general,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(ThemeProvider.borderRadius08),
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(ThemeProvider.borderRadius08),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const EdgeInsets.symmetric(
+              horizontal: ThemeProvider.margin08,
+              vertical: ThemeProvider.margin04,
+            ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -41,9 +44,12 @@ class CurrencySwitcher extends StatelessWidget {
                 const SizedBox(width: 4),
                 SvgPicture.asset(
                   swapIcon,
-                  height: 16,
-                  width: 16,
-                  color: context.theme.colors.prominent,
+                  height: ThemeProvider.iconSize16,
+                  width: ThemeProvider.iconSize16,
+                  colorFilter: ColorFilter.mode(
+                    context.theme.colors.prominent,
+                    BlendMode.srcIn,
+                  ),
                 )
               ],
             ),

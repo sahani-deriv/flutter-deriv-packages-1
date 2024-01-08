@@ -2,9 +2,9 @@ import 'package:deriv_numpad/number_pad/model/currency_detail.dart';
 import 'package:deriv_numpad/number_pad/model/exchange_rate_model.dart';
 import 'package:flutter/material.dart';
 
-///
+/// This class is used to provide [ExchangeController] to the widget tree.
 class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
-  ///
+  /// This class is used to provide [ExchangeController] to the widget tree.
   const ExchangeNotifier({
     required Widget child,
     ExchangeController? notifier,
@@ -15,9 +15,9 @@ class ExchangeNotifier extends InheritedNotifier<ExchangeController> {
       context.dependOnInheritedWidgetOfExactType<ExchangeNotifier>()?.notifier;
 }
 
-/// It controls exchange rate conversion, switching between currencies and all the logic related to currency.
+/// This class contains the all the logic of exchange.
 class ExchangeController extends ChangeNotifier {
-  ///
+  /// It controls exchange rate conversion, switching between currencies and all the logic related to currency.
   ExchangeController({
     required Stream<ExchangeRateModel> rateSource,
     required CurrencyDetail primaryCurrency,
@@ -27,8 +27,9 @@ class ExchangeController extends ChangeNotifier {
     _exchangeRate = initialExchangeRate;
     _primaryCurrency = primaryCurrency;
     _secondaryCurrency = CurrencyDetail(
-        _getExchangedOutput(_primaryCurrency.amount),
-        _exchangeRate.targetCurrency);
+      _getExchangedOutput(_primaryCurrency.amount),
+      _exchangeRate.targetCurrency,
+    );
     _listenForExchangeRateChange();
   }
 

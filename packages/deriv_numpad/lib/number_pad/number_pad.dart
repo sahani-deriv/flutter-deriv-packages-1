@@ -303,87 +303,83 @@ class _NumberPadState extends State<NumberPad> {
         isFirstInputInRange: _isFirstInputInRange,
         isAllInputsValid: _isAllInputsValid,
         child: Builder(
-            builder: (BuildContext context) => WillPopScope(
-                  onWillPop: () async {
-                    _applyInputs(NumberPadCloseType.clickOutsideView);
+          builder: (BuildContext context) => WillPopScope(
+            onWillPop: () async {
+              _applyInputs(NumberPadCloseType.clickOutsideView);
 
-                    return Future<bool>.value(true);
-                  },
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
+              return Future<bool>.value(true);
+            },
+            child: ListView(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: context.theme.colors.primary,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(ThemeProvider.borderRadius16),
+                      topRight: Radius.circular(ThemeProvider.borderRadius16),
+                    ),
+                  ),
+                  child: Column(
                     children: <Widget>[
                       Container(
-                          decoration: BoxDecoration(
-                            color: context.theme.colors.primary,
-                            borderRadius: const BorderRadius.only(
-                              topLeft:
-                                  Radius.circular(ThemeProvider.borderRadius16),
-                              topRight:
-                                  Radius.circular(ThemeProvider.borderRadius16),
-                            ),
+                        padding: const EdgeInsets.fromLTRB(
+                          ThemeProvider.margin16,
+                          ThemeProvider.zeroMargin,
+                          ThemeProvider.margin16,
+                          ThemeProvider.zeroMargin,
+                        ),
+                        decoration: BoxDecoration(
+                          color: context.theme.colors.secondary,
+                          borderRadius: const BorderRadius.only(
+                            topLeft:
+                                Radius.circular(ThemeProvider.borderRadius16),
+                            topRight:
+                                Radius.circular(ThemeProvider.borderRadius16),
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(
-                                  ThemeProvider.margin16,
-                                  ThemeProvider.zeroMargin,
-                                  ThemeProvider.margin16,
-                                  ThemeProvider.zeroMargin,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: context.theme.colors.secondary,
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(
-                                        ThemeProvider.borderRadius16),
-                                    topRight: Radius.circular(
-                                        ThemeProvider.borderRadius16),
-                                  ),
-                                ),
-                                child: Align(
-                                  child: InkWell(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(
-                                          ThemeProvider.margin08),
-                                      child: SvgPicture.asset(
-                                        handleIcon,
-                                        width: ThemeProvider.margin40,
-                                        height: ThemeProvider.margin04,
-                                        semanticsLabel: widget.label
-                                            .semanticNumberPadBottomSheetHandle,
-                                      ),
-                                    ),
-                                    onTap: () => Navigator.pop(context),
-                                  ),
-                                ),
+                        ),
+                        child: Align(
+                          child: InkWell(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.all(ThemeProvider.margin08),
+                              child: SvgPicture.asset(
+                                handleIcon,
+                                width: ThemeProvider.margin40,
+                                height: ThemeProvider.margin04,
+                                semanticsLabel: widget
+                                    .label.semanticNumberPadBottomSheetHandle,
                               ),
-                              widget.numberPadType ==
-                                      NumberPadWidgetType.singleInput
-                                  ? _NumberPadSingleTextField(
-                                      leading: widget.headerLeading,
-                                      title: widget.firstInputTitle,
-                                      dialogDescription:
-                                          widget.dialogDescription,
-                                    )
-                                  : _NumberPadDoubleTextFields(
-                                      firstTitleValue: widget.firstInputTitle,
-                                      secondTitleValue: widget.secondInputTitle,
-                                    ),
-                              getCustomValidationText(context) != null
-                                  ? _NumberPadMessage(
-                                      messageText:
-                                          getCustomValidationText(context))
-                                  : _NumberPadMessage(
-                                      message: _validateMessage()),
-                              _NumberPadKeypadWidget(
-                                onKeyPressed: _onKeyboardButtonPressed,
-                              )
-                            ],
-                          )),
+                            ),
+                            onTap: () => Navigator.pop(context),
+                          ),
+                        ),
+                      ),
+                      widget.numberPadType == NumberPadWidgetType.singleInput
+                          ? _NumberPadSingleTextField(
+                              leading: widget.headerLeading,
+                              title: widget.firstInputTitle,
+                              dialogDescription: widget.dialogDescription,
+                            )
+                          : _NumberPadDoubleTextFields(
+                              firstTitleValue: widget.firstInputTitle,
+                              secondTitleValue: widget.secondInputTitle,
+                            ),
+                      getCustomValidationText(context) != null
+                          ? _NumberPadMessage(
+                              messageText: getCustomValidationText(context))
+                          : _NumberPadMessage(message: _validateMessage()),
+                      _NumberPadKeypadWidget(
+                        onKeyPressed: _onKeyboardButtonPressed,
+                      )
                     ],
                   ),
-                )),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
 
   void _onKeyboardButtonPressed(

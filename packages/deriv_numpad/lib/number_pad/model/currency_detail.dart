@@ -8,7 +8,7 @@ class CurrencyDetail {
   CurrencyDetail(this.amount, this.currencyType);
 
   /// Available fiat currency that Deriv supports.
-  static List<String> fiatCurrencies = <String>['USD', 'AUD', 'EUR'];
+  static List<String> fiatCurrencies = <String>['USD', 'AUD', 'EUR', 'GBP'];
 
   /// Amount passed for exchance.
   final double amount;
