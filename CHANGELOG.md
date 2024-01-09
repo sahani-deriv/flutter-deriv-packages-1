@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-01-09
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.1.0`](#deriv_localizations---v110)
+
+---
+
+#### `deriv_localizations` - `v1.1.0`
+
+ - **FEAT**(deriv_localizations): [MOBC-669] Added the localizations package. ([#370](https://github.com/regentmarkets/flutter-deriv-packages/issues/370)). ([278d3386](https://github.com/regentmarkets/flutter-deriv-packages/commit/278d33862c798a0c03742feeedb31ff6b6c1c2ff))
+
+
 ## 2024-01-08
 
 ### Changes
