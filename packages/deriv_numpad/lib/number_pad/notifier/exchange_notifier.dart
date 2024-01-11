@@ -50,9 +50,13 @@ class ExchangeController extends ChangeNotifier {
   Future<void> _listenForExchangeRateChange() async {
     _rateSource.listen((ExchangeRateModel rate) {
       _exchangeRate = rate;
-      _secondaryCurrency = CurrencyDetail(
-          _getExchangedOutput(_primaryCurrency.amount),
-          secondaryCurrency.currencyType);
+      if (currencyFieldController.text.isEmpty) {
+        _secondaryCurrency = CurrencyDetail(0, secondaryCurrency.currencyType);
+      } else {
+        _secondaryCurrency = CurrencyDetail(
+            _getExchangedOutput(_primaryCurrency.amount),
+            secondaryCurrency.currencyType);
+      }
       notifyListeners();
     });
   }
