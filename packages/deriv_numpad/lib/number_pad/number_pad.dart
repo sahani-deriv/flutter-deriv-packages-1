@@ -131,6 +131,9 @@ class NumberPad extends StatefulWidget {
 
     /// any validation for currencies
     required NumberPadLabel label,
+
+    /// Calls when this widget is closed.
+    NumberPadCloseCallback? onClose,
     String title = '',
   }) =>
       _NumpadWithExchange(
@@ -139,6 +142,7 @@ class NumberPad extends StatefulWidget {
         exchangeRatesStream: exchangeRatesStream,
         initialExchangeRate: initialExchangeRate,
         title: title,
+        onClose: onClose,
       );
 
   /// Sets the currency of the number pad
@@ -646,11 +650,13 @@ class _NumpadWithExchange extends NumberPad {
     required this.exchangeRatesStream,
     required this.initialExchangeRate,
     required String title,
+    NumberPadCloseCallback? onClose,
   }) : super(
           numberPadType: NumberPadWidgetType.singleInput,
           formatter: NumberFormat.decimalPattern()..maximumFractionDigits = 8,
           label: label,
           firstInputTitle: title,
+          onClose: onClose,
         );
 
   final CurrencyDetail primaryCurrency;
