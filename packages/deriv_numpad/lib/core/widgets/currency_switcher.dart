@@ -41,7 +41,7 @@ class CurrencySwitcher extends StatelessWidget {
                     ? const SizedBox()
                     : _CurrencyText('${currencyDetail.displayAmount} '),
                 _CurrencyText(currencyDetail.displayCurrency),
-                const SizedBox(width: 4),
+                const SizedBox(width: ThemeProvider.margin04),
                 SvgPicture.asset(
                   swapIcon,
                   height: ThemeProvider.iconSize16,

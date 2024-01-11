@@ -114,7 +114,8 @@ class NumberPad extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  /// This is the instance of Numberpad which has currency exchanger within it.<br>
+  /// This is the instance of Numberpad which has currency exchanger within it.
+  ///
   /// It will return [NumberPadData] which contains the latest currency amount.
   factory NumberPad.withCurrencyExchanger({
     /// This information will be prefilled in the textField

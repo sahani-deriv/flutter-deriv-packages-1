@@ -2,8 +2,10 @@ import 'package:deriv_numpad/core/helpers/custom_website_status_helper.dart';
 
 /// This is a data class for storing the currency data like amount, currencyType
 class CurrencyDetail {
-  /// Data class for currency.Here, <br>
-  /// [amount] - amount in this currency
+  /// Data class for currency.Here,
+  ///
+  /// [amount] - amount in this currency.
+  ///
   /// [currencyType] - type of currency like: 'USD','AUD',BTC,'ETH' and so on.
   CurrencyDetail(this.amount, this.currencyType);
 

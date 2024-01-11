@@ -109,10 +109,10 @@ class ExchangeController extends ChangeNotifier {
       ? _exchangeRate.getInverseOfExchangeRate() * amount
       : _exchangeRate.exchangeRate * amount;
 
-  /// This will return the final output currency. <br>
-  ///  The output amount is the same as the base of exchange rate(as this is <br>
-  ///  what user send by default in primaryCurrency when coming to numpad.) <br>
-
+  /// This will return the final output currency.
+  ///
+  ///  The output amount is the same as the base of exchange rate(as this is
+  ///  what user send by default in primaryCurrency when coming to numpad.)
   double finalAmount() {
     if (_exchangeRate.baseCurrency == primaryCurrency.currencyType) {
       return primaryCurrency.amount;

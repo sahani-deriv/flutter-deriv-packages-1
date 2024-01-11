@@ -41,7 +41,22 @@ class Homepage extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              final stream = StreamController<ExchangeRateModel>.broadcast();
+              final controller =
+                  StreamController<ExchangeRateModel>.broadcast();
+
+              final Timer timer =
+                  Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+                controller.add(
+                  ExchangeRateModel(
+                    baseCurrency: 'BTC',
+                    targetCurrency: 'USD',
+                    exchangeRate: (23 * timer.tick).toDouble(),
+                  ),
+                );
+
+                print('----------Added new rate to controller');
+              });
+
               showModalBottomSheet<void>(
                 isScrollControlled: true,
                 context: context,
@@ -50,8 +65,9 @@ class Homepage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     NumberPad.withCurrencyExchanger(
+                      onClose: (type, closeType, result) {},
                       title: 'Amount',
-                      exchangeRatesStream: stream.stream,
+                      exchangeRatesStream: controller.stream,
                       initialExchangeRate: ExchangeRateModel(
                         baseCurrency: 'BTC',
                         targetCurrency: 'USD',
