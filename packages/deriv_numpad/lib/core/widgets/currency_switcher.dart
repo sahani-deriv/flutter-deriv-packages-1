@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 /// A widget that reflects the exchanged currency of what every typed in currency textfield.
 class CurrencySwitcher extends StatelessWidget {
-  /// A widget that reflects the exchanged currency of what every typed in currency textfield.
+  /// Creates an instance of [CurrencySwitcher].
   const CurrencySwitcher({
     required this.currencyDetail,
     this.onTap,

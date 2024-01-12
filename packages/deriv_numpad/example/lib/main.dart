@@ -53,8 +53,6 @@ class Homepage extends StatelessWidget {
                     exchangeRate: (23 * timer.tick).toDouble(),
                   ),
                 );
-
-                print('----------Added new rate to controller');
               });
 
               showModalBottomSheet<void>(
