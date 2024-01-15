@@ -30,13 +30,15 @@ class _NumberPadSingleTextField extends StatelessWidget {
     const double margin = ThemeProvider.margin24;
 
     final _NumberPadProvider? numPadProvider = _NumberPadProvider.of(context);
+    final ExchangeController? exchangeProvider = ExchangeNotifier.of(context);
 
     final Size labelSize = getTextSize(
-      numPadProvider?.currency ?? '',
+      exchangeProvider?.primaryCurrency.currencyType ??
+          numPadProvider?.currency ??
+          '',
       TextStyles.headlineNormal,
       context,
     );
-    final ExchangeController? exchangeProvider = ExchangeNotifier.of(context);
     return Column(
       children: <Widget>[
         title.isEmpty
@@ -70,38 +72,30 @@ class _NumberPadSingleTextField extends StatelessWidget {
                   if (textSize.width + padding > constraints.maxWidth) {
                     padding = margin;
                   }
+
                   return numPadProvider != null
                       ? Padding(
-                          padding: EdgeInsets.only(
-                            left: padding,
-                          ),
+                          padding: EdgeInsets.only(left: padding),
                           child: _NumberPadTextField(
                             controller: numPadProvider.firstInputController,
                             textStyle: TextStyles.display1,
                             focusNode: numPadProvider.firstInputFocusNode,
                             inputValidator: numPadProvider.isFirstInputInRange,
                             textAlign: TextAlign.center,
+                            suffixIcon: Text(
+                              exchangeProvider?.primaryCurrency.currencyType ??
+                                  numPadProvider.currency,
+                              style: context.theme.textStyle(
+                                textStyle: TextStyles.headlineNormal,
+                                color: context.theme.colors.disabled,
+                              ),
+                            ),
                           ),
                         )
                       : const SizedBox.shrink();
                 },
               ),
             ),
-            numPadProvider != null
-                ? Padding(
-                    padding: const EdgeInsets.only(
-                      right: margin,
-                    ),
-                    child: Text(
-                      exchangeProvider?.primaryCurrency.currencyType ??
-                          numPadProvider.currency,
-                      style: context.theme.textStyle(
-                        textStyle: TextStyles.headlineNormal,
-                        color: context.theme.colors.disabled,
-                      ),
-                    ),
-                  )
-                : const SizedBox.shrink(),
           ],
         ),
       ],

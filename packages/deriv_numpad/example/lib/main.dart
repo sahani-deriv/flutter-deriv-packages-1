@@ -74,7 +74,6 @@ class Homepage extends StatelessWidget {
                       primaryCurrency: CurrencyDetail(0.123, 'BTC'),
                       label: NumberPadLabel(
                         onValidate: (value) {
-                          print(value);
                           return RichText(
                             text: TextSpan(
                               children: [
@@ -111,7 +110,7 @@ class Homepage extends StatelessWidget {
                     NumberPad(
                       numberPadType: NumberPadWidgetType.singleInput,
                       currency: 'USD',
-                      firstInputTitle: 'Trade Amount',
+                      firstInputTitle: 'Amount',
                       formatter: NumberFormat.decimalPattern(),
                       firstInputMinimumValue: 10,
                       firstInputMaximumValue: 60,
