@@ -122,7 +122,7 @@ class ExchangeController extends ChangeNotifier {
   }
 }
 
-/// Inversion extension
+/// Inversion extension.
 extension ExchangeRateInverse on ExchangeRateModel {
   /// This will get the inverse of the actual exchange rate.
   double getInverseOfExchangeRate() => 1 / exchangeRate;

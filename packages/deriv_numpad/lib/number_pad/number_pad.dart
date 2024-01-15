@@ -130,7 +130,7 @@ class NumberPad extends StatefulWidget {
     /// The initial exchange rate for the currency provided.
     required ExchangeRateModel initialExchangeRate,
 
-    /// any validation for currencies
+    /// Any validation for currencies.
     required NumberPadLabel label,
 
     /// Calls when this widget is closed.
@@ -329,11 +329,8 @@ class _NumberPadState extends State<NumberPad> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        padding: const EdgeInsets.fromLTRB(
-                          ThemeProvider.margin16,
-                          ThemeProvider.zeroMargin,
-                          ThemeProvider.margin16,
-                          ThemeProvider.zeroMargin,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: ThemeProvider.margin16,
                         ),
                         decoration: BoxDecoration(
                           color: context.theme.colors.secondary,

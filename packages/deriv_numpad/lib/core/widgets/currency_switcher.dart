@@ -38,7 +38,7 @@ class CurrencySwitcher extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 currencyDetail.displayAmount.isEmpty
-                    ? const SizedBox()
+                    ? const SizedBox.shrink()
                     : _CurrencyText('${currencyDetail.displayAmount} '),
                 _CurrencyText(currencyDetail.displayCurrency),
                 const SizedBox(width: ThemeProvider.margin04),
