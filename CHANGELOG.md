@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-01-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v2.0.1`](#deriv_auth---v201)
+
+---
+
+#### `deriv_auth` - `v2.0.1`
+
+ - **REFACTOR**(deriv_auth): updated package_info_plus ([#401](https://github.com/regentmarkets/flutter-deriv-packages/issues/401)). ([16d402a4](https://github.com/regentmarkets/flutter-deriv-packages/commit/16d402a45e680df0734f04fb5dee7f4eb1067119))
+
+
 ## 2024-01-15
 
 ### Changes
