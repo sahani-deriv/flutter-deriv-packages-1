@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_banner` - `v0.0.1+1`](#deriv_banner---v0011)
+
+---
+
+#### `deriv_banner` - `v0.0.1+1`
+
+ - **REFACTOR**(deriv_banner): updated kotlin version ([#399](https://github.com/regentmarkets/flutter-deriv-packages/issues/399)). ([9c19b5b4](https://github.com/regentmarkets/flutter-deriv-packages/commit/9c19b5b45aaa40897a7b9884794ab9cbb29fe4ff))
+
+
+## 2024-01-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`update_checker` - `v1.2.1`](#update_checker---v121)
 
 ---
