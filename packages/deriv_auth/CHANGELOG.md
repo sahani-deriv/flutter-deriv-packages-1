@@ -1,3 +1,7 @@
+## 2.0.4
+
+ - **REFACTOR**(deriv_auth): Update package info plus deriv auth ([#410](https://github.com/regentmarkets/flutter-deriv-packages/issues/410)). ([e2e717f3](https://github.com/regentmarkets/flutter-deriv-packages/commit/e2e717f36e93039cadc706cc29b12b48a7c1b411))
+
 ## 2.0.3
 
  - Update a dependency to the latest release.
