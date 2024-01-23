@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_web_socket_client` - `v1.0.1`](#deriv_web_socket_client---v101)
+
+---
+
+#### `deriv_web_socket_client` - `v1.0.1`
+
+ - **REFACTOR**: rename ConnectionState to DerivConnectionState ([#384](https://github.com/regentmarkets/flutter-deriv-packages/issues/384)). ([0252a312](https://github.com/regentmarkets/flutter-deriv-packages/commit/0252a3120fd5f78b7d4a1aa61c0f0ca3f41de40a))
+
+
+## 2024-01-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v2.0.2`](#deriv_auth---v202)
 
 ---
