@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v2.0.2`](#deriv_auth---v202)
+
+---
+
+#### `deriv_auth` - `v2.0.2`
+
+ - **FIX**(deriv_auth): fix overflow issue in change password layout ([#404](https://github.com/regentmarkets/flutter-deriv-packages/issues/404)). ([abd05684](https://github.com/regentmarkets/flutter-deriv-packages/commit/abd056841f774ffb806e76569b60701d2fa74808))
+
+
+## 2024-01-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v2.0.1`](#deriv_auth---v201)
 
 ---
