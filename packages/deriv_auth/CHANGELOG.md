@@ -1,3 +1,7 @@
+## 2.0.6
+
+ - **REFACTOR**(deriv_auth): improve reset password error handling ([#417](https://github.com/regentmarkets/flutter-deriv-packages/issues/417)). ([cc2d2ebb](https://github.com/regentmarkets/flutter-deriv-packages/commit/cc2d2ebbbecf53de56aa7c067aec4ad505fcc6b5))
+
 ## 2.0.4
 
  - **REFACTOR**(deriv_auth): renamed localization getter in ContextExtension ([#414](https://github.com/regentmarkets/flutter-deriv-packages/issues/414)). ([b625fbce](https://github.com/regentmarkets/flutter-deriv-packages/commit/b625fbce37e7acfd9454ba16b908207aee3c9a86))
