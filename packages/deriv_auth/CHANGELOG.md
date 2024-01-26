@@ -1,3 +1,7 @@
+## 2.0.7
+
+ - **FIX**(deriv_auth): fix 2fa for social login ([#418](https://github.com/regentmarkets/flutter-deriv-packages/issues/418)). ([5a1001c5](https://github.com/regentmarkets/flutter-deriv-packages/commit/5a1001c5d6411baa9c07407db4794bf594cec9a9))
+
 ## 2.0.6
 
  - **REFACTOR**(deriv_auth): improve reset password error handling ([#417](https://github.com/regentmarkets/flutter-deriv-packages/issues/417)). ([cc2d2ebb](https://github.com/regentmarkets/flutter-deriv-packages/commit/cc2d2ebbbecf53de56aa7c067aec4ad505fcc6b5))

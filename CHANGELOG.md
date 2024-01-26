@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v2.0.7`](#deriv_auth---v207)
+
+---
+
+#### `deriv_auth` - `v2.0.7`
+
+ - **FIX**(deriv_auth): fix 2fa for social login ([#418](https://github.com/regentmarkets/flutter-deriv-packages/issues/418)). ([5a1001c5](https://github.com/regentmarkets/flutter-deriv-packages/commit/5a1001c5d6411baa9c07407db4794bf594cec9a9))
+
+
+## 2024-01-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v2.0.6`](#deriv_auth---v206)
 
 ---
