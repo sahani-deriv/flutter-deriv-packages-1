@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:deriv_auth/core/helpers/semantic_labels.dart';
-import 'package:deriv_auth/core/states/auth_error_state_handler.dart';
-import 'package:deriv_auth/core/states/auth_error_state_mapper.dart';
 import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth/features/login/presentation/widgets/deriv_social_auth_divider.dart';
 import 'package:deriv_auth/features/login/presentation/widgets/deriv_social_auth_panel.dart';

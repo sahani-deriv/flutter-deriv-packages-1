@@ -19,12 +19,12 @@ class GetStartedPage extends StatelessWidget {
         backgroundImagePath: AuthData().data.backgroundImagePath,
         onLoginTapped: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const LoginPage(),
+            builder: (BuildContext context) => const LoginPage(),
           ),
         ),
         onSignupTapped: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const SignupPage(),
+            builder: (BuildContext context) => const SignupPage(),
           ),
         ),
         onTapNavigation: () {
