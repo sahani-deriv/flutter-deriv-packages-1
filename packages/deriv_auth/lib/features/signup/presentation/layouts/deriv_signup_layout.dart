@@ -86,8 +86,8 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
         backgroundColor: context.theme.colors.primary,
         appBar: AppBar(
           elevation: ThemeProvider.zeroMargin,
-          title:
-              Text(context.localization.labelSignUp, style: TextStyles.title),
+          title: Text(context.derivAuthLocalization.labelSignUp,
+              style: TextStyles.title),
           backgroundColor: context.theme.colors.secondary,
         ),
         body: DerivAuthStateListener(
@@ -115,7 +115,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                       _buildSignUpButton(),
                       const SizedBox(height: ThemeProvider.margin24),
                       DerivSocialAuthDivider(
-                        label: context.localization.labelOrSignUpWith,
+                        label: context.derivAuthLocalization.labelOrSignUpWith,
                         isVisible: widget.isSocialAuthEnabled,
                       ),
                       if (widget.isSocialAuthEnabled)
@@ -154,16 +154,17 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
             Row(
               children: <Widget>[
                 InfoIconButton(
-                  dialogTitle: context.localization.labelReferralInfoTitle,
+                  dialogTitle:
+                      context.derivAuthLocalization.labelReferralInfoTitle,
                   dialogDescription:
-                      context.localization.infoReferralInfoDescription,
-                  positiveActionLabel: context.localization.actionOk,
+                      context.derivAuthLocalization.infoReferralInfoDescription,
+                  positiveActionLabel: context.derivAuthLocalization.actionOk,
                   iconSize: ThemeProvider.iconSize24,
                 ),
                 const SizedBox(width: ThemeProvider.margin08),
                 Expanded(
                   child: Text(
-                    context.localization.labelGotReferralCode,
+                    context.derivAuthLocalization.labelGotReferralCode,
                     style: context.theme.textStyle(
                       textStyle: TextStyles.body1,
                       color: context.theme.colors.prominent,
@@ -218,7 +219,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                       }
                     },
                     focusNode: referralFocusNode,
-                    labelText: context.localization.labelReferralCode,
+                    labelText: context.derivAuthLocalization.labelReferralCode,
                     borderColor: context.theme.colors.hover,
                     focusedBorderColor: context.theme.colors.blue,
                     textInputAction: TextInputAction.done,
@@ -251,7 +252,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              context.localization.labelHaveAccount,
+              context.derivAuthLocalization.labelHaveAccount,
               style: context.theme.textStyle(
                 textStyle: TextStyles.body1,
                 color: context.theme.colors.general,
@@ -262,7 +263,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
               child: Padding(
                 padding: const EdgeInsets.all(ThemeProvider.margin04),
                 child: Text(
-                  context.localization.actionLogin,
+                  context.derivAuthLocalization.actionLogin,
                   style: context.theme.textStyle(
                     textStyle: TextStyles.body2,
                     color: context.theme.colors.coral,
@@ -278,7 +279,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
         semanticLabel: SemanticsLabels.signupEmailFieldSemantic,
         controller: emailController,
         focusNode: emailFocusNode,
-        labelText: context.localization.labelEmail,
+        labelText: context.derivAuthLocalization.labelEmail,
         borderColor: context.theme.colors.hover,
         focusedBorderColor: context.theme.colors.blue,
         keyboardType: TextInputType.emailAddress,
@@ -306,7 +307,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
                     width: ThemeProvider.iconSize16,
                   )
                 : Text(
-                    context.localization.actionCreateAccount,
+                    context.derivAuthLocalization.actionCreateAccount,
                     style: context.theme.textStyle(
                       textStyle: TextStyles.body2,
                       color: context.theme.colors.prominent,
@@ -336,7 +337,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
       return null;
     }
 
-    return context.localization.informInvalidEmailFormat;
+    return context.derivAuthLocalization.informInvalidEmailFormat;
   }
 
   String? _referralValidator(String? input) {
@@ -344,7 +345,7 @@ class _DerivSignupLayoutState extends State<DerivSignupLayout> {
       return null;
     }
 
-    return context.localization.informInvalidReferralCode;
+    return context.derivAuthLocalization.informInvalidReferralCode;
   }
 
   Future<void> _onSignupTapped() async {
