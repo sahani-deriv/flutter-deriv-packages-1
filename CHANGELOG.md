@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-01-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v2.0.8`](#deriv_auth---v208)
+
+---
+
+#### `deriv_auth` - `v2.0.8`
+
+ - **REFACTOR**(deriv_auth): add reset state functionality to DerivResetPassCubit ([#423](https://github.com/regentmarkets/flutter-deriv-packages/issues/423)). ([99e8eb12](https://github.com/regentmarkets/flutter-deriv-packages/commit/99e8eb12211ea65157495d77ad9f9c9630c618e3))
+
+
 ## 2024-01-26
 
 ### Changes

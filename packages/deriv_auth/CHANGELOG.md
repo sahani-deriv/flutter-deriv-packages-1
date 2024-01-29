@@ -1,3 +1,7 @@
+## 2.0.8
+
+ - **REFACTOR**(deriv_auth): add reset state functionality to DerivResetPassCubit ([#423](https://github.com/regentmarkets/flutter-deriv-packages/issues/423)). ([99e8eb12](https://github.com/regentmarkets/flutter-deriv-packages/commit/99e8eb12211ea65157495d77ad9f9c9630c618e3))
+
 ## 2.0.7
 
  - **FIX**(deriv_auth): fix 2fa for social login ([#418](https://github.com/regentmarkets/flutter-deriv-packages/issues/418)). ([5a1001c5](https://github.com/regentmarkets/flutter-deriv-packages/commit/5a1001c5d6411baa9c07407db4794bf594cec9a9))
