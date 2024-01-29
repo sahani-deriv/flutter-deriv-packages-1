@@ -32,7 +32,7 @@ dependencies:
   flutter_deriv_api:
     git:
       url: git@github.com:deriv-com/flutter-deriv-api.git
-      ref: flutter-version-3
+      ref: dev
 
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.7
@@ -40,7 +40,7 @@ dependencies:
   intl_utils: ^2.8.3
   intl: ^0.18.0
   equatable: ^2.0.5
-  package_info_plus: ^3.1.2
+  package_info_plus: ^4.2.0
   crypto: ^3.0.2
   http: ^0.13.5
 
