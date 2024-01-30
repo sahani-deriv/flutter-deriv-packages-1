@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-01-30
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v2.1.0`](#deriv_auth---v210)
+ - [`deriv_ui` - `v0.0.3`](#deriv_ui---v003)
+
+---
+
+#### `deriv_auth` - `v2.1.0`
+
+ - **FEAT**(deriv_ui): [MOBC-740] move UI related packages to deriv_ui ([#422](https://github.com/regentmarkets/flutter-deriv-packages/issues/422)). ([a2fd5b97](https://github.com/regentmarkets/flutter-deriv-packages/commit/a2fd5b97f81a0dbbc7a6bf07625027e04dfb9a5d))
+
+#### `deriv_ui` - `v0.0.3`
+
+ - **FEAT**(deriv_ui): [MOBC-740] move UI related packages to deriv_ui ([#422](https://github.com/regentmarkets/flutter-deriv-packages/issues/422)). ([a2fd5b97](https://github.com/regentmarkets/flutter-deriv-packages/commit/a2fd5b97f81a0dbbc7a6bf07625027e04dfb9a5d))
+
+
 ## 2024-01-29
 
 ### Changes

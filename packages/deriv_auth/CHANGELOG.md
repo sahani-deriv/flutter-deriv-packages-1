@@ -1,3 +1,7 @@
+## 2.1.0
+
+ - **FEAT**(deriv_ui): [MOBC-740] move UI related packages to deriv_ui ([#422](https://github.com/regentmarkets/flutter-deriv-packages/issues/422)). ([a2fd5b97](https://github.com/regentmarkets/flutter-deriv-packages/commit/a2fd5b97f81a0dbbc7a6bf07625027e04dfb9a5d))
+
 ## 2.0.8
 
  - **REFACTOR**(deriv_auth): add reset state functionality to DerivResetPassCubit ([#423](https://github.com/regentmarkets/flutter-deriv-packages/issues/423)). ([99e8eb12](https://github.com/regentmarkets/flutter-deriv-packages/commit/99e8eb12211ea65157495d77ad9f9c9630c618e3))
