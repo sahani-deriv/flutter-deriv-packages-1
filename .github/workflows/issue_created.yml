@@ -5,7 +5,7 @@ on:
     types: [opened]
 
 jobs:
-  send:
+  send-issue-created-slack-message:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
