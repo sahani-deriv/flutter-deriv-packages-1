@@ -1,20 +1,17 @@
-import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/core/models/get_started_page_model.dart';
+import 'package:deriv_auth/features/single_entry/core/models/login_page_model.dart';
 
 ///
 class AuthEntryModel {
   ///
   const AuthEntryModel({
-    required this.slides,
-    required this.appLogoIconPath,
-    required this.backgroundImagePath,
+    required this.getStartedPage,
+    required this.loginPageModel,
   });
 
-  ///
-  final List<DerivGetStartedSlideModel> slides;
+  /// GetStartedPage data model
+  final GetStartedPageModel getStartedPage;
 
-  ///
-  final String appLogoIconPath;
-
-  ///
-  final String backgroundImagePath;
+  /// LoginPage data model
+  final LoginPageModel loginPageModel;
 }

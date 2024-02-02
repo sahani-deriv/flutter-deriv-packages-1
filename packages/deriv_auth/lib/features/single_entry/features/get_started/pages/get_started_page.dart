@@ -14,9 +14,9 @@ class GetStartedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DerivGetStartedLayout(
-        slides: AuthData().data.slides,
-        appLogoIconPath: AuthData().data.appLogoIconPath,
-        backgroundImagePath: AuthData().data.backgroundImagePath,
+        slides: AuthData().data.getStartedPage.slides,
+        appLogoIconPath: AuthData().data.getStartedPage.appLogoIconPath,
+        backgroundImagePath: AuthData().data.getStartedPage.backgroundImagePath,
         onLoginTapped: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const LoginPage(),
