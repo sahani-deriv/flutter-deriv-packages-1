@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_web_view` - `v0.1.0`](#deriv_web_view---v010)
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.3+1`](#deriv_ui---v0031)
+ - [`deriv_auth` - `v2.1.1`](#deriv_auth---v211)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.3+1`
+ - `deriv_auth` - `v2.1.1`
+
+---
+
+#### `deriv_web_view` - `v0.1.0`
+
+ - **FEAT**(deriv_web_view): add open in app web view with redirect url handling helper. ([4b910581](https://github.com/regentmarkets/flutter-deriv-packages/commit/4b9105816e489dfc2997e1c406b4b96af8d9e190))
+ - **BREAKING** **REFACTOR**(deriv_web_view): remove hardcoded redirect urls. ([68d2ef60](https://github.com/regentmarkets/flutter-deriv-packages/commit/68d2ef600109cb1d55533ede41298d01b18f26c7))
+
+
 ## 2024-01-30
 
 ### Changes
