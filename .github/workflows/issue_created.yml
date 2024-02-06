@@ -15,11 +15,9 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Send Slack Notification on Github Issue Opened
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
           LABELS=$(echo '${{ toJson(github.event.issue.labels.*.name) }}' | jq -r 'join(", ")')
-          curl -X POST -H 'Authorization: Bearer $SLACK_BOT_TOKEN' \
+          curl -X POST -H 'Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}' \
               -H 'Content-type: application/json' \
               --data "{
                 \"channel\": \"flutter_deriv_packages_issues\",
