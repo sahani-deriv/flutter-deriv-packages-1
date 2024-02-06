@@ -27,6 +27,13 @@ jobs:
                     \"type\": \"section\",
                     \"text\": {
                       \"type\": \"mrkdwn\",
+                      \"text\": \"<!channel> *New Github Issue*\"
+                    }
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
                       \"text\": \"*Issue Creator:* ${{ github.event.issue.user.login }}\n*Issue Title:* ${{ github.event.issue.title }}\n*Issue URL:* ${{ github.event.issue.html_url }}\n*Issue Labels:* $LABELS\"
                     }
                   }
