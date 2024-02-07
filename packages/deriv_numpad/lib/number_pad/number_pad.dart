@@ -349,6 +349,7 @@ class _NumberPadState extends State<NumberPad> {
                                   const EdgeInsets.all(ThemeProvider.margin08),
                               child: SvgPicture.asset(
                                 handleIcon,
+                                package: 'deriv_numpad',
                                 width: ThemeProvider.margin40,
                                 height: ThemeProvider.margin04,
                                 semanticsLabel: widget
