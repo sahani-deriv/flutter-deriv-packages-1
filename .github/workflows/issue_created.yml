@@ -40,6 +40,6 @@ jobs:
                   }
                 ]
               }" \
-              ${{ inputs.SLACK_WEBHOOK_ISSUES }}
+              ${{ secrets.SLACK_WEBHOOK_ISSUES }}
         shell: bash
 
