@@ -41,5 +41,5 @@ runs:
             }
           ]
         }' \
-          ${{ inputs.SLACK_WEBHOOK_URL }}
+          ${{ inputs.SLACK_WEBHOOK_PACKAGE_UPDATE }}
       shell: bash

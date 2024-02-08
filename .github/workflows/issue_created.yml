@@ -20,10 +20,8 @@ jobs:
       - name: Send Slack Notification on Github Issue Opened
         run: |
           LABELS=$(echo '${{ toJson(github.event.issue.labels.*.name) }}' | jq -r 'join(", ")')
-          curl -X POST -H 'Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}' \
-              -H 'Content-type: application/json' \
+          curl -X POST -H 'Content-type: application/json' \
               --data "{
-                \"channel\": \"flutter_deriv_packages_issues\",
                 \"text\": \"Issue Created\",
                 \"blocks\": [
                   {
@@ -42,6 +40,6 @@ jobs:
                   }
                 ]
               }" \
-              https://slack.com/api/chat.postMessage
+              ${{ inputs.SLACK_WEBHOOK_ISSUES }}
         shell: bash
 
