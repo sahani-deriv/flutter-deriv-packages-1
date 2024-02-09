@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_numpad` - `v1.1.1`](#deriv_numpad---v111)
+
+---
+
+#### `deriv_numpad` - `v1.1.1`
+
+ - **REFACTOR**(deriv_numpad): pass validation result to numpad. ([1e44cd04](https://github.com/regentmarkets/flutter-deriv-packages/commit/1e44cd04437eee9db677ca12b0d3cfbc094ca613))
+ - **FIX**(deriv_numpad): fix asset not found issue. ([1af28c77](https://github.com/regentmarkets/flutter-deriv-packages/commit/1af28c775adf1d516161c9f5d80c2958b53a0ef5))
+
+
 ## 2024-02-06
 
 ### Changes
