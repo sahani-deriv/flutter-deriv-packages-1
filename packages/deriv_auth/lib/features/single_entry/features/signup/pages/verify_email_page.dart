@@ -1,12 +1,12 @@
-import 'dart:async';
-
-import 'package:deriv_auth/features/signup/presentation/layouts/deriv_email_not_received_layout.dart';
-import 'package:deriv_auth/features/signup/presentation/layouts/deriv_verify_email_layout.dart';
-import 'package:deriv_auth/features/single_entry/features/signup/pages/verification_done_page.dart';
+import 'package:deriv_auth/deriv_auth.dart';
 import 'package:flutter/material.dart';
 
+/// Verify email page
 class VerifyEmailPage extends StatefulWidget {
+  /// Constructor for verify email page
   const VerifyEmailPage({required this.email, super.key});
+
+  /// email
   final String email;
 
   @override
@@ -17,15 +17,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   void initState() {
     super.initState();
-
-    Timer(const Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              const VerificationDonePage(verificationCode: 'code'),
-        ));
-      }
-    });
   }
 
   @override
@@ -33,13 +24,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         email: widget.email,
         onEmailNotReceivedPressed: () => onEmailNotReceivedPressed(context),
       );
-
   void onEmailNotReceivedPressed(BuildContext context) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => DerivEmailNotReceivedLayout(
+    Navigator.of(context).pushReplacement(MaterialPageRoute<void>(
+      builder: (BuildContext context) => DerivEmailNotReceivedLayout(
         onReEnterEmailPressed: () => Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => DerivVerifyEmailLayout(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => DerivVerifyEmailLayout(
               email: widget.email,
               onEmailNotReceivedPressed: () =>
                   onEmailNotReceivedPressed(context),

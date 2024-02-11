@@ -1,24 +1,42 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/features/signup/pages/country_selection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Set password page
 class SetPasswordPage extends StatelessWidget {
-  const SetPasswordPage({required this.verificationCode, super.key});
+  /// Constructor [SetPasswordPage]
+  const SetPasswordPage({
+    required this.verificationCode,
+    this.affiliateToken,
+    super.key,
+  });
 
+  /// Verification code
   final String verificationCode;
+
+  ///
+  final String? affiliateToken;
 
   @override
   Widget build(BuildContext context) => DerivSetPasswordLayout(
         authErrorStateHandler: AuthErrorStateHandler(context: context),
-        onDerivSignupState: (context, state) {
+        onDerivSignupState: (BuildContext constext, DerivSignupState state) {
           if (state is DerivSignupDoneState) {
             context
                 .read<DerivAuthCubit>()
                 .tokenLogin(state.account?.token ?? 'defaultToken');
           }
         },
-        onPreviousPressed: () => Navigator.of(context).pop(),
-        residence: 'residence',
+        onPreviousPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => CountrySelectionPage(
+              verificationCode: verificationCode,
+              affiliateToken: affiliateToken,
+            ),
+          ),
+        ),
+        residence: 'id',
         verificationCode: verificationCode,
       );
 }

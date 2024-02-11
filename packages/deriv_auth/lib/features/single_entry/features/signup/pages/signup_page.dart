@@ -1,10 +1,12 @@
-import 'package:deriv_auth/core/states/auth_error_state_handler.dart';
-import 'package:deriv_auth/features/signup/presentation/layouts/deriv_signup_layout.dart';
+import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
 import 'package:deriv_auth/features/single_entry/features/login/pages/login_page.dart';
 import 'package:deriv_auth/features/single_entry/features/signup/pages/verify_email_page.dart';
 import 'package:flutter/material.dart';
 
+/// Sing up page
 class SignupPage extends StatefulWidget {
+  /// Constructor for sign up page
   const SignupPage({super.key});
 
   @override
@@ -15,24 +17,24 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) => DerivSignupLayout(
         authErrorStateHandler: AuthErrorStateHandler(context: context),
-        signupPageLabel: 'Start trading with Deriv',
+        signupPageLabel: AuthData().data.signupPageModel.signupPageLable,
         signupPageDescription:
-            'Join over 1 million traders worldwide who loves trading at Deriv.',
+            AuthData().data.signupPageModel.signupPageDescription,
         onSocialAuthButtonPressed: (_) {},
         onSingupError: (_) {},
-        onSingupEmailSent: (email) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => VerifyEmailPage(email: email),
+        onSingupEmailSent: (String email) => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => VerifyEmailPage(
+              email: email,
             ),
-          );
-        },
+          ),
+        ),
         onSignupPressed: () {},
-        onLoginTapped: () => Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
+        isSocialAuthEnabled:
+            AuthData().data.signupPageModel.isSocialAuthEnabled,
+        onLoginTapped: () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const LoginPage(),
           ),
         ),
       );
