@@ -1,11 +1,11 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
 import 'package:deriv_auth/features/single_entry/features/login/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Reset password success page
+/// Reset Password success page
 class ResetPassSuccessPage extends StatefulWidget {
-  /// Reset password success constructor
+  /// Constructor [ResetPassSuccessPage]
   const ResetPassSuccessPage({super.key});
 
   @override
@@ -24,19 +24,12 @@ class _ResetPassSuccessPageState extends State<ResetPassSuccessPage> {
     Future.wait<void>(
       <Future<void>>[
         Future<void>.delayed(_successPageHoldDuration),
-        BlocProvider.of<DerivAuthCubit>(context).logout(),
+        AuthData().data.derivAuthCubit.logout(),
       ],
     ).then(
       (_) {
-        // Navigator.of(context).pushAndRemoveUntil(
-        //   MaterialPageRoute(
-        //     builder: (context) => const GetStartedPage(),
-        //   ),
-        //   (route) => false,
-        // );
-
         Navigator.of(context).push(
-          MaterialPageRoute(
+          MaterialPageRoute<void>(
             builder: (BuildContext context) => const LoginPage(),
           ),
         );

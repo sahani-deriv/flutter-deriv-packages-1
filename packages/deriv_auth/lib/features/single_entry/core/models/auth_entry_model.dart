@@ -1,5 +1,4 @@
-import 'package:deriv_auth/features/single_entry/core/models/get_started_page_model.dart';
-import 'package:deriv_auth/features/single_entry/core/models/login_page_model.dart';
+import 'package:deriv_auth/deriv_auth.dart';
 
 ///
 class AuthEntryModel {
@@ -7,6 +6,7 @@ class AuthEntryModel {
   const AuthEntryModel({
     required this.getStartedPage,
     required this.loginPageModel,
+    required this.derivAuthCubit,
   });
 
   /// GetStartedPage data model
@@ -14,4 +14,7 @@ class AuthEntryModel {
 
   /// LoginPage data model
   final LoginPageModel loginPageModel;
+
+  /// DerivAuthCubit
+  final DerivAuthCubit derivAuthCubit;
 }

@@ -7,7 +7,9 @@ import 'package:deriv_auth/features/single_entry/features/signup/pages/signup_pa
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Login page
 class LoginPage extends StatefulWidget {
+  /// Constructor [LoginPage]
   const LoginPage({super.key});
 
   @override
@@ -27,8 +29,8 @@ class _LoginPageState extends State<LoginPage> {
         greetingLabel: AuthData().data.loginPageModel.greetingLabel,
         onLoggedIn: (_) => Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const HomePage(),
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const HomePage(),
           ),
         ),
         authErrorStateHandler:
@@ -36,14 +38,14 @@ class _LoginPageState extends State<LoginPage> {
         onLoginError: AuthData().data.loginPageModel.onLoginError,
         onResetPassTapped: () => Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const ResetPassPage(),
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const ResetPassPage(),
           ),
         ),
         onSignupTapped: () => Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const SignupPage(),
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const SignupPage(),
           ),
         ),
         onSocialAuthButtonPressed:
