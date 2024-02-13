@@ -1,3 +1,7 @@
+## 0.0.4
+
+ - **FEAT**: add grouped_list_view ([#445](https://github.com/regentmarkets/flutter-deriv-packages/issues/445)). ([b0eaafe6](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0eaafe6294ee2629af12c6234758b92676e4c7c))
+
 ## 0.0.3+1
 
  - Update a dependency to the latest release.
