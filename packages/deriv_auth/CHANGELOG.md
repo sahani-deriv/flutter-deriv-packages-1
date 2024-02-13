@@ -1,3 +1,9 @@
+## 4.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**(deriv_auth): handle webview logic for social login ([#446](https://github.com/regentmarkets/flutter-deriv-packages/issues/446)). ([94eeec1e](https://github.com/regentmarkets/flutter-deriv-packages/commit/94eeec1eeda0ffe7809d49e541cb76363a9b8326))
+
 ## 3.0.1
 
  - **FIX**(deriv_auth): reset password design mismatch ([#456](https://github.com/regentmarkets/flutter-deriv-packages/issues/456)). ([efe30f1a](https://github.com/regentmarkets/flutter-deriv-packages/commit/efe30f1a8884ced0397d546dbe6144cea88d124c))
