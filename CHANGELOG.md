@@ -10,21 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ---
 
 Packages with breaking changes:
-
- - There are no breaking changes in this release.
+ - [`deriv_auth` - `v3.0.0`](#deriv_auth---v300)
 
 Packages with other changes:
 
  - [`deriv_ui` - `v0.0.4`](#deriv_ui---v004)
- - [`deriv_auth` - `v2.1.2`](#deriv_auth---v212)
 
-Packages with dependency updates only:
+#### `deriv_auth` - `v3.0.0`
 
-> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
-
- - `deriv_auth` - `v2.1.2`
-
----
+ - **BREAKING** **REFACTOR**(deriv_auth): add `isLinkExpired` boolean to reset password error state ([#428](https://github.com/regentmarkets/flutter-deriv-packages/issues/428)). ([29c93ac6](https://github.com/regentmarkets/flutter-deriv-packages/commit/29c93ac6fbb82ee48aee225050c2f1d3ddd79b39))
 
 #### `deriv_ui` - `v0.0.4`
 
