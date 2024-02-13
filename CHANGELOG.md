@@ -10,6 +10,32 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ---
 
 Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v3.0.1`](#deriv_auth---v301)
+ - [`deriv_ui` - `v0.0.5`](#deriv_ui---v005)
+
+---
+
+#### `deriv_auth` - `v3.0.1`
+
+ - **FIX**(deriv_auth): reset password design mismatch ([#456](https://github.com/regentmarkets/flutter-deriv-packages/issues/456)). ([efe30f1a](https://github.com/regentmarkets/flutter-deriv-packages/commit/efe30f1a8884ced0397d546dbe6144cea88d124c))
+
+#### `deriv_ui` - `v0.0.5`
+
+ - **FEAT**(deriv_ui): [MOBC-751] add form_builder to deriv_ui ([#443](https://github.com/regentmarkets/flutter-deriv-packages/issues/443)). ([c2be88ef](https://github.com/regentmarkets/flutter-deriv-packages/commit/c2be88ef478b40ff99c053b68cf625d80e4f7fc7))
+
+
+## 2024-02-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
  - [`deriv_auth` - `v3.0.0`](#deriv_auth---v300)
 
 Packages with other changes:
