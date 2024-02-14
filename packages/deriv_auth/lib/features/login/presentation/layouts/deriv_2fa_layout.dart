@@ -1,5 +1,5 @@
-import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_auth/core/helpers/assets.dart';
+import 'package:deriv_auth/deriv_auth.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +9,30 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 /// Two-factor-authentication page.
 class Deriv2FALayout extends StatefulWidget {
-  /// Initializes the two-factor-authentication page.
-  const Deriv2FALayout({
+  /// Initializes the two-factor-authentication page for system login.
+  const Deriv2FALayout.systemLogin({
     required this.email,
     required this.password,
     Key? key,
-  }) : super(key: key);
+  })  : socialAuthDto = null,
+        super(key: key);
+
+  /// Initializes the two-factor-authentication page for social login.
+  const Deriv2FALayout.socialLogin({
+    required this.socialAuthDto,
+    Key? key,
+  })  : email = null,
+        password = null,
+        super(key: key);
 
   /// User entered email in previous page.
-  final String email;
+  final String? email;
 
   /// User entered password in previous page.
-  final String password;
+  final String? password;
+
+  /// For in house social login with 2FA.
+  final SocialAuthDto? socialAuthDto;
 
   @override
   State<Deriv2FALayout> createState() => _Deriv2FALayoutState();
@@ -117,11 +129,20 @@ class _Deriv2FALayoutState extends State<Deriv2FALayout> {
     FocusManager.instance.primaryFocus?.unfocus();
 
     if (!_isLoading()) {
-      context.read<DerivAuthCubit>().systemLogin(
-            email: widget.email,
-            password: widget.password,
-            otp: _otpController.text,
-          );
+      if (widget.socialAuthDto != null) {
+        context.read<DerivAuthCubit>().socialAuth(
+              socialAuthDto: widget.socialAuthDto!,
+              otp: _otpController.text,
+            );
+      } else if (widget.email != null && widget.password != null) {
+        context.read<DerivAuthCubit>().systemLogin(
+              email: widget.email!,
+              password: widget.password!,
+              otp: _otpController.text,
+            );
+      }
+
+      _otpController.clear();
     }
   }
 

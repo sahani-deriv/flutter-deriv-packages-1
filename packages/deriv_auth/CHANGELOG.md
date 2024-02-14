@@ -1,3 +1,40 @@
+## 4.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**(deriv_auth): handle webview logic for social login ([#446](https://github.com/regentmarkets/flutter-deriv-packages/issues/446)). ([94eeec1e](https://github.com/regentmarkets/flutter-deriv-packages/commit/94eeec1eeda0ffe7809d49e541cb76363a9b8326))
+
+## 3.0.1
+
+ - **FIX**(deriv_auth): reset password design mismatch ([#456](https://github.com/regentmarkets/flutter-deriv-packages/issues/456)). ([efe30f1a](https://github.com/regentmarkets/flutter-deriv-packages/commit/efe30f1a8884ced0397d546dbe6144cea88d124c))
+
+## 3.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**(deriv_auth): add `isLinkExpired` boolean to reset password error state ([#428](https://github.com/regentmarkets/flutter-deriv-packages/issues/428)). ([29c93ac6](https://github.com/regentmarkets/flutter-deriv-packages/commit/29c93ac6fbb82ee48aee225050c2f1d3ddd79b39))
+
+## 2.1.2
+
+ - Update a dependency to the latest release.
+
+
+## 2.1.1
+
+ - Update a dependency to the latest release.
+
+## 2.1.0
+
+ - **FEAT**(deriv_ui): [MOBC-740] move UI related packages to deriv_ui ([#422](https://github.com/regentmarkets/flutter-deriv-packages/issues/422)). ([a2fd5b97](https://github.com/regentmarkets/flutter-deriv-packages/commit/a2fd5b97f81a0dbbc7a6bf07625027e04dfb9a5d))
+
+## 2.0.8
+
+ - **REFACTOR**(deriv_auth): add reset state functionality to DerivResetPassCubit ([#423](https://github.com/regentmarkets/flutter-deriv-packages/issues/423)). ([99e8eb12](https://github.com/regentmarkets/flutter-deriv-packages/commit/99e8eb12211ea65157495d77ad9f9c9630c618e3))
+
+## 2.0.7
+
+ - **FIX**(deriv_auth): fix 2fa for social login ([#418](https://github.com/regentmarkets/flutter-deriv-packages/issues/418)). ([5a1001c5](https://github.com/regentmarkets/flutter-deriv-packages/commit/5a1001c5d6411baa9c07407db4794bf594cec9a9))
+
 ## 2.0.6
 
  - **REFACTOR**(deriv_auth): improve reset password error handling ([#417](https://github.com/regentmarkets/flutter-deriv-packages/issues/417)). ([cc2d2ebb](https://github.com/regentmarkets/flutter-deriv-packages/commit/cc2d2ebbbecf53de56aa7c067aec4ad505fcc6b5))
