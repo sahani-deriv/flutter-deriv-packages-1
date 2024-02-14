@@ -1,3 +1,7 @@
+## 4.1.1
+
+ - Update a dependency to the latest release.
+
 ## 4.1.0
 
  - **FIX**(deriv_auth): localCurrency issue. ([efbeb86d](https://github.com/regentmarkets/flutter-deriv-packages/commit/efbeb86d5ed69edf27f31625818092a921119ed6))
