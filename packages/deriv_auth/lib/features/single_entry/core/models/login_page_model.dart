@@ -8,6 +8,9 @@ class LoginPageModel {
     required this.onSocialAuthButtonPressed,
     required this.welcomeLabel,
     required this.greetingLabel,
+    required this.socialAuthStateHandler,
+    required this.redirectURL,
+    required this.onWebViewError,
     this.isForgotPasswordEnabled = true,
     this.isCreateAccountEnabled = true,
     this.isSocialAuthEnabled = true,
@@ -25,7 +28,8 @@ class LoginPageModel {
   final Function(DerivAuthLoggedInState) onLoggedIn;
 
   /// Callback to be called when social auth button is tapped.
-  final void Function(SocialAuthProvider) onSocialAuthButtonPressed;
+  /// Give access to [SocialAuthDto] for 2FA.
+  final SocialAuthCallback? onSocialAuthButtonPressed;
 
   /// Welcome text to be displayed on login page.
   final String welcomeLabel;
@@ -41,4 +45,13 @@ class LoginPageModel {
 
   /// Whether to display create account section.
   final bool isCreateAccountEnabled;
+
+  /// Social auth state handler.
+  final Function(SocialAuthState) socialAuthStateHandler;
+
+  /// Redirect URL for social auth.
+  final String redirectURL;
+
+  /// Callback for web view error.
+  final Function(String) onWebViewError;
 }

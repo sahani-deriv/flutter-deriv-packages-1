@@ -9,6 +9,7 @@ class AuthEntryModel {
     required this.derivAuthCubit,
     required this.signupPageModel,
     required this.settingPageModel,
+    required this.resetPassPageModel,
   });
 
   /// GetStartedPage data model
@@ -25,4 +26,7 @@ class AuthEntryModel {
 
   /// SettingPage data model
   final SettingPageModel settingPageModel;
+
+  /// ResetPassPage data model
+  final ResetPassPageModel resetPassPageModel;
 }

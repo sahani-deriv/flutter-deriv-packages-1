@@ -1,0 +1,17 @@
+import 'package:deriv_auth/deriv_auth.dart';
+import 'package:flutter/foundation.dart' show VoidCallback;
+
+/// Reset password page model
+class ResetPassPageModel {
+  /// Constructor [ResetPassPageModel]
+  const ResetPassPageModel({
+    required this.onResetPassError,
+    this.onResetPassSucceed,
+  });
+
+  /// Callback to be called when reset pass fails.
+  final ResetPassErrorCallback onResetPassError;
+
+  /// Callback to be called when reset pass succeeds.
+  final VoidCallback? onResetPassSucceed;
+}

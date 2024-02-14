@@ -50,5 +50,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
         onSocialAuthButtonPressed:
             AuthData().data.loginPageModel.onSocialAuthButtonPressed,
+        socialAuthStateHandler:
+            AuthData().data.loginPageModel.socialAuthStateHandler,
+        redirectURL: AuthData().data.loginPageModel.redirectURL,
+        onWebViewError: AuthData().data.loginPageModel.onWebViewError,
       );
 }

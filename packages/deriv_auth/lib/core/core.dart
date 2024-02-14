@@ -13,3 +13,4 @@ export 'services/referral/models/my_affiliate_referral_code_request_model.dart';
 export 'services/token/models/enums.dart';
 export 'services/token/services/deriv_token_service.dart';
 export 'states/states.dart';
+export 'helpers/helpers.dart';
