@@ -15,6 +15,28 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v4.1.0`](#deriv_auth---v410)
+
+---
+
+#### `deriv_auth` - `v4.1.0`
+
+ - **FIX**(deriv_auth): localCurrency issue. ([efbeb86d](https://github.com/regentmarkets/flutter-deriv-packages/commit/efbeb86d5ed69edf27f31625818092a921119ed6))
+ - **FEAT**(deriv-auth): add ctrader to platformEnumMapper. ([38bc6f86](https://github.com/regentmarkets/flutter-deriv-packages/commit/38bc6f861e5c98b38e558aa2f7d54253f0a12807))
+
+
+## 2024-02-14
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_localizations` - `v1.1.1`](#deriv_localizations---v111)
 
 ---
