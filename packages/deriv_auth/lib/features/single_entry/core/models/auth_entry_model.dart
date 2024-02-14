@@ -1,5 +1,4 @@
 import 'package:deriv_auth/deriv_auth.dart';
-import 'package:deriv_auth/features/single_entry/core/models/signup_page_model.dart';
 
 ///
 class AuthEntryModel {
@@ -9,6 +8,7 @@ class AuthEntryModel {
     required this.loginPageModel,
     required this.derivAuthCubit,
     required this.signupPageModel,
+    required this.settingPageModel,
   });
 
   /// GetStartedPage data model
@@ -22,4 +22,7 @@ class AuthEntryModel {
 
   /// SignupPage data model
   final SignupPageModel signupPageModel;
+
+  /// SettingPage data model
+  final SettingPageModel settingPageModel;
 }
