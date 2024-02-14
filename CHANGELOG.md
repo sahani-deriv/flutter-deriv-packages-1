@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-14
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.1.1`](#deriv_localizations---v111)
+
+---
+
+#### `deriv_localizations` - `v1.1.1`
+
+ - **REFACTOR**(deriv_localizations): Crowdin Localization Generated [#466](https://github.com/regentmarkets/flutter-deriv-packages/issues/466). ([df2f5cad](https://github.com/regentmarkets/flutter-deriv-packages/commit/df2f5cad5f4f2e32b34258188718e9f1c5406caa))
+
+
 ## 2024-02-13
 
 ### Changes
