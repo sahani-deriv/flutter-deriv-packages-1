@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`update_checker` - `v1.2.2`](#update_checker---v122)
+
+---
+
+#### `update_checker` - `v1.2.2`
+
+ - **FIX**(update_checker): fix optional update issue in remote config [#475](https://github.com/regentmarkets/flutter-deriv-packages/issues/475). ([ac0dc26b](https://github.com/regentmarkets/flutter-deriv-packages/commit/ac0dc26b46b478248ea81d1dba6b7c6844b88995))
+
+
 ## 2024-02-14
 
 ### Changes
