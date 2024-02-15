@@ -15,6 +15,34 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_ui` - `v0.0.6`](#deriv_ui---v006)
+ - [`deriv_auth` - `v4.1.1`](#deriv_auth---v411)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v4.1.1`
+
+---
+
+#### `deriv_ui` - `v0.0.6`
+
+ - **FEAT**(deriv_ui): [MOBC-750] add deriv_numpad to deriv_ui ([#434](https://github.com/regentmarkets/flutter-deriv-packages/issues/434)). ([3802e2e6](https://github.com/regentmarkets/flutter-deriv-packages/commit/3802e2e6d874cbd3ed21b3ca0f6983000840938a))
+
+
+## 2024-02-14
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v4.1.0`](#deriv_auth---v410)
 
 ---
