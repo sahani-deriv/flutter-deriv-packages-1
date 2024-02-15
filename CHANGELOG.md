@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_feature_flag` - `v0.1.0+1`](#deriv_feature_flag---v0101)
+
+---
+
+#### `deriv_feature_flag` - `v0.1.0+1`
+
+ - **FIX**(deriv_feature_flag): remove env dependancy ([#477](https://github.com/regentmarkets/flutter-deriv-packages/issues/477)). ([c62b20eb](https://github.com/regentmarkets/flutter-deriv-packages/commit/c62b20eb88cf1397ecf4437a7854ff19187d7662))
+
+
+## 2024-02-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`update_checker` - `v1.2.2`](#update_checker---v122)
 
 ---
