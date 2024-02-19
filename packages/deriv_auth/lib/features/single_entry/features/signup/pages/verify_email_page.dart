@@ -24,6 +24,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         email: widget.email,
         onEmailNotReceivedPressed: () => onEmailNotReceivedPressed(context),
       );
+
   void onEmailNotReceivedPressed(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute<void>(
       builder: (BuildContext context) => DerivEmailNotReceivedLayout(

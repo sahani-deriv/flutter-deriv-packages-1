@@ -1,4 +1,5 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
 import 'package:deriv_auth/features/single_entry/features/signup/pages/country_selection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class SetPasswordPage extends StatelessWidget {
             ),
           ),
         ),
-        residence: 'id',
+        residence: AuthData().data.resetPassPageModel.residence,
         verificationCode: verificationCode,
       );
 }

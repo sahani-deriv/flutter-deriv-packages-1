@@ -1,8 +1,8 @@
 import 'package:deriv_auth/deriv_auth.dart';
 
-///
+/// Auth Entry Model class
 class AuthEntryModel {
-  ///
+  /// Constructor [AuthEntryModel]
   const AuthEntryModel({
     required this.getStartedPage,
     required this.loginPageModel,

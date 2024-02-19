@@ -6,6 +6,8 @@ class ResetPassPageModel {
   /// Constructor [ResetPassPageModel]
   const ResetPassPageModel({
     required this.onResetPassError,
+    required this.residences,
+    required this.residence,
     this.onResetPassSucceed,
   });
 
@@ -14,4 +16,10 @@ class ResetPassPageModel {
 
   /// Callback to be called when reset pass succeeds.
   final VoidCallback? onResetPassSucceed;
+
+  /// List of residences to be shown.
+  final Future<List<DerivResidenceModel>> residences;
+
+  /// Residence
+  final String residence;
 }

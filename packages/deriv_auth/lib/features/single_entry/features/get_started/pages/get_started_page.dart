@@ -5,12 +5,10 @@ import 'package:deriv_auth/features/single_entry/features/settings/pages/setting
 import 'package:deriv_auth/features/single_entry/features/signup/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
-///
+/// Get started page
 class GetStartedPage extends StatelessWidget {
-  ///
+  /// Constructor [GetStartedPage]
   const GetStartedPage();
-
-  ///
 
   @override
   Widget build(BuildContext context) => DerivGetStartedLayout(
@@ -18,12 +16,12 @@ class GetStartedPage extends StatelessWidget {
         appLogoIconPath: AuthData().data.getStartedPage.appLogoIconPath,
         backgroundImagePath: AuthData().data.getStartedPage.backgroundImagePath,
         onLoginTapped: () => Navigator.of(context).push(
-          MaterialPageRoute(
+          MaterialPageRoute<Widget>(
             builder: (BuildContext context) => const LoginPage(),
           ),
         ),
         onSignupTapped: () => Navigator.of(context).push(
-          MaterialPageRoute(
+          MaterialPageRoute<Widget>(
             builder: (BuildContext context) => const SignupPage(),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
 import 'package:deriv_auth/features/single_entry/features/signup/pages/set_password_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,18 +30,7 @@ class CountrySelectionPage extends StatelessWidget {
             ),
           );
         },
-        residences: Future.value([
-          const DerivResidenceModel(
-            code: 'ID',
-            name: 'Indonesia',
-            isDisabled: false,
-          ),
-          const DerivResidenceModel(
-            code: 'UK',
-            name: 'England',
-            isDisabled: true,
-          ),
-        ]),
+        residences: AuthData().data.resetPassPageModel.residences,
         verificationCode: verificationCode,
         affiliateToken: affiliateToken,
       );
