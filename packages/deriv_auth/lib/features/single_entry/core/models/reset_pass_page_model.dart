@@ -7,7 +7,7 @@ class ResetPassPageModel {
   const ResetPassPageModel({
     required this.onResetPassError,
     required this.residences,
-    required this.residence,
+    required this.userResidence,
     this.onResetPassSucceed,
   });
 
@@ -20,6 +20,6 @@ class ResetPassPageModel {
   /// List of residences to be shown.
   final Future<List<DerivResidenceModel>> residences;
 
-  /// Residence
-  final String residence;
+  /// User residence like 'id'
+  final String userResidence;
 }

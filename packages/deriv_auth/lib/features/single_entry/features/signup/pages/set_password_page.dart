@@ -37,7 +37,7 @@ class SetPasswordPage extends StatelessWidget {
             ),
           ),
         ),
-        residence: AuthData().data.resetPassPageModel.residence,
+        residence: AuthData().data.resetPassPageModel.userResidence,
         verificationCode: verificationCode,
       );
 }
