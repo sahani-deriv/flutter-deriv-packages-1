@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_auth` - `v5.0.0`](#deriv_auth---v500)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `deriv_auth` - `v5.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): [MOBC-802] migrate to deriv_localizations package [#486](https://github.com/regentmarkets/flutter-deriv-packages/issues/486). ([e9297272](https://github.com/regentmarkets/flutter-deriv-packages/commit/e9297272c91235263cf2335b8ba69a3a1d9c1583))
+
+
 ## 2024-02-15
 
 ### Changes

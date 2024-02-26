@@ -1,3 +1,9 @@
+## 5.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**(deriv_auth): [MOBC-802] migrate to deriv_localizations package [#486](https://github.com/regentmarkets/flutter-deriv-packages/issues/486). ([e9297272](https://github.com/regentmarkets/flutter-deriv-packages/commit/e9297272c91235263cf2335b8ba69a3a1d9c1583))
+
 ## 4.1.1
 
  - Update a dependency to the latest release.
