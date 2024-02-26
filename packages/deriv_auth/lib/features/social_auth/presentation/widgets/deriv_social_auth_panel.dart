@@ -1,4 +1,5 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_passkeys/presentation/widgets/continue_with_passkey_button.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
@@ -65,31 +66,56 @@ class _DerivSocialAuthPanelState extends State<DerivSocialAuthPanel> {
           listener: (BuildContext context, SocialAuthState state) {
             widget.socialAuthStateHandler(state);
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildSocialAuthButton(SocialAuthProvider.apple),
-              const SizedBox(width: ThemeProvider.margin24),
-              _buildSocialAuthButton(SocialAuthProvider.google),
-              const SizedBox(width: ThemeProvider.margin24),
-              _buildSocialAuthButton(SocialAuthProvider.facebook),
-            ],
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const ContinueWithPasskeyButton(),
+                const SizedBox(height: ThemeProvider.margin08),
+                _buildSocialAuthButton(SocialAuthProvider.google),
+                const SizedBox(height: ThemeProvider.margin08),
+                _buildSocialAuthButton(SocialAuthProvider.facebook),
+                const SizedBox(height: ThemeProvider.margin08),
+                _buildSocialAuthButton(SocialAuthProvider.apple),
+              ],
+            ),
           ),
         ),
       );
 
   Widget _buildSocialAuthButton(SocialAuthProvider socialAuthProvider) =>
-      IconButton(
-        padding: EdgeInsets.zero,
-        iconSize: ThemeProvider.iconSize40,
-        icon: Opacity(
-          opacity: getOpacity(isEnabled: widget.isEnabled),
-          child: SvgPicture.asset(
-            _getSocialMediaIcon(socialAuthProvider),
-            package: 'deriv_auth',
+      InkWell(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(
+              color: context.theme.colors.active,
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.asset(
+                _getSocialMediaIcon(socialAuthProvider),
+                package: 'deriv_auth',
+              ),
+              const SizedBox(width: 8),
+              Text(
+                socialAuthProvider.name.capitalize,
+                style: context.theme.textStyle(
+                  textStyle: TextStyles.body2,
+                  color: context.theme.colors.prominent,
+                ),
+              ),
+            ],
           ),
         ),
-        onPressed: widget.isEnabled
+        onTap: widget.isEnabled
             ? () {
                 _socialAuthCubit.selectSocialLoginProvider(
                   selectedSocialAuthProvider: socialAuthProvider,

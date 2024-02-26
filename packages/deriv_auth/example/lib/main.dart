@@ -1,4 +1,10 @@
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_http_client/deriv_http_client.dart';
+import 'package:deriv_passkeys/data/data_sources/deriv_passkeys_data_source.dart';
+import 'package:deriv_passkeys/data/mappers/deriv_passkeys_mapper.dart';
+import 'package:deriv_passkeys/data/repositories/deriv_passkeys_repository.dart';
+import 'package:deriv_passkeys/interactor/services/deriv_passkeys_service.dart';
+import 'package:deriv_passkeys/presentation/states/bloc/deriv_passkeys_bloc.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:deriv_localizations/l10n/generated/deriv_auth/deriv_auth_localizations.dart';
@@ -6,6 +12,7 @@ import 'package:example/features/get_started/pages/get_started_page.dart';
 import 'package:example/features/login/repositories/example_login_repository.dart';
 import 'package:example/features/signup/repositories/example_referral_repository.dart';
 import 'package:example/features/signup/repositories/example_signup_repository.dart';
+import 'package:example/features/social_auth/deriv_auth_connection_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,9 +22,11 @@ void main() {
   /// Added [DevicePreview] while fixing on UI issue
   /// that was only in smaller devices. This later can be removed
   /// when we are fully using widget book.
-  runApp(DevicePreview(
-    builder: (context) => const MyApp(),
-  ));
+  runApp(
+    DevicePreview(
+      builder: (context) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -40,6 +49,24 @@ class MyApp extends StatelessWidget {
             referralService: ExampleReferralRepository(),
           ),
         ),
+        BlocProvider(
+          create: (context) => SocialAuthCubit(
+            socialAuthService: DerivSocialAuthService(
+              client: HttpClient(),
+              connectionInfo: DerivAuthConnectionInfo(),
+            ),
+          ),
+        ),
+        BlocProvider(
+            create: (context) => DerivPasskeysBloc(
+                  DerivPasskeysService(
+                    DerivPasskeysRepository(
+                      DerivPasskeysDataSource(
+                        DerivPasskeysMapper(),
+                      ),
+                    ),
+                  ),
+                )),
       ],
       child: DerivThemeProvider.builder(
         initialTheme: ThemeMode.dark,
