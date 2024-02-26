@@ -11,6 +11,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+1`](#deriv_ui---v0061)
+ - [`deriv_auth` - `v5.0.1`](#deriv_auth---v501)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v5.0.1`
+
+---
+
+#### `deriv_ui` - `v0.0.6+1`
+
+ - **REVERT**(deriv_ui): java file change. ([a3e95943](https://github.com/regentmarkets/flutter-deriv-packages/commit/a3e959434a5b2e6c6fa851de431ebce9a55b4c7d))
+ - **REFACTOR**(deriv_ui): numpad/ move listener to initState. ([66f2be15](https://github.com/regentmarkets/flutter-deriv-packages/commit/66f2be15f3394645cf347b14bfdd9bee3a9215a7))
+ - **REFACTOR**(deriv_ui): add default focus node and auto focus option in text field, custom checkbox theme changed. ([7f3e68c2](https://github.com/regentmarkets/flutter-deriv-packages/commit/7f3e68c2c31859379637eda3d5d1b580eb011019))
+ - **REFACTOR**(deriv_ui): date_picker/replace pop with maybePop for widgetbook. ([d4e18f88](https://github.com/regentmarkets/flutter-deriv-packages/commit/d4e18f88198b23b49c2a787bc8142e6271ff9198))
+ - **REFACTOR**(deriv_ui): numpad/move access of inherited widget to didChangeDependencies. ([9a0541aa](https://github.com/regentmarkets/flutter-deriv-packages/commit/9a0541aad0588b1c185dc12e67d177cb6da7089b))
+ - **FIX**(deriv_ui): date_picker/match background color with design. ([0eb7740e](https://github.com/regentmarkets/flutter-deriv-packages/commit/0eb7740e0997c0286153748229a7bb0d3ab9415e))
+
+
+## 2024-02-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`deriv_auth` - `v5.0.0`](#deriv_auth---v500)
 
 Packages with other changes:
