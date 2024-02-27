@@ -1,3 +1,7 @@
+## 5.0.3
+
+ - **REFACTOR**(deriv_auth): rename inavalid to invalid in auth state handler ([#490](https://github.com/regentmarkets/flutter-deriv-packages/issues/490)). ([2e9cfa75](https://github.com/regentmarkets/flutter-deriv-packages/commit/2e9cfa75007fce25b90394bd92905e9c3ca876cc))
+
 ## 5.0.2
 
  - Update a dependency to the latest release.
