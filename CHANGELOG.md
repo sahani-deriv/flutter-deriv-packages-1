@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_web_view` - `v0.1.0+1`](#deriv_web_view---v0101)
+ - [`deriv_auth` - `v5.0.2`](#deriv_auth---v502)
+ - [`deriv_ui` - `v0.0.6+2`](#deriv_ui---v0062)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v5.0.2`
+ - `deriv_ui` - `v0.0.6+2`
+
+---
+
+#### `deriv_web_view` - `v0.1.0+1`
+
+ - **FIX**(deriv_web_view): fix platform exception not being caught ([#489](https://github.com/regentmarkets/flutter-deriv-packages/issues/489)). ([89f038a0](https://github.com/regentmarkets/flutter-deriv-packages/commit/89f038a0717c1902c6fbc22668705ad2636df9d5))
+
+
 ## 2024-02-26
 
 ### Changes
