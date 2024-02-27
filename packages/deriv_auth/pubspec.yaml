@@ -72,7 +72,7 @@ dependency_overrides:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_ui
-      ref: deriv_ui-v0.0.6+1
+      ref: deriv_ui-v0.0.6+2
 
 dev_dependencies:
   mocktail: ^1.0.3
