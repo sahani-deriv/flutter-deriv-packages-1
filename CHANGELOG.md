@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v5.0.3`](#deriv_auth---v503)
+
+---
+
+#### `deriv_auth` - `v5.0.3`
+
+ - **REFACTOR**(deriv_auth): rename inavalid to invalid in auth state handler ([#490](https://github.com/regentmarkets/flutter-deriv-packages/issues/490)). ([2e9cfa75](https://github.com/regentmarkets/flutter-deriv-packages/commit/2e9cfa75007fce25b90394bd92905e9c3ca876cc))
+
+
+## 2024-02-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_web_view` - `v0.1.0+1`](#deriv_web_view---v0101)
  - [`deriv_auth` - `v5.0.2`](#deriv_auth---v502)
  - [`deriv_ui` - `v0.0.6+2`](#deriv_ui---v0062)
