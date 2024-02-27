@@ -1,3 +1,7 @@
+## 0.0.6+2
+
+ - Update a dependency to the latest release.
+
 ## 0.0.6+1
 
  - **REVERT**(deriv_ui): java file change. ([a3e95943](https://github.com/regentmarkets/flutter-deriv-packages/commit/a3e959434a5b2e6c6fa851de431ebce9a55b4c7d))
