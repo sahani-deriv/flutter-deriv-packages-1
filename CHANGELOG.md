@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v6.1.0`](#deriv_auth---v610)
+
+---
+
+#### `deriv_auth` - `v6.1.0`
+
+ - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([e594c05b](https://github.com/regentmarkets/flutter-deriv-packages/commit/e594c05b87c05d189913a7de8b9e1e4e6d03b76a))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_ui` - `v0.0.6+4`](#deriv_ui---v0064)
  - [`deriv_auth` - `v6.0.2`](#deriv_auth---v602)
 
