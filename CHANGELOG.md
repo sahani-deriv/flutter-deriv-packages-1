@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_auth` - `v6.0.0`](#deriv_auth---v600)
+ - [`deriv_http_client` - `v2.0.0`](#deriv_http_client---v200)
+ - [`deriv_web_view` - `v0.2.0`](#deriv_web_view---v020)
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+3`](#deriv_ui---v0063)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.6+3`
+
+---
+
+#### `deriv_auth` - `v6.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+#### `deriv_http_client` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+#### `deriv_web_view` - `v0.2.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+
 ## 2024-02-27
 
 ### Changes
