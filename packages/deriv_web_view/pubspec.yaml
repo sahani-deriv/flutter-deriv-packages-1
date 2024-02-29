@@ -24,7 +24,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_http_client
-      ref: deriv_http_client-v2.0.0
+      ref: deriv_http_client-v2.0.1
 
 dev_dependencies:
   flutter_test:
