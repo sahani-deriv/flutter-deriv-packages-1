@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-03-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.1.1`](#deriv_auth---v611)
+
+---
+
+#### `deriv_auth` - `v6.1.1`
+
+ - **FIX**(deriv_auth): endpoint change not reflecting in social login ([#498](https://github.com/regentmarkets/flutter-deriv-packages/issues/498)). ([5714a5dd](https://github.com/regentmarkets/flutter-deriv-packages/commit/5714a5dd403c5fd0fc97d3ee634f9c76241b22da))
+
+
 ## 2024-02-29
 
 ### Changes
