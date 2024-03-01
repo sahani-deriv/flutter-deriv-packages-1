@@ -1,3 +1,7 @@
+## 6.1.1
+
+ - **FIX**(deriv_auth): endpoint change not reflecting in social login ([#498](https://github.com/regentmarkets/flutter-deriv-packages/issues/498)). ([5714a5dd](https://github.com/regentmarkets/flutter-deriv-packages/commit/5714a5dd403c5fd0fc97d3ee634f9c76241b22da))
+
 ## 6.1.0
 
  - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([e594c05b](https://github.com/regentmarkets/flutter-deriv-packages/commit/e594c05b87c05d189913a7de8b9e1e4e6d03b76a))
