@@ -3,6 +3,7 @@ import 'package:deriv_auth/core/services/token/models/login_request.dart';
 import 'package:deriv_auth/core/services/token/models/login_response.dart';
 import 'package:deriv_auth/core/services/token/services/base_token_service.dart';
 import 'package:deriv_http_client/deriv_http_client.dart';
+import 'package:http/http.dart';
 
 /// Deriv Implementation of a [BaseTokenService].
 class DerivTokenService implements BaseTokenService {
@@ -17,7 +18,7 @@ class DerivTokenService implements BaseTokenService {
     /// Extract login url from connection info.
     final String baseUrl = 'https://${connectionInfo.endpoint}/oauth2/api/v1';
     final String loginUrl = '$baseUrl/login';
-    final BaseHttpClient client = httpClient ?? ProxyAwareHttpClient(baseUrl);
+    final BaseHttpClient client = httpClient ?? HttpClient();
 
     /// Call API.
     final Map<String, dynamic> jsonResponse = await client.post(
