@@ -115,7 +115,7 @@ class _DerivSocialAuthPanelState extends State<DerivSocialAuthPanel> {
             ],
           ),
         ),
-        onPressed: widget.isEnabled
+        onTap: widget.isEnabled
             ? () async {
                 final List<SocialAuthProviderModel>? socialAuthProviders =
                     await _socialAuthCubit.getSocialAuthProviders();
