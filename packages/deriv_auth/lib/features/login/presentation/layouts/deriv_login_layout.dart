@@ -309,7 +309,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
     }
 
     if (state is DerivAuthLoggedInState) {
-      widget.onLoggedIn.call(context, state);
+      widget.onLoggedIn(context, state);
     }
   }
 
