@@ -115,19 +115,24 @@ class _DerivSocialAuthPanelState extends State<DerivSocialAuthPanel> {
             ],
           ),
         ),
-        onTap: widget.isEnabled
-            ? () {
-                _socialAuthCubit.selectSocialLoginProvider(
-                  selectedSocialAuthProvider: socialAuthProvider,
-                  redirectUrl: widget.redirectURL,
-                  onWebViewError: widget.onWebViewError,
-                  onRedirectUrlReceived: (SocialAuthDto socialAuthDto) {
-                    widget.onPressed?.call(socialAuthDto);
+        onPressed: widget.isEnabled
+            ? () async {
+                final List<SocialAuthProviderModel>? socialAuthProviders =
+                    await _socialAuthCubit.getSocialAuthProviders();
 
-                    BlocProvider.of<DerivAuthCubit>(context)
-                        .socialAuth(socialAuthDto: socialAuthDto);
-                  },
-                );
+                if (socialAuthProviders != null) {
+                  await _socialAuthCubit.selectSocialLoginProvider(
+                    selectedSocialAuthProvider: socialAuthProvider,
+                    redirectUrl: widget.redirectURL,
+                    onWebViewError: widget.onWebViewError,
+                    onRedirectUrlReceived: (SocialAuthDto socialAuthDto) {
+                      widget.onPressed?.call(socialAuthDto);
+
+                      BlocProvider.of<DerivAuthCubit>(context)
+                          .socialAuth(socialAuthDto: socialAuthDto);
+                    },
+                  );
+                }
               }
             : null,
       );
