@@ -67,7 +67,7 @@ dependency_overrides:
   flutter_deriv_api:
     git:
       url: git@github.com:deriv-com/flutter-deriv-api.git
-      ref: 64ad3673598ad807b43f751fc2ec7bc5ef01203e
+      ref: 82ddc3e22ca6ac85a6c7ff4bac082a1574a90c93
   deriv_ui:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
