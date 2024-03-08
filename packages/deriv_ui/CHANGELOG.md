@@ -1,3 +1,7 @@
+## 0.0.6+7
+
+ - Update a dependency to the latest release.
+
 ## 0.0.6+6
 
  - **FIX**(deriv_ui): validating secondary currency instead of main currency in numpad. ([37154fb4](https://github.com/regentmarkets/flutter-deriv-packages/commit/37154fb4c7b9171ae6a1caf0e9d7dad58b63f9be))
