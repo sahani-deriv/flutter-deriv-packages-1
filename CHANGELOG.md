@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-03-07
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+6`](#deriv_ui---v0066)
+ - [`deriv_widgetbook` - `v0.0.1+1`](#deriv_widgetbook---v0011)
+ - [`deriv_auth` - `v6.2.1`](#deriv_auth---v621)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_widgetbook` - `v0.0.1+1`
+ - `deriv_auth` - `v6.2.1`
+
+---
+
+#### `deriv_ui` - `v0.0.6+6`
+
+ - **FIX**(deriv_ui): validating secondary currency instead of main currency in numpad. ([37154fb4](https://github.com/regentmarkets/flutter-deriv-packages/commit/37154fb4c7b9171ae6a1caf0e9d7dad58b63f9be))
+
+
 ## 2024-03-01
 
 ### Changes

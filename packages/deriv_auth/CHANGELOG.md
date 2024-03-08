@@ -1,3 +1,7 @@
+## 6.2.1
+
+ - Update a dependency to the latest release.
+
 ## 6.2.0
 
  - **REFACTOR**(deriv_ui): remove example and android folder ([#503](https://github.com/regentmarkets/flutter-deriv-packages/issues/503)). ([8c90e199](https://github.com/regentmarkets/flutter-deriv-packages/commit/8c90e1995a3a04c945923cb0f8f0e7480cde03b7))
