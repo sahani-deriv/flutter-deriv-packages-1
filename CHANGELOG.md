@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-03-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.1.2`](#deriv_localizations---v112)
+ - [`deriv_auth` - `v6.3.2`](#deriv_auth---v632)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.3.2`
+
+---
+
+#### `deriv_localizations` - `v1.1.2`
+
+ - **REFACTOR**(deriv_localizations): Crowdin Localization Generated ([#534](https://github.com/regentmarkets/flutter-deriv-packages/issues/534)). ([bfe24625](https://github.com/regentmarkets/flutter-deriv-packages/commit/bfe24625b6c9076514f559d403f9ea7d339dc6be))
+
+
 ## 2024-03-12
 
 ### Changes
