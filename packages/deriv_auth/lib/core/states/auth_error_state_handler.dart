@@ -47,13 +47,13 @@ base class AuthErrorStateHandler {
   void onFailedAuthorization(DerivAuthErrorState state) {
     showErrorDialog(
       context: context,
-      errorMessage: state.message,
+      errorMessage: context.derivAuthLocalization.informFailedAuthorization,
       actionLabel: context.derivAuthLocalization.actionTryAgain,
     );
   }
 
   /// User is trying to authenticate from an unsupported residence.
-  void onInavlidResidence(DerivAuthErrorState state) {
+  void onInvalidResidence(DerivAuthErrorState state) {
     showErrorDialog(
       context: context,
       errorMessage: context.derivAuthLocalization.informInvalidResidence,

@@ -3,6 +3,416 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-03-12
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.3.1`](#deriv_auth---v631)
+ - [`deriv_theme` - `v2.3.0`](#deriv_theme---v230)
+ - [`deriv_ui` - `v0.0.7`](#deriv_ui---v007)
+ - [`deriv_widgetbook` - `v0.0.2`](#deriv_widgetbook---v002)
+ - [`deriv_numpad` - `v1.1.2`](#deriv_numpad---v112)
+ - [`deriv_date_range_picker` - `v0.0.1+3`](#deriv_date_range_picker---v0013)
+ - [`deriv_expandable_bottom_sheet` - `v0.0.1+3`](#deriv_expandable_bottom_sheet---v0013)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_numpad` - `v1.1.2`
+ - `deriv_date_range_picker` - `v0.0.1+3`
+ - `deriv_expandable_bottom_sheet` - `v0.0.1+3`
+
+---
+
+#### `deriv_auth` - `v6.3.1`
+
+ - **FIX**: deriv_toke_service_test ([#519](https://github.com/regentmarkets/flutter-deriv-packages/issues/519)). ([25b9dc45](https://github.com/regentmarkets/flutter-deriv-packages/commit/25b9dc454c222bb7299d859a21cb1b3cb874c1bf))
+
+#### `deriv_theme` - `v2.3.0`
+
+ - **FEAT**(deriv_ui): add language selector component ([#509](https://github.com/regentmarkets/flutter-deriv-packages/issues/509)). ([bff66151](https://github.com/regentmarkets/flutter-deriv-packages/commit/bff661513f330d014154657fbf170b75512dc180))
+
+#### `deriv_ui` - `v0.0.7`
+
+<<<<<<< HEAD
+=======
+ - **FIX**(deriv_ui): update deriv_theme ([#525](https://github.com/regentmarkets/flutter-deriv-packages/issues/525)). ([304a5b59](https://github.com/regentmarkets/flutter-deriv-packages/commit/304a5b59d1603196ae37f53a682db8de69bedcf0))
+>>>>>>> 48d45ba4626fe38f562e5fdcba78a6002468e03d
+ - **FIX**(deriv_ui): update theme dependency ([#522](https://github.com/regentmarkets/flutter-deriv-packages/issues/522)). ([d00e3edf](https://github.com/regentmarkets/flutter-deriv-packages/commit/d00e3edfe08e861401c501b2ac1944a9d7af11f2))
+ - **FEAT**(deriv_ui): add language selector component ([#509](https://github.com/regentmarkets/flutter-deriv-packages/issues/509)). ([bff66151](https://github.com/regentmarkets/flutter-deriv-packages/commit/bff661513f330d014154657fbf170b75512dc180))
+
+#### `deriv_widgetbook` - `v0.0.2`
+
+ - **FEAT**(deriv_ui): add language selector component ([#509](https://github.com/regentmarkets/flutter-deriv-packages/issues/509)). ([bff66151](https://github.com/regentmarkets/flutter-deriv-packages/commit/bff661513f330d014154657fbf170b75512dc180))
+
+
+## 2024-03-08
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.3.0`](#deriv_auth---v630)
+ - [`deriv_web_view` - `v0.2.2`](#deriv_web_view---v022)
+ - [`deriv_ui` - `v0.0.6+7`](#deriv_ui---v0067)
+ - [`deriv_widgetbook` - `v0.0.1+2`](#deriv_widgetbook---v0012)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.6+7`
+ - `deriv_widgetbook` - `v0.0.1+2`
+
+---
+
+#### `deriv_auth` - `v6.3.0`
+
+ - **FEAT**(deriv_http_client): update to the latest deriv_http_client ([#501](https://github.com/regentmarkets/flutter-deriv-packages/issues/501)). ([d582995a](https://github.com/regentmarkets/flutter-deriv-packages/commit/d582995a226906c34c69c7716b3e5573c88c0c4e))
+
+#### `deriv_web_view` - `v0.2.2`
+
+ - **FEAT**(deriv_http_client): update to the latest deriv_http_client ([#501](https://github.com/regentmarkets/flutter-deriv-packages/issues/501)). ([d582995a](https://github.com/regentmarkets/flutter-deriv-packages/commit/d582995a226906c34c69c7716b3e5573c88c0c4e))
+
+
+## 2024-03-07
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+6`](#deriv_ui---v0066)
+ - [`deriv_widgetbook` - `v0.0.1+1`](#deriv_widgetbook---v0011)
+ - [`deriv_auth` - `v6.2.1`](#deriv_auth---v621)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_widgetbook` - `v0.0.1+1`
+ - `deriv_auth` - `v6.2.1`
+
+---
+
+#### `deriv_ui` - `v0.0.6+6`
+
+ - **FIX**(deriv_ui): validating secondary currency instead of main currency in numpad. ([37154fb4](https://github.com/regentmarkets/flutter-deriv-packages/commit/37154fb4c7b9171ae6a1caf0e9d7dad58b63f9be))
+
+
+## 2024-03-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.2.0`](#deriv_auth---v620)
+ - [`deriv_ui` - `v0.0.6+5`](#deriv_ui---v0065)
+
+---
+
+#### `deriv_auth` - `v6.2.0`
+
+ - **REFACTOR**(deriv_ui): remove example and android folder ([#503](https://github.com/regentmarkets/flutter-deriv-packages/issues/503)). ([8c90e199](https://github.com/regentmarkets/flutter-deriv-packages/commit/8c90e1995a3a04c945923cb0f8f0e7480cde03b7))
+ - **FIX**(deriv_auth): endpoint change not reflecting in social login ([#498](https://github.com/regentmarkets/flutter-deriv-packages/issues/498)). ([32e33a46](https://github.com/regentmarkets/flutter-deriv-packages/commit/32e33a464092dcd570f5ef8d7524e0dc9b369566))
+ - **FIX**(deriv_auth): endpoint change not reflecting in social login ([#498](https://github.com/regentmarkets/flutter-deriv-packages/issues/498)). ([5714a5dd](https://github.com/regentmarkets/flutter-deriv-packages/commit/5714a5dd403c5fd0fc97d3ee634f9c76241b22da))
+ - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([19130046](https://github.com/regentmarkets/flutter-deriv-packages/commit/19130046f21d24a28a5e135914308a411ee762e3))
+ - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([e594c05b](https://github.com/regentmarkets/flutter-deriv-packages/commit/e594c05b87c05d189913a7de8b9e1e4e6d03b76a))
+
+#### `deriv_ui` - `v0.0.6+5`
+
+ - **REFACTOR**(deriv_ui): remove example and android folder ([#503](https://github.com/regentmarkets/flutter-deriv-packages/issues/503)). ([8c90e199](https://github.com/regentmarkets/flutter-deriv-packages/commit/8c90e1995a3a04c945923cb0f8f0e7480cde03b7))
+ - **REFACTOR**(deriv_ui): update deriv_ui dependencies ([#499](https://github.com/regentmarkets/flutter-deriv-packages/issues/499)). ([51192870](https://github.com/regentmarkets/flutter-deriv-packages/commit/511928702f997536812529e081c81e4ae8f6122b))
+ - **REFACTOR**(deriv_ui): update deriv_ui dependencies ([#499](https://github.com/regentmarkets/flutter-deriv-packages/issues/499)). ([2ade47f5](https://github.com/regentmarkets/flutter-deriv-packages/commit/2ade47f5f42a37325e4e4906c8c095fc26d777b6))
+
+
+## 2024-03-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.1.1`](#deriv_auth---v611)
+
+---
+
+#### `deriv_auth` - `v6.1.1`
+
+ - **FIX**(deriv_auth): endpoint change not reflecting in social login ([#498](https://github.com/regentmarkets/flutter-deriv-packages/issues/498)). ([5714a5dd](https://github.com/regentmarkets/flutter-deriv-packages/commit/5714a5dd403c5fd0fc97d3ee634f9c76241b22da))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.1.0`](#deriv_auth---v610)
+
+---
+
+#### `deriv_auth` - `v6.1.0`
+
+ - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([e594c05b](https://github.com/regentmarkets/flutter-deriv-packages/commit/e594c05b87c05d189913a7de8b9e1e4e6d03b76a))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+4`](#deriv_ui---v0064)
+ - [`deriv_auth` - `v6.0.2`](#deriv_auth---v602)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.0.2`
+
+---
+
+#### `deriv_ui` - `v0.0.6+4`
+
+ - **REFACTOR**(deriv_ui): update deriv_ui dependencies ([#499](https://github.com/regentmarkets/flutter-deriv-packages/issues/499)). ([2ade47f5](https://github.com/regentmarkets/flutter-deriv-packages/commit/2ade47f5f42a37325e4e4906c8c095fc26d777b6))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.1.0`](#deriv_auth---v610)
+
+---
+
+#### `deriv_auth` - `v6.1.0`
+
+ - **FEAT**(deriv_auth): single entry ([#420](https://github.com/regentmarkets/flutter-deriv-packages/issues/420)). ([e594c05b](https://github.com/regentmarkets/flutter-deriv-packages/commit/e594c05b87c05d189913a7de8b9e1e4e6d03b76a))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+4`](#deriv_ui---v0064)
+ - [`deriv_auth` - `v6.0.2`](#deriv_auth---v602)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.0.2`
+
+---
+
+#### `deriv_ui` - `v0.0.6+4`
+
+ - **REFACTOR**(deriv_ui): update deriv_ui dependencies ([#499](https://github.com/regentmarkets/flutter-deriv-packages/issues/499)). ([2ade47f5](https://github.com/regentmarkets/flutter-deriv-packages/commit/2ade47f5f42a37325e4e4906c8c095fc26d777b6))
+
+
+## 2024-02-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_auth` - `v6.0.0`](#deriv_auth---v600)
+ - [`deriv_http_client` - `v2.0.0`](#deriv_http_client---v200)
+ - [`deriv_web_view` - `v0.2.0`](#deriv_web_view---v020)
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+3`](#deriv_ui---v0063)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.6+3`
+
+---
+
+#### `deriv_auth` - `v6.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+#### `deriv_http_client` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+#### `deriv_web_view` - `v0.2.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): ramin_make_auth_and_web_view_proxy_aware ([#483](https://github.com/regentmarkets/flutter-deriv-packages/issues/483)). ([e99afc92](https://github.com/regentmarkets/flutter-deriv-packages/commit/e99afc926531c0c36c567d0ac8c66e906fa27ea5))
+
+
+## 2024-02-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v5.0.3`](#deriv_auth---v503)
+
+---
+
+#### `deriv_auth` - `v5.0.3`
+
+ - **REFACTOR**(deriv_auth): rename inavalid to invalid in auth state handler ([#490](https://github.com/regentmarkets/flutter-deriv-packages/issues/490)). ([2e9cfa75](https://github.com/regentmarkets/flutter-deriv-packages/commit/2e9cfa75007fce25b90394bd92905e9c3ca876cc))
+
+
+## 2024-02-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_web_view` - `v0.1.0+1`](#deriv_web_view---v0101)
+ - [`deriv_auth` - `v5.0.2`](#deriv_auth---v502)
+ - [`deriv_ui` - `v0.0.6+2`](#deriv_ui---v0062)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v5.0.2`
+ - `deriv_ui` - `v0.0.6+2`
+
+---
+
+#### `deriv_web_view` - `v0.1.0+1`
+
+ - **FIX**(deriv_web_view): fix platform exception not being caught ([#489](https://github.com/regentmarkets/flutter-deriv-packages/issues/489)). ([89f038a0](https://github.com/regentmarkets/flutter-deriv-packages/commit/89f038a0717c1902c6fbc22668705ad2636df9d5))
+
+
+## 2024-02-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_ui` - `v0.0.6+1`](#deriv_ui---v0061)
+ - [`deriv_auth` - `v5.0.1`](#deriv_auth---v501)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v5.0.1`
+
+---
+
+#### `deriv_ui` - `v0.0.6+1`
+
+ - **REVERT**(deriv_ui): java file change. ([a3e95943](https://github.com/regentmarkets/flutter-deriv-packages/commit/a3e959434a5b2e6c6fa851de431ebce9a55b4c7d))
+ - **REFACTOR**(deriv_ui): numpad/ move listener to initState. ([66f2be15](https://github.com/regentmarkets/flutter-deriv-packages/commit/66f2be15f3394645cf347b14bfdd9bee3a9215a7))
+ - **REFACTOR**(deriv_ui): add default focus node and auto focus option in text field, custom checkbox theme changed. ([7f3e68c2](https://github.com/regentmarkets/flutter-deriv-packages/commit/7f3e68c2c31859379637eda3d5d1b580eb011019))
+ - **REFACTOR**(deriv_ui): date_picker/replace pop with maybePop for widgetbook. ([d4e18f88](https://github.com/regentmarkets/flutter-deriv-packages/commit/d4e18f88198b23b49c2a787bc8142e6271ff9198))
+ - **REFACTOR**(deriv_ui): numpad/move access of inherited widget to didChangeDependencies. ([9a0541aa](https://github.com/regentmarkets/flutter-deriv-packages/commit/9a0541aad0588b1c185dc12e67d177cb6da7089b))
+ - **FIX**(deriv_ui): date_picker/match background color with design. ([0eb7740e](https://github.com/regentmarkets/flutter-deriv-packages/commit/0eb7740e0997c0286153748229a7bb0d3ab9415e))
+
+
+## 2024-02-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`deriv_auth` - `v5.0.0`](#deriv_auth---v500)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `deriv_auth` - `v5.0.0`
+
+ - **BREAKING** **REFACTOR**(deriv_auth): [MOBC-802] migrate to deriv_localizations package [#486](https://github.com/regentmarkets/flutter-deriv-packages/issues/486). ([e9297272](https://github.com/regentmarkets/flutter-deriv-packages/commit/e9297272c91235263cf2335b8ba69a3a1d9c1583))
+
+
 ## 2024-02-15
 
 ### Changes
