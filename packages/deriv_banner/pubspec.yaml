@@ -1,0 +1,34 @@
+name: deriv_banner
+description: A new flutter plugin project.
+
+version: 0.0.1+1
+
+homepage: https://deriv.com/
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: "3.10.2"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  deriv_lint:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_lint
+      ref: deriv_lint-v1.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.deriv.app.deriv_banner
+        pluginClass: DerivBannerPlugin
+      ios:
+        pluginClass: DerivBannerPlugin

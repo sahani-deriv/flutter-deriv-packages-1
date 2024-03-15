@@ -1,0 +1,30 @@
+name: deriv_banner_example
+description: Demonstrates how to use the deriv_banner plugin.
+
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: "3.10.2"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  deriv_banner:
+    path: ../
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  deriv_lint:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_lint
+      ref: deriv_lint-v1.0.0
+
+flutter:
+  uses-material-design: true

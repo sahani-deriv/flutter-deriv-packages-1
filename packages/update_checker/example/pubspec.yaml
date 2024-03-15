@@ -1,0 +1,27 @@
+name: example
+description: A new Flutter project.
+version: 1.0.0+1
+
+homepage: https://deriv.com/
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: "3.10.2"
+
+dependencies:
+  firebase_core: ^2.9.0
+  firebase_database: ^10.1.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.2
+
+  update_checker:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
