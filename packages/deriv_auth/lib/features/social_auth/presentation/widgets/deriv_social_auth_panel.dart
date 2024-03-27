@@ -1,5 +1,6 @@
 import 'package:deriv_auth/deriv_auth.dart';
-import 'package:deriv_passkeys/presentation/widgets/continue_with_passkey_button.dart';
+import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
+import 'package:deriv_passkeys/deriv_passkeys.dart';
 import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,6 @@ class _DerivSocialAuthPanelState extends State<DerivSocialAuthPanel> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const ContinueWithPasskeyButton(),
                 const SizedBox(height: ThemeProvider.margin08),
                 _buildSocialAuthButton(SocialAuthProvider.google),
                 const SizedBox(height: ThemeProvider.margin08),

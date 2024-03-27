@@ -10,6 +10,7 @@ import 'package:deriv_auth/core/services/token/models/login_request.dart';
 import 'package:deriv_auth/features/auth/deriv_auth_io.dart';
 import 'package:deriv_auth/features/auth/services/base_auth_service.dart';
 import 'package:deriv_auth/features/social_auth/models/social_auth_dto.dart';
+import 'package:deriv_passkeys/deriv_passkeys.dart';
 
 part 'deriv_auth_state.dart';
 
@@ -17,7 +18,19 @@ part 'deriv_auth_state.dart';
 /// and it is responsible for all login functionality.
 class DerivAuthCubit extends Cubit<DerivAuthState> implements DerivAuthIO {
   /// Initialize a [DerivAuthCubit].
-  DerivAuthCubit({required this.authService}) : super(DerivAuthLoadingState());
+  DerivAuthCubit({
+    required this.authService,
+    DerivPasskeysBloc? derivPasskeysBloc,
+  }) : super(DerivAuthLoadingState()) {
+    if (derivPasskeysBloc != null) {
+      derivPasskeysBloc.stream.listen((DerivPasskeysState state) async {
+        if (state is DerivPasskeysCredentialVerifiedState) {
+          derivPasskeysBloc.add(const DerivPasskeysGetPasskeysListEvent());
+          await tokenLogin(state.token);
+        }
+      });
+    }
+  }
 
   /// [BaseAuthService] handles all login logic of cubit.
   final BaseAuthService authService;
@@ -133,12 +146,15 @@ class DerivAuthCubit extends Cubit<DerivAuthState> implements DerivAuthIO {
       final LandingCompanyEntity landingCompanyEntity =
           await authService.getLandingCompany(authorizeEntity.country);
       _isUserMigrated = _checkUserMigrated(authorizeEntity);
-      emit(DerivAuthLoggedInState(
-        DerivAuthModel(
-          authorizeEntity: authorizeEntity,
-          landingCompany: landingCompanyEntity,
+
+      emit(
+        DerivAuthLoggedInState(
+          DerivAuthModel(
+            authorizeEntity: authorizeEntity,
+            landingCompany: landingCompanyEntity,
+          ),
         ),
-      ));
+      );
     } on DerivAuthException catch (error) {
       emit(DerivAuthErrorState(
         message: error.message,

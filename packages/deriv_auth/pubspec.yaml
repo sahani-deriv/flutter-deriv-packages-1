@@ -48,10 +48,11 @@ dependencies:
       ref: deriv_localizations-v1.1.2
 
   deriv_passkeys:
-    git:
-      url: git@github.com:regentmarkets/flutter-deriv-packages.git
-      path: packages/deriv_passkeys
-      ref: c9b906bc20edbc94d0ca99f2211b142efa3aaf2e
+    path: ../../../flutter-deriv-packages/packages/deriv_passkeys
+    # git:
+    #   url: git@github.com:regentmarkets/flutter-deriv-packages.git
+    #   path: packages/deriv_passkeys
+    #   ref: c9b906bc20edbc94d0ca99f2211b142efa3aaf2e
 
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.7
@@ -67,11 +68,6 @@ dependency_overrides:
     git:
       url: git@github.com:deriv-com/flutter-deriv-api.git
       ref: 82ddc3e22ca6ac85a6c7ff4bac082a1574a90c93
-  deriv_ui:
-    git:
-      url: git@github.com:regentmarkets/flutter-deriv-packages.git
-      path: packages/deriv_ui
-      ref: deriv_ui-v0.0.6+2
 
 dev_dependencies:
   mocktail: ^1.0.3
