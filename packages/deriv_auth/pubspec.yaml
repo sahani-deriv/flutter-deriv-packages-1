@@ -49,11 +49,10 @@ dependencies:
       ref: 9a91d879a5ffd371a46dcbf70e4f3a295bc7b7e1
 
   deriv_passkeys:
-    path: ../../../flutter-deriv-packages/packages/deriv_passkeys
-    # git:
-    #   url: git@github.com:regentmarkets/flutter-deriv-packages.git
-    #   path: packages/deriv_passkeys
-    #   ref: c9b906bc20edbc94d0ca99f2211b142efa3aaf2e
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_passkeys
+      ref: 5b89caefd68fcc4f33b1dbe1ae217f6b3558394a
 
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.7
