@@ -18,7 +18,6 @@ void main() {
     late MockSocialAuthCubit socialAuthCubit;
 
     const String welcomeLabel = 'Welcome Back';
-    const String greetingLabel = 'Let\'s start trading.';
 
     setUpAll(() {
       authCubit = MockAuthCubit();
@@ -64,7 +63,6 @@ void main() {
             redirectURL: 'deriv://example',
             onWebViewError: (String error) {},
             welcomeLabel: welcomeLabel,
-            greetingLabel: greetingLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
             onLoggedIn: (_, __) {},
@@ -101,7 +99,6 @@ void main() {
             redirectURL: 'deriv://example',
             onWebViewError: (String error) {},
             welcomeLabel: welcomeLabel,
-            greetingLabel: greetingLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
             onLoggedIn: (_, __) {},
@@ -140,7 +137,6 @@ void main() {
               redirectURL: 'deriv://example',
               onWebViewError: (String error) {},
               welcomeLabel: welcomeLabel,
-              greetingLabel: greetingLabel,
               onResetPassTapped: () {},
               onSignupTapped: () {},
               onLoggedIn: (_, __) {},
@@ -173,7 +169,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {
             onSignupTappedCalled = true;
@@ -219,7 +214,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoggedIn: (_, __) {
@@ -257,7 +251,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoginError: (_) {
@@ -294,7 +287,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoginError: (_) {},
@@ -327,7 +319,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {
             onResetPassTappedCalled = true;
           },
@@ -375,7 +366,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoggedIn: (_, __) {},
@@ -421,7 +411,6 @@ void main() {
           redirectURL: 'deriv://example',
           onWebViewError: (String error) {},
           welcomeLabel: welcomeLabel,
-          greetingLabel: greetingLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoggedIn: (_, __) {},

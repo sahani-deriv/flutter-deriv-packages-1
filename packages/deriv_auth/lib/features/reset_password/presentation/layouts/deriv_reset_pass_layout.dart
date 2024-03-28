@@ -44,7 +44,7 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
         appBar: AppBar(
           elevation: ThemeProvider.zeroMargin,
           title: Text(
-            context.derivAuthLocalization.labelResetPassword,
+            context.derivAuthLocalization!.labelResetPassword,
             style: TextStyles.title,
           ),
         ),
@@ -87,12 +87,12 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
             ),
             const SizedBox(height: ThemeProvider.margin24),
             Text(
-              context.derivAuthLocalization.labelCheckEmail,
+              context.derivAuthLocalization!.labelCheckEmail,
               style: TextStyles.title,
             ),
             const SizedBox(height: ThemeProvider.margin08),
             Text(
-              context.derivAuthLocalization
+              context.derivAuthLocalization!
                   .informSendResetPasswordEmail(_emailController.text),
               textAlign: TextAlign.center,
               style: context.theme.textStyle(
@@ -121,14 +121,14 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
               ),
               const SizedBox(height: ThemeProvider.margin16),
               Text(
-                context.derivAuthLocalization.labelResetPassword,
+                context.derivAuthLocalization!.labelResetPassword,
                 style: TextStyles.title,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: ThemeProvider.margin08),
               Center(
                 child: Text(
-                  context.derivAuthLocalization.informResetPassByEmail,
+                  context.derivAuthLocalization!.informResetPassByEmail,
                   textAlign: TextAlign.center,
                   style: context.theme.textStyle(
                     textStyle: TextStyles.body1,
@@ -141,7 +141,7 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
                 semanticLabel: SemanticsLabels.resetPasswordEmailFieldSemantic,
                 controller: _emailController,
                 focusNode: _emailFocusNode,
-                labelText: context.derivAuthLocalization.labelEmail,
+                labelText: context.derivAuthLocalization!.labelEmail,
                 keyboardType: TextInputType.emailAddress,
                 borderColor: context.theme.colors.hover,
                 validator: _emailValidator,
@@ -177,7 +177,7 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
                     width: ThemeProvider.margin16,
                   )
                 : Text(
-                    context.derivAuthLocalization.actionResetPass,
+                    context.derivAuthLocalization!.actionResetPass,
                     style: context.theme.textStyle(
                       textStyle: TextStyles.body2,
                       color: context.theme.colors.prominent.withOpacity(
@@ -213,7 +213,7 @@ class _DerivResetPassLayoutState extends State<DerivResetPassLayout> {
       return null;
     }
 
-    return context.derivAuthLocalization.informInvalidEmailFormat;
+    return context.derivAuthLocalization!.informInvalidEmailFormat;
   }
 
   String _getEmailValue() => _emailController.text.trim();

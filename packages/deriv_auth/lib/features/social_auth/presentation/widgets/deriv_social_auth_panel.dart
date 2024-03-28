@@ -1,8 +1,5 @@
 import 'package:deriv_auth/deriv_auth.dart';
-import 'package:deriv_auth/features/single_entry/core/auth_data.dart';
-import 'package:deriv_passkeys/deriv_passkeys.dart';
 import 'package:deriv_theme/deriv_theme.dart';
-import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

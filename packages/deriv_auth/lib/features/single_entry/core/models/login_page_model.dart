@@ -8,7 +8,6 @@ class LoginPageModel {
     required this.onLoggedIn,
     required this.onSocialAuthButtonPressed,
     required this.welcomeLabel,
-    required this.greetingLabel,
     required this.socialAuthStateHandler,
     required this.redirectURL,
     required this.onWebViewError,
@@ -34,9 +33,6 @@ class LoginPageModel {
 
   /// Welcome text to be displayed on login page.
   final String welcomeLabel;
-
-  /// Greeting text to be displayed on login page.
-  final String greetingLabel;
 
   /// Whether to display social auth buttons.
   final bool isSocialAuthEnabled;

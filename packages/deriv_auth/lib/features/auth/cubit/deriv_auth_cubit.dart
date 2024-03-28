@@ -20,17 +20,7 @@ class DerivAuthCubit extends Cubit<DerivAuthState> implements DerivAuthIO {
   /// Initialize a [DerivAuthCubit].
   DerivAuthCubit({
     required this.authService,
-    DerivPasskeysBloc? derivPasskeysBloc,
-  }) : super(DerivAuthLoadingState()) {
-    if (derivPasskeysBloc != null) {
-      derivPasskeysBloc.stream.listen((DerivPasskeysState state) async {
-        if (state is DerivPasskeysCredentialVerifiedState) {
-          derivPasskeysBloc.add(const DerivPasskeysGetPasskeysListEvent());
-          await tokenLogin(state.token);
-        }
-      });
-    }
-  }
+  }) : super(DerivAuthLoadingState());
 
   /// [BaseAuthService] handles all login logic of cubit.
   final BaseAuthService authService;

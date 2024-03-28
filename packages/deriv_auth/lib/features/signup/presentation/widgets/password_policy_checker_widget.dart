@@ -40,20 +40,23 @@ class PasswordPolicyCheckerWidget extends StatelessWidget {
           BuildContext context) =>
       <DerivPasswordPolicyModel>[
         DerivPasswordPolicyModel(
-          description: context.derivAuthLocalization.informPasswordPolicyLength,
+          description:
+              context.derivAuthLocalization!.informPasswordPolicyLength,
           regex: validPasswordLengthRegex,
         ),
         DerivPasswordPolicyModel(
           description:
-              context.derivAuthLocalization.informPasswordPolicyLowerAndUpper,
+              context.derivAuthLocalization!.informPasswordPolicyLowerAndUpper,
           regex: validPasswordWithUppercaseRegex,
         ),
         DerivPasswordPolicyModel(
-          description: context.derivAuthLocalization.informPasswordPolicyNumber,
+          description:
+              context.derivAuthLocalization!.informPasswordPolicyNumber,
           regex: validPasswordWithNumberRegex,
         ),
         DerivPasswordPolicyModel(
-          description: context.derivAuthLocalization.warnPasswordContainsSymbol,
+          description:
+              context.derivAuthLocalization!.warnPasswordContainsSymbol,
           regex: validPasswordWithSymbols,
           isOptional: true,
         ),
@@ -67,7 +70,7 @@ class PasswordPolicyCheckerWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                context.derivAuthLocalization.informPasswordPolicy,
+                context.derivAuthLocalization!.informPasswordPolicy,
                 style: context.theme.textStyle(
                   textStyle: TextStyles.body1,
                   color: context.theme.colors.general,

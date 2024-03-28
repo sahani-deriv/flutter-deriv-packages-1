@@ -50,7 +50,7 @@ class _DerivChooseNewPassLayoutState extends State<DerivChooseNewPassLayout> {
         appBar: AppBar(
           elevation: ThemeProvider.zeroMargin,
           title: Text(
-            context.derivAuthLocalization.labelResetPassword,
+            context.derivAuthLocalization!.labelResetPassword,
             style: TextStyles.title,
           ),
         ),
@@ -110,14 +110,14 @@ class _DerivChooseNewPassLayoutState extends State<DerivChooseNewPassLayout> {
             ),
             const SizedBox(height: ThemeProvider.margin48),
             Text(
-              context.derivAuthLocalization.labelChooseNewPass,
+              context.derivAuthLocalization!.labelChooseNewPass,
               style: TextStyles.title,
             ),
             const SizedBox(height: ThemeProvider.margin24),
             BaseTextField(
               controller: _passController,
               focusNode: _passFocusNode,
-              labelText: context.derivAuthLocalization.labelCreatePass,
+              labelText: context.derivAuthLocalization!.labelCreatePass,
               obscureText: !_isPasswordVisible,
               suffixIcon: IconButton(
                 icon: Icon(
@@ -162,7 +162,7 @@ class _DerivChooseNewPassLayoutState extends State<DerivChooseNewPassLayout> {
                   width: ThemeProvider.iconSize16,
                 )
               : Text(
-                  context.derivAuthLocalization.actionResetPass,
+                  context.derivAuthLocalization!.actionResetPass,
                   style: context.theme.textStyle(
                     textStyle: TextStyles.body2,
                     color: context.theme.colors.prominent.withOpacity(
@@ -193,7 +193,7 @@ class _DerivChooseNewPassLayoutState extends State<DerivChooseNewPassLayout> {
       return null;
     }
 
-    return context.derivAuthLocalization.informInvalidPasswordFormat;
+    return context.derivAuthLocalization!.informInvalidPasswordFormat;
   }
 
   bool isFormValid() => _passwordValidator(_passController.text) == null;
