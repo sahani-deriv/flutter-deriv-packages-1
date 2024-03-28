@@ -121,7 +121,6 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
                     children: <Widget>[
                       ..._buildTopSection(),
                       const SizedBox(height: ThemeProvider.margin14),
-                      // const SizedBox(height: ThemeProvider.margin24),
                       ..._buildTextFields(
                           isEnabled: state is! DerivAuthLoadingState),
                       const SizedBox(height: ThemeProvider.margin24),
