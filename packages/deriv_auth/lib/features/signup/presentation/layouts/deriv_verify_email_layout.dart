@@ -26,7 +26,7 @@ class DerivVerifyEmailLayout extends StatelessWidget {
         appBar: AppBar(
           elevation: ThemeProvider.zeroMargin,
           title: Text(
-            context.derivAuthLocalization!.labelVerifyYourEmail,
+            context.derivAuthLocalization.labelVerifyYourEmail,
             style: TextStyles.title,
           ),
           backgroundColor: context.theme.colors.secondary,
@@ -56,13 +56,12 @@ class DerivVerifyEmailLayout extends StatelessWidget {
             ),
             const SizedBox(height: ThemeProvider.margin16),
             Text(
-              context.derivAuthLocalization!.labelCheckEmail,
+              context.derivAuthLocalization.labelCheckEmail,
               style: TextStyles.title,
             ),
             const SizedBox(height: ThemeProvider.margin08),
             Text(
-              context.derivAuthLocalization!
-                  .informVerificationEmailSent(email!),
+              context.derivAuthLocalization.informVerificationEmailSent(email!),
               style: context.theme.textStyle(
                 textStyle: TextStyles.body1,
                 color: context.theme.colors.general,
@@ -82,7 +81,7 @@ class DerivVerifyEmailLayout extends StatelessWidget {
         onPressed: onEmailNotReceivedPressed,
         child: Center(
           child: Text(
-            context.derivAuthLocalization!.actionEmailNotReceived,
+            context.derivAuthLocalization.actionEmailNotReceived,
             style: context.theme.textStyle(
               textStyle: TextStyles.button,
             ),

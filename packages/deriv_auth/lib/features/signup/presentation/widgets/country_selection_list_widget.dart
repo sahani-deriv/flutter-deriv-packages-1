@@ -102,7 +102,7 @@ class _CountrySelectionListWidgetState
         children: <Widget>[
           const SizedBox(width: ThemeProvider.margin48),
           Text(
-            context.derivAuthLocalization!.labelChooseCountry,
+            context.derivAuthLocalization.labelChooseCountry,
             style: TextStyles.subheading,
           ),
         ],
@@ -128,7 +128,7 @@ class _CountrySelectionListWidgetState
                   onPressed: () => _searchController.clear(),
                 ),
           contentPadding: const EdgeInsets.only(top: ThemeProvider.margin08),
-          hintText: context.derivAuthLocalization!.labelSearchCountry,
+          hintText: context.derivAuthLocalization.labelSearchCountry,
           hintStyle: context.theme.textStyle(
             textStyle: TextStyles.subheading,
             color: context.theme.colors.active,

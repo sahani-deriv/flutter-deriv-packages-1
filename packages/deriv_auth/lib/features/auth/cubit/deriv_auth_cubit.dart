@@ -10,7 +10,6 @@ import 'package:deriv_auth/core/services/token/models/login_request.dart';
 import 'package:deriv_auth/features/auth/deriv_auth_io.dart';
 import 'package:deriv_auth/features/auth/services/base_auth_service.dart';
 import 'package:deriv_auth/features/social_auth/models/social_auth_dto.dart';
-import 'package:deriv_passkeys/deriv_passkeys.dart';
 
 part 'deriv_auth_state.dart';
 

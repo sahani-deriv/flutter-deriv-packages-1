@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 /// Choose new password page
 class ChooseNewPasswordPage extends StatelessWidget {
   /// Constructor [ChooseNewPasswordPage]
-  const ChooseNewPasswordPage(
-      {required this.token, super.key, required DerivResetPassCubit cubit});
+  const ChooseNewPasswordPage({required this.token, super.key});
 
   /// Token
   final String token;

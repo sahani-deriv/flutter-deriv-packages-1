@@ -50,7 +50,7 @@ class _Deriv2FALayoutState extends State<Deriv2FALayout> {
         appBar: AppBar(
           elevation: ThemeProvider.zeroMargin,
           title: Text(
-            context.derivAuthLocalization!.labelLogIn,
+            context.derivAuthLocalization.labelLogIn,
             style: TextStyles.title,
           ),
         ),
@@ -65,13 +65,13 @@ class _Deriv2FALayoutState extends State<Deriv2FALayout> {
             children: <Widget>[
               SvgPicture.asset(Assets.twoFactorAuthIcon),
               Text(
-                context.derivAuthLocalization!.labelTwoFactorAuth,
+                context.derivAuthLocalization.labelTwoFactorAuth,
                 style: context.theme.textStyle(textStyle: TextStyles.title),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: ThemeProvider.margin08),
               Text(
-                context.derivAuthLocalization!.informEnterTwoFactorAuthCode,
+                context.derivAuthLocalization.informEnterTwoFactorAuthCode,
                 style: context.theme.textStyle(
                   textStyle: TextStyles.body1,
                   color: context.theme.colors.general,
@@ -82,7 +82,7 @@ class _Deriv2FALayoutState extends State<Deriv2FALayout> {
               BaseTextField(
                 controller: _otpController,
                 labelText: context
-                    .derivAuthLocalization!.labelTwoFactorAuthenticationCode,
+                    .derivAuthLocalization.labelTwoFactorAuthenticationCode,
                 labelColor: context.theme.colors.disabled,
                 focusNode: _otpFocusNode,
                 enabled: !_isLoading(),
@@ -112,7 +112,7 @@ class _Deriv2FALayoutState extends State<Deriv2FALayout> {
                             width: ThemeProvider.iconSize16,
                           )
                         : Text(
-                            context.derivAuthLocalization!.actionProceed,
+                            context.derivAuthLocalization.actionProceed,
                             style: TextStyles.body2.copyWith(
                               color: context.theme.colors.prominent,
                             ),

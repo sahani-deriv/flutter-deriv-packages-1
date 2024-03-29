@@ -46,11 +46,7 @@ class _ResetPassPageState extends State<ResetPassPage> {
           if (mounted) {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => BlocProvider.value(
-                  value: cubit,
-                  child: ChooseNewPasswordPage(
-                    token: '',
-                    cubit: cubit,
-                  )),
+                  value: cubit, child: const ChooseNewPasswordPage(token: '')),
             ));
           }
         });

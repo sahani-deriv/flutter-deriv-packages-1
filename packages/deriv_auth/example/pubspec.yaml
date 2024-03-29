@@ -24,12 +24,6 @@ dependencies:
       path: packages/deriv_http_client
       ref: deriv_http_client-v2.0.1
 
-dependency_overrides:
-  flutter_deriv_api:
-    git:
-      url: git@github.com:deriv-com/flutter-deriv-api.git
-      ref: 82ddc3e22ca6ac85a6c7ff4bac082a1574a90c93
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

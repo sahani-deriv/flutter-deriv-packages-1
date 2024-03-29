@@ -155,7 +155,7 @@ class _SettingsPageState extends State<DerivSettingLayout> {
           top: ThemeProvider.margin24,
         ),
         child: Text(
-          context.derivAuthLocalization!.labelDeveloper,
+          context.derivAuthLocalization.labelDeveloper,
           style: context.theme.textStyle(
             textStyle: TextStyles.body1Bold,
             color: context.theme.colors.coral,
@@ -164,21 +164,21 @@ class _SettingsPageState extends State<DerivSettingLayout> {
       );
 
   Widget get _endpoint => _buildTextInputField(
-        label: context.derivAuthLocalization!.labelEndpoint,
-        semantic: context.derivAuthLocalization!.semanticEndpoint,
+        label: context.derivAuthLocalization.labelEndpoint,
+        semantic: context.derivAuthLocalization.semanticEndpoint,
         controller: _endpointController,
         validator: (String? value) => hasOnlySmallLettersAndNumberInput(value!)
             ? null
-            : context.derivAuthLocalization!.warnInvalidEndpoint,
+            : context.derivAuthLocalization.warnInvalidEndpoint,
       );
 
   Widget get _appId => _buildTextInputField(
-        label: context.derivAuthLocalization!.labelApplicationID,
-        semantic: context.derivAuthLocalization!.semanticApplicationID,
+        label: context.derivAuthLocalization.labelApplicationID,
+        semantic: context.derivAuthLocalization.semanticApplicationID,
         controller: _appIdController,
         validator: (String? value) => hasOnlyNumberInput(value!)
             ? null
-            : context.derivAuthLocalization!.warnInvalidApplicationID,
+            : context.derivAuthLocalization.warnInvalidApplicationID,
       );
 
   Widget _buildTextInputField({
