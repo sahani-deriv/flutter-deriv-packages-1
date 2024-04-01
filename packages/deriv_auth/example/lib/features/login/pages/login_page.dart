@@ -26,8 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       redirectURL: 'deriv://example',
       onWebViewError: (String error) {},
       welcomeLabel: 'Welcome back!',
-      onLoggedIn: (BuildContext context, DerivAuthLoggedInState state) =>
-          Navigator.pushReplacement(
+      onLoggedIn: (DerivAuthLoggedInState state) => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const HomePage(),

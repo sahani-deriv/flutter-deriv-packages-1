@@ -65,7 +65,7 @@ void main() {
             welcomeLabel: welcomeLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
-            onLoggedIn: (_, __) {},
+            onLoggedIn: (_) {},
             onSocialAuthButtonPressed: (SocialAuthDto p0) {},
             onLoginError: (_) {},
           ),
@@ -101,7 +101,7 @@ void main() {
             welcomeLabel: welcomeLabel,
             onResetPassTapped: () {},
             onSignupTapped: () {},
-            onLoggedIn: (_, __) {},
+            onLoggedIn: (_) {},
             onSocialAuthButtonPressed: (_) {},
             onLoginError: (_) {},
           ),
@@ -139,7 +139,7 @@ void main() {
               welcomeLabel: welcomeLabel,
               onResetPassTapped: () {},
               onSignupTapped: () {},
-              onLoggedIn: (_, __) {},
+              onLoggedIn: (_) {},
               onSocialAuthButtonPressed: (_) {},
               onLoginError: (_) {},
             ),
@@ -173,7 +173,7 @@ void main() {
           onSignupTapped: () {
             onSignupTappedCalled = true;
           },
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
           onLoginError: (_) {},
         ),
@@ -216,7 +216,7 @@ void main() {
           welcomeLabel: welcomeLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
-          onLoggedIn: (_, __) {
+          onLoggedIn: (_) {
             onLoggedInCalled = true;
           },
           onSocialAuthButtonPressed: (_) {},
@@ -256,7 +256,7 @@ void main() {
           onLoginError: (_) {
             onLoginErrorCalled = true;
           },
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
         ),
       ));
@@ -290,7 +290,7 @@ void main() {
           onResetPassTapped: () {},
           onSignupTapped: () {},
           onLoginError: (_) {},
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
         ),
       ));
@@ -323,7 +323,7 @@ void main() {
             onResetPassTappedCalled = true;
           },
           onSignupTapped: () {},
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
           onLoginError: (_) {},
         ),
@@ -368,7 +368,7 @@ void main() {
           welcomeLabel: welcomeLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {
             onSocialAuthButtonPressedCalled = true;
           },
@@ -413,7 +413,7 @@ void main() {
           welcomeLabel: welcomeLabel,
           onResetPassTapped: () {},
           onSignupTapped: () {},
-          onLoggedIn: (_, __) {},
+          onLoggedIn: (_) {},
           onSocialAuthButtonPressed: (_) {},
           onLoginError: (_) {},
         ),
