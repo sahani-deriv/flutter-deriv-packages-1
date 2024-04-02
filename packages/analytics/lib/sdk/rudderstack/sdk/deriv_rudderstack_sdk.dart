@@ -53,8 +53,11 @@ class DerivRudderstack implements BaseAnalytics<RudderstackConfiguration> {
       _execute(() => rudderClient.identify(userId));
 
   /// Tracks an event with the given [eventName].
-  Future<bool> track({required String eventName}) async =>
-      _execute(() => rudderClient.track(eventName));
+  Future<bool> track(
+          {required String eventName,
+          Map<String, dynamic>? properties}) async =>
+      _execute(() => rudderClient.track(eventName,
+          properties: RudderProperty.fromMap(properties!)));
 
   /// Logs a screen view with the given [screenName].
   Future<bool> screen({required String screenName}) async =>
