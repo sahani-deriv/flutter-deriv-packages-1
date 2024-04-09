@@ -3,6 +3,116 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-04-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_language_selector` - `v0.0.2`](#deriv_language_selector---v002)
+
+---
+
+#### `deriv_language_selector` - `v0.0.2`
+
+ - **FEAT**(deriv_language_selector): aliakbar/1586/set_device_lang_as_default_if_app_supports ([#540](https://github.com/regentmarkets/flutter-deriv-packages/issues/540)). ([88ba3104](https://github.com/regentmarkets/flutter-deriv-packages/commit/88ba31049eb3a718db3e1ee5e8e85f56689d94ba))
+
+
+## 2024-04-02
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.2.0`](#deriv_localizations---v120)
+ - [`deriv_auth` - `v6.3.7`](#deriv_auth---v637)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.3.7`
+
+---
+
+#### `deriv_localizations` - `v1.2.0`
+
+ - **FEAT**(deriv_localizations): [UPM-856] Adding deriv passkeys localizations. ([#544](https://github.com/regentmarkets/flutter-deriv-packages/issues/544)). ([9a3b42e2](https://github.com/regentmarkets/flutter-deriv-packages/commit/9a3b42e2468c9586eae4eb03ba8a7b2712f44de2))
+
+
+## 2024-03-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.3.6`](#deriv_auth---v636)
+
+---
+
+#### `deriv_auth` - `v6.3.6`
+
+ - **FIX**(auth_single_entry): add auth cubits provider. ([8f71d1d5](https://github.com/regentmarkets/flutter-deriv-packages/commit/8f71d1d570508666843119d7c1317210484fcc20))
+
+
+## 2024-03-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_theme` - `v2.4.0`](#deriv_theme---v240)
+ - [`deriv_auth` - `v6.3.5`](#deriv_auth---v635)
+ - [`deriv_ui` - `v0.0.7+2`](#deriv_ui---v0072)
+ - [`deriv_numpad` - `v1.1.3`](#deriv_numpad---v113)
+ - [`deriv_widgetbook` - `v0.0.2+2`](#deriv_widgetbook---v0022)
+ - [`deriv_expandable_bottom_sheet` - `v0.0.1+4`](#deriv_expandable_bottom_sheet---v0014)
+ - [`deriv_date_range_picker` - `v0.0.1+4`](#deriv_date_range_picker---v0014)
+ - [`deriv_language_selector` - `v0.0.1+2`](#deriv_language_selector---v0012)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.3.5`
+ - `deriv_ui` - `v0.0.7+2`
+ - `deriv_numpad` - `v1.1.3`
+ - `deriv_widgetbook` - `v0.0.2+2`
+ - `deriv_expandable_bottom_sheet` - `v0.0.1+4`
+ - `deriv_date_range_picker` - `v0.0.1+4`
+ - `deriv_language_selector` - `v0.0.1+2`
+
+---
+
+#### `deriv_theme` - `v2.4.0`
+
+ - **FEAT**(deriv_theme): [UPM-856] Add passkeys colors to deriv theme. ([#545](https://github.com/regentmarkets/flutter-deriv-packages/issues/545)). ([09c54bb6](https://github.com/regentmarkets/flutter-deriv-packages/commit/09c54bb6572d5c8ec0454cf41c8ef282b89f2689))
+
+
 ## 2024-03-25
 
 ### Changes
