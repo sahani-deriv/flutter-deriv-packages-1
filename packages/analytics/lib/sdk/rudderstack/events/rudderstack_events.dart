@@ -132,4 +132,15 @@ class DerivRudderstackEvents {
       'form_name': 'virtual_signup_derivgo'
     });
   }
+
+  /// Tracks any error is happening and shown to the user (validation, API communication, social providers errors).
+  void logSignUpFlowError(String? errorText, [String? signupProvider]) {
+    DerivRudderstack().track(eventName: 'ce_virtual_signup_form', properties: {
+      'action': 'signup_flow_error',
+      'signup_provider': '$signupProvider',
+      'error_message': '$errorText',
+      'form_source': 'mobile_derivgo',
+      'form_name': 'virtual_signup_derivgo'
+    });
+  }
 }
