@@ -52,7 +52,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_passkeys
-      ref: 14c421fa006da601441e7ab20e2d4caf1e044ee7
+      ref: c00a7ce73cbb6c0b97f6262f7df6bd2b15324337
 
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.7
