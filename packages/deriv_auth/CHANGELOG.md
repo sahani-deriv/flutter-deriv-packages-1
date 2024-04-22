@@ -1,3 +1,7 @@
+## 6.4.0
+
+ - **FEAT**(deriv_auth): [P2PS-2679] add widget keys to auth components ([#565](https://github.com/regentmarkets/flutter-deriv-packages/issues/565)). ([e7bc54b4](https://github.com/regentmarkets/flutter-deriv-packages/commit/e7bc54b4be3d80236c83f1fecbe6f012f8759690))
+
 ## 6.3.8
 
  - Update a dependency to the latest release.
