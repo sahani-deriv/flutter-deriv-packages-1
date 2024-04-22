@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v6.4.0`](#deriv_auth---v640)
+
+---
+
+#### `deriv_auth` - `v6.4.0`
+
+ - **FEAT**(deriv_auth): [P2PS-2679] add widget keys to auth components ([#565](https://github.com/regentmarkets/flutter-deriv-packages/issues/565)). ([e7bc54b4](https://github.com/regentmarkets/flutter-deriv-packages/commit/e7bc54b4be3d80236c83f1fecbe6f012f8759690))
+
+
+## 2024-04-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_web_view` - `v0.2.2+1`](#deriv_web_view---v0221)
  - [`deriv_auth` - `v6.3.8`](#deriv_auth---v638)
  - [`deriv_ui` - `v0.0.7+3`](#deriv_ui---v0073)
