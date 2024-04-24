@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-04-24
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.4.1`](#deriv_auth---v641)
+
+---
+
+#### `deriv_auth` - `v6.4.1`
+
+ - **FIX**(deriv_auth): Update settings page navigation in auth flow with callback ([#567](https://github.com/regentmarkets/flutter-deriv-packages/issues/567)). ([53857baf](https://github.com/regentmarkets/flutter-deriv-packages/commit/53857baf66ecc870e8a1452663c564b8ee57837a))
+
+
 ## 2024-04-22
 
 ### Changes
