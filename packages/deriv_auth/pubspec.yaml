@@ -46,7 +46,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_localizations
-      ref: deriv_localizations-v1.2.0
+      ref: da897013ecd1f993ad4e696c1d0856d7ebf3758c
 
   deriv_passkeys:
     git:
@@ -68,6 +68,11 @@ dependency_overrides:
     git:
       url: git@github.com:deriv-com/flutter-deriv-api.git
       ref: dev
+  deriv_localizations:
+    git:
+      url: git@github.com:regentmarkets/flutter-deriv-packages.git
+      path: packages/deriv_localizations
+      ref: da897013ecd1f993ad4e696c1d0856d7ebf3758c
 
 dev_dependencies:
   mocktail: ^1.0.3
