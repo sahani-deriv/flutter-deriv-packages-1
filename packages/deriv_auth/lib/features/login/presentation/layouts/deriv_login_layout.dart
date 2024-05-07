@@ -136,9 +136,7 @@ class _DerivLoginLayoutState extends State<DerivLoginLayout> {
                       ),
                       if (widget.isSocialAuthEnabled)
                         const SizedBox(height: ThemeProvider.margin24),
-                      ContinueWithPasskeyButton(
-                        derivPasskeysBloc: AuthData().data.derivPasskeysBloc,
-                      ),
+                      ContinueWithPasskeyButton(),
                       DerivSocialAuthPanel(
                         socialAuthStateHandler: widget.socialAuthStateHandler,
                         redirectURL: widget.redirectURL,
