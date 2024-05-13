@@ -70,19 +70,26 @@ class _DerivSocialAuthPanelState extends State<DerivSocialAuthPanel> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(height: ThemeProvider.margin08),
-                _buildSocialAuthButton(SocialAuthProvider.google),
+                _buildSocialAuthButton(SocialAuthProvider.google,
+                    key: const Key('social_auth_button_google')),
                 const SizedBox(height: ThemeProvider.margin08),
-                _buildSocialAuthButton(SocialAuthProvider.facebook),
+                _buildSocialAuthButton(SocialAuthProvider.facebook,
+                    key: const Key('social_auth_button_facebook')),
                 const SizedBox(height: ThemeProvider.margin08),
-                _buildSocialAuthButton(SocialAuthProvider.apple),
+                _buildSocialAuthButton(SocialAuthProvider.apple,
+                    key: const Key('social_auth_button_apple')),
               ],
             ),
           ),
         ),
       );
 
-  Widget _buildSocialAuthButton(SocialAuthProvider socialAuthProvider) =>
+  Widget _buildSocialAuthButton(
+    SocialAuthProvider socialAuthProvider, {
+    Key? key,
+  }) =>
       InkWell(
+        key: key,
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 16,

@@ -1,6 +1,7 @@
 ## Deriv Auth Layouts
 
 ### - Get Started Flow
+
 - **Get Started Layout**
     ``` dart
       DerivGetStartedLayout(
@@ -13,10 +14,17 @@
         onSignupTapped: () {},
       );
     ```
+
 ### - Login Flow
+
 - **Login Layout**
     ``` dart
       DerivLoginLayout(
+            titleKey: Key('title key'),
+            emailTextFieldKey: Key('email text field key'),
+            passwordTextFieldKey: Key('password text field key'),
+            forgotPasswordButtonKey: Key('forgot password button key'),
+            loginButtonKey: Key('login button key'),
             welcomeLabel: 'Welcome back!',
             onResetPassTapped: () {
                 // Navigate to reset password page
@@ -53,6 +61,7 @@
     ```
 
 ### - Signup Flow
+
 - **Signup Layout**
     ``` dart
       DerivSignupLayout(
@@ -111,6 +120,7 @@
             residence: 'residence',
           );
     ```
+
 ### - Reset Password Flow
 
 - **Reset Password Layout**
