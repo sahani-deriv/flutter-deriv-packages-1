@@ -58,7 +58,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_language_selector
-      ref: deriv_language_selector-v0.0.2+1
+      ref: deriv_language_selector-v0.0.2+2
       
   flutter_bloc: ^8.1.3
   flutter_svg: ^2.0.7

@@ -1,5 +1,7 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:deriv_auth/core/models/landig_comany_model.dart';
 import 'package:deriv_auth/deriv_auth.dart';
+import 'package:deriv_passkeys/deriv_passkeys.dart';
 import 'package:deriv_ui/deriv_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,16 +14,26 @@ import '../../../../mocks.dart';
 import '../../../../pump_app.dart';
 import '../../../social_auth/mocks/mock_social_provider_model.dart';
 
+class MockDerivPasskeysBloc
+    extends MockBloc<DerivPasskeysEvent, DerivPasskeysState>
+    implements DerivPasskeysBloc {}
+
 void main() {
   group('DerivLoginLayout', () {
     late MockAuthCubit authCubit;
     late MockSocialAuthCubit socialAuthCubit;
+    late MockDerivPasskeysBloc derivPasskeysBloc;
 
     const String welcomeLabel = 'Welcome Back';
 
     setUpAll(() {
       authCubit = MockAuthCubit();
       socialAuthCubit = MockSocialAuthCubit();
+      derivPasskeysBloc = MockDerivPasskeysBloc();
+
+      when(() => derivPasskeysBloc.state).thenReturn(
+        DerivPasskeysInitializedState(),
+      );
 
       registerFallbackValue(SocialAuthProvider.google);
 
@@ -57,6 +69,7 @@ void main() {
           providers: <SingleChildWidget>[
             BlocProvider<DerivAuthCubit>.value(value: authCubit),
             BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+            BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
           ],
           child: DerivLoginLayout(
             socialAuthStateHandler: (SocialAuthState state) {},
@@ -93,6 +106,7 @@ void main() {
           providers: <SingleChildWidget>[
             BlocProvider<DerivAuthCubit>.value(value: authCubit),
             BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+            BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
           ],
           child: DerivLoginLayout(
             socialAuthStateHandler: (SocialAuthState state) {},
@@ -131,6 +145,7 @@ void main() {
             providers: <SingleChildWidget>[
               BlocProvider<DerivAuthCubit>.value(value: authCubit),
               BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+              BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
             ],
             child: DerivLoginLayout(
               socialAuthStateHandler: (SocialAuthState state) {},
@@ -163,6 +178,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -208,6 +224,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -245,6 +262,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -281,6 +299,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -313,6 +332,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -360,6 +380,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {},
@@ -376,7 +397,7 @@ void main() {
         ),
       ));
 
-      await $(IconButton).at(1).tap();
+      await $(InkWell).$(SocialAuthProvider.google.name.capitalize).tap();
 
       expect(onSocialAuthButtonPressedCalled, isTrue);
     });
@@ -403,6 +424,7 @@ void main() {
         providers: <SingleChildWidget>[
           BlocProvider<DerivAuthCubit>.value(value: authCubit),
           BlocProvider<SocialAuthCubit>.value(value: socialAuthCubit),
+          BlocProvider<DerivPasskeysBloc>.value(value: derivPasskeysBloc),
         ],
         child: DerivLoginLayout(
           socialAuthStateHandler: (SocialAuthState state) {
