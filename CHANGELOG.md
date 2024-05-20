@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-05-20
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.4.0`](#deriv_localizations---v140)
+ - [`deriv_passkeys` - `v0.0.1+1`](#deriv_passkeys---v0011)
+ - [`deriv_auth` - `v6.5.2`](#deriv_auth---v652)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.5.2`
+
+---
+
+#### `deriv_localizations` - `v1.4.0`
+
+ - **FEAT**(deriv_passkeys): [UPM-547] Deriv passkeys package ([#425](https://github.com/regentmarkets/flutter-deriv-packages/issues/425)). ([c5509175](https://github.com/regentmarkets/flutter-deriv-packages/commit/c5509175edb6a94122cce6fe6f63a43d44904dc9))
+
+#### `deriv_passkeys` - `v0.0.1+1`
+
+ - **REFACTOR**(deriv_passkeys): updated deriv_localizations ([#590](https://github.com/regentmarkets/flutter-deriv-packages/issues/590)). ([3f299fae](https://github.com/regentmarkets/flutter-deriv-packages/commit/3f299faea33731a814d18f18ba99180eb6483ca6))
+
+
 ## 2024-05-17
 
 ### Changes
