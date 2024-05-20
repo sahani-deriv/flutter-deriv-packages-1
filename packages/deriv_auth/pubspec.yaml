@@ -52,7 +52,7 @@ dependencies:
     git:
       url: git@github.com:regentmarkets/flutter-deriv-packages.git
       path: packages/deriv_passkeys
-      ref: dabf6e8cc92494522879fe9fbfae592377eb899a
+      ref: deriv_passkeys-v0.0.1+1
       
   deriv_language_selector:
     git:
