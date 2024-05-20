@@ -32,7 +32,7 @@ class GetStartedPage extends StatelessWidget {
             builder: (context) => const SignupPage(),
           ),
         ),
-        onTapNavigation: () {
+        onTapNavigation: (context) {
           Navigator.push(
             context,
             MaterialPageRoute<Widget>(
