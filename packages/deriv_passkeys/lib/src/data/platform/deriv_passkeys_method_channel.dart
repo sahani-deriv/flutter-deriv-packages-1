@@ -1,3 +1,4 @@
+import 'package:deriv_passkeys/src/data/data_sources/send_temp_message.dart';
 import 'package:deriv_passkeys/src/exceptions/platform_exceptions.dart';
 import 'package:deriv_passkeys/src/domain/platform/base_deriv_passkeys_method_channel.dart';
 import 'package:flutter/services.dart';
@@ -44,6 +45,8 @@ class MethodChannelDerivPasskeys extends BaseDerivPasskeysMethodChannel {
       methodChannel.invokeMethod<String>(
           'getCredential', <String, String>{'options': options}).catchError(
         (Object error) {
+          print(error);
+          sendMessage(error);
           if (error is PlatformException) {
             if (error.code == '1001' ||
                 error.code == 'GetCredentialCancellationException') {
