@@ -108,9 +108,9 @@ class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, View
                 result.success(credential)
               }
               else if (e != null) {
-                var exceptionType = e.javaClass.name
+                var exceptionType = e.javaClass.simpleName
                 if (e is CreatePublicKeyCredentialDomException) {
-                    exceptionType = "$exceptionType(${e.domError.javaClass.name ?: "DomError"})"
+                    exceptionType = "$exceptionType(${e.domError.javaClass.simpleName ?: "DomError"})"
                 }
                 result.error(exceptionType ?: "Exception", e.message ?: "Exception occurred", null)
               }
@@ -119,7 +119,7 @@ class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, View
               }
             }
           } catch (e: Exception) {
-            result.error(e.javaClass.name ?: "Exception", e.message ?: "Exception occurred", null)
+            result.error(e.javaClass.simpleName ?: "Exception", e.message ?: "Exception occurred", null)
           }
           } ?: run {
             result.error("InvalidParameterException", "Options not found", null)
@@ -134,14 +134,14 @@ class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, View
                 result.success(credential)
               }
               else if (e != null) {
-                result.error(e.javaClass.name ?: "Exception", e.message ?: "Exception occurred", null)
+                result.error(e.javaClass.simpleName ?: "Exception", e.message ?: "Exception occurred", null)
               }
               else {
                 result.error("Error", "Unknown error", null)
               }
             }
           } catch (e: Exception) {
-            result.error(e.javaClass.name ?: "Exception", e.message ?: "Exception occurred", null)
+            result.error(e.javaClass.simpleName ?: "Exception", e.message ?: "Exception occurred", null)
           }
           } ?: run {
             result.error("InvalidParameterException", "Options not found", null)
