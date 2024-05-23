@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-05-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_live_chat` - `v0.0.1+2`](#deriv_live_chat---v0012)
+
+---
+
+#### `deriv_live_chat` - `v0.0.1+2`
+
+ - **REFACTOR**(deriv_live_chat): Glitch_while_clicking_on_live_chat_icon_IOS ([#585](https://github.com/regentmarkets/flutter-deriv-packages/issues/585)). ([957faa3f](https://github.com/regentmarkets/flutter-deriv-packages/commit/957faa3fb16be0174e5e529cbcc068de31cc7bb3))
+
+
 ## 2024-05-20
 
 ### Changes
