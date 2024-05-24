@@ -18,6 +18,8 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import androidx.credentials.exceptions.NoCredentialException
+import androidx.credentials.exceptions.GetCredentialCancellationException
 
 /// DerivPasskeysPlugin is a Flutter plugin that provides a way to create and get credentials using the WebAuthn API.
 class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, ViewModel() {
@@ -118,9 +120,13 @@ class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, View
                 result.error("Error", "Unknown error", null)
               }
             }
-          } catch (e: Exception) {
+            } catch (e: GetCredentialCancellationException) {
+            result.error("GetCredentialCancellationException", e.message ?: "No credential found", null)
+            } catch (e: NoCredentialException) {
+            result.error("NoCredentialException", e.message ?: "No credential found", null)
+            } catch (e: Exception) {
             result.error(e.javaClass.simpleName ?: "Exception", e.message ?: "Exception occurred", null)
-          }
+            }
           } ?: run {
             result.error("InvalidParameterException", "Options not found", null)
           }
