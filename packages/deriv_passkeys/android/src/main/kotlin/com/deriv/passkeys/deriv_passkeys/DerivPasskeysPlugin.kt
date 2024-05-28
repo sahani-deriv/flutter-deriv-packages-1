@@ -120,10 +120,6 @@ class DerivPasskeysPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, View
                 result.error("Error", "Unknown error", null)
               }
             }
-            } catch (e: GetCredentialCancellationException) {
-            result.error("GetCredentialCancellationException", e.message ?: "No credential found", null)
-            } catch (e: NoCredentialException) {
-            result.error("NoCredentialException", e.message ?: "No credential found", null)
             } catch (e: Exception) {
             result.error(e.javaClass.simpleName ?: "Exception", e.message ?: "Exception occurred", null)
             }
