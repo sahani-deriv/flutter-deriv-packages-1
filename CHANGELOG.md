@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-05-29
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_feature_flag` - `v0.1.1`](#deriv_feature_flag---v011)
+
+---
+
+#### `deriv_feature_flag` - `v0.1.1`
+
+ - **FEAT**(deriv_feature_flag): Add a methods to retrieve values for feature flag types other than boolean ([#513](https://github.com/regentmarkets/flutter-deriv-packages/issues/513)). ([dd30f341](https://github.com/regentmarkets/flutter-deriv-packages/commit/dd30f3419b8d0ca887b4cfc58280db4bc4738076))
+
+
 ## 2024-05-28
 
 ### Changes
