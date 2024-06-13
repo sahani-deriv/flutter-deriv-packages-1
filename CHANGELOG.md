@@ -11,6 +11,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.6.6`](#deriv_auth---v666)
+
+---
+
+#### `deriv_auth` - `v6.6.6`
+
+ - **REFACTOR**(deriv_auth): added a flag to allow hiding passkeys button ([#612](https://github.com/regentmarkets/flutter-deriv-packages/issues/612)). ([a4026a9d](https://github.com/regentmarkets/flutter-deriv-packages/commit/a4026a9d8164abc1c66beb327d48610d8ce30dde))
+
+
+## 2024-06-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`analytics` - `v2.0.0`](#analytics---v200)
 
 Packages with other changes:
