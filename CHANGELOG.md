@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-06-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`analytics` - `v2.0.0`](#analytics---v200)
+
+Packages with other changes:
+
+ - [`deriv_localizations` - `v1.4.2`](#deriv_localizations---v142)
+ - [`deriv_auth` - `v6.6.5`](#deriv_auth---v665)
+ - [`deriv_passkeys` - `v0.0.1+6`](#deriv_passkeys---v0016)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.6.5`
+ - `deriv_passkeys` - `v0.0.1+6`
+
+---
+
+#### `analytics` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**(analytics): added logAppOpen event ([#610](https://github.com/regentmarkets/flutter-deriv-packages/issues/610)). ([74f8d9c3](https://github.com/regentmarkets/flutter-deriv-packages/commit/74f8d9c3a7311ec7abb1cfe76c3f6f190fbcb81a))
+
+#### `deriv_localizations` - `v1.4.2`
+
+ - **FIX**(deriv-localization): fix passkey button strings ([#606](https://github.com/regentmarkets/flutter-deriv-packages/issues/606)). ([ed2a7ea9](https://github.com/regentmarkets/flutter-deriv-packages/commit/ed2a7ea958e34aa027ecb9ef6919f04fd5c7d5f1))
+
+
 ## 2024-06-07
 
 ### Changes
