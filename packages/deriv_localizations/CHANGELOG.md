@@ -1,3 +1,7 @@
+## 1.4.2
+
+ - **FIX**(deriv-localization): fix passkey button strings ([#606](https://github.com/regentmarkets/flutter-deriv-packages/issues/606)). ([ed2a7ea9](https://github.com/regentmarkets/flutter-deriv-packages/commit/ed2a7ea958e34aa027ecb9ef6919f04fd5c7d5f1))
+
 ## 1.4.1
 
  - **REFACTOR**(deriv_auth): update localization ([#594](https://github.com/regentmarkets/flutter-deriv-packages/issues/594)). ([5204c74f](https://github.com/regentmarkets/flutter-deriv-packages/commit/5204c74f609d946ea797e766e6bb652d82f76930))
