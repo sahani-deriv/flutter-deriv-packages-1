@@ -15,6 +15,34 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_passkeys` - `v0.0.2`](#deriv_passkeys---v002)
+ - [`deriv_auth` - `v6.6.8`](#deriv_auth---v668)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.6.8`
+
+---
+
+#### `deriv_passkeys` - `v0.0.2`
+
+ - **FEAT**(deriv_passkeys): add user tracking events. ([#607](https://github.com/regentmarkets/flutter-deriv-packages/issues/607)). ([d86b51e2](https://github.com/regentmarkets/flutter-deriv-packages/commit/d86b51e2fe4ca4d18768d0ba17567a388a8d360d))
+
+
+## 2024-06-20
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_logger` - `v0.0.2`](#deriv_logger---v002)
  - [`update_checker` - `v1.3.0`](#update_checker---v130)
 

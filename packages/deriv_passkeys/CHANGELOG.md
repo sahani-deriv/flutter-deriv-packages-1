@@ -1,3 +1,7 @@
+## 0.0.2
+
+ - **FEAT**(deriv_passkeys): add user tracking events. ([#607](https://github.com/regentmarkets/flutter-deriv-packages/issues/607)). ([d86b51e2](https://github.com/regentmarkets/flutter-deriv-packages/commit/d86b51e2fe4ca4d18768d0ba17567a388a8d360d))
+
 ## 0.0.1+8
 
  - Update a dependency to the latest release.
