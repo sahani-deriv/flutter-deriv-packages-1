@@ -15,6 +15,46 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v6.7.1`](#deriv_auth---v671)
+ - [`deriv_web_view` - `v0.2.2+3`](#deriv_web_view---v0223)
+ - [`deriv_ui` - `v0.0.7+9`](#deriv_ui---v0079)
+ - [`deriv_widgetbook` - `v0.0.2+9`](#deriv_widgetbook---v0029)
+ - [`deriv_passkeys` - `v0.0.2+3`](#deriv_passkeys---v0023)
+ - [`deriv_language_selector` - `v0.0.2+7`](#deriv_language_selector---v0027)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.7+9`
+ - `deriv_widgetbook` - `v0.0.2+9`
+ - `deriv_passkeys` - `v0.0.2+3`
+ - `deriv_language_selector` - `v0.0.2+7`
+
+---
+
+#### `deriv_auth` - `v6.7.1`
+
+ - **FIX**(deriv_auth): Fix login provider null issue ([#641](https://github.com/regentmarkets/flutter-deriv-packages/issues/641)). ([e4181541](https://github.com/regentmarkets/flutter-deriv-packages/commit/e41815416eb76b3724481f8a0b980e943311ebeb))
+ - **FIX**(deriv_web_view): update deriv ui version in deriv auth ([#639](https://github.com/regentmarkets/flutter-deriv-packages/issues/639)). ([11b46a9f](https://github.com/regentmarkets/flutter-deriv-packages/commit/11b46a9f7bd00482d3cac7820cf4cd5d61da0cad))
+
+#### `deriv_web_view` - `v0.2.2+3`
+
+ - **FIX**(deriv_web_view): update deriv web view readme file ([#637](https://github.com/regentmarkets/flutter-deriv-packages/issues/637)). ([b0b66dad](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0b66dadb6cb1b30dc3ad759f2eee031673b6bbf))
+
+
+## 2024-06-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v6.7.0`](#deriv_auth---v670)
  - [`deriv_web_view` - `v0.2.2+2`](#deriv_web_view---v0222)
  - [`update_checker` - `v1.4.0`](#update_checker---v140)
