@@ -154,7 +154,6 @@ Future<void> openLoggedInWebPage({
   required String appToken,
   required String userAgent,
   required String platform,
-  String? languageCode,
   HttpClientPredicate? getHttpClient,
   String destinationAppId = '16929',
   String? action,
@@ -180,7 +179,6 @@ Future<void> openLoggedInWebPage({
     action: action,
     code: code,
     platform: platform,
-    languageCode: languageCode
   );
 
   if (oneTimeToken == null) {
@@ -221,7 +219,6 @@ Future<void> openLoggedInWebPage({
             action: action,
             code: code,
             platform: platform,
-            languageCode: languageCode,
           );
         }
 
@@ -255,7 +252,6 @@ Future<String?> _fetchOneTimeToken({
   HttpClientPredicate? getHttpClient,
   String? action,
   String? code,
-  String? languageCode,
 }) async {
   loadingDialog(context);
 
@@ -271,7 +267,6 @@ Future<String?> _fetchOneTimeToken({
     code: code,
     getHttpClient: getHttpClient,
     platform: platform,
-    languageCode: languageCode,
   );
 
   Navigator.of(context, rootNavigator: rootNavigator).pop();
@@ -292,7 +287,6 @@ Future<String?> _getOneTimeToken({
   HttpClientPredicate? getHttpClient,
   String? action,
   String? code,
-  String? languageCode,
 }) async {
   try {
     final String? token = await performPassThroughAuthentication(
@@ -307,7 +301,6 @@ Future<String?> _getOneTimeToken({
       code: code,
       getHttpClient: getHttpClient,
       platform: platform,
-      languageCode: languageCode,
     );
 
     return token;
@@ -334,7 +327,6 @@ Future<String?> _validateCredentials({
   HttpClientPredicate? getHttpClient,
   String? action,
   String? code,
-  String? languageCode,
 }) async {
   final String? oneTimeToken = await _fetchOneTimeToken(
     context: context,
@@ -351,7 +343,6 @@ Future<String?> _validateCredentials({
     action: action,
     code: code,
     platform: platform,
-    languageCode: languageCode,
   );
 
   if (oneTimeToken == null) {
