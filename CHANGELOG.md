@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-06-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_web_view` - `v0.2.2+2`](#deriv_web_view---v0222)
+ - [`deriv_ui` - `v0.0.7+8`](#deriv_ui---v0078)
+ - [`deriv_auth` - `v6.6.10`](#deriv_auth---v6610)
+ - [`deriv_widgetbook` - `v0.0.2+8`](#deriv_widgetbook---v0028)
+ - [`deriv_passkeys` - `v0.0.2+2`](#deriv_passkeys---v0022)
+ - [`deriv_language_selector` - `v0.0.2+6`](#deriv_language_selector---v0026)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.7+8`
+ - `deriv_auth` - `v6.6.10`
+ - `deriv_widgetbook` - `v0.0.2+8`
+ - `deriv_passkeys` - `v0.0.2+2`
+ - `deriv_language_selector` - `v0.0.2+6`
+
+---
+
+#### `deriv_web_view` - `v0.2.2+2`
+
+ - **FIX**(deriv_webview): add language parameter to needed classes ([#600](https://github.com/regentmarkets/flutter-deriv-packages/issues/600)). ([9b857999](https://github.com/regentmarkets/flutter-deriv-packages/commit/9b857999f479486830671f8b8e8b7fc26dcd769b))
+
+
 ## 2024-06-24
 
 ### Changes
