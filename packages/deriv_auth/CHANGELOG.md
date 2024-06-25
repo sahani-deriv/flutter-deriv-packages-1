@@ -1,3 +1,8 @@
+## 6.7.1
+
+ - **FIX**(deriv_auth): Fix login provider null issue ([#641](https://github.com/regentmarkets/flutter-deriv-packages/issues/641)). ([e4181541](https://github.com/regentmarkets/flutter-deriv-packages/commit/e41815416eb76b3724481f8a0b980e943311ebeb))
+ - **FIX**(deriv_web_view): update deriv ui version in deriv auth ([#639](https://github.com/regentmarkets/flutter-deriv-packages/issues/639)). ([11b46a9f](https://github.com/regentmarkets/flutter-deriv-packages/commit/11b46a9f7bd00482d3cac7820cf4cd5d61da0cad))
+
 ## 6.7.0
 
  - **FIX**(deriv_web_view): update deriv ui version in deriv auth ([#639](https://github.com/regentmarkets/flutter-deriv-packages/issues/639)). ([11b46a9f](https://github.com/regentmarkets/flutter-deriv-packages/commit/11b46a9f7bd00482d3cac7820cf4cd5d61da0cad))
