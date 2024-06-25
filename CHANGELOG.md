@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-06-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.7.0`](#deriv_auth---v670)
+ - [`deriv_web_view` - `v0.2.2+2`](#deriv_web_view---v0222)
+ - [`deriv_ui` - `v0.0.7+8`](#deriv_ui---v0078)
+ - [`deriv_widgetbook` - `v0.0.2+8`](#deriv_widgetbook---v0028)
+ - [`deriv_passkeys` - `v0.0.2+2`](#deriv_passkeys---v0022)
+ - [`deriv_language_selector` - `v0.0.2+6`](#deriv_language_selector---v0026)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_ui` - `v0.0.7+8`
+ - `deriv_widgetbook` - `v0.0.2+8`
+ - `deriv_passkeys` - `v0.0.2+2`
+ - `deriv_language_selector` - `v0.0.2+6`
+
+---
+
+#### `deriv_auth` - `v6.7.0`
+
+ - **FEAT**(deriv_auth): add log in user tracking events. ([#620](https://github.com/regentmarkets/flutter-deriv-packages/issues/620)). ([ae9556cf](https://github.com/regentmarkets/flutter-deriv-packages/commit/ae9556cf3af98196bb22e351d9a8eccbf534889c))
+
+#### `deriv_web_view` - `v0.2.2+2`
+
+ - **FIX**(deriv_web_view): update deriv web view readme file ([#637](https://github.com/regentmarkets/flutter-deriv-packages/issues/637)). ([b0b66dad](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0b66dadb6cb1b30dc3ad759f2eee031673b6bbf))
+ - **FIX**(deriv_webview): add language parameter to needed classes ([#600](https://github.com/regentmarkets/flutter-deriv-packages/issues/600)). ([9b857999](https://github.com/regentmarkets/flutter-deriv-packages/commit/9b857999f479486830671f8b8e8b7fc26dcd769b))
+
+
 ## 2024-06-24
 
 ### Changes

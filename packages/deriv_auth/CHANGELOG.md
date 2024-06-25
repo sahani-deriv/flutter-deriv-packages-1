@@ -1,3 +1,7 @@
+## 6.7.0
+
+ - **FEAT**(deriv_auth): add log in user tracking events. ([#620](https://github.com/regentmarkets/flutter-deriv-packages/issues/620)). ([ae9556cf](https://github.com/regentmarkets/flutter-deriv-packages/commit/ae9556cf3af98196bb22e351d9a8eccbf534889c))
+
 ## 6.6.9
 
  - Update a dependency to the latest release.
