@@ -1,3 +1,7 @@
+## 0.0.3+2
+
+ - Update a dependency to the latest release.
+
 ## 0.0.3+1
 
  - **FIX**(deriv_passkeys): add keys to passkey login page ([#676](https://github.com/regentmarkets/flutter-deriv-packages/issues/676)). ([aa84a46d](https://github.com/regentmarkets/flutter-deriv-packages/commit/aa84a46dfb9cd22a335276c1ae0063ffee7852ef))
