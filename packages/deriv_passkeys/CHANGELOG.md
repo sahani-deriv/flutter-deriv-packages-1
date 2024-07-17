@@ -1,3 +1,7 @@
+## 0.0.3+5
+
+ - **REFACTOR**(version): updated the version of flutter deriv api ([#694](https://github.com/regentmarkets/flutter-deriv-packages/issues/694)). ([eac7e8cb](https://github.com/regentmarkets/flutter-deriv-packages/commit/eac7e8cba4e9310d30296e07a47731f08d4d7342))
+
 ## 0.0.3+4
 
  - **FIX**(deriv_passkeys): fix some missing keys in passkey login page ([#692](https://github.com/regentmarkets/flutter-deriv-packages/issues/692)). ([d944a1c3](https://github.com/regentmarkets/flutter-deriv-packages/commit/d944a1c37f127f35143d9920532f76bc3487ebd4))
