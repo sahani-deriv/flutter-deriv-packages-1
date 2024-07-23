@@ -15,7 +15,7 @@ dependencies:
   deriv_chart:
     git:
       url: git@github.com:regentmarkets/flutter-chart.git
-      ref: v0.1.0
+      ref: dev
 
   deriv_theme:
     git:
