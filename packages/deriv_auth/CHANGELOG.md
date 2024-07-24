@@ -1,3 +1,7 @@
+## 6.7.20
+
+- revert-674-fix_deriv_auth_duplicate_token_assigned
+
 ## 6.7.19
 
  - Update a dependency to the latest release.

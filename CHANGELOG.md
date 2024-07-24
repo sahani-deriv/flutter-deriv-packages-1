@@ -16,6 +16,7 @@ Packages with breaking changes:
 Packages with other changes:
 
  - [`deriv_mobile_chart_wrapper` - `v0.0.4+2`](#deriv_mobile_chart_wrapper---v0042)
+ - `deriv_auth` - `v6.7.20`
 
 ---
 
