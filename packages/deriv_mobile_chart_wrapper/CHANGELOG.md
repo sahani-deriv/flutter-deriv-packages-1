@@ -1,3 +1,7 @@
+## 0.0.6
+
+ - **FEAT**(deriv_mobile_chart_wrapper): update the chart package to get the new icons. ([#688](https://github.com/regentmarkets/flutter-deriv-packages/issues/688)). ([849afe72](https://github.com/regentmarkets/flutter-deriv-packages/commit/849afe72a4a52230de3d06ca1194ecf017f34e11))
+
 ## 0.0.5
 
  - **FEAT**(deriv_ui): add deriv bottom sheet. feat(deriv_mobile_chart_wrapper): add indicator description ([#713](https://github.com/regentmarkets/flutter-deriv-packages/issues/713)). ([50cfbe20](https://github.com/regentmarkets/flutter-deriv-packages/commit/50cfbe2008076a073331e555228b98a11a35f2ed))

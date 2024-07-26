@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_mobile_chart_wrapper` - `v0.0.6`](#deriv_mobile_chart_wrapper---v006)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.0.6`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): update the chart package to get the new icons. ([#688](https://github.com/regentmarkets/flutter-deriv-packages/issues/688)). ([849afe72](https://github.com/regentmarkets/flutter-deriv-packages/commit/849afe72a4a52230de3d06ca1194ecf017f34e11))
+
+
+## 2024-07-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_mobile_chart_wrapper` - `v0.0.5`](#deriv_mobile_chart_wrapper---v005)
  - [`deriv_ui` - `v0.0.10`](#deriv_ui---v0010)
  - [`deriv_passkeys` - `v0.0.3+11`](#deriv_passkeys---v00311)
