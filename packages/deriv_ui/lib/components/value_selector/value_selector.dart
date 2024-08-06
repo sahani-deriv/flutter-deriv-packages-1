@@ -123,7 +123,11 @@ class ValueSelector extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(bottom: ThemeProvider.margin08),
-                  child: Text(title!, style: TextStyles.caption),
+                  child: Text(title!,
+                      style: context.theme.textStyle(
+                        textStyle: TextStyles.caption,
+                        color: context.theme.colors.general,
+                      )),
                 ),
               Ink(
                 height: 40,

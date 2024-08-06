@@ -71,3 +71,27 @@ Map<MovingAverageType, String> getTypesOptions(BuildContext context) => {
       MovingAverageType.tripleExponential:
           context.mobileChartWrapperLocalizations.label3Exponential,
     };
+
+Map<MovingAverageType, String> getMAOptions(BuildContext context) => {
+      MovingAverageType.simple:
+          context.mobileChartWrapperLocalizations.labelSimple,
+      MovingAverageType.exponential:
+          context.mobileChartWrapperLocalizations.labelExponential,
+      MovingAverageType.weighted:
+          context.mobileChartWrapperLocalizations.labelWeighted,
+      MovingAverageType.hull: context.mobileChartWrapperLocalizations.labelHull,
+      MovingAverageType.zeroLag:
+          context.mobileChartWrapperLocalizations.labelZeroLag,
+      MovingAverageType.timeSeries:
+          context.mobileChartWrapperLocalizations.labelTimeSeries,
+      MovingAverageType.wellesWilder:
+          context.mobileChartWrapperLocalizations.labelWellesWilder,
+      MovingAverageType.variable:
+          context.mobileChartWrapperLocalizations.labelVariable,
+      MovingAverageType.triangular:
+          context.mobileChartWrapperLocalizations.labelTriangular,
+      MovingAverageType.doubleExponential:
+          context.mobileChartWrapperLocalizations.label2Exponential,
+      MovingAverageType.tripleExponential:
+          context.mobileChartWrapperLocalizations.label3Exponential,
+    };
