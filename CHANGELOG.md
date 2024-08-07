@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-08-07
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_auth` - `v6.7.29`](#deriv_auth---v6729)
+
+---
+
+#### `deriv_auth` - `v6.7.29`
+
+ - **FIX**(deriv_auth): email text field validation ([#751](https://github.com/regentmarkets/flutter-deriv-packages/issues/751)). ([3e05c3fa](https://github.com/regentmarkets/flutter-deriv-packages/commit/3e05c3fa9315a75d19fbc3727ad9a161617e7fb8))
+
+
 ## 2024-08-06
 
 ### Changes
