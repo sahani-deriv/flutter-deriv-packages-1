@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_live_chat` - `v0.0.1+3`](#deriv_live_chat---v0013)
+
+---
+
+#### `deriv_live_chat` - `v0.0.1+3`
+
+ - **FIX**(deriv_live_chat): Clear the session completely on a clear callback. ([#780](https://github.com/regentmarkets/flutter-deriv-packages/issues/780)). ([3b80c767](https://github.com/regentmarkets/flutter-deriv-packages/commit/3b80c76702956fcb4868b7fa8a75f3fa9e852209))
+
+
+## 2024-08-16
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_language_selector` - `v0.0.3`](#deriv_language_selector---v003)
  - [`deriv_auth` - `v6.7.37`](#deriv_auth---v6737)
 
