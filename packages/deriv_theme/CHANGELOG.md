@@ -1,3 +1,7 @@
+## 2.6.0
+
+ - **FEAT**(deriv_theme): add IDV status badge colors. ([#777](https://github.com/regentmarkets/flutter-deriv-packages/issues/777)). ([d292701f](https://github.com/regentmarkets/flutter-deriv-packages/commit/d292701f00c1f8122a06d77860cdb528712aa694))
+
 ## 2.5.0
 
  - **FEAT**(deriv_theme): add IDV status badge colors. ([#777](https://github.com/regentmarkets/flutter-deriv-packages/issues/777)). ([d292701f](https://github.com/regentmarkets/flutter-deriv-packages/commit/d292701f00c1f8122a06d77860cdb528712aa694))
