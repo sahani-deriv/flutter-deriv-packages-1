@@ -34,8 +34,14 @@ class DerivRudderstackEvents {
   }
 
   /// Tracks userId.
-  void logIdentifyUser(String userId) {
-    DerivRudderstack().identify(userId: userId);
+  void logIdentifyUser({
+    required String userId,
+    String? countryResidence,
+  }) {
+    DerivRudderstack().identify(
+      userId: userId,
+      countryResidence: countryResidence,
+    );
   }
 
   /// Tracks system error has happened,
@@ -235,9 +241,9 @@ class DerivRudderstackEvents {
     DerivRudderstack().track(
       eventName: 'ce_real_account_signup_form',
       properties: <String, dynamic>{
-        'action': 'open_real_sign_up',
+        'action': 'open',
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }
@@ -256,7 +262,7 @@ class DerivRudderstackEvents {
         'step_num': stepNum,
         'user_choice': userChoice,
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }
@@ -268,7 +274,7 @@ class DerivRudderstackEvents {
       properties: <String, dynamic>{
         'action': 'step_back',
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }
@@ -280,7 +286,7 @@ class DerivRudderstackEvents {
       properties: <String, dynamic>{
         'action': 'close',
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }
@@ -293,7 +299,7 @@ class DerivRudderstackEvents {
       properties: <String, dynamic>{
         'action': 'real_signup_error',
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }
@@ -305,7 +311,7 @@ class DerivRudderstackEvents {
       properties: <String, dynamic>{
         'action': 'real_signup_finished',
         'form_source': 'mobile_derivgo',
-        'form_name': 'real_signup_derivgo'
+        'form_name': 'real_account_signup_derivgo'
       },
     );
   }

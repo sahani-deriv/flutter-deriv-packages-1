@@ -49,8 +49,14 @@ class DerivRudderstack implements BaseAnalytics<RudderstackConfiguration> {
   }
 
   /// Sets the user id for this instance.
-  Future<bool> identify({required String userId}) async =>
-      _execute(() => rudderClient.identify(userId));
+  Future<bool> identify({
+    required String userId,
+    String? countryResidence,
+  }) async {
+    final RudderTraits traits =
+        RudderTraits().put('residence_country', countryResidence);
+    return _execute(() => rudderClient.identify(userId, traits: traits));
+  }
 
   /// Tracks an event with the given [eventName] and [properties].
   Future<bool> track({
