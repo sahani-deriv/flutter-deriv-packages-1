@@ -206,8 +206,11 @@ class DerivRudderstackEvents {
   }
 
   /// Tracks when user taps 'Create free demo account' or social log in button.
-  void logSignUpPageAction(String signupProvider,
-      [bool? isToggleOn, String? referralCode]) {
+  void logSignUpPageAction(
+    String signupProvider, [
+    bool? isToggleOn,
+    String? referralCode,
+  ]) {
     DerivRudderstack().track(
       eventName: 'ce_virtual_signup_form',
       properties: <String, dynamic>{
