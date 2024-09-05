@@ -23,8 +23,6 @@ class ToolsController {
   /// Shows indicators tools menu.
   void showIndicatorsToolsMenu() => onShowIndicatorsToolsMenu?.call();
 
-
-
   /// Shows drawing tools menu.
   void showDrawingToolsMenu() => onShowDrawingToolsMenu?.call();
 }
