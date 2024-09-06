@@ -1,4 +1,5 @@
 import 'package:analytics/sdk/rudderstack/core/rudderstack_configuration.dart';
+import 'package:analytics/sdk/rudderstack/models/user_info.dart';
 import 'package:analytics/sdk/rudderstack/sdk/deriv_rudderstack_sdk.dart';
 
 /// Class which hold events which should be monitored.
@@ -34,14 +35,8 @@ class DerivRudderstackEvents {
   }
 
   /// Tracks userId.
-  void logIdentifyUser({
-    required String userId,
-    String? countryResidence,
-  }) {
-    DerivRudderstack().identify(
-      userId: userId,
-      countryResidence: countryResidence,
-    );
+  void logIdentifyUser({required UserInfo userInfo}) {
+    DerivRudderstack().identify(userInfo: userInfo);
   }
 
   /// Tracks system error has happened,
