@@ -1,4 +1,5 @@
 import 'package:deriv_mobile_chart_wrapper/deriv_mobile_chart_wrapper.dart';
+import 'package:deriv_mobile_chart_wrapper/src/core_widgets/setting_page_action_buttons.dart';
 import 'package:deriv_mobile_chart_wrapper/src/extensions.dart';
 import 'package:deriv_mobile_chart_wrapper/src/helpers.dart';
 import 'package:deriv_mobile_chart_wrapper/src/pages/base_setting_page.dart';
@@ -6,6 +7,7 @@ import 'package:deriv_theme/deriv_theme.dart';
 import 'package:deriv_ui/components/components.dart';
 import 'package:deriv_ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 /// RSI indicator settings page.
 class RSISettingPage extends BaseIndicatorSettingPage<RSIIndicatorConfig> {
@@ -13,6 +15,8 @@ class RSISettingPage extends BaseIndicatorSettingPage<RSIIndicatorConfig> {
   const RSISettingPage({
     required super.initialConfig,
     required super.onConfigUpdated,
+    required super.onApply,
+    super.onReset,
     super.key,
   });
 
@@ -21,10 +25,9 @@ class RSISettingPage extends BaseIndicatorSettingPage<RSIIndicatorConfig> {
 }
 
 class _RSISettingPageState extends State<RSISettingPage> {
-  int _selectedSourceIndex = 0;
   late RSIIndicatorConfig _indicatorConfig;
 
-  final int _minimumValueSelectorInput = 0;
+  final int _minimumValueSelectorInput = 1;
   final int _maximumValueSelectorInput = 100;
 
   @override
@@ -34,28 +37,36 @@ class _RSISettingPageState extends State<RSISettingPage> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _selectedSourceIndex = getSourcesOptions(context)
-        .keys
-        .toList()
-        .indexOf(_indicatorConfig.fieldType);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(ThemeProvider.margin16),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildRSILineSection(),
-            _createZonesSection(),
-          ],
+    return Column(
+      children: [
+        _buildSettingSection(),
+        SettingActionButtons(
+          onApply: widget.onApply,
+          onReset: () {
+            showResetIndicatorDialog(context, config: _indicatorConfig,
+                onResetPressed: () {
+              setState(() {
+                _indicatorConfig = const RSIIndicatorConfig();
+              });
+              widget.onConfigUpdated(_indicatorConfig);
+            });
+          },
         ),
-      ),
+      ],
     );
   }
+
+  Widget _buildSettingSection() => Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildRSILineSection(),
+              _createZonesSection(),
+            ],
+          ),
+        ),
+      );
 
   Widget _buildRSILineSection() => GlowingContainer(
         padding: const EdgeInsets.all(ThemeProvider.margin16),
@@ -102,7 +113,7 @@ class _RSISettingPageState extends State<RSISettingPage> {
               onChange: (value) {
                 setState(() {
                   _indicatorConfig =
-                      _indicatorConfig.copyWith(period: value!.toInt());
+                      _indicatorConfig.copyWith(period: value?.floor());
                 });
                 widget.onConfigUpdated(_indicatorConfig);
               },
@@ -112,10 +123,12 @@ class _RSISettingPageState extends State<RSISettingPage> {
             OptionSelector(
                 label: context.mobileChartWrapperLocalizations.labelSource,
                 options: getSourcesOptions(context).values.toList(),
-                selectedIndex: _selectedSourceIndex,
+                selectedIndex: getSourcesOptions(context)
+                    .keys
+                    .toList()
+                    .indexOf(_indicatorConfig.fieldType),
                 onOptionSelected: (index) {
                   setState(() {
-                    _selectedSourceIndex = index;
                     _indicatorConfig = _indicatorConfig.copyWith(
                         fieldType:
                             getSourcesOptions(context).keys.toList()[index]);
@@ -166,10 +179,11 @@ class _RSISettingPageState extends State<RSISettingPage> {
             title: context.mobileChartWrapperLocalizations.labelOverbought,
             backgroundColor: context.theme.colors.active.withOpacity(0.4),
             value: _indicatorConfig.oscillatorLinesConfig.overboughtValue,
-            minimum: 1,
-            maximum: 100,
+            minimum: _minimumValueSelectorInput.toDouble(),
+            maximum: _maximumValueSelectorInput.toDouble(),
             showMaximumSubtitle: true,
             showMinimumSubtitle: true,
+            formatter: NumberFormat(),
             minimumSubtitle:
                 context.mobileChartWrapperLocalizations.labelMinSize,
             maximumSubtitle:
@@ -229,6 +243,7 @@ class _RSISettingPageState extends State<RSISettingPage> {
             value: _indicatorConfig.oscillatorLinesConfig.oversoldValue,
             minimum: 1,
             maximum: 100,
+            formatter: NumberFormat(),
             showMaximumSubtitle: true,
             showMinimumSubtitle: true,
             minimumSubtitle:
