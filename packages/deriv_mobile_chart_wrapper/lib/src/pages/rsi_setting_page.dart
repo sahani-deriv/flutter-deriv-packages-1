@@ -182,9 +182,9 @@ class _RSISettingPageState extends State<RSISettingPage> {
             value: _indicatorConfig.oscillatorLinesConfig.overboughtValue,
             minimum: _minimumValueSelectorInput.toDouble(),
             maximum: _maximumValueSelectorInput.toDouble(),
+            formatter: NumberFormat(),
             showMaximumSubtitle: true,
             showMinimumSubtitle: true,
-            formatter: NumberFormat(),
             minimumSubtitle:
                 context.mobileChartWrapperLocalizations.labelMinSize,
             maximumSubtitle:
@@ -242,9 +242,9 @@ class _RSISettingPageState extends State<RSISettingPage> {
             title: context.mobileChartWrapperLocalizations.labelOversold,
             backgroundColor: context.theme.colors.active.withOpacity(0.4),
             value: _indicatorConfig.oscillatorLinesConfig.oversoldValue,
+            formatter: NumberFormat(),
             minimum: 1,
             maximum: 100,
-            formatter: NumberFormat(),
             showMaximumSubtitle: true,
             showMinimumSubtitle: true,
             minimumSubtitle:

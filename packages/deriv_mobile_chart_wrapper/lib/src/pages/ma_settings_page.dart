@@ -47,11 +47,11 @@ class _MASettingsPageState extends State<MASettingsPage> {
           onReset: () {
             showResetIndicatorDialog(context, config: _indicatorConfig,
                 onResetPressed: () {
-              setState(() {
-                _indicatorConfig = const MAIndicatorConfig();
-              });
-              widget.onConfigUpdated(_indicatorConfig);
-            });
+                  setState(() {
+                    _indicatorConfig = const MAIndicatorConfig();
+                  });
+                  widget.onConfigUpdated(_indicatorConfig);
+                });
           },
         ),
       ],
