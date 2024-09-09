@@ -188,7 +188,7 @@ class DerivRudderstackEvents {
   }
 
   /// Tracks when user's sign up is finished.
-  void logSignUpDone(String signupProvider, int? userId) {
+  void logSignUpDone(String signupProvider, [int? userId]) {
     DerivRudderstack().identify(userInfo: UserInfo(userId: userId ?? 0));
     DerivRudderstack().track(
       eventName: 'ce_virtual_signup_form',
