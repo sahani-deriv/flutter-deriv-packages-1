@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-09-09
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_mobile_chart_wrapper` - `v0.0.15`](#deriv_mobile_chart_wrapper---v0015)
+ - [`deriv_passkeys` - `v0.0.4`](#deriv_passkeys---v004)
+ - [`deriv_ui` - `v0.0.16`](#deriv_ui---v0016)
+ - [`deriv_auth` - `v6.7.44`](#deriv_auth---v6744)
+ - [`deriv_language_selector` - `v0.0.3+6`](#deriv_language_selector---v0036)
+ - [`deriv_widgetbook` - `v0.0.2+26`](#deriv_widgetbook---v00226)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v6.7.44`
+ - `deriv_language_selector` - `v0.0.3+6`
+ - `deriv_widgetbook` - `v0.0.2+26`
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.0.15`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): wire up indicators ([#760](https://github.com/regentmarkets/flutter-deriv-packages/issues/760)). ([4ff1747b](https://github.com/regentmarkets/flutter-deriv-packages/commit/4ff1747b76e168710768be84d851276db5884c29))
+
+#### `deriv_passkeys` - `v0.0.4`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): wire up indicators ([#760](https://github.com/regentmarkets/flutter-deriv-packages/issues/760)). ([4ff1747b](https://github.com/regentmarkets/flutter-deriv-packages/commit/4ff1747b76e168710768be84d851276db5884c29))
+
+#### `deriv_ui` - `v0.0.16`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): wire up indicators ([#760](https://github.com/regentmarkets/flutter-deriv-packages/issues/760)). ([4ff1747b](https://github.com/regentmarkets/flutter-deriv-packages/commit/4ff1747b76e168710768be84d851276db5884c29))
+
+
 ## 2024-09-02
 
 ### Changes
