@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-09-11
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_mobile_chart_wrapper` - `v0.1.0+3`](#deriv_mobile_chart_wrapper---v0103)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.1.0+3`
+
+ - **FIX**(deriv_mobile_chart_wrapper): fix text alignment ([#816](https://github.com/regentmarkets/flutter-deriv-packages/issues/816)). ([8fd35364](https://github.com/regentmarkets/flutter-deriv-packages/commit/8fd35364760d7bc1b101f9414a2d9d340a1b5a32))
+
+
 ## 2024-09-10
 
 ### Changes
