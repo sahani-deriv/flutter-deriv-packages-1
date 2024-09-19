@@ -15,6 +15,36 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`analytics` - `v2.3.0`](#analytics---v230)
+ - [`deriv_passkeys` - `v0.0.4+5`](#deriv_passkeys---v0045)
+ - [`deriv_auth` - `v6.7.50`](#deriv_auth---v6750)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_passkeys` - `v0.0.4+5`
+ - `deriv_auth` - `v6.7.50`
+
+---
+
+#### `analytics` - `v2.3.0`
+
+ - **FEAT**(analytics): Amend tracking events Rudderstack ([#821](https://github.com/regentmarkets/flutter-deriv-packages/issues/821)). ([bd197376](https://github.com/regentmarkets/flutter-deriv-packages/commit/bd197376cf450ec375a9759c9511563a253a0c64))
+
+
+## 2024-09-19
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v6.7.49`](#deriv_auth---v6749)
 
 ---
