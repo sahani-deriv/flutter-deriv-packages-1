@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v6.7.51`](#deriv_auth---v6751)
+
+---
+
+#### `deriv_auth` - `v6.7.51`
+
+ - **FIX**: [86c0e0nez] filter supported accounts while logging in ([#833](https://github.com/regentmarkets/flutter-deriv-packages/issues/833)). ([534e982c](https://github.com/regentmarkets/flutter-deriv-packages/commit/534e982c809b5e0e9380366a3f32a05f1ef2cf10))
+
+
+## 2024-09-24
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_mobile_chart_wrapper` - `v0.1.3`](#deriv_mobile_chart_wrapper---v013)
 
 ---
