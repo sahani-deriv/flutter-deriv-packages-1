@@ -1,3 +1,7 @@
+## 6.7.51
+
+ - **FIX**: [86c0e0nez] filter supported accounts while logging in ([#833](https://github.com/regentmarkets/flutter-deriv-packages/issues/833)). ([534e982c](https://github.com/regentmarkets/flutter-deriv-packages/commit/534e982c809b5e0e9380366a3f32a05f1ef2cf10))
+
 ## 6.7.50
 
  - Update a dependency to the latest release.
