@@ -1,3 +1,7 @@
+## 0.0.5+1
+
+ - **FIX**: Updating Flutter Deriv API version to latest ([#843](https://github.com/regentmarkets/flutter-deriv-packages/issues/843)). ([db461495](https://github.com/regentmarkets/flutter-deriv-packages/commit/db46149557a9a93eb86a6691a8c7831bf709e8f1))
+
 ## 0.0.5
 
  - **FEAT**(deriv_auth): [DERG-1396] akhil/1396/multi_user_level_authentication_poc_master ([#574](https://github.com/regentmarkets/flutter-deriv-packages/issues/574)). ([97ac8004](https://github.com/regentmarkets/flutter-deriv-packages/commit/97ac8004370762ed38ed0608e64699a020406b8e))
