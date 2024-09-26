@@ -1,3 +1,7 @@
+## 6.8.1
+
+ - **FIX**: Updating Flutter Deriv API version to latest ([#843](https://github.com/regentmarkets/flutter-deriv-packages/issues/843)). ([db461495](https://github.com/regentmarkets/flutter-deriv-packages/commit/db46149557a9a93eb86a6691a8c7831bf709e8f1))
+
 ## 6.8.0
 
  - **FIX**: [86c0e0nez] add disability check while filtering accounts ([#837](https://github.com/regentmarkets/flutter-deriv-packages/issues/837)). ([e64dfa54](https://github.com/regentmarkets/flutter-deriv-packages/commit/e64dfa54d774e79c3c88f63f3112c7eb0c0cb6b8))
