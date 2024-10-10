@@ -11,6 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - [`deriv_app_performance` - `v0.1.0`](#deriv_app_performance---v010)
+ - [`update_checker` - `v3.0.0`](#update_checker---v300)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `deriv_app_performance` - `v0.1.0`
+
+ - **BREAKING** **FIX**(deriv_app_performance): [DRGO-1247] Ramin/update dependencies ([#862](https://github.com/regentmarkets/flutter-deriv-packages/issues/862)). ([b0e7120b](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0e7120bd1afc0b3244e14d0c251525005ee67c5))
+
+#### `update_checker` - `v3.0.0`
+
+ - **BREAKING** **FIX**(deriv_app_performance): [DRGO-1247] Ramin/update dependencies ([#862](https://github.com/regentmarkets/flutter-deriv-packages/issues/862)). ([b0e7120b](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0e7120bd1afc0b3244e14d0c251525005ee67c5))
+
+
+## 2024-10-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`analytics` - `v3.0.0`](#analytics---v300)
 
 Packages with other changes:
