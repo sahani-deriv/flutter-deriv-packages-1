@@ -1,3 +1,9 @@
+## 3.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FIX**(deriv_app_performance): [DRGO-1247] Ramin/update dependencies ([#862](https://github.com/regentmarkets/flutter-deriv-packages/issues/862)). ([b0e7120b](https://github.com/regentmarkets/flutter-deriv-packages/commit/b0e7120bd1afc0b3244e14d0c251525005ee67c5))
+
 ## 2.0.0
 
 > Note: This release has breaking changes.
