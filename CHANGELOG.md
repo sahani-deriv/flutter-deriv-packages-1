@@ -406,6 +406,37 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_auth` - `v6.8.1`](#deriv_auth---v681)
+ - [`deriv_logger` - `v0.0.3+1`](#deriv_logger---v0031)
+ - [`deriv_passkeys` - `v0.0.5+1`](#deriv_passkeys---v0051)
+
+---
+
+#### `deriv_auth` - `v6.8.1`
+
+ - **FIX**: Updating Flutter Deriv API version to latest ([#843](https://github.com/regentmarkets/flutter-deriv-packages/issues/843)). ([db461495](https://github.com/regentmarkets/flutter-deriv-packages/commit/db46149557a9a93eb86a6691a8c7831bf709e8f1))
+
+#### `deriv_logger` - `v0.0.3+1`
+
+ - **FIX**: Updating Flutter Deriv API version to latest ([#843](https://github.com/regentmarkets/flutter-deriv-packages/issues/843)). ([db461495](https://github.com/regentmarkets/flutter-deriv-packages/commit/db46149557a9a93eb86a6691a8c7831bf709e8f1))
+
+#### `deriv_passkeys` - `v0.0.5+1`
+
+ - **FIX**: Updating Flutter Deriv API version to latest ([#843](https://github.com/regentmarkets/flutter-deriv-packages/issues/843)). ([db461495](https://github.com/regentmarkets/flutter-deriv-packages/commit/db46149557a9a93eb86a6691a8c7831bf709e8f1))
+
+
+## 2024-09-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_auth` - `v6.8.0`](#deriv_auth---v680)
  - [`deriv_passkeys` - `v0.0.5`](#deriv_passkeys---v005)
 
