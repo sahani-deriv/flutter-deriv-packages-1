@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_mobile_chart_wrapper` - `v0.1.6`](#deriv_mobile_chart_wrapper---v016)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.1.6`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): Update pubspec.yaml ([#877](https://github.com/regentmarkets/flutter-deriv-packages/issues/877)). ([79518161](https://github.com/regentmarkets/flutter-deriv-packages/commit/7951816199178bcdc1eb507b784e713da9f60e8d))
+
+
+## 2024-10-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_feature_flag` - `v0.1.2`](#deriv_feature_flag---v012)
 
 ---

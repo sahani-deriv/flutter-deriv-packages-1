@@ -1,3 +1,7 @@
+## 0.1.6
+
+ - **FEAT**(deriv_mobile_chart_wrapper): Update pubspec.yaml ([#877](https://github.com/regentmarkets/flutter-deriv-packages/issues/877)). ([79518161](https://github.com/regentmarkets/flutter-deriv-packages/commit/7951816199178bcdc1eb507b784e713da9f60e8d))
+
 ## 0.1.5
 
  - **FEAT**(deriv_mobile_chart_wrapper): Add the ability to hide indicators. ([#866](https://github.com/regentmarkets/flutter-deriv-packages/issues/866)). ([2cf1b4f6](https://github.com/regentmarkets/flutter-deriv-packages/commit/2cf1b4f6e255b1058996015513ad39aca4b29b71))
