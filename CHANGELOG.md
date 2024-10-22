@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-10-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_feature_flag` - `v0.1.2`](#deriv_feature_flag---v012)
+
+---
+
+#### `deriv_feature_flag` - `v0.1.2`
+
+ - **FEAT**(deriv_feature_flag): set attributes ([#874](https://github.com/regentmarkets/flutter-deriv-packages/issues/874)). ([bb92d976](https://github.com/regentmarkets/flutter-deriv-packages/commit/bb92d9764408613905da8451ce97689db09c6991))
+
+
 ## 2024-10-18
 
 ### Changes
