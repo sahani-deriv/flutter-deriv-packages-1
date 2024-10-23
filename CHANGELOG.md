@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_mobile_chart_wrapper` - `v0.1.7+3`](#deriv_mobile_chart_wrapper---v0173)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.1.7+3`
+
+ - **FIX**(deriv_mobile_chart_wrapper): [DRGO-193] remove unimplemented settings button ([#890](https://github.com/regentmarkets/flutter-deriv-packages/issues/890)). ([095f96aa](https://github.com/regentmarkets/flutter-deriv-packages/commit/095f96aa10723358142f59dd71af29b98202d69f))
+
+
+## 2024-10-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_localizations` - `v1.7.2`](#deriv_localizations---v172)
  - [`deriv_mobile_chart_wrapper` - `v0.1.7+2`](#deriv_mobile_chart_wrapper---v0172)
  - [`deriv_passkeys` - `v0.0.5+10`](#deriv_passkeys---v00510)
