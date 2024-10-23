@@ -12,6 +12,7 @@ import 'deriv_mobile_chart_wrapper_localizations_en.dart';
 import 'deriv_mobile_chart_wrapper_localizations_es.dart';
 import 'deriv_mobile_chart_wrapper_localizations_fr.dart';
 import 'deriv_mobile_chart_wrapper_localizations_it.dart';
+import 'deriv_mobile_chart_wrapper_localizations_km.dart';
 import 'deriv_mobile_chart_wrapper_localizations_ko.dart';
 import 'deriv_mobile_chart_wrapper_localizations_mn.dart';
 import 'deriv_mobile_chart_wrapper_localizations_pl.dart';
@@ -113,6 +114,7 @@ abstract class DerivMobileChartWrapperLocalizations {
     Locale('es'),
     Locale('fr'),
     Locale('it'),
+    Locale('km'),
     Locale('ko'),
     Locale('mn'),
     Locale('pl'),
@@ -715,7 +717,7 @@ class _DerivMobileChartWrapperLocalizationsDelegate extends LocalizationsDelegat
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'km', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_DerivMobileChartWrapperLocalizationsDelegate old) => false;
@@ -743,6 +745,7 @@ case 'TW': return DerivMobileChartWrapperLocalizationsZhTw();
     case 'es': return DerivMobileChartWrapperLocalizationsEs();
     case 'fr': return DerivMobileChartWrapperLocalizationsFr();
     case 'it': return DerivMobileChartWrapperLocalizationsIt();
+    case 'km': return DerivMobileChartWrapperLocalizationsKm();
     case 'ko': return DerivMobileChartWrapperLocalizationsKo();
     case 'mn': return DerivMobileChartWrapperLocalizationsMn();
     case 'pl': return DerivMobileChartWrapperLocalizationsPl();
