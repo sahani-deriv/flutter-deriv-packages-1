@@ -12,6 +12,7 @@ import 'deriv_auth_localizations_en.dart';
 import 'deriv_auth_localizations_es.dart';
 import 'deriv_auth_localizations_fr.dart';
 import 'deriv_auth_localizations_it.dart';
+import 'deriv_auth_localizations_km.dart';
 import 'deriv_auth_localizations_ko.dart';
 import 'deriv_auth_localizations_mn.dart';
 import 'deriv_auth_localizations_pl.dart';
@@ -113,6 +114,7 @@ abstract class DerivAuthLocalizations {
     Locale('es'),
     Locale('fr'),
     Locale('it'),
+    Locale('km'),
     Locale('ko'),
     Locale('mn'),
     Locale('pl'),
@@ -667,7 +669,7 @@ class _DerivAuthLocalizationsDelegate extends LocalizationsDelegate<DerivAuthLoc
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'km', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_DerivAuthLocalizationsDelegate old) => false;
@@ -695,6 +697,7 @@ case 'TW': return DerivAuthLocalizationsZhTw();
     case 'es': return DerivAuthLocalizationsEs();
     case 'fr': return DerivAuthLocalizationsFr();
     case 'it': return DerivAuthLocalizationsIt();
+    case 'km': return DerivAuthLocalizationsKm();
     case 'ko': return DerivAuthLocalizationsKo();
     case 'mn': return DerivAuthLocalizationsMn();
     case 'pl': return DerivAuthLocalizationsPl();

@@ -12,6 +12,7 @@ import 'deriv_passkeys_localizations_en.dart';
 import 'deriv_passkeys_localizations_es.dart';
 import 'deriv_passkeys_localizations_fr.dart';
 import 'deriv_passkeys_localizations_it.dart';
+import 'deriv_passkeys_localizations_km.dart';
 import 'deriv_passkeys_localizations_ko.dart';
 import 'deriv_passkeys_localizations_mn.dart';
 import 'deriv_passkeys_localizations_pl.dart';
@@ -113,6 +114,7 @@ abstract class DerivPasskeysLocalizations {
     Locale('es'),
     Locale('fr'),
     Locale('it'),
+    Locale('km'),
     Locale('ko'),
     Locale('mn'),
     Locale('pl'),
@@ -469,7 +471,7 @@ class _DerivPasskeysLocalizationsDelegate extends LocalizationsDelegate<DerivPas
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'fr', 'it', 'km', 'ko', 'mn', 'pl', 'pt', 'ru', 'si', 'sw', 'th', 'tr', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_DerivPasskeysLocalizationsDelegate old) => false;
@@ -497,6 +499,7 @@ case 'TW': return DerivPasskeysLocalizationsZhTw();
     case 'es': return DerivPasskeysLocalizationsEs();
     case 'fr': return DerivPasskeysLocalizationsFr();
     case 'it': return DerivPasskeysLocalizationsIt();
+    case 'km': return DerivPasskeysLocalizationsKm();
     case 'ko': return DerivPasskeysLocalizationsKo();
     case 'mn': return DerivPasskeysLocalizationsMn();
     case 'pl': return DerivPasskeysLocalizationsPl();
