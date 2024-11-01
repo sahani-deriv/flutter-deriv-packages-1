@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-11-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`update_checker` - `v3.1.1`](#update_checker---v311)
+
+---
+
+#### `update_checker` - `v3.1.1`
+
+ - **FIX**(update_checker): [DRGO-1343] handle "failed to fetch and activate remote config" error ([#871](https://github.com/regentmarkets/flutter-deriv-packages/issues/871)). ([06c68591](https://github.com/regentmarkets/flutter-deriv-packages/commit/06c68591aaa9146789d173f220761efa1eab0d50))
+
+
 ## 2024-10-29
 
 ### Changes
