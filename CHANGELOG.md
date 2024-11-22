@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`deriv_mobile_chart_wrapper` - `v0.1.9`](#deriv_mobile_chart_wrapper---v019)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.1.9`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): [DRGO-1484] Filter Drawing Tools to Show Only Enabled Options ([#905](https://github.com/regentmarkets/flutter-deriv-packages/issues/905)). ([a3fccd72](https://github.com/regentmarkets/flutter-deriv-packages/commit/a3fccd7284b6a56dd1e98942b02b6c29afb87512))
+
+
+## 2024-11-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`deriv_ui` - `v0.1.2`](#deriv_ui---v012)
  - [`deriv_mobile_chart_wrapper` - `v0.1.8+2`](#deriv_mobile_chart_wrapper---v0182)
  - [`deriv_passkeys` - `v0.0.5+12`](#deriv_passkeys---v00512)
