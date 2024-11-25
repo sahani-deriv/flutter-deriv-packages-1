@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-11-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_language_selector` - `v0.0.4`](#deriv_language_selector---v004)
+ - [`deriv_auth` - `v7.0.9`](#deriv_auth---v709)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `deriv_auth` - `v7.0.9`
+
+---
+
+#### `deriv_language_selector` - `v0.0.4`
+
+ - **FEAT**(deriv_language_selector): [DRGO-1332] raslan/ Added language UI design revamp for language selector ([#893](https://github.com/regentmarkets/flutter-deriv-packages/issues/893)). ([80b86d25](https://github.com/regentmarkets/flutter-deriv-packages/commit/80b86d25c60d41ec36678a18ebb58a2c2cd7db20))
+
+
 ## 2024-11-22
 
 ### Changes
