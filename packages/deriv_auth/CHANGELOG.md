@@ -1,3 +1,7 @@
+## 7.0.10
+
+ - Update a dependency to the latest release.
+
 ## 7.0.9
 
  - Update a dependency to the latest release.
