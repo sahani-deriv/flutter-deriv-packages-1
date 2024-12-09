@@ -106,4 +106,15 @@ class DerivDatadog implements BaseAnalytics<DerivDatadogConfiguration> {
         name,
         attributes,
       );
+
+  /// Logs Source Error
+  void onSourceError(
+    String message, [
+    Map<String, Object?> attributes = const <String, Object?>{},
+  ]) =>
+      _datadogSDK.rum?.addErrorInfo(
+        message,
+        datadog.RumErrorSource.source,
+        attributes: attributes,
+      );
 }
