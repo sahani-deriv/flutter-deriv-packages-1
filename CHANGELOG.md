@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-12-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`deriv_mobile_chart_wrapper` - `v0.1.10`](#deriv_mobile_chart_wrapper---v0110)
+ - [`deriv_rudderstack` - `v1.3.0`](#deriv_rudderstack---v130)
+
+---
+
+#### `deriv_mobile_chart_wrapper` - `v0.1.10`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): [GRWT-3362] update chart package version ([#919](https://github.com/regentmarkets/flutter-deriv-packages/issues/919)). ([d79b9d5e](https://github.com/regentmarkets/flutter-deriv-packages/commit/d79b9d5e9d7216085e60c49be98a8cd0a7caea18))
+
+#### `deriv_rudderstack` - `v1.3.0`
+
+ - **FEAT**(deriv_mobile_chart_wrapper): [GRWT-3362] update chart package version ([#919](https://github.com/regentmarkets/flutter-deriv-packages/issues/919)). ([d79b9d5e](https://github.com/regentmarkets/flutter-deriv-packages/commit/d79b9d5e9d7216085e60c49be98a8cd0a7caea18))
+
+
 ## 2024-12-06
 
 ### Changes
