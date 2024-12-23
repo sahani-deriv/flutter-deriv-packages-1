@@ -1,3 +1,8 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] 
 
-* TODO: Describe initial release.
+* Update documentations 
+* Make pacakge ready for publish
+
+## [0.0.1]
+
+* Initial implementation
