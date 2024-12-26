@@ -23,7 +23,7 @@ jobs:
      - name: Git Checkout
        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
        with:
-         token: ${{ secrets.GITHUB_TOKEN }}
+         token: ${{ secrets.PAT }}
          fetch-depth: 0
 
      - name: Setup Git User
