@@ -1,3 +1,7 @@
+## 2.2.0
+
+ - **FEAT**(deriv_http_client): Ramin/http client new version ([#932](https://github.com/deriv-com/flutter-deriv-packages.git/issues/932)). ([586d40aa](https://github.com/deriv-com/flutter-deriv-packages.git/commit/586d40aa800281fbadd8153924ff4078a07ae598))
+
 ## 2.1.0
 
  - **FEAT**(deriv_http_client): Ramin/http client new version ([#932](https://github.com/deriv-com/flutter-deriv-packages.git/issues/932)). ([586d40aa](https://github.com/deriv-com/flutter-deriv-packages.git/commit/586d40aa800281fbadd8153924ff4078a07ae598))
