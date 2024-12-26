@@ -21,7 +21,7 @@ jobs:
      - name: Git Checkout
        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
        with:
-         token: ${{ secrets.PAT }}
+         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
          fetch-depth: 0
 
      - name: Setup Git User
