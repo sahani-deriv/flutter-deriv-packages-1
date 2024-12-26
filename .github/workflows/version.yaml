@@ -7,6 +7,10 @@ on:
    branches:
      - master
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
  version_and_tag:
    runs-on: ubuntu-latest
@@ -88,6 +92,6 @@ jobs:
      - name: Create Pull Request on updated changelog and pubspec file.
        uses: peter-evans/create-pull-request@76c6f5c20e2111bfee3cd30fae52a25e410f5efc
        with:
-         token: ${{ secrets.PAT }}
+         token: ${{ secrets.GITHUB_TOKEN }}
          title: "chore(version): bump version and update changelog"
          base: master
