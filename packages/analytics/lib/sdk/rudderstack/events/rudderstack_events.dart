@@ -34,6 +34,16 @@ class DerivRudderstackEvents {
     );
   }
 
+  /// Tracks device token registered.
+  void logDeviceToken(String deviceToken) {
+    DerivRudderstack().track(
+      eventName: 'device_token_registered',
+      properties: <String, dynamic>{
+        'device_token': deviceToken,
+      },
+    );
+  }
+
   /// Tracks userId.
   void logIdentifyUser({required UserInfo userInfo}) {
     DerivRudderstack().identify(userInfo: userInfo);
